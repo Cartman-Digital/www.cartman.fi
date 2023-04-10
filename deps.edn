@@ -1,7 +1,9 @@
 {:deps {org.clojure/clojure {:mvn/version "1.11.1"}}
  :paths ["src"]
  :aliases {:generator {:extra-paths ["src/generator"]
-                       :extra-deps {clj-http/clj-http {:mvn/version "3.12.3"}
-                                    metosin/muuntaja {:mvn/version "0.6.8"}
+                       :extra-deps {com.taoensso/truss              {:mvn/version "1.9.0"}
+                                    clj-http/clj-http               {:mvn/version "3.12.3"}
+                                    hiccup/hiccup                   {:mvn/version "2.0.0-alpha2"}
+                                    metosin/muuntaja                {:mvn/version "0.6.8"}
                                     floatingpointio/graphql-builder {:mvn/version "0.1.14"}
-                                    stasis/stasis {:mvn/version "2.5.1"}}}}}
+                                    stasis/stasis                   {:mvn/version "2.5.1"}}}}}

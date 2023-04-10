@@ -1,0 +1,29 @@
+query pageCollectionQuery {
+  pageCollection {
+    items {
+      sys {
+        id
+      }
+      title
+      slug
+      contentCollection {
+        items {
+          __typename
+          ... on CtaBanner {
+            sys {
+              id
+            }
+          }
+          ... on ContentBlock {
+            sys {
+              id
+            }
+            content {
+              json
+            }
+          }
+        }
+      }
+    }
+  }
+}
