@@ -1,13 +1,13 @@
 (ns generator.navigation
-  (:require [generator.contentful :as contentful]
+  (:require [taoensso.truss :as truss :refer (have)]
+            [generator.contentful :as contentful]
             [hiccup.core :as h]))
 
 (def top-nav "Main menu")
 
 (defn render-main-menu []
   (let [menu-data (contentful/get-contentful :nav-collection-query {:where {:name top-nav}})
-        nav-item-collection (get-in menu-data [:navCollection :items 0 :linkedFrom :navItemCollection])]
-    (when (empty? nav-item-collection) (throw (AssertionError. "empty nav items!")))
+        nav-item-collection (have map? (get-in menu-data [:navCollection :items 0 :linkedFrom :navItemCollection]))]
     (h/html [:nav.top-nav
              [:ol
               (for [item (:items nav-item-collection)]
