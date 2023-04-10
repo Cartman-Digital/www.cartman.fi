@@ -4,7 +4,7 @@
 
 (def export-directory "./build/")
 
-(defn export []
+(defn -main []
   (stasis/empty-directory! export-directory) 
   (stasis/export-pages (pages/get-pages) export-directory)
   (println)
