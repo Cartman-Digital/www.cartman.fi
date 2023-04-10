@@ -1,0 +1,36 @@
+query navCollectionQuery($name: String) {
+  navCollection(where: {name: $name}, limit: 1) {
+    items {
+      sys {
+        id
+      }
+      name
+      linkedFrom {
+        navItemCollection {
+          total
+          items {
+            sys {
+              id
+            }
+            title
+            weight
+            slug
+            linkedFrom {
+              navItemCollection {
+                total
+                items {
+                  sys {
+                    id
+                  }
+                  title
+                  weight
+                  slug
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
