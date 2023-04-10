@@ -24,15 +24,15 @@
 (defn dispatch [query]
   (let [graphql (:graphql query)] 
     (->> (client/get contentful-url {:accept :json 
-                                     :debug false
-                                       :query-params {:query (:query graphql) 
-                                                      :variables (:variables graphql)} 
-                                       :headers headers 
-                                       :throw-entire-message? false})
-           (m/decode-response-body)
-           (:data))))
+                                     :debug false 
+                                     :query-params {:query (:query graphql) 
+                                                    :variables (:variables graphql)} 
+                                     :headers headers 
+                                     :throw-entire-message? false}) 
+         (m/decode-response-body) 
+         (:data))))
 
 (defn get-nav-tree [filter]
   (let [query-fn (get-in query-map [:query :nav-collection-query])
-        query (query-fn filter)]
+        query    (query-fn filter)]
     (dispatch query)))
