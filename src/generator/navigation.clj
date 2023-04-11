@@ -8,11 +8,11 @@
 (defn render-main-menu []
   (let [menu-data (contentful/get-contentful :nav-collection-query {:where {:name top-nav}})
         nav-item-collection (have map? (get-in menu-data [:navCollection :items 0 :linkedFrom :navItemCollection]))]
-    (h/html [:nav.top-nav
-             [:ol
-              (for [item (:items nav-item-collection)]
-                [:li
-                 [:a {:href (:slug item)} :title]])]])))
+    [:nav.top-nav
+     [:ol
+      (for [item (:items nav-item-collection)]
+        [:li
+         [:a {:href (:slug item)} :title]])]]))
 
 
 

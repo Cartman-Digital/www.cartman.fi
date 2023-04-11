@@ -1,10 +1,20 @@
 (ns generator.pages
   (:require [taoensso.truss :as truss :refer (have)]
-            [generator.contentful :as contentful]
-            [generator.pages :as pages]))
+            [generator.contentful :as contentful] 
+            [generator.navigation :as nav]
+            [hiccup.page :use [html5 include-css include-js]]
+            [hiccup.element :refer (link-to image)]))
 
 (defn render-content [page]
-  (str "<h1>test</h1>"))
+  (html5
+   [:head
+    [:meta {:charset "utf-8"}]
+    ]
+   [:body
+    (nav/render-main-menu)
+    [:div.content page]
+    [:div.footer
+     [:span "&copy 2018 Nick George"]]]))
 
 (defn get-pages
   "Returns map of filename (eg. index.html) -> html"
@@ -17,5 +27,5 @@
 
 
 (comment
-  (pprint (get-pages))
+  (pprint (second (first (get-pages))))
   )
