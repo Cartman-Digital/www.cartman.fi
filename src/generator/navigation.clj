@@ -1,7 +1,6 @@
 (ns generator.navigation
   (:require [taoensso.truss :as truss :refer (have)]
-            [generator.contentful :as contentful]
-            [hiccup.core :as h]))
+            [generator.contentful :as contentful]))
 
 (def top-nav "Main menu")
 

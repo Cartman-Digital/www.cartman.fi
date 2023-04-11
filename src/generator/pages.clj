@@ -2,7 +2,7 @@
   (:require [taoensso.truss :as truss :refer (have)]
             [generator.contentful :as contentful] 
             [generator.navigation :as nav]
-            [hiccup.page :use [html5 include-css include-js]]
+            [hiccup.page :refer [html5 include-css include-js]]
             [hiccup.element :refer (link-to image)]))
 
 (defn render-content [page]
@@ -27,5 +27,5 @@
 
 
 (comment
-  (pprint (second (first (get-pages))))
+  (println (second (first (get-pages))))
   )
