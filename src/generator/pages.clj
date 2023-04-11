@@ -5,14 +5,18 @@
             [hiccup.page :refer [html5 include-css include-js]]
             [hiccup.element :refer (link-to image)]))
 
-(defn render-content [page]
+(defn render-content [content]
+  (into [] [:p "some content"]))
+
+
+(defn render-page [page]
   (html5
    [:head
     [:meta {:charset "utf-8"}]
     ]
    [:body
     (nav/render-main-menu)
-    [:div.content page]
+    [:div.content (render-content page)]
     [:div.footer
      [:span "&copy 2023 Cartman Digital Oy"]]]))
 
@@ -23,9 +27,9 @@
         pages (have vector? (get-in pages-data [:pageCollection :items]))]
     (mapv #(vector
            (if (not= (:slug %) "/") (str (:slug %) ".html") (str "index.html"))
-           (render-content %)) pages)))
+           (render-page %)) pages)))
 
 
 (comment
-  (println (second (first (get-pages))))
+  (println (get-pages)))
   )
