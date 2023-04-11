@@ -14,7 +14,7 @@
     (nav/render-main-menu)
     [:div.content page]
     [:div.footer
-     [:span "&copy 2018 Nick George"]]]))
+     [:span "&copy 2023 Cartman Digital Oy"]]]))
 
 (defn get-pages
   "Returns map of filename (eg. index.html) -> html"
