@@ -32,4 +32,6 @@
 
 (comment
   (println (get-pages)))
-  )
+
+(comment
+  (println (render-page {})))

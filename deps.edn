@@ -3,6 +3,8 @@
         clj-http/clj-http               {:mvn/version "3.12.3"}
         hiccup/hiccup                   {:mvn/version "2.0.0-alpha2"}
         metosin/muuntaja                {:mvn/version "0.6.8"}
+        ring/ring                       {:mvn/version "1.10.0"}
+        metosin/reitit                  {:mvn/version "0.5.12"}
         floatingpointio/graphql-builder {:mvn/version "0.1.14"}
         stasis/stasis                   {:mvn/version "2.5.1"}}
  :paths ["src" "resources"]
