@@ -47,6 +47,3 @@
    (let [graphql-fn (have fn? (get-in query-map [:query query]))
          graphql    (graphql-fn)]
      (dispatch graphql))))
-
-(comment
-  (println (get-contentful :page-collection-query)))
