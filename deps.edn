@@ -4,8 +4,9 @@
         hiccup/hiccup                   {:mvn/version "2.0.0-alpha2"}
         metosin/muuntaja                {:mvn/version "0.6.8"}
         floatingpointio/graphql-builder {:mvn/version "0.1.14"}
-        stasis/stasis                   {:mvn/version "2.5.1"}}
- :paths ["src" "resources"]
+        stasis/stasis                   {:mvn/version "2.5.1"}
+        optimus/optimus                 {:mvn/version "2023-02-08"}}
+ :paths ["src" "resources" "public"]
  :aliases {:project/run {:main-opts ["-m" "generator.core"]}
            :server {:extra-deps {mtkp/ring-dev {:git/url "https://github.com/mtkp/ring-dev" :sha "330d8318790939a4b7d8cab01712415e63c62618"}}
                     :main-opts ["-m" "mtkp.ring-dev.main" "generator.webserver/app"]}}}
