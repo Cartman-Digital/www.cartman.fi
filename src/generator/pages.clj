@@ -19,8 +19,8 @@
     ]
    [:body {:class "bg-black text-white"}
     (nav/render-main-menu)
-    [:div {:class ""} (render-content page)]
-    [:div.footer
+    [:div {:class "content max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"} (render-content page)]
+    [:div.footer {:class "max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"}
      [:span "&copy 2023 Cartman Digital Oy"]]
     (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
 
