@@ -7,7 +7,7 @@
 (defn render-main-menu []
   (let [menu-data (contentful/get-contentful :nav-collection-query {:where {:name top-nav}})
         nav-item-collection (have map? (get-in menu-data [:navCollection :items 0 :linkedFrom :navItemCollection]))]
-    [:nav {:class "bg-black border-gray-200"} 
+    [:nav {:class "border-gray-800 border-b"} 
      [:div {:class "max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"}
       [:a {:href "/" :class "flex items-center"}
        [:img {:src "/assets/images/cartman_digital_logo_nega_small.png" :title "Cartman Digital" :class "h-10 mr-3"}]

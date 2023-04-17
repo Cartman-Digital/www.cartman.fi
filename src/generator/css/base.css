@@ -2,3 +2,114 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --color-primary: #FF00EF;
+    --color-primary-offset: #FFD5F1;
+    --color-secondary: #0073D4;
+    --color-secondary-offset: #B1D5F3;
+    --color-accent: #FFD945;
+    --color-grey-primary: #0D0E1F;
+    --color-grey-offset: #FFF;
+}
+
+/**
+ * Typeface declarations
+ */
+html body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    background-color: var(--color-grey-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+body h1 {
+    font-size: 2.4rem;
+    margin-bottom: 1.2rem;
+}
+
+body h2 {
+    font-size: 1.7rem;
+    margin-bottom: 0.85rem;
+}
+
+body h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.7rem;
+}
+
+
+body h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+}
+
+
+body h5 {
+    font-size: 1.1rem;
+}
+
+/**
+ * Forms
+ */
+body input[type="text"],
+body input[type="email"],
+body input[type="textarea"] {
+    display: block;
+    color: var(--color-grey-primary);
+    margin-bottom: 1rem;
+}
+
+body input[type="textarea"] {
+    resize: both;
+    min-width: 16rem;
+    min-height: 2.625rem;
+    box-sizing: border-box;
+    padding: 8px 12px;
+}
+
+body label {
+    padding-left: 0.25rem;
+}
+
+body hr {
+    margin: 1.4rem 0;
+}
+
+.button {
+    padding: 10px 10px;
+    border-top: 1px solid var(--color-grey-offset);
+    border-bottom: 1px solid var(--color-grey-offset);
+    margin-top: 2rem;
+}
+
+.button:hover {
+    background-color: var(--color-grey-offset);
+    color: var(--color-grey-primary);
+}
+
+body .action,
+body input[type="checkbox"],
+body input[type="radio"] {
+    cursor: pointer;
+}
+
+body .content a {
+    text-decoration: underline;
+}
+
+body a:hover {
+    color: var(--color-secondary-offset);
+}
+
+/** 
+ * Layout
+ */
+ .full-width {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+}
