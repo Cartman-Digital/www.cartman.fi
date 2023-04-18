@@ -528,6 +528,22 @@ video {
   border-width: 0;
 }
 
+.fixed {
+  position: fixed;
+}
+
+.left-0 {
+  left: 0px;
+}
+
+.top-0 {
+  top: 0px;
+}
+
+.z-20 {
+  z-index: 20;
+}
+
 .float-right {
   float: right;
 }
@@ -543,6 +559,10 @@ video {
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
 }
 
 .ml-3 {
@@ -563,6 +583,10 @@ video {
 
 .mt-14 {
   margin-top: 3.5rem;
+}
+
+.mt-16 {
+  margin-top: 4rem;
 }
 
 .mt-4 {
@@ -657,8 +681,8 @@ video {
   border-radius: 0.25rem;
 }
 
-.rounded-lg {
-  border-radius: 0.5rem;
+.border {
+  border-width: 1px;
 }
 
 .border-b {
@@ -670,9 +694,9 @@ video {
   border-color: rgb(31 41 55 / var(--tw-border-opacity));
 }
 
-.bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .bg-gray-800 {
@@ -694,6 +718,10 @@ video {
 
 .py-2 {
   padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.pb-2 {
   padding-bottom: 0.5rem;
 }
 
@@ -771,6 +799,11 @@ html body {
   background-color: var(--color-grey-primary);
 }
 
+html body,
+html body nav {
+  background-color: var(--color-grey-primary);
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Ubuntu', sans-serif;
   font-weight: 700;
@@ -833,12 +866,24 @@ body hr {
   padding: 10px 10px;
   border-top: 1px solid var(--color-grey-offset);
   border-bottom: 1px solid var(--color-grey-offset);
+  border-radius: 3px;
   margin-top: 2rem;
+  margin-right: 1.5rem;
+}
+
+.button.primary {
+  border: 1px solid var(--color-secondary);
+  background-color: var(--color-secondary);
+  color: var(--color-grey-pri);
 }
 
 .button:hover {
   background-color: var(--color-grey-offset);
   color: var(--color-grey-primary);
+}
+
+.button.primary:hover {
+  background-color: var(--color-secondary);
 }
 
 body .action,
@@ -931,11 +976,6 @@ body a:hover {
 
   .md\:border-0 {
     border-width: 0px;
-  }
-
-  .md\:bg-black {
-    --tw-bg-opacity: 1;
-    background-color: rgb(0 0 0 / var(--tw-bg-opacity));
   }
 
   .md\:p-0 {

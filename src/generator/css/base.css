@@ -21,6 +21,11 @@ html body {
     background-color: var(--color-grey-primary);
 }
 
+html body,
+html body nav {
+    background-color: var(--color-grey-primary);
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 700;
@@ -84,13 +89,24 @@ body hr {
     padding: 10px 10px;
     border-top: 1px solid var(--color-grey-offset);
     border-bottom: 1px solid var(--color-grey-offset);
+    border-radius: 3px;
     margin-top: 2rem;
+    margin-right: 1.5rem;
 }
 
+.button.primary {
+    border: 1px solid var(--color-secondary);
+    background-color: var(--color-secondary);
+    color: var(--color-grey-pri);
+}
 .button:hover {
     background-color: var(--color-grey-offset);
     color: var(--color-grey-primary);
 }
+.button.primary:hover {
+    background-color: var(--color-secondary);
+}
+
 
 body .action,
 body input[type="checkbox"],

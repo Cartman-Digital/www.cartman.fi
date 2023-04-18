@@ -1,7 +1,7 @@
 # Local development
 To start the webserver run the following alias:
 ```
-clj -M:serve
+clj -M:server
 ```
 
 To compile styles run the following:
