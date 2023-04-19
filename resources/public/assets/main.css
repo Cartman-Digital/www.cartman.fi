@@ -532,6 +532,10 @@ video {
   margin: auto;
 }
 
+.hidden {
+  display: none;
+}
+
 .max-w-screen-xl {
   max-width: 1280px;
 }
@@ -800,7 +804,6 @@ body a:hover {
 }
 
 .navigation .nav-list-wrapper {
-  display: none;
   width: 100%;
 }
 

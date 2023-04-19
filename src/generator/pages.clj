@@ -2,11 +2,13 @@
   (:require [taoensso.truss :as truss :refer (have)]
             [generator.contentful :as contentful]
             [generator.navigation :as nav]
+            [generator.renderer :as renderer]
             [hiccup.page :refer [html5 include-css include-js]]
             [hiccup.element :refer (link-to image)]))
 
-(defn render-content [content]
-  (into [] [:p "some content"]))
+(defn render-content 
+  [content]
+  (renderer/richtext->html (get-in(first(get-in content [:contentCollection :items])) [:content :json])))
 
 (defn example-content
   "Development tool: prints out significant example content"
@@ -93,6 +95,7 @@
     [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu:wght@700&display=swap"}]]
    [:body
     (nav/render-main-menu)
+    [:div {:class "content contentful"} (render-content page)]
     [:div {:class "content "} (example-content)] ; (render-content page)
     [:div.footer {:class "footer"}
      [:span "&copy 2023 Cartman Digital Oy"]]

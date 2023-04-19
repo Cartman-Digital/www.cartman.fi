@@ -14,5 +14,5 @@
                                 #"/assets/images/.*\.png"]))
 
 ;; ring middleware dependency would be used in the "optimus/wrap" call, wrap-content-type would be the last param in optimus/wrap
-(def app (-> (stasis/serve-pages get-pages)
+(def app (-> (stasis/serve-pages get-pages) ;; should return map of slug -> render call
              (optimus/wrap get-assets optimizations/all serve-live-assets)))
