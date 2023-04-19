@@ -5,7 +5,8 @@
 ;; Updates method to return hiccup syntax
 (ns generator.renderer)
 
-; https://github.com/contentful/rich-text/blob/master/packages/rich-text-types/src/marks.ts
+;; https://github.com/contentful/rich-text/blob/master/packages/rich-text-types/src/marks.ts
+;; Used automatically by richtext->html
 (defmulti apply-text-mark
   (fn [mark content]
     mark))
@@ -27,6 +28,7 @@
   [mark content]
   [:u [content]])
 
+;; Entry-point expects richtext map, first level must contain nodeType key.
 (defmulti richtext->html :nodeType)
 
 (defmethod richtext->html :default
