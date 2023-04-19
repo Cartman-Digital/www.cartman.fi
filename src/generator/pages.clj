@@ -12,7 +12,7 @@
   "Development tool: prints out significant example content"
   []
   [:div {:class "content-wrapper"}
-   [:div {:class "row-wrap clear-left"}
+   [:div {:class "row-wrap"}
     [:div
      [:h1 "H1 heading"]
      [:h2 "H2 heading"]
@@ -42,7 +42,7 @@
       [:li "List element without list styles 1"]
       [:li "Element without list styles 2"]]
      [:br]
-     [:div {:class "form-container clear-left pt-10 border border-white pb-2 mb-4 md:w-2/4"}
+     [:div {:class "form-container"}
       [:form {:method "POST" :action-url "/post-results" :class "p-1 max-w-screen-xl m-auto"}
        [:h3 "Contact form example"]
        [:label {:for "first-input"} "Firstname"]
@@ -67,17 +67,17 @@
        [:label {:for "checkbox-example"} "I have read the privacy policy and agree to it's terms"]
        [:br]
        [:input {:type "submit" :class "button action primary"}]]]]]
-   [:div {:class "hero-banner max-h-96 h-screen bg-gray-800 full-width"}
-    [:div {:class "banner-content-wrap content max-w-screen-xl m-auto overflow-hidden"}
-     [:div {:class "banner-text w-3/4 lg:w-1/4 float-right mr-14 mt-14"}
+   [:div {:class "hero-banner"}
+    [:div {:class "banner-content-wrap"}
+     [:div {:class "banner-text"}
       [:h1 {:class "primary-title"} "Banner-title"]
       [:p {:class "banner text content"} "Banner text content. Can contain paragraph that is anywhere from a few words or more to something much much larger. For example multiple paragraphs like this."]
       [:button {:class "cta button action primary"} "Banner-CTA button"]
       [:button {:class "cta button action"} "Banner secondary button"]]]]
-   [:div {:class "row-wrap mt-10"}
-    [:div {:class "side-by-side md:w-2/4 md:float-left"}
+   [:div {:class "row-wrap"}
+    [:div {:class "side-by-side left"}
      [:img {:src "/assets/images/cartman_digital_logo.png" :alt "Cartman Digital"}]]
-    [:div {:class "side-by-side md:w-2/4 md:float-right md:pl-3"}
+    [:div {:class "side-by-side right"}
      [:h2 "Side By Side title"]
      [:p "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempor, dui ac semper pretium, risus nisl finibus nibh, eu finibus diam libero varius lectus. Mauris dictum dignissim est, ut scelerisque orci iaculis a. Aliquam pharetra velit in lectus lacinia egestas. Curabitur vel diam tellus. Sed pellentesque risus quis porttitor volutpat. Donec eu feugiat metus. Morbi eget odio quis leo lobortis imperdiet sed dignissim nisl."]]]])
 
@@ -91,10 +91,10 @@
     [:link {:rel "preconnect" :href "https://fonts.googleapis.com"}]
     [:link {:rel "preconnect" :href "https://fonts.gstatic.com" :crossorigin ""}]
     [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu:wght@700&display=swap"}]]
-   [:body {:class "text-white"}
+   [:body
     (nav/render-main-menu)
-    [:div {:class "content max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 mt-16"} (example-content)] ; (render-content page)
-    [:div.footer {:class "max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"}
+    [:div {:class "content "} (example-content)] ; (render-content page)
+    [:div.footer {:class "footer"}
      [:span "&copy 2023 Cartman Digital Oy"]]
     (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
 
