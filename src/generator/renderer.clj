@@ -5,6 +5,13 @@
 ;; Updates method to return hiccup syntax
 (ns generator.renderer)
 
+(defn unwrap
+  "Takes the results from rich-text conversion and unwraps the sequence if it has only a single element"
+  [seq]
+  (if (= (count seq) 1)
+    (first seq)
+    seq))
+
 ;; https://github.com/contentful/rich-text/blob/master/packages/rich-text-types/src/marks.ts
 ;; Used automatically by richtext->html
 (defmulti apply-text-mark
@@ -13,22 +20,21 @@
 
 (defmethod apply-text-mark "bold"
   [mark content]
-  [:strong
-    [content]])
+  [:strong content])
 
 (defmethod apply-text-mark "code"
   [mark content]
-  [:code [content]])
+  [:code content])
 
 (defmethod apply-text-mark "italic"
   [mark content]
-  [:em [content]])
+  [:em content])
 
 (defmethod apply-text-mark "underline"
   [mark content]
-  [:u [content]])
+  [:u content])
 
-;; Entry-point expects richtext map, first level must contain nodeType key.
+;; Entry-point expects richtext mapv, first level must contain nodeType key.
 (defmulti richtext->html :nodeType)
 
 (defmethod richtext->html :default
@@ -37,35 +43,35 @@
 
 (defmethod richtext->html "blockquote"
   [m]
-  [:blockquote (map richtext->html (:content m))])
+  [:blockquote (unwrap(mapv richtext->html (:content m)))])
 
 (defmethod richtext->html "document"
   [m]
-  [:div (map richtext->html (:content m))])
+  [:div (unwrap(mapv richtext->html (:content m)))])
 
 (defmethod richtext->html "heading-1"
   [m]
-  [:h1 (map richtext->html (:content m))])
+  [:h1 (unwrap(mapv richtext->html (:content m)))])
 
 (defmethod richtext->html "heading-2"
   [m]
-  [:h2 (map richtext->html (:content m))])
+  [:h2 (unwrap(mapv richtext->html (:content m)))])
 
 (defmethod richtext->html "heading-3"
   [m]
-  [:h3 (map richtext->html (:content m))])
+  [:h3 (unwrap(mapv richtext->html (:content m)))])
 
 (defmethod richtext->html "heading-4"
   [m]
-  [:h5 (map richtext->html (:content m))])
+  [:h5 (unwrap(mapv richtext->html (:content m)))])
 
 (defmethod richtext->html "heading-5"
   [m]
-  [:h5 (map richtext->html (:content m))])
+  [:h5 (unwrap(mapv richtext->html (:content m)))])
 
 (defmethod richtext->html "heading-6"
   [m]
-  [:h6 (map richtext->html (:content m))])
+  [:h6 (unwrap(mapv richtext->html (:content m)))])
 
 (defmethod richtext->html "hr"
   [m]
@@ -75,19 +81,19 @@
   [m]
   [:a
    :attrs [:href (:uri (:data m))]
-   (map richtext->html (:content m))])
+   (unwrap(mapv richtext->html (:content m)))])
 
 (defmethod richtext->html "list-item"
   [m]
-  [:li (map richtext->html (:content m))])
+  [:li (unwrap(mapv richtext->html (:content m)))])
 
 (defmethod richtext->html "ordered-list"
   [m]
-  [:ol (map richtext->html (:content m))])
+  [:ol (unwrap(mapv richtext->html (:content m)))])
 
 (defmethod richtext->html "paragraph"
   [m]
-  [:p (map richtext->html (:content m))])
+  [:p (unwrap(mapv richtext->html (:content m)))])
 
 (defmethod richtext->html "text"
   [m]
@@ -97,4 +103,8 @@
 
 (defmethod richtext->html "unordered-list"
   [m]
-  [:ul (map richtext->html (:content m))])
+  [:ul (unwrap(mapv richtext->html (:content m)))])
+
+;; Test content
+(richtext->html {:nodeType "paragraph", :content [{:nodeType "text", :value "Testataan", :marks [], :data {}}], :data {}})
+;(richtext->html {:nodeType "text", :value "Testataan", :marks [], :data {}})

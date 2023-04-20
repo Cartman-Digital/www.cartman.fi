@@ -6,9 +6,10 @@
             [hiccup.page :refer [html5 include-css include-js]]
             [hiccup.element :refer (link-to image)]))
 
-(defn render-content 
+(defn render-content
   [content]
-  (map #(renderer/richtext->html (get-in % [:content :json])) (get-in content [:contentCollection :items])))
+  (into [:div {:class "content"}](mapv #(renderer/richtext->html (get-in % [:content :json]))
+       (get-in content [:contentCollection :items]))))
 
 (defn example-content
   "Development tool: prints out significant example content"
@@ -95,8 +96,25 @@
     [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu:wght@700&display=swap"}]]
    [:body
     (nav/render-main-menu)
-    [:div {:class "mt-24"} (render-content page)]
-    [:div {:class "content "} (example-content)] ; (render-content page)
+    (render-content page)
+    [:div.footer {:class "footer"}
+     [:span "&copy 2023 Cartman Digital Oy"]]
+    (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
+
+(defn get-styles-page
+  []
+  (html5
+   [:head
+    [:meta {:charset "utf-8"}]
+    [:title "Styles worksheet"]
+    (include-css "/assets/main.css")
+    (include-css "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css")
+    [:link {:rel "preconnect" :href "https://fonts.googleapis.com"}]
+    [:link {:rel "preconnect" :href "https://fonts.gstatic.com" :crossorigin ""}]
+    [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu:wght@700&display=swap"}]]
+   [:body
+    (nav/render-main-menu)
+    [:div {:class "content "} (example-content)]
     [:div.footer {:class "footer"}
      [:span "&copy 2023 Cartman Digital Oy"]]
     (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
@@ -106,9 +124,33 @@
   []
   (let [pages-data (contentful/get-contentful :page-collection-query)
         pages (have vector? (get-in pages-data [:pageCollection :items]))]
-    (into {} (mapv #(vector
-                     (if (not= (:slug %) "/") (str "/" (:slug %) ".html") (str "/index.html"))
-                     (render-page %)) pages))))
+    (into {"/styles.html" (fn [context] (get-styles-page))}
+          (mapv #(vector
+                  (if (not= (:slug %) "/") (str "/" (:slug %) ".html") (str "/index.html"))
+                  (fn [context](render-page %))) pages))))
 
 (comment
   (println (get-pages)))
+
+(comment
+  (render-content {:slug "test-page",
+                 :title "test page",
+                 :sys {:id "7lgyyO0dBa9yWIV9eNjBTU"},
+                 :contentCollection
+                 {:items
+                  [{:__typename "ContentBlock",
+                    :content
+                    {:json
+                     {:nodeType "document",
+                      :content
+                      [{:nodeType "paragraph", :content [{:nodeType "text", :value "Testataan", :marks [], :data {}}], :data {}}],
+                      :data {}}},
+                    :sys {:id "3ORopAggH6KMU1FaL1PemD"}}
+                   {:__typename "ContentBlock",
+                    :content
+                    {:json
+                     {:nodeType "document",
+                      :content
+                      [{:nodeType "paragraph", :content [{:nodeType "text", :value "testi 2", :marks [], :data {}}], :data {}}],
+                      :data {}}},
+                    :sys {:id "6EE71IZJyAvHYki6OAJ07i"}}]}}))

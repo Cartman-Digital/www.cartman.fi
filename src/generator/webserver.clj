@@ -7,7 +7,7 @@
     [optimus.optimizations :as optimizations]
     [optimus.strategies :refer [serve-live-assets]]
     [optimus.export]
-    [generator.pages :refer [get-pages]]))
+    [generator.pages :refer [get-pages get-styles-page]]))
 
 (defn get-assets []
   (assets/load-assets "public" ["/assets/main.css" 
@@ -16,3 +16,6 @@
 ;; ring middleware dependency would be used in the "optimus/wrap" call, wrap-content-type would be the last param in optimus/wrap
 (def app (-> (stasis/serve-pages get-pages) ;; should return map of slug -> render call
              (optimus/wrap get-assets optimizations/all serve-live-assets)))
+
+(comment 
+  (get-pages))
