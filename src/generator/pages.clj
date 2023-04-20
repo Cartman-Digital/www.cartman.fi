@@ -8,7 +8,7 @@
 
 (defn render-content 
   [content]
-  (renderer/richtext->html (get-in(first(get-in content [:contentCollection :items])) [:content :json])))
+  (map #(renderer/richtext->html (get-in % [:content :json])) (get-in content [:contentCollection :items])))
 
 (defn example-content
   "Development tool: prints out significant example content"
@@ -95,7 +95,7 @@
     [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu:wght@700&display=swap"}]]
    [:body
     (nav/render-main-menu)
-    [:div {:class "content contentful"} (render-content page)]
+    [:div {:class "mt-24"} (render-content page)]
     [:div {:class "content "} (example-content)] ; (render-content page)
     [:div.footer {:class "footer"}
      [:span "&copy 2023 Cartman Digital Oy"]]
