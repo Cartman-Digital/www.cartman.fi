@@ -5,13 +5,6 @@
 ;; Updates method to return hiccup syntax
 (ns generator.renderer)
 
-(defn unwrap
-  "Takes the results from rich-text conversion and unwraps the sequence if it has only a single element"
-  [seq]
-  (if (= (count seq) 1)
-    (first seq)
-    seq))
-
 ;; https://github.com/contentful/rich-text/blob/master/packages/rich-text-types/src/marks.ts
 ;; Used automatically by richtext->html
 (defmulti apply-text-mark
@@ -43,35 +36,35 @@
 
 (defmethod richtext->html "blockquote"
   [m]
-  [:blockquote (unwrap(mapv richtext->html (:content m)))])
+  (concat [:blockquote] (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "document"
   [m]
-  [:div (unwrap(mapv richtext->html (:content m)))])
+  (into [:div] (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "heading-1"
   [m]
-  [:h1 (unwrap(mapv richtext->html (:content m)))])
+  (into [:h1] (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "heading-2"
   [m]
-  [:h2 (unwrap(mapv richtext->html (:content m)))])
+  (into [:h2] (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "heading-3"
   [m]
-  [:h3 (unwrap(mapv richtext->html (:content m)))])
+  (into [:h3] (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "heading-4"
   [m]
-  [:h5 (unwrap(mapv richtext->html (:content m)))])
+  (into [:h5] (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "heading-5"
   [m]
-  [:h5 (unwrap(mapv richtext->html (:content m)))])
+  (into [:h5] (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "heading-6"
   [m]
-  [:h6 (unwrap(mapv richtext->html (:content m)))])
+  (into [:h6] (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "hr"
   [m]
@@ -79,21 +72,20 @@
 
 (defmethod richtext->html "hyperlink"
   [m]
-  [:a
-   :attrs [:href (:uri (:data m))]
-   (unwrap(mapv richtext->html (:content m)))])
+  (into [:a {:attrs [:href (:uri (:data m))]}]
+   (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "list-item"
   [m]
-  [:li (unwrap(mapv richtext->html (:content m)))])
+  (into [:li] (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "ordered-list"
   [m]
-  [:ol (unwrap(mapv richtext->html (:content m)))])
+  (into [:ol] (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "paragraph"
   [m]
-  [:p (unwrap(mapv richtext->html (:content m)))])
+  (into [:p] (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "text"
   [m]
@@ -103,8 +95,28 @@
 
 (defmethod richtext->html "unordered-list"
   [m]
-  [:ul (unwrap(mapv richtext->html (:content m)))])
+  (into [:ul] (mapv richtext->html (:content m))))
 
 ;; Test content
-(richtext->html {:nodeType "paragraph", :content [{:nodeType "text", :value "Testataan", :marks [], :data {}}], :data {}})
+;(richtext->html {:nodeType "paragraph", :content [{:nodeType "text", :value "Testataan", :marks [], :data {}}], :data {}})
 ;(richtext->html {:nodeType "text", :value "Testataan", :marks [], :data {}})
+(richtext->html {:nodeType "document",
+                 :content
+                 [{:nodeType "heading-2", :content [{:nodeType "text", :value "About us", :marks [], :data {}}], :data {}}
+                  {:nodeType "paragraph",
+                   :content
+                   [{:nodeType "text",
+                     :value
+                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut tempor mauris. Mauris tincidunt ac libero commodo ultricies. Duis egestas libero eget tincidunt lobortis. Phasellus cursus pretium pellentesque. Phasellus mattis dui non felis semper finibus. Integer tincidunt dignissim sagittis. Proin augue nunc, commodo eget dolor vel, rhoncus imperdiet eros. Etiam faucibus ut dui sit amet commodo. Aliquam turpis lorem, rhoncus eget erat a, aliquet pharetra purus. Etiam laoreet eget arcu at bibendum. Aenean id sem malesuada lectus luctus imperdiet ut ut erat.",
+                     :marks [],
+                     :data {}}],
+                   :data {}}
+                  {:nodeType "paragraph",
+                   :content
+                   [{:nodeType "text",
+                     :value
+                     "Vestibulum sit amet metus felis. Maecenas dictum facilisis eleifend. Aenean lectus eros, posuere quis porta a, hendrerit sit amet ante. In hac habitasse platea dictumst. Donec tempor enim non odio fringilla rhoncus. Ut elit augue, aliquet eget eleifend pretium, pulvinar et dolor. Duis pulvinar, lacus commodo laoreet venenatis, mauris felis cursus dolor, nec pretium neque neque et ipsum. Vestibulum egestas scelerisque lacus at malesuada. Mauris ultrices iaculis tortor, a condimentum ligula maximus in. In est nisl, elementum id neque sit amet, convallis elementum libero. Nunc maximus ante consequat mollis interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+                     :marks [],
+                     :data {}}],
+                   :data {}}],
+                 :data {}})

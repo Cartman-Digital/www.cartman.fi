@@ -1,15 +1,16 @@
 (ns generator.pages
   (:require [taoensso.truss :as truss :refer (have)]
             [generator.contentful :as contentful]
-            [generator.navigation :as nav]
+            [generator.navigation :as nav] 
             [generator.renderer :as renderer]
             [hiccup.page :refer [html5 include-css include-js]]
             [hiccup.element :refer (link-to image)]))
 
 (defn render-content
   [content]
-  (into [:div {:class "content"}](mapv #(renderer/richtext->html (get-in % [:content :json]))
-       (get-in content [:contentCollection :items]))))
+  (into [:div.content](mapv
+                       #(renderer/richtext->html (get-in % [:content :json]))
+                       (get-in content [:contentCollection :items]))))
 
 (defn example-content
   "Development tool: prints out significant example content"
@@ -97,7 +98,7 @@
    [:body
     (nav/render-main-menu)
     (render-content page)
-    [:div.footer {:class "footer"}
+    [:div {:class "footer"}
      [:span "&copy 2023 Cartman Digital Oy"]]
     (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
 
@@ -133,24 +134,54 @@
   (println (get-pages)))
 
 (comment
-  (render-content {:slug "test-page",
-                 :title "test page",
-                 :sys {:id "7lgyyO0dBa9yWIV9eNjBTU"},
-                 :contentCollection
-                 {:items
-                  [{:__typename "ContentBlock",
-                    :content
-                    {:json
-                     {:nodeType "document",
+  (render-content {:slug "/",
+                   :title "Front page",
+                   :sys {:id "5JW0h1Mew6ZQYqIH8zExCx"},
+                   :contentCollection
+                   {:items
+                    [{:__typename "ContentBlock",
                       :content
-                      [{:nodeType "paragraph", :content [{:nodeType "text", :value "Testataan", :marks [], :data {}}], :data {}}],
-                      :data {}}},
-                    :sys {:id "3ORopAggH6KMU1FaL1PemD"}}
-                   {:__typename "ContentBlock",
-                    :content
-                    {:json
-                     {:nodeType "document",
+                      {:json
+                       {:nodeType "document",
+                        :content
+                        [{:nodeType "paragraph",
+                          :content
+                          [{:nodeType "text",
+                            :value "This is the mission statement of cartman and shows up as the first item on the frontpage.",
+                            :marks [],
+                            :data {}}],
+                          :data {}}
+                         {:nodeType "paragraph",
+                          :content
+                          [{:nodeType "text", :value "", :marks [], :data {}}
+                           {:nodeType "hyperlink",
+                            :content [{:nodeType "text", :value "This is a link from contentful", :marks [], :data {}}],
+                            :data {:uri "https://localhost:8000/"}}
+                           {:nodeType "text", :value "", :marks [], :data {}}],
+                          :data {}}],
+                        :data {}}},
+                      :sys {:id "7zkJQhjcVuRcgoFTzVF7zt"}}
+                     {:__typename "ContentBlock",
                       :content
-                      [{:nodeType "paragraph", :content [{:nodeType "text", :value "testi 2", :marks [], :data {}}], :data {}}],
-                      :data {}}},
-                    :sys {:id "6EE71IZJyAvHYki6OAJ07i"}}]}}))
+                      {:json
+                       {:nodeType "document",
+                        :content
+                        [{:nodeType "heading-2", :content [{:nodeType "text", :value "About us", :marks [], :data {}}], :data {}}
+                         {:nodeType "paragraph",
+                          :content
+                          [{:nodeType "text",
+                            :value
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut tempor mauris. Mauris tincidunt ac libero commodo ultricies. Duis egestas libero eget tincidunt lobortis. Phasellus cursus pretium pellentesque. Phasellus mattis dui non felis semper finibus. Integer tincidunt dignissim sagittis. Proin augue nunc, commodo eget dolor vel, rhoncus imperdiet eros. Etiam faucibus ut dui sit amet commodo. Aliquam turpis lorem, rhoncus eget erat a, aliquet pharetra purus. Etiam laoreet eget arcu at bibendum. Aenean id sem malesuada lectus luctus imperdiet ut ut erat.",
+                            :marks [],
+                            :data {}}],
+                          :data {}}
+                         {:nodeType "paragraph",
+                          :content
+                          [{:nodeType "text",
+                            :value
+                            "Vestibulum sit amet metus felis. Maecenas dictum facilisis eleifend. Aenean lectus eros, posuere quis porta a, hendrerit sit amet ante. In hac habitasse platea dictumst. Donec tempor enim non odio fringilla rhoncus. Ut elit augue, aliquet eget eleifend pretium, pulvinar et dolor. Duis pulvinar, lacus commodo laoreet venenatis, mauris felis cursus dolor, nec pretium neque neque et ipsum. Vestibulum egestas scelerisque lacus at malesuada. Mauris ultrices iaculis tortor, a condimentum ligula maximus in. In est nisl, elementum id neque sit amet, convallis elementum libero. Nunc maximus ante consequat mollis interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+                            :marks [],
+                            :data {}}],
+                          :data {}}],
+                        :data {}}},
+                      :sys {:id "4rX9NWJM3enR39qXLbidoi"}}]}}))
