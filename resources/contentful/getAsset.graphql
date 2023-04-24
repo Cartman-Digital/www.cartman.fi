@@ -1,0 +1,10 @@
+query assetQuery($assetId: String!) {
+  asset(id: $assetId) {
+    url
+    size
+    width
+    height
+    description
+    title
+  }
+}

@@ -3,7 +3,9 @@
 ;; From project.clj vs deps.edn configuration
 ;; Strips out all communication parts from the original code. Rely on existing information.
 ;; Updates method to return hiccup syntax
-(ns generator.renderer)
+(ns generator.renderer
+  (:require [hiccup.element :refer (link-to image)]
+            [generator.contentful :as contentful]))
 
 ;; https://github.com/contentful/rich-text/blob/master/packages/rich-text-types/src/marks.ts
 ;; Used automatically by richtext->html
@@ -36,7 +38,7 @@
 
 (defmethod richtext->html "blockquote"
   [m]
-  (concat [:blockquote] (mapv richtext->html (:content m))))
+  (into [:blockquote] (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "document"
   [m]
@@ -97,10 +99,42 @@
   [m]
   (into [:ul] (mapv richtext->html (:content m))))
 
+(defmethod richtext->html "embedded-asset-block"
+  [args]
+  (if (= (get-in args [:data :target :sys :linkType]) "Asset")
+    (let [asset (:asset (contentful/get-contentful :asset-query {:assetId (get-in args [:data :target :sys :id])}))]
+      (image (:url asset) (:description asset)))))
+
+(defmulti render :__typename)
+
+(defmethod render :default
+ [args]
+ args)
+
+(defmethod render "CtaBanner"
+  [args] 
+  [:div {:class "hero-banner row" :style (str "background-image: url(" (get-in args [:banner :url]) ");")}
+   [:div {:class "banner-content-wrap"}
+    [:div {:class "banner-text"}
+     (richtext->html (get-in args [:bannerText :json])) 
+     [:a {:href (get args :ctaUrl) :class "cta button action primary"} (get args :ctaButtonText)]]]])
+
+(defmethod render "ContentBlock"
+  [args] 
+  (richtext->html (get-in args [:content :json])))
+
+(defmethod render "SideBySide"
+  [args]
+  [:div {:class "row"}
+   [:div {:class "side-by-side left"}
+    (richtext->html (get-in args [:leftColumn :json]))]
+   [:div {:class "side-by-side right"}
+    (richtext->html (get-in args [:rightColumn :json]))]])
+
 ;; Test content
 ;(richtext->html {:nodeType "paragraph", :content [{:nodeType "text", :value "Testataan", :marks [], :data {}}], :data {}})
 ;(richtext->html {:nodeType "text", :value "Testataan", :marks [], :data {}})
-(richtext->html {:nodeType "document",
+(comment (richtext->html {:nodeType "document",
                  :content
                  [{:nodeType "heading-2", :content [{:nodeType "text", :value "About us", :marks [], :data {}}], :data {}}
                   {:nodeType "paragraph",
@@ -119,4 +153,4 @@
                      :marks [],
                      :data {}}],
                    :data {}}],
-                 :data {}})
+                 :data {}}))

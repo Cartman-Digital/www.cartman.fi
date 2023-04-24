@@ -2,15 +2,14 @@
   (:require [taoensso.truss :as truss :refer (have)]
             [generator.contentful :as contentful]
             [generator.navigation :as nav] 
-            [generator.renderer :as renderer]
+            [generator.renderer :as renderer] 
             [hiccup.page :refer [html5 include-css include-js]]
             [hiccup.element :refer (link-to image)]))
 
 (defn render-content
-  [content]
-  (into [:div.content](mapv
-                       #(renderer/richtext->html (get-in % [:content :json]))
-                       (get-in content [:contentCollection :items]))))
+  [content] 
+  (let [collection-items (get-in content [:contentCollection :items])] 
+    (into [:div.content] (mapv #(renderer/render %) collection-items))))
 
 (defn example-content
   "Development tool: prints out significant example content"
@@ -121,7 +120,7 @@
     (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
 
 (defn get-pages
-  "Returns map of filename (eg. index.html) -> html"
+  "Returns map of filename (eg. index.html) -> html" 
   []
   (let [pages-data (contentful/get-contentful :page-collection-query)
         pages (have vector? (get-in pages-data [:pageCollection :items]))]
@@ -137,9 +136,15 @@
   (render-content {:slug "/",
                    :title "Front page",
                    :sys {:id "5JW0h1Mew6ZQYqIH8zExCx"},
-                   :contentCollection
+                    :contentCollection
                    {:items
-                    [{:__typename "ContentBlock",
+                    [{:__typename "CtaBanner",
+                      :cta "This is a example content for the frontpage cta banner",
+                      :banner
+                      {:title "Founders",
+                       :url
+                       "https://images.ctfassets.net/038s6vr0kmv0/34YRcoaS4WJ5ORhpMlMHRM/d3500be5d61820cd847513372c22cc2c/IMG_2498__1_.jpg"}}
+                     {:__typename "ContentBlock",
                       :content
                       {:json
                        {:nodeType "document",
@@ -159,8 +164,7 @@
                             :data {:uri "https://localhost:8000/"}}
                            {:nodeType "text", :value "", :marks [], :data {}}],
                           :data {}}],
-                        :data {}}},
-                      :sys {:id "7zkJQhjcVuRcgoFTzVF7zt"}}
+                        :data {}}}}
                      {:__typename "ContentBlock",
                       :content
                       {:json
@@ -183,5 +187,4 @@
                             :marks [],
                             :data {}}],
                           :data {}}],
-                        :data {}}},
-                      :sys {:id "4rX9NWJM3enR39qXLbidoi"}}]}}))
+                        :data {}}}}]}}))

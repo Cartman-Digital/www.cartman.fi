@@ -17,11 +17,12 @@
  */
 html body {
     @apply text-white;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif; 
     font-size: 15px;
+    padding-top: 72px; /* nav height */
     
     > .content {
-        @apply max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 mt-16;
+        @apply max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-0 px-4;
     }
 }
 
@@ -90,12 +91,14 @@ body hr {
 }
 
 .button {
+    display: inline-block;
     padding: 10px 10px;
     border-top: 1px solid var(--color-grey-offset);
     border-bottom: 1px solid var(--color-grey-offset);
     border-radius: 3px;
     margin-top: 2rem;
     margin-right: 1.5rem;
+    text-decoration: none;
 }
 
 .button.primary {
@@ -111,15 +114,15 @@ body hr {
     background-color: var(--color-secondary);
 }
 
-
 body .action,
 body input[type="checkbox"],
 body input[type="radio"] {
     cursor: pointer;
 }
 
-body .content a {
+body a {
     text-decoration: underline;
+    cursor: pointer;
 }
 
 body a:hover {
@@ -130,6 +133,7 @@ body a:hover {
  * Layout
  */
  .full-width {
+    width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
 }
@@ -178,6 +182,10 @@ body a:hover {
             @apply block py-2 pl-3 pr-4 rounded md:border-0 md:p-0 text-white md:hover:text-gray-500 hover:bg-gray-700 md:hover:bg-transparent;
         }
     }
+
+    a {
+        text-decoration: none;
+    }
 }
 
 .form-container {
@@ -185,10 +193,14 @@ body a:hover {
 }
 
 .hero-banner {
-    @apply pb-6 bg-gray-800 full-width;
+    @apply py-6 bg-gray-800 full-width bg-cover bg-center;
+    min-height: 40rem;
+    position: relative;
 
     .banner-content-wrap {
-        @apply content max-w-screen-xl m-auto overflow-hidden;
+        @apply content m-auto overflow-hidden max-w-screen-xl;
+        position: relative;
+        z-index: 2;
     }
 
     .banner-text {
@@ -196,8 +208,21 @@ body a:hover {
     }
 }
 
-.row-wrap {
-    @apply mt-10 clear-left;
+.hero-banner::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    display: block;
+    background-color: rgba(13, 14, 31, 0.5); /* grey-primary in rgb with opacity */
+    z-index: 1;
+    @apply bg-opacity-50;
+}
+
+.row {
+    @apply py-4 clear-left;
 
     .side-by-side {
         @apply md:w-2/4 md:pl-3;
