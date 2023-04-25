@@ -97,7 +97,7 @@
    [:body
     (nav/render-main-menu)
     (render-content page)
-    [:div {:class "footer"}
+    [:footer {:class "footer"}
      [:span "&copy 2023 Cartman Digital Oy"]]
     (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
 
@@ -114,8 +114,8 @@
     [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu:wght@700&display=swap"}]]
    [:body
     (nav/render-main-menu)
-    [:div {:class "content "} (example-content)]
-    [:div.footer {:class "footer"}
+    [:div {:class "content"} (example-content)]
+    [:footer {:class "footer"}
      [:span "&copy 2023 Cartman Digital Oy"]]
     (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
 

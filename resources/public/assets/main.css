@@ -532,6 +532,10 @@ video {
   margin: auto;
 }
 
+.grid {
+  display: grid;
+}
+
 .list-item {
   display: list-item;
 }
@@ -582,6 +586,8 @@ video {
   --color-accent: #FFD945;
   --color-grey-primary: #0D0E1F;
   --color-grey-offset: #FFF;
+  --layout-spacing-horizontal: 25px;
+  --layout-spacing-vertical: 50px;
 }
 
 /**
@@ -592,7 +598,7 @@ html body {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
   font-family: 'Roboto', sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   padding-top: 72px;
 }
 
@@ -601,15 +607,8 @@ html body {
 html body > .content {
   margin-left: auto;
   margin-right: auto;
-  display: flex;
-  max-width: 1280px;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
   padding-top: 0px;
   padding-bottom: 0px;
-  padding-left: 1rem;
-  padding-right: 1rem;
 }
 
 html body,
@@ -687,9 +686,8 @@ body hr {
 }
 
 .button.primary {
-  border: 1px solid var(--color-secondary);
-  background-color: var(--color-secondary);
-  color: var(--color-grey-pri);
+  border: 2px solid var(--color-secondary);
+  background-color: transparent;
 }
 
 .button:hover {
@@ -720,24 +718,49 @@ body a:hover {
  * Layout
  */
 
-.full-width {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+.content .full-width {
+  max-width: unset;
+}
+
+body > .content > div {
+  clear: left;
+  margin: auto;
+  max-width: 1536px;
+  overflow: hidden;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: var(--layout-spacing-vertical);
+}
+
+@media (min-width: 768px) {
+  body > .content > div .side-by-side {
+    width: 50%;
+  }
+}
+
+body > .content > div .side-by-side > div {
+  margin-bottom: var(--layout-spacing-vertical);
+}
+
+@media (min-width: 768px) {
+  body > .content > div .side-by-side.right {
+    float: right;
+    padding-left: 1.5rem;
+  }
+
+  body > .content > div .side-by-side.left {
+    float: left;
+    padding-right: 1.5rem;
+  }
 }
 
 .footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
   border-top-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgb(31 41 55 / var(--tw-border-opacity));
   padding: 1rem;
   padding-top: 2.5rem;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  text-align: center;
 }
 
 .navigation {
@@ -755,7 +778,7 @@ body a:hover {
   margin-left: auto;
   margin-right: auto;
   display: flex;
-  max-width: 1280px;
+  max-width: 1536px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
@@ -915,9 +938,13 @@ body a:hover {
   background-position: center;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+}
+
+.content .hero-banner {
+  max-width: unset;
+}
+
+.hero-banner {
   min-height: 40rem;
   position: relative;
 }
@@ -931,15 +958,44 @@ body a:hover {
 html body > .hero-banner .banner-content-wrap {
   margin-left: auto;
   margin-right: auto;
-  display: flex;
-  max-width: 1280px;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
   padding-top: 0px;
   padding-bottom: 0px;
-  padding-left: 1rem;
-  padding-right: 1rem;
+}
+
+.hero-banner .banner-content-wrap .full-width {
+  max-width: unset;
+}
+
+body > .hero-banner .banner-content-wrap > div {
+  clear: left;
+  margin: auto;
+  max-width: 1536px;
+  overflow: hidden;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: var(--layout-spacing-vertical);
+}
+
+@media (min-width: 768px) {
+  body > .hero-banner .banner-content-wrap > div .side-by-side {
+    width: 50%;
+  }
+}
+
+body > .hero-banner .banner-content-wrap > div .side-by-side > div {
+  margin-bottom: var(--layout-spacing-vertical);
+}
+
+@media (min-width: 768px) {
+  body > .hero-banner .banner-content-wrap > div .side-by-side.right {
+    float: right;
+    padding-left: 1.5rem;
+  }
+
+  body > .hero-banner .banner-content-wrap > div .side-by-side.left {
+    float: left;
+    padding-right: 1.5rem;
+  }
 }
 
 .hero-banner .banner-content-wrap {
@@ -976,21 +1032,52 @@ html body > .hero-banner .banner-content-wrap {
 
 .row {
   clear: left;
+  margin: auto;
+  max-width: 1536px;
+  overflow: hidden;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  margin-bottom: var(--layout-spacing-vertical);
 }
 
 @media (min-width: 768px) {
   .row .side-by-side {
     width: 50%;
-    padding-left: 0.75rem;
   }
+}
 
+.row .side-by-side > div {
+  margin-bottom: var(--layout-spacing-vertical);
+}
+
+@media (min-width: 768px) {
   .row .side-by-side.right {
     float: right;
+    padding-left: 1.5rem;
   }
 
   .row .side-by-side.left {
     float: left;
+    padding-right: 1.5rem;
   }
+}
+
+.card-list {
+  width: 100%;
+}
+
+.card-list .intro {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+.card-list > div {
+  text-align: center;
+  padding: 0 var(--layout-spacing-horizontal);
+  margin-bottom: var(--layout-spacing-vertical);
+}
+
+.card-list ul {
+  list-style-type: none;
+  margin-bottom: 0.5rem;
 }

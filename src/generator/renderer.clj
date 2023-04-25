@@ -131,9 +131,20 @@
    [:div {:class "side-by-side right"}
     (richtext->html (get-in args [:rightColumn :json]))]])
 
+(defmethod render "CardList"
+ [args]
+ (let [cardlist (:cardList (contentful/get-contentful :card-list-query {:listId (get-in args [:sys :id])})) 
+       cardCollection (get-in cardlist [:cardsCollection :items])]
+   (into [:div {:class (str "card-list row grid sm:grid-cols-" (count cardCollection))} 
+          [:div {:class "intro row"} 
+           (richtext->html (get-in cardlist [:introduction :json]))]]
+         (mapv #(render %) cardCollection))))
+
 ;; Test content
-;(richtext->html {:nodeType "paragraph", :content [{:nodeType "text", :value "Testataan", :marks [], :data {}}], :data {}})
-;(richtext->html {:nodeType "text", :value "Testataan", :marks [], :data {}})
+(comment (println (get-in (contentful/get-contentful :card-list-query {:listId "2pJ63nhY2QKbVesxgWOvq9"}) [:cardList :cardsCollection :items])))
+(comment (render {:__typename "CardList" :sys {:id "2pJ63nhY2QKbVesxgWOvq9"}}))
+(comment (richtext->html {:nodeType "paragraph", :content [{:nodeType "text", :value "Testataan", :marks [], :data {}}], :data {}}))
+(comment (richtext->html {:nodeType "text", :value "Testataan", :marks [], :data {}}))
 (comment (richtext->html {:nodeType "document",
                  :content
                  [{:nodeType "heading-2", :content [{:nodeType "text", :value "About us", :marks [], :data {}}], :data {}}

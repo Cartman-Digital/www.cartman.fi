@@ -10,6 +10,8 @@
     --color-accent: #FFD945;
     --color-grey-primary: #0D0E1F;
     --color-grey-offset: #FFF;
+    --layout-spacing-horizontal: 25px;
+    --layout-spacing-vertical: 50px;
 }
 
 /**
@@ -18,11 +20,11 @@
 html body {
     @apply text-white;
     font-family: 'Roboto', sans-serif; 
-    font-size: 15px;
+    font-size: 16px;
     padding-top: 72px; /* nav height */
     
     > .content {
-        @apply max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-0 px-4;
+        @apply mx-auto py-0;
     }
 }
 
@@ -102,9 +104,8 @@ body hr {
 }
 
 .button.primary {
-    border: 1px solid var(--color-secondary);
-    background-color: var(--color-secondary);
-    color: var(--color-grey-pri);
+    border: 2px solid var(--color-secondary);
+    background-color: transparent;
 }
 .button:hover {
     background-color: var(--color-grey-offset);
@@ -132,23 +133,23 @@ body a:hover {
 /** 
  * Layout
  */
- .full-width {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
+ .content .full-width {
+    max-width: unset;
 }
 
+body > .content > div {
+    @apply row;
+} 
+
 .footer {
-    @apply flex flex-wrap items-center justify-between p-4 border-t border-gray-800 pt-10;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
+    @apply p-4 border-t border-gray-800 pt-10 text-center;
 }
 
 .navigation {
     @apply fixed border-gray-800 border-b w-full z-20 top-0 left-0;
 
     .nav-wrapper {
-        @apply max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4;
+        @apply max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4;
 
         > button {
             @apply inline-flex items-center p-2 ml-3 text-sm md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 text-gray-400 focus:ring-gray-600;
@@ -222,17 +223,41 @@ body a:hover {
 }
 
 .row {
-    @apply py-4 clear-left;
+    @apply py-4 clear-left overflow-hidden max-w-screen-2xl m-auto;
+    margin-bottom: var(--layout-spacing-vertical);
 
     .side-by-side {
-        @apply md:w-2/4 md:pl-3;
+        @apply md:w-2/4;
+
+        > div {
+            margin-bottom: var(--layout-spacing-vertical);
+        }
     }
 
     .side-by-side.right {
-        @apply md:float-right;
+        @apply md:float-right md:pl-6;
     }
 
     .side-by-side.left {
-        @apply md:float-left;
+        @apply md:float-left md:pr-6;
+    }
+}
+
+.card-list {
+    width: 100%;
+
+    .intro {
+        @apply col-span-full text-center;
+    }
+
+    > div {
+        @apply text-center;
+        padding: 0 var(--layout-spacing-horizontal);
+        margin-bottom: var(--layout-spacing-vertical);
+    }
+
+    ul {
+        list-style-type: none;
+        margin-bottom: 0.5rem;
     }
 }

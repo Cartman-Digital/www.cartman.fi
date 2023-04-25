@@ -4,6 +4,10 @@
 
 (def top-nav "Main menu")
 
+(defn create-url
+  [slug]
+  (if (= (take-last 1 slug) '(\/)) slug (str slug ".html")))
+
 (defn render-main-menu []
   (let [menu-data (contentful/get-contentful :nav-collection-query {:where {:name top-nav}})
         nav-item-collection (have map? (get-in menu-data [:navCollection :items 0 :linkedFrom :navItemCollection]))]
@@ -20,10 +24,7 @@
        [:ul
         (for [item (:items nav-item-collection)]
           [:li
-           [:a {:href (:slug item)} (get item :title)]])]]]]))
-
-(comment
-  (render-main-menu))
+           [:a {:href (create-url (:slug item))} (get item :title)]])]]]]))
 
 (comment 
   (get-in test-menu [:navCollection :items 0 :linkedFrom :navItemCollection]))

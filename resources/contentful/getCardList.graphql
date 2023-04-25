@@ -1,0 +1,15 @@
+query CardListQuery($listId: String!) {
+  cardList(id: $listId) {
+    introduction {
+      json
+    }
+    cardsCollection {
+      items {
+        __typename
+        content {
+          json
+        }
+      }
+    }
+  }
+}

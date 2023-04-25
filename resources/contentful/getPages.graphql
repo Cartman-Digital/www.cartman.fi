@@ -20,6 +20,11 @@ query pageCollectionQuery {
             ctaUrl
             ctaButtonText
           }
+          ... on CardList {
+            sys {
+              id
+            }
+          }
           ... on SideBySide {
             rightColumn {
               json
