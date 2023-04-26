@@ -584,10 +584,12 @@ video {
   --color-secondary: #0073D4;
   --color-secondary-offset: #B1D5F3;
   --color-accent: #FFD945;
-  --color-grey-primary: #0D0E1F;
+  --color-grey-primary: #000;
   --color-grey-offset: #FFF;
-  --layout-spacing-horizontal: 25px;
-  --layout-spacing-vertical: 50px;
+  /** Base layout off 8px increments */
+  --layout-spacing-horizontal: 24px;
+  --layout-spacing-vertical: 32px;
+  --layout-spacing-v-half: 16px;
 }
 
 /**
@@ -599,6 +601,7 @@ html body {
   color: rgb(255 255 255 / var(--tw-text-opacity));
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
+  line-height: 24px;
   padding-top: 72px;
 }
 
@@ -624,26 +627,31 @@ h1, h2, h3, h4, h5, h6 {
 
 body h1 {
   font-size: 2.4rem;
-  margin-bottom: 1.2rem;
+  line-height: 64px;
+  margin-bottom: 1rem;
 }
 
 body h2 {
   font-size: 1.7rem;
-  margin-bottom: 0.85rem;
+  line-height: 48px;
+  margin-bottom: 0.75rem;
 }
 
 body h3 {
   font-size: 1.4rem;
-  margin-bottom: 0.7rem;
+  line-height: 40px;
+  margin-bottom: 0.5rem;
 }
 
 body h4 {
   font-size: 1.2rem;
-  margin-bottom: 0.6rem;
+  line-height: 32px;
+  margin-bottom: 0.25rem;
 }
 
 body h5 {
   font-size: 1.1rem;
+  line-height: 32px;
 }
 
 /**
@@ -656,6 +664,7 @@ body input[type="textarea"] {
   display: block;
   color: var(--color-grey-primary);
   margin-bottom: 1rem;
+  padding: 8px 16px;
 }
 
 body input[type="textarea"] {
@@ -663,7 +672,6 @@ body input[type="textarea"] {
   min-width: 16rem;
   min-height: 2.625rem;
   box-sizing: border-box;
-  padding: 8px 12px;
 }
 
 body label {
@@ -671,12 +679,12 @@ body label {
 }
 
 body hr {
-  margin: 1.4rem 0;
+  margin: 1rem 0;
 }
 
 .button {
   display: inline-block;
-  padding: 10px 10px;
+  padding: 8px 8px;
   border-top: 1px solid var(--color-grey-offset);
   border-bottom: 1px solid var(--color-grey-offset);
   border-radius: 3px;
@@ -727,8 +735,8 @@ body > .content > div {
   margin: auto;
   max-width: 1536px;
   overflow: hidden;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   margin-bottom: var(--layout-spacing-vertical);
 }
 
@@ -739,7 +747,7 @@ body > .content > div {
 }
 
 body > .content > div .side-by-side > div {
-  margin-bottom: var(--layout-spacing-vertical);
+  margin-bottom: var(--layout-spacing-v-half);
 }
 
 @media (min-width: 768px) {
@@ -758,8 +766,8 @@ body > .content > div .side-by-side > div {
   border-top-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgb(31 41 55 / var(--tw-border-opacity));
-  padding: 1rem;
-  padding-top: 2.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   text-align: center;
 }
 
@@ -935,9 +943,8 @@ body > .content > div .side-by-side > div {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
   background-size: cover;
-  background-position: center;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .content .hero-banner {
@@ -945,7 +952,8 @@ body > .content > div .side-by-side > div {
 }
 
 .hero-banner {
-  min-height: 40rem;
+  background-position: center 20%;
+  min-height: 24rem;
   position: relative;
 }
 
@@ -971,8 +979,8 @@ body > .hero-banner .banner-content-wrap > div {
   margin: auto;
   max-width: 1536px;
   overflow: hidden;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   margin-bottom: var(--layout-spacing-vertical);
 }
 
@@ -983,7 +991,7 @@ body > .hero-banner .banner-content-wrap > div {
 }
 
 body > .hero-banner .banner-content-wrap > div .side-by-side > div {
-  margin-bottom: var(--layout-spacing-vertical);
+  margin-bottom: var(--layout-spacing-v-half);
 }
 
 @media (min-width: 768px) {
@@ -996,6 +1004,28 @@ body > .hero-banner .banner-content-wrap > div .side-by-side > div {
     float: left;
     padding-right: 1.5rem;
   }
+}
+
+body .hero-banner .banner-content-wrap .card-list {
+  width: 100%;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+body .hero-banner .banner-content-wrap .card-list .intro {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+body .hero-banner .banner-content-wrap .card-list > div {
+  text-align: center;
+  padding: 0 var(--layout-spacing-horizontal);
+  margin: var(--layout-spacing-v-half) 0;
+}
+
+body .hero-banner .banner-content-wrap .card-list ul {
+  list-style-type: none;
+  margin-bottom: 0.5rem;
 }
 
 .hero-banner .banner-content-wrap {
@@ -1012,7 +1042,7 @@ body > .hero-banner .banner-content-wrap > div .side-by-side > div {
 
 @media (min-width: 1024px) {
   .hero-banner .banner-text {
-    width: 25%;
+    width: 33.333333%;
   }
 }
 
@@ -1035,8 +1065,8 @@ body > .hero-banner .banner-content-wrap > div .side-by-side > div {
   margin: auto;
   max-width: 1536px;
   overflow: hidden;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   margin-bottom: var(--layout-spacing-vertical);
 }
 
@@ -1047,7 +1077,7 @@ body > .hero-banner .banner-content-wrap > div .side-by-side > div {
 }
 
 .row .side-by-side > div {
-  margin-bottom: var(--layout-spacing-vertical);
+  margin-bottom: var(--layout-spacing-v-half);
 }
 
 @media (min-width: 768px) {
@@ -1062,22 +1092,64 @@ body > .hero-banner .banner-content-wrap > div .side-by-side > div {
   }
 }
 
-.card-list {
-  width: 100%;
+.social-media {
+  margin-top: 0.25rem;
 }
 
-.card-list .intro {
+.social-media .icon {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  text-align: center;
+}
+
+.social-media .icon svg {
+  display: inline-block;
+}
+
+body .content .card-list {
+  width: 100%;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+body .content .card-list .intro {
   grid-column: 1 / -1;
   text-align: center;
 }
 
-.card-list > div {
+body .content .card-list > div {
   text-align: center;
   padding: 0 var(--layout-spacing-horizontal);
-  margin-bottom: var(--layout-spacing-vertical);
+  margin: var(--layout-spacing-v-half) 0;
 }
 
-.card-list ul {
+body .content .card-list ul {
   list-style-type: none;
   margin-bottom: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .sm\:grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
 }

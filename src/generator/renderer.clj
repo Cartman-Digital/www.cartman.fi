@@ -7,6 +7,13 @@
   (:require [hiccup.element :refer (link-to image)]
             [generator.contentful :as contentful]))
 
+;; Workaround to get grid styles compiled into the sheet.
+;; Returns one of sm:grid-cols-1 sm:grid-cols-2 sm:grid-cols-3 sm:grid-cols-4
+;; sm:grid-cols-5 sm:grid-cols-6
+(defn get-grid-class
+  [grid-count]
+  (str "sm:grid-cols-" grid-count))
+
 ;; https://github.com/contentful/rich-text/blob/master/packages/rich-text-types/src/marks.ts
 ;; Used automatically by richtext->html
 (defmulti apply-text-mark
@@ -135,8 +142,8 @@
  [args]
  (let [cardlist (:cardList (contentful/get-contentful :card-list-query {:listId (get-in args [:sys :id])})) 
        cardCollection (get-in cardlist [:cardsCollection :items])]
-   (into [:div {:class (str "card-list row grid sm:grid-cols-" (count cardCollection))} 
-          [:div {:class "intro row"} 
+   (into [:div {:class (str "card-list row grid " (get-grid-class (count cardCollection)))} 
+          [:div {:class "intro"} 
            (richtext->html (get-in cardlist [:introduction :json]))]]
          (mapv #(render %) cardCollection))))
 

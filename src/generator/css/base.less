@@ -8,10 +8,12 @@
     --color-secondary: #0073D4;
     --color-secondary-offset: #B1D5F3;
     --color-accent: #FFD945;
-    --color-grey-primary: #0D0E1F;
+    --color-grey-primary: #000;
     --color-grey-offset: #FFF;
-    --layout-spacing-horizontal: 25px;
-    --layout-spacing-vertical: 50px;
+    /** Base layout off 8px increments */
+    --layout-spacing-horizontal: 24px;
+    --layout-spacing-vertical: 32px;
+    --layout-spacing-v-half: 16px;
 }
 
 /**
@@ -21,6 +23,7 @@ html body {
     @apply text-white;
     font-family: 'Roboto', sans-serif; 
     font-size: 16px;
+    line-height: 24px;
     padding-top: 72px; /* nav height */
     
     > .content {
@@ -41,28 +44,31 @@ h1, h2, h3, h4, h5, h6 {
 
 body h1 {
     font-size: 2.4rem;
-    margin-bottom: 1.2rem;
+    line-height: 64px;
+    margin-bottom: 1rem;
 }
 
 body h2 {
     font-size: 1.7rem;
-    margin-bottom: 0.85rem;
+    line-height: 48px;
+    margin-bottom: 0.75rem;
 }
 
 body h3 {
     font-size: 1.4rem;
-    margin-bottom: 0.7rem;
+    line-height: 40px;
+    margin-bottom: 0.5rem;
 }
-
 
 body h4 {
     font-size: 1.2rem;
-    margin-bottom: 0.6rem;
+    line-height: 32px;
+    margin-bottom: 0.25rem;
 }
-
 
 body h5 {
     font-size: 1.1rem;
+    line-height: 32px;
 }
 
 /**
@@ -74,6 +80,7 @@ body input[type="textarea"] {
     display: block;
     color: var(--color-grey-primary);
     margin-bottom: 1rem;
+    padding: 8px 16px;
 }
 
 body input[type="textarea"] {
@@ -81,7 +88,6 @@ body input[type="textarea"] {
     min-width: 16rem;
     min-height: 2.625rem;
     box-sizing: border-box;
-    padding: 8px 12px;
 }
 
 body label {
@@ -89,12 +95,12 @@ body label {
 }
 
 body hr {
-    margin: 1.4rem 0;
+    margin: 1rem 0;
 }
 
 .button {
     display: inline-block;
-    padding: 10px 10px;
+    padding: 8px 8px;
     border-top: 1px solid var(--color-grey-offset);
     border-bottom: 1px solid var(--color-grey-offset);
     border-radius: 3px;
@@ -142,7 +148,7 @@ body > .content > div {
 } 
 
 .footer {
-    @apply p-4 border-t border-gray-800 pt-10 text-center;
+    @apply py-4 border-t border-gray-800 text-center;
 }
 
 .navigation {
@@ -194,8 +200,9 @@ body > .content > div {
 }
 
 .hero-banner {
-    @apply py-6 bg-gray-800 full-width bg-cover bg-center;
-    min-height: 40rem;
+    @apply py-8 bg-gray-800 full-width bg-cover;
+    background-position: center 20%;
+    min-height: 24rem;
     position: relative;
 
     .banner-content-wrap {
@@ -205,7 +212,7 @@ body > .content > div {
     }
 
     .banner-text {
-        @apply w-3/4 lg:w-1/4 float-right mr-14 mt-14;
+        @apply w-3/4 lg:w-1/3 float-right mr-14 mt-14;
     }
 }
 
@@ -223,14 +230,14 @@ body > .content > div {
 }
 
 .row {
-    @apply py-4 clear-left overflow-hidden max-w-screen-2xl m-auto;
+    @apply py-2 clear-left overflow-hidden max-w-screen-2xl m-auto;
     margin-bottom: var(--layout-spacing-vertical);
 
     .side-by-side {
         @apply md:w-2/4;
 
         > div {
-            margin-bottom: var(--layout-spacing-vertical);
+            margin-bottom: var(--layout-spacing-v-half);
         }
     }
 
@@ -243,9 +250,22 @@ body > .content > div {
     }
 }
 
-.card-list {
-    width: 100%;
+.social-media {
+    @apply mt-1;
 
+    .icon {
+        @apply text-center mx-2;
+
+        svg {
+            display: inline-block;
+        }
+    }
+}
+
+body .content .card-list {
+    width: 100%;
+    @apply py-0;
+    
     .intro {
         @apply col-span-full text-center;
     }
@@ -253,7 +273,7 @@ body > .content > div {
     > div {
         @apply text-center;
         padding: 0 var(--layout-spacing-horizontal);
-        margin-bottom: var(--layout-spacing-vertical);
+        margin: var(--layout-spacing-v-half) 0;
     }
 
     ul {
