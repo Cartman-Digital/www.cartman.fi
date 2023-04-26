@@ -15,7 +15,7 @@
   "Development tool: prints out significant example content"
   []
   [:div {:class "content-wrapper"}
-   [:div {:class "row-wrap"}
+   [:div {:class "row"}
     [:div
      [:h1 "H1 heading"]
      [:h2 "H2 heading"]
@@ -77,7 +77,7 @@
       [:p {:class "banner text content"} "Banner text content. Can contain paragraph that is anywhere from a few words or more to something much much larger. For example multiple paragraphs like this."]
       [:button {:class "cta button action primary"} "Banner-CTA button"]
       [:button {:class "cta button action"} "Banner secondary button"]]]]
-   [:div {:class "row-wrap"}
+   [:div {:class "row"}
     [:div {:class "side-by-side left"}
      [:img {:src "/assets/images/cartman_digital_logo.png" :alt "Cartman Digital"}]]
     [:div {:class "side-by-side right"}

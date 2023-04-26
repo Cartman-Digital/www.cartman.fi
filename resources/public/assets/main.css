@@ -603,9 +603,9 @@ html body {
   font-size: 16px;
   line-height: 24px;
   padding-top: 72px;
+  /* nav height */
+  letter-spacing: .01em;
 }
-
-/* nav height */
 
 html body > .content {
   margin-left: auto;
@@ -622,35 +622,36 @@ html body nav {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Ubuntu', sans-serif;
   font-weight: 700;
+  letter-spacing: 0;
   color: var(--color-primary);
 }
 
 body h1 {
-  font-size: 2.4rem;
+  font-size: 39px;
   line-height: 64px;
   margin-bottom: 1rem;
 }
 
 body h2 {
-  font-size: 1.7rem;
+  font-size: 28px;
   line-height: 48px;
   margin-bottom: 0.75rem;
 }
 
 body h3 {
-  font-size: 1.4rem;
+  font-size: 23px;
   line-height: 40px;
   margin-bottom: 0.5rem;
 }
 
 body h4 {
-  font-size: 1.2rem;
+  font-size: 19px;
   line-height: 32px;
   margin-bottom: 0.25rem;
 }
 
 body h5 {
-  font-size: 1.1rem;
+  font-size: 17px;
   line-height: 32px;
 }
 
@@ -687,15 +688,47 @@ body hr {
   padding: 8px 8px;
   border-top: 1px solid var(--color-grey-offset);
   border-bottom: 1px solid var(--color-grey-offset);
-  border-radius: 3px;
   margin-top: 2rem;
   margin-right: 1.5rem;
   text-decoration: none;
 }
 
 .button.primary {
-  border: 2px solid var(--color-secondary);
+  border: 2px solid transparent;
+  border-left-color: var(--color-grey-offset);
+  border-right-color: var(--color-grey-offset);
   background-color: transparent;
+  position: relative;
+}
+
+.button.primary::before,
+    .button.primary::after {
+  position: absolute;
+  content: '';
+  background-size: 125%;
+  background-position-x: 50%;
+  transition: background-position-x 500ms;
+  height: 2px;
+  left: -2px;
+  right: -2px;
+}
+
+.button.primary::before {
+  top: -2px;
+  background-image: linear-gradient(90deg, rgba(255,255,255,1) 24%, transparent 25%, transparent 30%, rgba(255,255,255,1) 31%);
+}
+
+.button.primary::after {
+  bottom: -2px;
+  background-image: linear-gradient(90deg, rgba(255,255,255,1) 69%, transparent 70%, transparent 75%, rgba(255,255,255,1) 76%);
+}
+
+.button.primary:hover::before{
+  background-position-x: -175%;
+}
+
+.button.primary:hover::after {
+  background-position-x: 275%;
 }
 
 .button:hover {
@@ -704,7 +737,8 @@ body hr {
 }
 
 .button.primary:hover {
-  background-color: var(--color-secondary);
+  background-color: transparent;
+  color: var(--color-grey-offset);
 }
 
 body .action,
@@ -731,6 +765,8 @@ body a:hover {
 }
 
 body > .content > div {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   clear: left;
   margin: auto;
   max-width: 1536px;
@@ -759,6 +795,11 @@ body > .content > div .side-by-side > div {
   body > .content > div .side-by-side.left {
     float: left;
     padding-right: 1.5rem;
+  }
+
+  body > .content > div {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
@@ -975,6 +1016,8 @@ html body > .hero-banner .banner-content-wrap {
 }
 
 body > .hero-banner .banner-content-wrap > div {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   clear: left;
   margin: auto;
   max-width: 1536px;
@@ -1003,6 +1046,11 @@ body > .hero-banner .banner-content-wrap > div .side-by-side > div {
   body > .hero-banner .banner-content-wrap > div .side-by-side.left {
     float: left;
     padding-right: 1.5rem;
+  }
+
+  body > .hero-banner .banner-content-wrap > div {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
