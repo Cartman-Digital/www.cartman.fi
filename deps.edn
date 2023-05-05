@@ -10,4 +10,7 @@
  :paths ["src" "resources"]
  :aliases {:project/run {:main-opts ["-m" "generator.core"]}
            :server {:extra-deps {mtkp/ring-dev {:git/url "https://github.com/mtkp/ring-dev" :sha "330d8318790939a4b7d8cab01712415e63c62618"}}
-                    :main-opts ["-m" "mtkp.ring-dev.main" "generator.webserver/app"]}}}
+                    :main-opts ["-m" "mtkp.ring-dev.main" "generator.webserver/app"]}
+           :dev {:extra-deps {ring/ring-jetty-adapter {:mvn/version "1.8.2"}
+                              ring/ring-devel {:mvn/version "1.8.2"}
+                              ring/ring-spec {:mvn/version "0.0.4"}}}}}
