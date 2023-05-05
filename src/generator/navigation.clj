@@ -9,13 +9,13 @@
   (if (= (take-last 1 slug) '(\/)) slug (str slug ".html")))
 
 (defn render-main-menu []
-  (let [menu-data (contentful/get-contentful :nav-collection-query {:where {:name top-nav}})
+  (let [menu-data (contentful/get-contentful :nav-collection-query {:name top-nav})
         nav-item-collection (have map? (get-in menu-data [:navCollection :items 0 :linkedFrom :navItemCollection]))]
     [:nav {:class "navigation"} 
      [:div {:class "nav-wrapper"}
       [:a {:href "/" :class "logo"}
-       [:img {:src "/assets/images/cartman_digital_logo_nega_small.png" :title "Cartman Digital"}]
-       [:span "Cartman Digital"]]
+       [:img {:src "/assets/images/cartman_digital_logo.svg" :title "Cartman Digital"}]
+       [:span {:class "sr-only"} "Cartman Digital"]]
       [:button {:data-collapse-toggle "navbar-default" :type "button" :aria-controls "navbar-default" :aria-expanded "false"}
        [:span {:class "sr-only"} "Open main menu"]
        [:svg { :aria-hidden="true" :fill"currentColor" :viewBox "0 0 20 20" :xmlns "http://www.w3.org/2000/svg"}
@@ -28,7 +28,8 @@
 
 (comment 
   (get-in test-menu [:navCollection :items 0 :linkedFrom :navItemCollection]))
-
+(comment (render-main-menu))
+(comment (contentful/get-contentful :nav-collection-query {:name "Services sub menu"}))
 (comment (def test-menu
   {:navCollection
    {:items

@@ -93,8 +93,8 @@
     (include-css "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css")
     [:link {:rel "preconnect" :href "https://fonts.googleapis.com"}]
     [:link {:rel "preconnect" :href "https://fonts.gstatic.com" :crossorigin ""}]
-    [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu:wght@700&display=swap"}]]
-   [:body
+    [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Ubuntu:wght@300;700&display=swap"}]]
+   [:body {:class (:slug page)}
     (nav/render-main-menu)
     (render-content page)
     [:footer {:class "footer"}
@@ -138,7 +138,7 @@
     (into {"/styles.html" (fn [context] (get-styles-page))}
           (mapv #(vector
                   (if (not= (:slug %) "/") (str "/" (:slug %) ".html") (str "/index.html"))
-                  (fn [context](render-page %))) pages))))
+                  (fn [context] (render-page %))) pages))))
 
 (comment
   (println (get-pages)))

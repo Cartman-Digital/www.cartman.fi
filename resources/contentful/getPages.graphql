@@ -25,6 +25,9 @@ query pageCollectionQuery {
               id
             }
           }
+          ... on Nav {
+            name
+          }
           ... on SideBySide {
             rightColumn {
               json

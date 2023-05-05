@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-    --color-primary: #FF00EF;
+    --color-primary: #F200E7;
     --color-primary-offset: #FFD5F1;
     --color-secondary: #0073D4;
     --color-secondary-offset: #B1D5F3;
     --color-accent: #FFD945;
-    --color-grey-primary: #000;
+    --color-grey-primary: #231F20;
     --color-grey-offset: #FFF;
     /** Base layout off 8px increments */
     --layout-spacing-horizontal: 24px;
@@ -19,15 +19,91 @@
 /**
  * Typeface declarations
  */
-html body {
+html {
     @apply text-white;
-    font-family: 'Roboto', sans-serif; 
-    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 17px;
     line-height: 24px;
-    padding-top: 72px; /* nav height */
     letter-spacing: .01em;
-    
-    > .content {
+
+    body {
+        /* nav height */
+        padding-top: 60px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply mt-4;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 700;
+        letter-spacing: 0;
+        color: var(--color-grey-offset);
+    }
+
+
+    body h1 {
+        font-size: 39px;
+        line-height: 64px;
+        margin-bottom: 1rem;
+        color: var(--color-primary);
+    }
+
+    body h2 {
+        font-size: 28px;
+        line-height: 38px;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        border-bottom: 2px solid var(--color-primary);
+        display: inline-block;
+        padding-bottom: 0;
+    }
+
+    body h3 {
+        font-size: 23px;
+        line-height: 40px;
+        margin-bottom: 0.5rem;
+    }
+
+    body h4 {
+        font-size: 19px;
+        line-height: 32px;
+        margin-bottom: 0.25rem;
+    }
+
+    body h5 {
+        font-size: 17px;
+        line-height: 32px;
+    }
+
+    blockquote {
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 300;
+        font-size: 28px;
+        line-height: 40px;
+        color: var(--color-primary);
+        quotes: "\201C" "\201D" "\2018" "\2019";
+
+        p {
+            display: inline;
+        }
+
+        &::before {
+            display: inline;
+            content: open-quote;
+        }
+
+        &::after {
+            display: inline;
+            content: close-quote;
+        }
+    }
+
+    >.content {
         @apply mx-auto py-0;
     }
 }
@@ -35,42 +111,6 @@ html body {
 html body,
 html body nav {
     background-color: var(--color-grey-primary);
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 700;
-    letter-spacing: 0;
-    color: var(--color-primary);
-}
-
-body h1 {
-    font-size: 39px;
-    line-height: 64px;
-    margin-bottom: 1rem;
-}
-
-body h2 {
-    font-size: 28px;
-    line-height: 48px;
-    margin-bottom: 0.75rem;
-}
-
-body h3 {
-    font-size: 23px;
-    line-height: 40px;
-    margin-bottom: 0.5rem;
-}
-
-body h4 {
-    font-size: 19px;
-    line-height: 32px;
-    margin-bottom: 0.25rem;
-}
-
-body h5 {
-    font-size: 17px;
-    line-height: 32px;
 }
 
 /**
@@ -116,14 +156,14 @@ body hr {
     border-right-color: var(--color-grey-offset);
     background-color: transparent;
     position: relative;
-    
+
     &::before,
     &::after {
         position: absolute;
         content: '';
         background-size: 125%;
         background-position-x: 50%;
-        transition: background-position-x 500ms;
+        transition: background-position-x 500ms ease-in-out;
         height: 2px;
         left: -2px;
         right: -2px;
@@ -131,15 +171,15 @@ body hr {
 
     &::before {
         top: -2px;
-        background-image: linear-gradient(90deg, rgba(255,255,255,1) 24%, transparent 25%, transparent 30%, rgba(255,255,255,1) 31%);
+        background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 24%, transparent 25%, transparent 30%, rgba(255, 255, 255, 1) 31%);
     }
 
     &::after {
         bottom: -2px;
-        background-image: linear-gradient(90deg, rgba(255,255,255,1) 69%, transparent 70%, transparent 75%, rgba(255,255,255,1) 76%);
+        background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 69%, transparent 70%, transparent 75%, rgba(255, 255, 255, 1) 76%);
     }
 
-    &:hover::before{
+    &:hover::before {
         background-position-x: -175%;
     }
 
@@ -147,10 +187,12 @@ body hr {
         background-position-x: 275%;
     }
 }
+
 .button:hover {
     background-color: var(--color-grey-offset);
     color: var(--color-grey-primary);
 }
+
 .button.primary:hover {
     background-color: transparent;
     color: var(--color-grey-offset);
@@ -171,16 +213,13 @@ body a:hover {
     color: var(--color-secondary-offset);
 }
 
-/** 
+/**     
  * Layout
  */
- .content .full-width {
-    max-width: unset;
-}
 
-body > .content > div {
-    @apply row px-2 md:px-0;
-} 
+body .content>div:not(.hero-banner) {
+    @apply pt-2 clear-left overflow-hidden max-w-screen-2xl m-auto border-t mb-6;
+}
 
 .footer {
     @apply py-4 border-t border-gray-800 text-center;
@@ -192,7 +231,7 @@ body > .content > div {
     .nav-wrapper {
         @apply max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4;
 
-        > button {
+        >button {
             @apply inline-flex items-center p-2 ml-3 text-sm md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 text-gray-400 focus:ring-gray-600;
         }
 
@@ -205,7 +244,7 @@ body > .content > div {
         @apply flex items-center;
 
         img {
-            @apply h-10 mr-3;
+            @apply h-24 -mb-8 -mt-10 mr-3;
         }
 
         span {
@@ -230,24 +269,78 @@ body > .content > div {
     }
 }
 
+.sub-nav ul {
+    @apply px-4 xl:px-0;
+    gap: 0.5rem;
+    background-color: var(--color-primary);
+
+    .nav-item {
+        @apply w-full;
+        justify-self: center;
+
+        a {
+            @apply block w-full py-4 text-center;
+            font-family: 'Ubuntu', sans-serif;
+            color: var(--color-grey-offset);
+            font-weight: 300;
+            font-size: 24px;
+            line-height: 32px;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+                background-color: var(--color-grey-primary);
+            }
+
+            &::before {
+                content: "";
+                display: inline-block;;
+                margin: auto;
+                width: 32px;
+                height: 32px;
+                background-size: contain;
+                text-align: center;
+                margin: 0 0.5rem -0.5rem 0;
+            }
+        }
+
+        &.link-solutions a::before {
+            background-image: url(/assets/icons/idea.svg);
+        }
+        &.link-way a::before {
+            background-image: url(/assets/icons/process.svg);
+        }
+        &.link-consulting a::before {
+            background-image: url(/assets/icons/speech-bubble.svg);
+        }
+        &.link-audit a::before {
+            background-image: url(/assets/icons/file.svg);
+        }
+    }
+}
+
 .form-container {
     @apply clear-left pt-10 border border-white pb-2 mb-4 md:w-2/4;
 }
 
-.hero-banner {
-    @apply py-8 bg-gray-800 full-width bg-cover;
+body .content .hero-banner {
+    @apply py-8 bg-gray-800 bg-cover mb-4;
     background-position: center 20%;
     min-height: 24rem;
     position: relative;
 
     .banner-content-wrap {
-        @apply content m-auto overflow-hidden max-w-screen-xl;
+        @apply m-auto overflow-hidden max-w-screen-2xl;
         position: relative;
         z-index: 2;
     }
 
     .banner-text {
         @apply w-3/4 lg:w-1/3 float-right mr-14 mt-14;
+    }
+
+    +div {
+        @apply border-t-0;
     }
 }
 
@@ -259,19 +352,21 @@ body > .content > div {
     bottom: 0;
     content: "";
     display: block;
-    background-color: rgba(13, 14, 31, 0.5); /* grey-primary in rgb with opacity */
+    background-color: rgba(13, 14, 31, 0.5);
+    /* grey-primary in rgb with opacity */
     z-index: 1;
     @apply bg-opacity-50;
 }
 
 .row {
-    @apply py-2 clear-left overflow-hidden max-w-screen-2xl m-auto;
+    @apply pt-2 clear-left overflow-hidden max-w-screen-2xl m-auto border-t;
     margin-bottom: var(--layout-spacing-vertical);
+    border-color: var(--color-primary-offset);
 
     .side-by-side {
         @apply md:w-2/4;
 
-        > div {
+        >div {
             margin-bottom: var(--layout-spacing-v-half);
         }
     }
@@ -300,12 +395,12 @@ body > .content > div {
 body .content .card-list {
     width: 100%;
     @apply py-0;
-    
+
     .intro {
         @apply col-span-full text-center;
     }
 
-    > div {
+    >div {
         @apply text-center;
         padding: 0 var(--layout-spacing-horizontal);
         margin: var(--layout-spacing-v-half) 0;

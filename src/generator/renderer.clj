@@ -5,7 +5,9 @@
 ;; Updates method to return hiccup syntax
 (ns generator.renderer
   (:require [hiccup.element :refer (link-to image)]
-            [generator.contentful :as contentful]))
+            [generator.contentful :as contentful]
+            [generator.navigation :refer (create-url)]
+            [taoensso.truss :as truss :refer (have)]))
 
 ;; Workaround to get grid styles compiled into the sheet.
 ;; Returns one of sm:grid-cols-1 sm:grid-cols-2 sm:grid-cols-3 sm:grid-cols-4
@@ -120,7 +122,7 @@
 
 (defmethod render "CtaBanner"
   [args] 
-  [:div {:class "hero-banner row" :style (str "background-image: url(" (get-in args [:banner :url]) ");")}
+  [:div {:class "hero-banner" :style (str "background-image: url(" (get-in args [:banner :url]) ");")}
    [:div {:class "banner-content-wrap"}
     [:div {:class "banner-text"}
      (richtext->html (get-in args [:bannerText :json])) 
@@ -146,6 +148,16 @@
           [:div {:class "intro"} 
            (richtext->html (get-in cardlist [:introduction :json]))]]
          (mapv #(render %) cardCollection))))
+
+(defmethod render "Nav"
+ [args]
+ (let [menu-data (contentful/get-contentful :nav-collection-query {:name (:name args)})
+       nav-item-collection (have map? (get-in menu-data [:navCollection :items 0 :linkedFrom :navItemCollection]))]
+   [:div {:class "sub-nav"}
+    [:ul {:class "grid sm:grid-cols-2 lg:grid-cols-4"}
+     (for [item (:items nav-item-collection)]
+       [:li {:class (str "nav-item " (:additionalCssClasses item))}
+        [:a {:href (create-url (:slug item))} (get item :title)]])]]))
 
 ;; Test content
 (comment (println (get-in (contentful/get-contentful :card-list-query {:listId "2pJ63nhY2QKbVesxgWOvq9"}) [:cardList :cardsCollection :items])))
