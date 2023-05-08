@@ -22,7 +22,7 @@
              (optimus/wrap get-assets optimizations/all serve-live-assets)
              (wrap-content-type)
              (wrap-not-modified)
-             (wrap-reload {:dirs ["src/generator"]})
+             (wrap-reload {:dirs ["src/generator" "resources/public"]})
              (wrap-stacktrace)))
 
 ;; defines the local server to start by default the server is accessible from http://localhost:8000 after running .start on the server from comments below
