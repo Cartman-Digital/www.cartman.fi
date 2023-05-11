@@ -8,6 +8,11 @@
   [slug]
   (if (= (take-last 1 slug) '(\/)) slug (str slug ".html")))
 
+(defn create-root-url
+  [slug]
+  (let [url (create-url slug)]
+    (if (= (take-last 1 url) '(\/)) url (str "/" url))))
+
 (defn render-main-menu []
   (let [menu-data (contentful/get-contentful :nav-collection-query {:name top-nav})
         nav-item-collection (have map? (get-in menu-data [:navCollection :items 0 :linkedFrom :navItemCollection]))]
@@ -24,7 +29,7 @@
        [:ul
         (for [item (:items nav-item-collection)]
           [:li
-           [:a {:href (create-url (:slug item))} (get item :title)]])]]]]))
+           [:a {:href (create-root-url (:slug item))} (get item :title)]])]]]]))
 
 (comment 
   (get-in test-menu [:navCollection :items 0 :linkedFrom :navItemCollection]))
