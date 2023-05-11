@@ -150,7 +150,8 @@ body hr {
     text-decoration: none;
 }
 
-.button.primary {
+.button.primary,
+.btn-primary {
     border: 2px solid transparent;
     border-left-color: var(--color-grey-offset);
     border-right-color: var(--color-grey-offset);
@@ -171,19 +172,21 @@ body hr {
 
     &::before {
         top: -2px;
-        background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 24%, transparent 25%, transparent 30%, rgba(255, 255, 255, 1) 31%);
+        background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 24%, transparent 24.1%, transparent 30.9%, rgba(255, 255, 255, 1) 31%);
     }
 
     &::after {
         bottom: -2px;
-        background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 69%, transparent 70%, transparent 75%, rgba(255, 255, 255, 1) 76%);
+        background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 69%, transparent 69.1%, transparent 75.9%, rgba(255, 255, 255, 1) 76%);
     }
 
-    &:hover::before {
+    &:hover::before,
+    &:focus::before {
         background-position-x: -175%;
     }
 
-    &:hover::after {
+    &:hover::after,
+    &:focus::after {
         background-position-x: 275%;
     }
 }
@@ -196,6 +199,11 @@ body hr {
 .button.primary:hover {
     background-color: transparent;
     color: var(--color-grey-offset);
+
+    &:active {
+        background-color: var(--color-grey-offset);
+        color: var(--color-grey-primary);
+    }
 }
 
 body .action,
@@ -272,10 +280,9 @@ body .content>div:not(.hero-banner) {
 .sub-nav ul {
     @apply px-4 xl:px-0;
     gap: 0.5rem;
-    background-color: var(--color-primary);
 
     .nav-item {
-        @apply w-full;
+        @apply btn-primary w-full;
         justify-self: center;
 
         a {
@@ -299,22 +306,32 @@ body .content>div:not(.hero-banner) {
                 width: 32px;
                 height: 32px;
                 background-size: contain;
+                background-color: var(--color-grey-offset);
                 text-align: center;
                 margin: 0 0.5rem -0.5rem 0;
+            }
+
+            &:active {
+                color: var(--color-grey-primary);
+                background-color: var(--color-grey-offset);
+
+                &::before {
+                    background-color: var(--color-grey-primary);
+                }
             }
         }
 
         &.link-solutions a::before {
-            background-image: url(/assets/icons/idea.svg);
+            mask-image: url(/assets/icons/idea.svg);
         }
         &.link-way a::before {
-            background-image: url(/assets/icons/process.svg);
+            mask-image: url(/assets/icons/process.svg);
         }
         &.link-consulting a::before {
-            background-image: url(/assets/icons/speech-bubble.svg);
+            mask-image: url(/assets/icons/speech-bubble.svg);
         }
         &.link-audit a::before {
-            background-image: url(/assets/icons/file.svg);
+            mask-image: url(/assets/icons/file.svg);
         }
     }
 }

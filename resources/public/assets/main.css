@@ -731,7 +731,8 @@ body hr {
   text-decoration: none;
 }
 
-.button.primary {
+.button.primary,
+.btn-primary {
   border: 2px solid transparent;
   border-left-color: var(--color-grey-offset);
   border-right-color: var(--color-grey-offset);
@@ -740,7 +741,9 @@ body hr {
 }
 
 .button.primary::before,
-    .button.primary::after {
+    .button.primary::after,
+    .btn-primary::before,
+    .btn-primary::after {
   position: absolute;
   content: '';
   background-size: 125%;
@@ -751,21 +754,27 @@ body hr {
   right: -2px;
 }
 
-.button.primary::before {
+.button.primary::before, .btn-primary::before {
   top: -2px;
-  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 24%, transparent 25%, transparent 30%, rgba(255, 255, 255, 1) 31%);
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 24%, transparent 24.1%, transparent 30.9%, rgba(255, 255, 255, 1) 31%);
 }
 
-.button.primary::after {
+.button.primary::after, .btn-primary::after {
   bottom: -2px;
-  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 69%, transparent 70%, transparent 75%, rgba(255, 255, 255, 1) 76%);
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 69%, transparent 69.1%, transparent 75.9%, rgba(255, 255, 255, 1) 76%);
 }
 
-.button.primary:hover::before {
+.button.primary:hover::before,
+    .button.primary:focus::before,
+    .btn-primary:hover::before,
+    .btn-primary:focus::before {
   background-position-x: -175%;
 }
 
-.button.primary:hover::after {
+.button.primary:hover::after,
+    .button.primary:focus::after,
+    .btn-primary:hover::after,
+    .btn-primary:focus::after {
   background-position-x: 275%;
 }
 
@@ -777,6 +786,11 @@ body hr {
 .button.primary:hover {
   background-color: transparent;
   color: var(--color-grey-offset);
+}
+
+.button.primary:hover:active {
+  background-color: var(--color-grey-offset);
+  color: var(--color-grey-primary);
 }
 
 body .action,
@@ -985,11 +999,47 @@ body .content>div:not(.hero-banner) {
 
 .sub-nav ul {
   gap: 0.5rem;
-  background-color: var(--color-primary);
 }
 
 .sub-nav ul .nav-item {
   width: 100%;
+  border: 2px solid transparent;
+  border-left-color: var(--color-grey-offset);
+  border-right-color: var(--color-grey-offset);
+  background-color: transparent;
+  position: relative;
+}
+
+.sub-nav ul .nav-item::before,.sub-nav ul .nav-item::after {
+  position: absolute;
+  content: '';
+  background-size: 125%;
+  background-position-x: 50%;
+  transition: background-position-x 500ms ease-in-out;
+  height: 2px;
+  left: -2px;
+  right: -2px;
+}
+
+.sub-nav ul .nav-item::before {
+  top: -2px;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 24%, transparent 24.1%, transparent 30.9%, rgba(255, 255, 255, 1) 31%);
+}
+
+.sub-nav ul .nav-item::after {
+  bottom: -2px;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 69%, transparent 69.1%, transparent 75.9%, rgba(255, 255, 255, 1) 76%);
+}
+
+.sub-nav ul .nav-item:hover::before,.sub-nav ul .nav-item:focus::before {
+  background-position-x: -175%;
+}
+
+.sub-nav ul .nav-item:hover::after,.sub-nav ul .nav-item:focus::after {
+  background-position-x: 275%;
+}
+
+.sub-nav ul .nav-item {
   justify-self: center;
 }
 
@@ -1019,24 +1069,38 @@ body .content>div:not(.hero-banner) {
   width: 32px;
   height: 32px;
   background-size: contain;
+  background-color: var(--color-grey-offset);
   text-align: center;
   margin: 0 0.5rem -0.5rem 0;
 }
 
+.sub-nav ul .nav-item a:active {
+  color: var(--color-grey-primary);
+  background-color: var(--color-grey-offset);
+}
+
+.sub-nav ul .nav-item a:active::before {
+  background-color: var(--color-grey-primary);
+}
+
 .sub-nav ul .nav-item.link-solutions a::before {
-  background-image: url(/assets/icons/idea.svg);
+  -webkit-mask-image: url(/assets/icons/idea.svg);
+          mask-image: url(/assets/icons/idea.svg);
 }
 
 .sub-nav ul .nav-item.link-way a::before {
-  background-image: url(/assets/icons/process.svg);
+  -webkit-mask-image: url(/assets/icons/process.svg);
+          mask-image: url(/assets/icons/process.svg);
 }
 
 .sub-nav ul .nav-item.link-consulting a::before {
-  background-image: url(/assets/icons/speech-bubble.svg);
+  -webkit-mask-image: url(/assets/icons/speech-bubble.svg);
+          mask-image: url(/assets/icons/speech-bubble.svg);
 }
 
 .sub-nav ul .nav-item.link-audit a::before {
-  background-image: url(/assets/icons/file.svg);
+  -webkit-mask-image: url(/assets/icons/file.svg);
+          mask-image: url(/assets/icons/file.svg);
 }
 
 .form-container {
