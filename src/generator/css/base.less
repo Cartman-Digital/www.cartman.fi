@@ -23,13 +23,14 @@ html {
     @apply text-white;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
-    font-size: 17px;
-    line-height: 24px;
+    font-size: 16px; /* Root font size. use an increment of 8px, modifying this affects the spacing of rest of the website. */
     letter-spacing: .01em;
 
     body {
         /* nav height */
-        padding-top: 60px;
+        padding-top: 57px;
+        font-size: 17px; /** if you want to adjust text size without changing the spacing, use this field to change it. */
+        line-height: 24px;
     }
 
     h1,
@@ -38,7 +39,6 @@ html {
     h4,
     h5,
     h6 {
-        @apply mt-4;
         font-family: 'Ubuntu', sans-serif;
         font-weight: 700;
         letter-spacing: 0;
@@ -47,16 +47,16 @@ html {
 
 
     body h1 {
+        @apply mb-8;
         font-size: 39px;
         line-height: 64px;
-        margin-bottom: 1rem;
         color: var(--color-primary);
     }
 
     body h2 {
+        @apply mb-6;
         font-size: 28px;
         line-height: 38px;
-        margin-bottom: 1rem;
         text-transform: uppercase;
         border-bottom: 2px solid var(--color-primary);
         display: inline-block;
@@ -64,18 +64,19 @@ html {
     }
 
     body h3 {
+        @apply mb-4;
         font-size: 23px;
         line-height: 40px;
-        margin-bottom: 0.5rem;
     }
 
     body h4 {
+        @apply mt-4 mb-2;
         font-size: 19px;
         line-height: 32px;
-        margin-bottom: 0.25rem;
     }
 
     body h5 {
+        @apply mb-2;
         font-size: 17px;
         line-height: 32px;
     }
@@ -105,6 +106,14 @@ html {
 
     >.content {
         @apply mx-auto py-0;
+    }
+
+    p {
+        @apply mb-2;
+    }
+
+    li p {
+        @apply mb-0;
     }
 }
 
@@ -226,15 +235,15 @@ body a:hover {
  */
 
 body .content>div:not(.hero-banner) {
-    @apply pt-2 clear-left overflow-hidden max-w-screen-2xl m-auto border-t mb-6;
+    @apply clear-left overflow-hidden max-w-screen-2xl m-auto py-16 px-2 2xl:px-0;
 }
 
 .footer {
-    @apply py-4 border-t border-gray-800 text-center;
+    @apply py-4 border-t text-center;
 }
 
 .navigation {
-    @apply fixed border-gray-800 border-b w-full z-20 top-0 left-0;
+    @apply fixed border-b w-full z-20 top-0 left-0;
 
     .nav-wrapper {
         @apply max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4;
@@ -275,6 +284,10 @@ body .content>div:not(.hero-banner) {
     a {
         text-decoration: none;
     }
+}
+
+.footer, .navigation {
+    border-color: var(--color-grey-offset);
 }
 
 .sub-nav ul {
@@ -341,7 +354,7 @@ body .content>div:not(.hero-banner) {
 }
 
 body .content .hero-banner {
-    @apply py-8 bg-gray-800 bg-cover mb-4;
+    @apply py-8 bg-cover mb-4;
     background-position: center 20%;
     min-height: 24rem;
     position: relative;
@@ -376,16 +389,10 @@ body .content .hero-banner {
 }
 
 .row {
-    @apply pt-2 clear-left overflow-hidden max-w-screen-2xl m-auto border-t;
-    margin-bottom: var(--layout-spacing-vertical);
-    border-color: var(--color-primary-offset);
+    @apply py-10 clear-left overflow-hidden max-w-screen-2xl m-auto;
 
     .side-by-side {
         @apply md:w-2/4;
-
-        >div {
-            margin-bottom: var(--layout-spacing-v-half);
-        }
     }
 
     .side-by-side.right {
@@ -398,7 +405,7 @@ body .content .hero-banner {
 }
 
 .social-media {
-    @apply mt-1;
+    @apply mt-2;
 
     .icon {
         @apply text-center mx-2;
@@ -414,13 +421,12 @@ body .content .card-list {
     @apply py-0;
 
     .intro {
-        @apply col-span-full text-center;
+        @apply col-span-full text-center mb-4;
     }
 
     >div {
         @apply text-center;
         padding: 0 var(--layout-spacing-horizontal);
-        margin: var(--layout-spacing-v-half) 0;
     }
 
     ul {

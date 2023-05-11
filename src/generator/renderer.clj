@@ -126,7 +126,8 @@
    [:div {:class "banner-content-wrap"}
     [:div {:class "banner-text"}
      (richtext->html (get-in args [:bannerText :json])) 
-     [:a {:href (get args :ctaUrl) :class "cta button action primary"} (get args :ctaButtonText)]]]])
+     (if (not (empty? (:ctaButtonText args)))
+     [:a {:href (get args :ctaUrl) :class "cta button action primary"} (get args :ctaButtonText)])]]])
 
 (defmethod render "ContentBlock"
   [args] 

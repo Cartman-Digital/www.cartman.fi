@@ -601,14 +601,17 @@ html {
   color: rgb(255 255 255 / var(--tw-text-opacity));
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
-  font-size: 17px;
-  line-height: 24px;
+  font-size: 16px;
+  /* Root font size. use an increment of 8px, modifying this affects the spacing of rest of the website. */
   letter-spacing: .01em;
 }
 
 html body {
   /* nav height */
-  padding-top: 60px;
+  padding-top: 57px;
+  font-size: 17px;
+  /** if you want to adjust text size without changing the spacing, use this field to change it. */
+  line-height: 24px;
 }
 
 html h1,
@@ -617,7 +620,6 @@ html h1,
     html h4,
     html h5,
     html h6 {
-  margin-top: 1rem;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 700;
   letter-spacing: 0;
@@ -625,16 +627,16 @@ html h1,
 }
 
 html body h1 {
+  margin-bottom: 2rem;
   font-size: 39px;
   line-height: 64px;
-  margin-bottom: 1rem;
   color: var(--color-primary);
 }
 
 html body h2 {
+  margin-bottom: 1.5rem;
   font-size: 28px;
   line-height: 38px;
-  margin-bottom: 1rem;
   text-transform: uppercase;
   border-bottom: 2px solid var(--color-primary);
   display: inline-block;
@@ -642,18 +644,20 @@ html body h2 {
 }
 
 html body h3 {
+  margin-bottom: 1rem;
   font-size: 23px;
   line-height: 40px;
-  margin-bottom: 0.5rem;
 }
 
 html body h4 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
   font-size: 19px;
   line-height: 32px;
-  margin-bottom: 0.25rem;
 }
 
 html body h5 {
+  margin-bottom: 0.5rem;
   font-size: 17px;
   line-height: 32px;
 }
@@ -686,6 +690,14 @@ html >.content {
   margin-right: auto;
   padding-top: 0px;
   padding-bottom: 0px;
+}
+
+html p {
+  margin-bottom: 0.5rem;
+}
+
+html li p {
+  margin-bottom: 0px;
 }
 
 html body,
@@ -815,17 +827,23 @@ body a:hover {
 body .content>div:not(.hero-banner) {
   clear: left;
   margin: auto;
-  margin-bottom: 1.5rem;
   max-width: 1536px;
   overflow: hidden;
-  border-top-width: 1px;
-  padding-top: 0.5rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+@media (min-width: 1536px) {
+  body .content>div:not(.hero-banner) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
 
 .footer {
   border-top-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-border-opacity));
   padding-top: 1rem;
   padding-bottom: 1rem;
   text-align: center;
@@ -838,8 +856,6 @@ body .content>div:not(.hero-banner) {
   z-index: 20;
   width: 100%;
   border-bottom-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-border-opacity));
 }
 
 .navigation .nav-wrapper {
@@ -985,6 +1001,10 @@ body .content>div:not(.hero-banner) {
   text-decoration: none;
 }
 
+.footer, .navigation {
+  border-color: var(--color-grey-offset);
+}
+
 .sub-nav ul {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1121,8 +1141,6 @@ body .content>div:not(.hero-banner) {
 
 body .content .hero-banner {
   margin-bottom: 1rem;
-  --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
   background-size: cover;
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -1175,23 +1193,15 @@ body .content .hero-banner +div {
   margin: auto;
   max-width: 1536px;
   overflow: hidden;
-  border-top-width: 1px;
-  padding-top: 0.5rem;
-  margin-bottom: var(--layout-spacing-vertical);
-  border-color: var(--color-primary-offset);
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 
 @media (min-width: 768px) {
   .row .side-by-side {
     width: 50%;
   }
-}
 
-.row .side-by-side >div {
-  margin-bottom: var(--layout-spacing-v-half);
-}
-
-@media (min-width: 768px) {
   .row .side-by-side.right {
     float: right;
     padding-left: 1.5rem;
@@ -1204,7 +1214,7 @@ body .content .hero-banner +div {
 }
 
 .social-media {
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
 }
 
 .social-media .icon {
@@ -1225,13 +1235,13 @@ body .content .card-list {
 
 body .content .card-list .intro {
   grid-column: 1 / -1;
+  margin-bottom: 1rem;
   text-align: center;
 }
 
 body .content .card-list >div {
   text-align: center;
   padding: 0 var(--layout-spacing-horizontal);
-  margin: var(--layout-spacing-v-half) 0;
 }
 
 body .content .card-list ul {
