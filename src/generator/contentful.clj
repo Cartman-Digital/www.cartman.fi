@@ -18,7 +18,14 @@
 (def headers {:Authorization "Bearer QJSIZZ8-mkUZPBySwQTtVwfirskzh2ZnplerHDo6xpE"})
 
 (declare graphql-queries)
-(defgraphql graphql-queries "contentful/getNavTree.graphql" "contentful/getPages.graphql" "contentful/getAsset.graphql" "contentful/getCardList.graphql")
+
+;; defgraphql does not support queries that start with graphql comments.
+(defgraphql graphql-queries "contentful/getNavTree.graphql"
+  "contentful/getPages.graphql"
+  "contentful/getAsset.graphql"
+  "contentful/getCardList.graphql"
+  "contentful/getSitemap.graphql"
+  )
 (def query-map (graphql-core/query-map graphql-queries))
 
 (defn ^:private api-call
@@ -34,7 +41,7 @@
          (m/decode-response-body)
          (:data))))
 
-(def ^:private dispatch
+(def ^:private dispatch 
   (memoize api-call))
 
 (defn get-contentful

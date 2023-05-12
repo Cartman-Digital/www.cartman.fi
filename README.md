@@ -27,3 +27,12 @@ VS-code settings for local style development:
 
 Known issues:
 - Tailwind parser used in the project is not true less parser and might experience issues when processing less files with some expressions in them. These files are still css files with nesting enabled. Less file definition is used here to prevent vscode validation from breaking with the nesting enabled by Tailwindcss.
+
+## Sitemap Generation 
+Alias project/generate-sitemap triggers sitemap generation defined in sitemap.clj file.
+```
+clj -m:project/generate-sitemap
+````
+
+This creates sitemap.xml file under public directory in the project.
+Sitemap must be generated separately it is not compiled during export or local environment start

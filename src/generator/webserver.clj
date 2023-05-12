@@ -16,7 +16,7 @@
 
 (defn get-assets []
   (assets/load-assets "public" ["/assets/main.css" 
-                                #".*\.(jpg|svg|png|js)$"]))
+                                #".*\.(jpg|svg|png|js|xml)$"]))
 
 (def app (-> (stasis/serve-pages get-pages) ;; should return map of slug -> render call
              (optimus/wrap get-assets optimizations/all serve-live-assets)

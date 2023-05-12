@@ -18,3 +18,4 @@ pom.xml.asc
 .cpcache/
 node_modules/
 build/
+resources/public/sitemap.xml
