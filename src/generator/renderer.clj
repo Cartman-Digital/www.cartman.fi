@@ -145,7 +145,7 @@
  [args]
  (let [cardlist (:cardList (contentful/get-contentful :card-list-query {:listId (get-in args [:sys :id])})) 
        cardCollection (get-in cardlist [:cardsCollection :items])]
-   (into [:div {:class (str "card-list row grid " (get-grid-class (count cardCollection)))} 
+   (into [:div {:class (str "card-list row grid " (get-grid-class (:numberOfCardColumns cardlist)))} 
           [:div {:class "intro"} 
            (richtext->html (get-in cardlist [:introduction :json]))]]
          (mapv #(render %) cardCollection))))
@@ -161,7 +161,7 @@
         [:a {:href (create-url (:slug item))} (get item :title)]])]]))
 
 ;; Test content
-(comment (println (get-in (contentful/get-contentful :card-list-query {:listId "2pJ63nhY2QKbVesxgWOvq9"}) [:cardList :cardsCollection :items])))
+(comment (println (get-in (contentful/get-contentful :card-list-query {:listId "70MjOghTNtz17gmB9BuSZ7"}) [:cardList :cardsCollection :items])))
 (comment (render {:__typename "CardList" :sys {:id "2pJ63nhY2QKbVesxgWOvq9"}}))
 (comment (richtext->html {:nodeType "paragraph", :content [{:nodeType "text", :value "Testataan", :marks [], :data {}}], :data {}}))
 (comment (richtext->html {:nodeType "text", :value "Testataan", :marks [], :data {}}))

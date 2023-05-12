@@ -3,6 +3,7 @@ query CardListQuery($listId: String!) {
     introduction {
       json
     }
+    numberOfCardColumns
     cardsCollection {
       items {
         __typename
