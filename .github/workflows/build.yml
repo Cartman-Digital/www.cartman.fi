@@ -26,5 +26,5 @@ jobs:
 
 
     - name: Create uberjar
-      run: clj -T:build uber
+      run: clojure -T:build uber
 
