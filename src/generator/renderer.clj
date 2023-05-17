@@ -9,12 +9,19 @@
             [generator.navigation :refer (create-url)]
             [taoensso.truss :as truss :refer (have)]))
 
+(declare render)
+
 ;; Workaround to get grid styles compiled into the sheet.
 ;; Returns one of sm:grid-cols-1 sm:grid-cols-2 sm:grid-cols-3 sm:grid-cols-4
 ;; sm:grid-cols-5 sm:grid-cols-6
 (defn get-grid-class
   [grid-count]
   (str "sm:grid-cols-" grid-count))
+
+(defn get-embed-block-html
+  [args]
+  (let [entryCollection (get-in (contentful/get-contentful :entry-query {:entryId (get-in args [:data :target :sys :id])}) [:entryCollection :items])]
+    (into [:div.embed] (mapv render entryCollection))))
 
 ;; https://github.com/contentful/rich-text/blob/master/packages/rich-text-types/src/marks.ts
 ;; Used automatically by richtext->html
@@ -51,7 +58,7 @@
 
 (defmethod richtext->html "document"
   [m]
-  (into [:div] (mapv richtext->html (:content m))))
+  (into [:div.doc] (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "heading-1"
   [m]
@@ -83,7 +90,7 @@
 
 (defmethod richtext->html "hyperlink"
   [m]
-  (into [:a {:attrs [:href (:uri (:data m))]}]
+  (into [:a {:href (:uri (:data m))}]
    (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "list-item"
@@ -114,6 +121,14 @@
     (let [asset (:asset (contentful/get-contentful :asset-query {:assetId (get-in args [:data :target :sys :id])}))]
       (image (:url asset) (:description asset)))))
 
+(defmethod richtext->html "embedded-entry-inline"
+  [args]
+  (get-embed-block-html args))
+
+(defmethod richtext->html "embedded-entry-block"
+  [args]
+  (get-embed-block-html args))
+
 (defmulti render :__typename)
 
 (defmethod render :default
@@ -135,20 +150,21 @@
 
 (defmethod render "SideBySide"
   [args]
-  [:div {:class "row"}
+  [:section
+   [:div {:class "row"}
    [:div {:class "side-by-side left"}
     (richtext->html (get-in args [:leftColumn :json]))]
    [:div {:class "side-by-side right"}
-    (richtext->html (get-in args [:rightColumn :json]))]])
+    (richtext->html (get-in args [:rightColumn :json]))]]])
 
 (defmethod render "CardList"
  [args]
  (let [cardlist (:cardList (contentful/get-contentful :card-list-query {:listId (get-in args [:sys :id])})) 
        cardCollection (get-in cardlist [:cardsCollection :items])]
-   (into [:div {:class (str "card-list row grid " (get-grid-class (:numberOfCardColumns cardlist)))} 
+   [:section (into [:div {:class (str "card-list row grid " (get-grid-class (:numberOfCardColumns cardlist)))} 
           [:div {:class "intro"} 
            (richtext->html (get-in cardlist [:introduction :json]))]]
-         (mapv #(render %) cardCollection))))
+         (mapv #(render %) cardCollection))]))
 
 (defmethod render "Nav"
  [args]
@@ -185,3 +201,8 @@
                      :data {}}],
                    :data {}}],
                  :data {}}))
+
+(comment (richtext->html {:nodeType "embedded-entry-inline",
+                          :content [],
+                          :data {:target {:sys {:type "Link", :id "5A99h098MezIKu66x5XQcB", :linkType "Entry"}}}}))
+(comment (contentful/get-contentful :entry-query {:entryId "5A99h098MezIKu66x5XQcB"}))

@@ -746,9 +746,13 @@ body hr {
 .button.primary,
 .btn-primary {
   border: 2px solid transparent;
+  display: inline-block;
+  padding: 8px;
   border-left-color: var(--color-grey-offset);
   border-right-color: var(--color-grey-offset);
   background-color: transparent;
+  text-decoration: none;
+  color: var(--color-grey-offset);
   position: relative;
 }
 
@@ -795,12 +799,13 @@ body hr {
   color: var(--color-grey-primary);
 }
 
-.button.primary:hover {
+.button.primary:hover,
+.btn-primary:hover {
   background-color: transparent;
   color: var(--color-grey-offset);
 }
 
-.button.primary:hover:active {
+.button.primary:hover:active, .btn-primary:hover:active {
   background-color: var(--color-grey-offset);
   color: var(--color-grey-primary);
 }
@@ -824,30 +829,14 @@ body a:hover {
  * Layout
  */
 
-body .content>div:not(.hero-banner) {
-  clear: left;
-  margin: auto;
-  max-width: 1536px;
-  overflow: hidden;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-
-@media (min-width: 1536px) {
-  body .content>div:not(.hero-banner) {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-}
-
 .footer {
   border-top-width: 1px;
   padding-top: 1rem;
   padding-bottom: 1rem;
   text-align: center;
 }
+
+/** nav */
 
 .navigation {
   position: fixed;
@@ -1005,6 +994,57 @@ body .content>div:not(.hero-banner) {
   border-color: var(--color-grey-offset);
 }
 
+body .content>.doc,
+body .content>section {
+  clear: left;
+  margin: auto;
+  overflow: hidden;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+@media (min-width: 1536px) {
+  body .content>.doc,
+body .content>section {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+.content > .doc,
+.row {
+  max-width: 1536px;
+}
+
+.row {
+  clear: left;
+  margin: auto;
+  max-width: 1536px;
+  overflow: hidden;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .row .side-by-side {
+    width: 50%;
+  }
+
+  .row .side-by-side.right {
+    float: right;
+    padding-left: 1.5rem;
+  }
+
+  .row .side-by-side.left {
+    float: left;
+    padding-right: 1.5rem;
+  }
+}
+
+/* component styles */
+
 .sub-nav ul {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1024,9 +1064,13 @@ body .content>div:not(.hero-banner) {
 .sub-nav ul .nav-item {
   width: 100%;
   border: 2px solid transparent;
+  display: inline-block;
+  padding: 8px;
   border-left-color: var(--color-grey-offset);
   border-right-color: var(--color-grey-offset);
   background-color: transparent;
+  text-decoration: none;
+  color: var(--color-grey-offset);
   position: relative;
 }
 
@@ -1057,6 +1101,16 @@ body .content>div:not(.hero-banner) {
 
 .sub-nav ul .nav-item:hover::after,.sub-nav ul .nav-item:focus::after {
   background-position-x: 275%;
+}
+
+.sub-nav ul .nav-item:hover {
+  background-color: transparent;
+  color: var(--color-grey-offset);
+}
+
+.sub-nav ul .nav-item:hover:active {
+  background-color: var(--color-grey-offset);
+  color: var(--color-grey-primary);
 }
 
 .sub-nav ul .nav-item {
@@ -1188,31 +1242,6 @@ body .content .hero-banner +div {
   --tw-bg-opacity: 0.5;
 }
 
-.row {
-  clear: left;
-  margin: auto;
-  max-width: 1536px;
-  overflow: hidden;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
-@media (min-width: 768px) {
-  .row .side-by-side {
-    width: 50%;
-  }
-
-  .row .side-by-side.right {
-    float: right;
-    padding-left: 1.5rem;
-  }
-
-  .row .side-by-side.left {
-    float: left;
-    padding-right: 1.5rem;
-  }
-}
-
 .social-media {
   margin-top: 0.5rem;
 }
@@ -1239,7 +1268,7 @@ body .content .card-list .intro {
   text-align: center;
 }
 
-body .content .card-list >div {
+body .content .card-list > .doc {
   text-align: center;
   padding: 0 var(--layout-spacing-horizontal);
 }
@@ -1247,6 +1276,115 @@ body .content .card-list >div {
 body .content .card-list ul {
   list-style-type: none;
   margin-bottom: 0.5rem;
+}
+
+/** Page specific styles */
+
+.services .content>section:nth-child(odd) {
+  background-color: #000;
+}
+
+@media (min-width: 640px) {
+  .services .content .side-by-side.left {
+    width: 25%;
+  }
+}
+
+.services .content .side-by-side.right {
+  padding-top: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .services .content .side-by-side.right {
+    width: 75%;
+  }
+}
+
+.services .content .side-by-side.right .doc a {
+  margin-top: 1.5rem;
+  border: 2px solid transparent;
+  display: inline-block;
+  padding: 8px;
+  border-left-color: var(--color-grey-offset);
+  border-right-color: var(--color-grey-offset);
+  background-color: transparent;
+  text-decoration: none;
+  color: var(--color-grey-offset);
+  position: relative;
+}
+
+.services .content .side-by-side.right .doc a::before,.services .content .side-by-side.right .doc a::after {
+  position: absolute;
+  content: '';
+  background-size: 125%;
+  background-position-x: 50%;
+  transition: background-position-x 500ms ease-in-out;
+  height: 2px;
+  left: -2px;
+  right: -2px;
+}
+
+.services .content .side-by-side.right .doc a::before {
+  top: -2px;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 24%, transparent 24.1%, transparent 30.9%, rgba(255, 255, 255, 1) 31%);
+}
+
+.services .content .side-by-side.right .doc a::after {
+  bottom: -2px;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 69%, transparent 69.1%, transparent 75.9%, rgba(255, 255, 255, 1) 76%);
+}
+
+.services .content .side-by-side.right .doc a:hover::before,.services .content .side-by-side.right .doc a:focus::before {
+  background-position-x: -175%;
+}
+
+.services .content .side-by-side.right .doc a:hover::after,.services .content .side-by-side.right .doc a:focus::after {
+  background-position-x: 275%;
+}
+
+.services .content .side-by-side.right .doc a:hover {
+  background-color: transparent;
+  color: var(--color-grey-offset);
+}
+
+.services .content .side-by-side.right .doc a:hover:active {
+  background-color: var(--color-grey-offset);
+  color: var(--color-grey-primary);
+}
+
+/** assume logo grid inside embedded content */
+
+.services .content .side-by-side .embed .intro {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.services .content .side-by-side .embed .grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .services .content .side-by-side .embed .grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .services .content .side-by-side .embed .grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .services .content .side-by-side .embed .grid {
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1536px) {
+  .services .content .side-by-side .embed .grid {
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: 640px) {
