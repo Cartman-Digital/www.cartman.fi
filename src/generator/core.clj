@@ -1,7 +1,7 @@
 (ns generator.core
   (:require [stasis.core :as stasis]
             [generator.pages :as pages]
-            [ring.adapter.jetty :as jetty]))
+            [ring.adapter.jetty :as jetty]) (:gen-class))
 
 (def export-directory "./build/")
 

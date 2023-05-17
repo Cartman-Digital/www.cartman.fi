@@ -13,5 +13,6 @@
         sitemap/sitemap                 {:mvn/version "0.4.0"}}
  :paths ["src" "resources"]
  :aliases {:project/run {:main-opts ["-m" "generator.core"]}
-           :project/generate-sitemap {:main-opts ["-m" "generator.sitemap"]}}
- }
+           :project/generate-sitemap {:main-opts ["-m" "generator.sitemap"]}
+           :build {:deps {io.github.clojure/tools.build {:mvn/version "0.9.4"}}
+                   :ns-default build}}}
