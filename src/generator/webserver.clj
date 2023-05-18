@@ -25,12 +25,18 @@
              (wrap-reload {:dirs ["src/generator" "resources/public"]})
              (wrap-stacktrace)))
 
-;; defines the local server to start by default the server is accessible from http://localhost:8000 after running .start on the server from comments below
-(defonce server
-  (jetty/run-jetty #'app {:port 8000 :join? false}))
-  
-(comment (.start server))
-(comment (.stop server))
+(defonce server (atom nil))
 
-(comment 
-  (get-pages))
+(defn start-webserver []
+  (when (nil? @server)
+    (reset! server (jetty/run-jetty #'app {:port 8000 :join? false}))
+    (println "Web server started.")))
+
+(defn stop-webserver []
+  (when-not (nil? @server)
+    (.stop @server)
+    (reset! server nil)
+    (println "Web server stopped.")))
+
+(comment (start-webserver))
+(comment (stop-webserver))

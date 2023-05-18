@@ -1,16 +1,19 @@
 # Local development
-To start the local development server start REPL with :dev alias.
-Then load/evaluate the webserver file and execute the following expression in REPL
-```
-(.start server)
-```
+To launch local environment do the following:
+1. Launch REPL using deps.edn (no alias required)
+2. Open to src/generator/webserver.clj
+3. Load/evaluate file
+4. run `(start-webserver)` in REPL
 
-To close the server execute following expression in REPL
-```
-(.stop server)
-```
+Local webserver should now be available in localhost:8000
 
-in both of these expressions, the key "server" is the defonce definition inside webserver.clj.
+To stop the server run `(stop-webserver)`
+
+## Launching with command.
+You can launch the webserver with 
+`clj -M:project/run -webserver` command
+alternatively to generate html and sitemap files you can run
+`clj -M:project/run -generate` command.
 
 To compile styles run the following:
 ```
@@ -31,7 +34,7 @@ Known issues:
 ## Sitemap Generation 
 Alias project/generate-sitemap triggers sitemap generation defined in sitemap.clj file.
 ```
-clj -m:project/generate-sitemap
+clj -M:project/generate-sitemap
 ````
 
 This creates sitemap.xml file under public directory in the project.
