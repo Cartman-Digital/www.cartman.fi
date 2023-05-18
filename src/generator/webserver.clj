@@ -8,11 +8,29 @@
    [optimus.strategies :refer [serve-live-assets]]
    [optimus.export]
    [generator.pages :refer [get-pages]]
+   [generator.builder :refer [generate]]
    [ring.adapter.jetty :as jetty]
    [ring.middleware.stacktrace :refer [wrap-stacktrace]]
    [ring.middleware.reload :refer [wrap-reload]]
    [ring.middleware.content-type :refer [wrap-content-type]]
-   [ring.middleware.not-modified :refer [wrap-not-modified]]))
+   [ring.middleware.not-modified :refer [wrap-not-modified]]
+   [ring.util.response :as response]))
+
+;; Handler for "/api/generate" endpoint WIP:
+;; currently calling this causes the files to generate but browser triggers a file download.
+;; caused by invalid returns?
+(defn handle-generate [request]
+  ;; add validations here
+  (generate)
+  (response/created "/"))
+
+;; Define the Jetty server handler
+(defn wrap-api-routes [handler]
+  (fn [request]
+    (let [uri (:uri request)]
+      (cond 
+        (= uri "/api/generate") (handle-generate request)
+        :else (handler request)))))
 
 (defn get-assets []
   (assets/load-assets "public" ["/assets/main.css" 
@@ -20,6 +38,7 @@
 
 (def app (-> (stasis/serve-pages get-pages) ;; should return map of slug -> render call
              (optimus/wrap get-assets optimizations/all serve-live-assets)
+             (wrap-api-routes)
              (wrap-content-type)
              (wrap-not-modified)
              (wrap-reload {:dirs ["src/generator" "resources/public"]})
