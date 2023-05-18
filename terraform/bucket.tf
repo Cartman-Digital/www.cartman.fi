@@ -1,5 +1,6 @@
 resource "google_storage_bucket" "static-site" {
   name          = "cartman-site-${var.environment}"
+  project = var.project_id
   location      = "EU"
   force_destroy = true
 
