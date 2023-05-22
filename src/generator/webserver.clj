@@ -22,7 +22,7 @@
 (defn handle-generate [request]
   ;; add validations here
   (generate)
-  (response/created "/"))
+  (response/header (response/response "") "Content-Type" "Text/html"))
 
 ;; Define the Jetty server handler
 (defn wrap-api-routes [handler]
