@@ -17,6 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Add SHORT_SHA env property with commit short sha
+      run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+
     - name: Prepare java
       uses: actions/setup-java@v3
       with:
@@ -35,10 +38,9 @@ jobs:
       run: clojure -T:build uber
 
     - name: Publish package
-      run: cd target && mvn --batch-mode deploy:deploy-file -DgroupId=com.github.Cartman-Digital -Durl=https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -DrepositoryId=github -DartifactId=generator -Dversion="1.0.0-${SHA}" -Dfile=generator.jar -DgeneratePom=false
+      run: cd target && mvn --batch-mode deploy:deploy-file -DgroupId=com.github.Cartman-Digital -Durl=https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -DrepositoryId=github -DartifactId=generator -Dversion=1.0.0-${SHORT_SHA} -Dfile=generator.jar -DgeneratePom=false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SHA: ${{ env.GITHUB_SHA }}
 
     - name: Trigger deploy
       uses: actions/github-script@v6
