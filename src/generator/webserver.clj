@@ -19,7 +19,8 @@
 ;; Handler for "/api/generate" endpoint WIP:
 ;; currently calling this causes the files to generate but browser triggers a file download.
 ;; caused by invalid returns?
-(defn handle-generate [request]
+(defn handle-generate
+  [request]
   (System/getenv "")
   (generate)
   (response/header (response/response "") "Content-Type" "Text/html"))
@@ -56,6 +57,3 @@
     (.stop @server)
     (reset! server nil)
     (println "Web server stopped.")))
-
-(comment (start-webserver))
-(comment (stop-webserver))

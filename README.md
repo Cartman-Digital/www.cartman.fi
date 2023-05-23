@@ -3,7 +3,7 @@ This project supports configuration via Environment variables or two config file
 To successfully run the project the following environment variables must be configured:
 
 ```
-BASE_URL - website's frontpage url
+BASE_URL - website's frontpage url ending with /
 CONTENTFUL_SPACE - string contentful's space hash
 CONTENTFUL_ENVIRONMENT - string environment code from contentful
 CONTENTFUL_TOKEN - string contentful's token

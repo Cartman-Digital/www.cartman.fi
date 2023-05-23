@@ -47,5 +47,3 @@
     (into {} (mapv #(vector
                      (if (not= (:slug %) "/") (str "/" (:slug %) ".html") (str "/index.html"))
                      (fn [context] (render-page %))) pages))))
-
-(get-pages)
