@@ -175,8 +175,7 @@ body hr {
     &::after {
         position: absolute;
         content: '';
-        background-size: 125%;
-        background-position-x: 50%;
+        background-size: 200%;
         transition: background-position-x 500ms ease-in-out;
         height: 2px;
         left: -2px;
@@ -185,22 +184,24 @@ body hr {
 
     &::before {
         top: -2px;
-        background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 24%, transparent 24.1%, transparent 30.9%, rgba(255, 255, 255, 1) 31%);
+        background-image: linear-gradient(90deg, #FFF 20px, transparent 20px, transparent 45px, #FFF 45px);
+        background-position-x: left, 0px;
     }
 
     &::after {
         bottom: -2px;
-        background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 69%, transparent 69.1%, transparent 75.9%, rgba(255, 255, 255, 1) 76%);
+        background-image: linear-gradient(-90deg, #FFF 20px, transparent 20px, transparent 45px, #FFF 45px);
+        background-position-x: right, 0px;
     }
 
     &:hover::before,
     &:focus::before {
-        background-position-x: -175%;
+        background-position-x: right, 0px;
     }
 
     &:hover::after,
     &:focus::after {
-        background-position-x: 275%;
+        background-position-x: left, 0px;
     }
 }
 
