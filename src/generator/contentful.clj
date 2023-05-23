@@ -1,14 +1,13 @@
 (ns generator.contentful
   (:require
-   [taoensso.truss :as truss :refer (have)]
-   [graphql-builder.parser :refer [defgraphql]] 
-   [graphql-builder.core :as graphql-core]
-   [clj-http.client :as client] 
-   [muuntaja.core :as m]
+   [clj-http.client :as client]
    [clojure.data.json :as json]
-   [clojure.core.memoize :as memo]
-   [generator.config :refer [get-env]]))
-   
+   [clojure.core.memoize :as memo] 
+   [generator.config :refer [get-env]]
+   [graphql-builder.parser :refer [defgraphql]]
+   [graphql-builder.core :as graphql-core]
+   [muuntaja.core :as m]
+   [taoensso.truss :as truss :refer (have)]))
 
 (def contentful-space (get-env "CONTENTFUL_SPACE"))
 (def contentful-environment "master")

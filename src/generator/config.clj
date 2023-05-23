@@ -1,5 +1,6 @@
 (ns generator.config
-  (:require [clojure.edn :as edn]))
+  (:require
+   [clojure.edn :as edn]))
 
 (def env-cache (atom {}))
 

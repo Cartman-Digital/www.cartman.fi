@@ -1,10 +1,11 @@
 (ns generator.pages
-  (:require [taoensso.truss :as truss :refer (have)]
-            [generator.contentful :as contentful]
-            [generator.navigation :as nav] 
-            [generator.renderer :as renderer]
-            [hiccup.page :refer [html5 include-css include-js]]
-            [hiccup.element :refer [link-to]]))
+  (:require
+   [generator.contentful :as contentful]
+   [generator.navigation :as nav]
+   [generator.renderer :as renderer]
+   [hiccup.page :refer [html5 include-css include-js]]
+   [hiccup.element :refer [link-to]]
+   [taoensso.truss :as truss :refer (have)]))
 
 (defn render-content
   [content] 

@@ -1,7 +1,8 @@
 (ns generator.builder
-  (:require [stasis.core :as stasis]
-            [generator.pages :as pages]
-            [generator.sitemap :as sitemap]))
+  (:require
+   [generator.pages :as pages]
+   [generator.sitemap :as sitemap]
+   [stasis.core :as stasis]))
 
 (def export-directory "./build/")
 

@@ -1,20 +1,20 @@
 ;; Local webserver definition. This class works by defining a local webserver. The server gets it's handler from stasis with assets wrapped by optimus and jetty's middleware to get the right headers. Once the handler is ready. it is wrapped with reload and stacktrace functions from ring middleware. After all definitions starting the application can be done by running .start and .stop from the end of this file. 
 (ns generator.webserver
   (:require
-   [stasis.core :as stasis]
-   [optimus.prime :as optimus]
-   [optimus.assets :as assets]
-   [optimus.optimizations :as optimizations]
-   [optimus.strategies :refer [serve-live-assets]]
-   [optimus.export]
    [generator.pages :refer [get-pages]]
    [generator.builder :refer [generate]]
+   [optimus.assets :as assets]
+   [optimus.export]
+   [optimus.optimizations :as optimizations]
+   [optimus.prime :as optimus]
+   [optimus.strategies :refer [serve-live-assets]] 
    [ring.adapter.jetty :as jetty]
-   [ring.middleware.stacktrace :refer [wrap-stacktrace]]
-   [ring.middleware.reload :refer [wrap-reload]]
    [ring.middleware.content-type :refer [wrap-content-type]]
    [ring.middleware.not-modified :refer [wrap-not-modified]]
-   [ring.util.response :as response]))
+   [ring.middleware.reload :refer [wrap-reload]]
+   [ring.middleware.stacktrace :refer [wrap-stacktrace]] 
+   [ring.util.response :as response]
+   [stasis.core :as stasis]))
 
 ;; Handler for "/api/generate" endpoint WIP:
 ;; currently calling this causes the files to generate but browser triggers a file download.
@@ -57,3 +57,6 @@
     (.stop @server)
     (reset! server nil)
     (println "Web server stopped.")))
+
+(comment (start-webserver))
+(comment (stop-webserver))

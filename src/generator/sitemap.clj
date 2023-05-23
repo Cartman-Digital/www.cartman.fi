@@ -1,10 +1,9 @@
 (ns generator.sitemap
-  (:require [sitemap.core]
-            [sitemap.validator]
-            [generator.contentful :refer [get-contentful]]
-            [generator.navigation :refer [create-url]]
-            [sitemap.validator]
-            [sitemap.validator :as v])
+  (:require
+   [generator.contentful :refer [get-contentful]]
+   [generator.navigation :refer [create-url]]
+   [sitemap.core]
+   [sitemap.validator])
   (:import java.io.File))
 
 (def base-url "https://cartman.fi")

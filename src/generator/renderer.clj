@@ -4,10 +4,11 @@
 ;; Strips out all communication parts from the original code. Rely on existing information.
 ;; Updates method to return hiccup syntax
 (ns generator.renderer
-  (:require [hiccup.element :refer [image]]
-            [generator.contentful :as contentful]
-            [generator.navigation :refer [create-url prepend-base-url]]
-            [taoensso.truss :as truss :refer [have]]))
+  (:require
+   [generator.contentful :as contentful]
+   [generator.navigation :refer [create-url prepend-base-url]]
+   [hiccup.element :refer [image]]
+   [taoensso.truss :as truss :refer [have]]))
 
 (declare render)
 
