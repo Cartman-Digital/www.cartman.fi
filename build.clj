@@ -3,7 +3,7 @@
 
 (def class-dir "target/classes")
 (def basis (b/create-basis {:project "deps.edn"}))
-(def uber-file "target/generator-standalone.jar")
+(def uber-file "target/generator.jar")
 
 (defn clean [_]
   (b/delete {:path "target"}))
