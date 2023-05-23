@@ -21,6 +21,11 @@ jobs:
     #     CONTENTFUL_TOKEN: "${{ secrets.CONTENTFUL_TOKEN }}"
     #     BASE_URL: "${{ vars.BASE_URL }}"
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: resources/public/assets
+
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
@@ -30,10 +35,6 @@ jobs:
           server-username: USER
           server-password: TOKEN
 
-      - name: testing
-        run: cat ~/.m2/settings.xml
-
-
       - name: Install
         run: mvn dependency:get -DremoteRepositories=github::::https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -Ddest=. -DgroupId=com.github.Cartman-Digital -DartifactId=generator -Dversion=1.0.0 -Dtransitive=false
         env:
@@ -41,7 +42,7 @@ jobs:
           USER: paveq
 
       - name: Generate
-        run: java -jar /app/generator.jar -generate
+        run: java -jar generator-1.0.0.jar -generate
         env:
           CONTENTFUL_ENVIRONMENT: "${{ vars.CONTENTFUL_ENVIRONMENT }}"
           CONTENTFUL_SPACE: "${{ vars.CONTENTFUL_SPACE }}"
@@ -58,6 +59,10 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v1'
         with:
           version: '>= 416.0.0'
+
+      - name: testing
+        run: pwd && ls -al && ls -al build
+
 
       - name: Upload
         run: gsutil -m rsync -d -r build gs://www-cartman-fi-prod
