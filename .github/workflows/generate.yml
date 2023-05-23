@@ -16,14 +16,7 @@ jobs:
       id-token: 'write'
       packages: 'read'
     runs-on: ubuntu-latest
-    # container:
-    #   image: ghcr.io/cartman-digital/www.cartman.fi:main
-    #   options: --cpus 1
-    #   env:
-    #     CONTENTFUL_ENVIRONMENT: "${{ vars.CONTENTFUL_ENVIRONMENT }}"
-    #     CONTENTFUL_SPACE: "${{ vars.CONTENTFUL_SPACE }}"
-    #     CONTENTFUL_TOKEN: "${{ secrets.CONTENTFUL_TOKEN }}"
-    #     BASE_URL: "${{ vars.BASE_URL }}"
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
