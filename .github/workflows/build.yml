@@ -39,6 +39,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
+        releaseId: latest
         args: 'target/generator-standalone.jar'
 
     # - name: Publish package
