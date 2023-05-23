@@ -32,7 +32,7 @@ jobs:
         run: cat ~/.m2/settings.xml
 
       - name: Install
-        run: mvn dependency:get -DremoteRepositories=https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -Ddest=. -DgroupId=com.github.Cartman-Digital -DartifactId=generator -Dversion=1.0.0 -Dtransitive=false
+        run: mvn dependency:get -DremoteRepositories=github::::https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -Ddest=. -DgroupId=com.github.Cartman-Digital -DartifactId=generator -Dversion=1.0.0 -Dtransitive=false
 
       - name: Generate
         run: java -jar /app/generator.jar -generate
