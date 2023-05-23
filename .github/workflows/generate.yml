@@ -29,9 +29,6 @@ jobs:
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           server-username: USER
           server-password: TOKEN
-        env:
-          TOKEN: "${{ secrets.MVN_PAT }}"
-          USER: paveq
 
       - name: testing
         run: cat ~/.m2/settings.xml
@@ -39,6 +36,9 @@ jobs:
 
       - name: Install
         run: mvn dependency:get -DremoteRepositories=github::::https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -Ddest=. -DgroupId=com.github.Cartman-Digital -DartifactId=generator -Dversion=1.0.0 -Dtransitive=false
+        env:
+          TOKEN: "${{ secrets.MVN_PAT }}"
+          USER: paveq
 
       - name: Generate
         run: java -jar /app/generator.jar -generate
