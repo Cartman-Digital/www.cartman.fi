@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
 
     steps:
@@ -45,6 +45,7 @@ jobs:
     - name: Trigger deploy
       uses: actions/github-script@v6
       with:
+        github-token: ${{ secrets.GH_TOKEN }}
         script: |
           github.rest.actions.createWorkflowDispatch({
             owner: context.repo.owner,
