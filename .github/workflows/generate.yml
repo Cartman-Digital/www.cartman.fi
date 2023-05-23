@@ -19,7 +19,7 @@ jobs:
         CONTENTFUL_TOKEN: "{{ secrets.CONTENTFUL_TOKEN }}"
     steps:
       - name: Generate
-        run: java -jar /app/generator-standalone.jar -generate
+        run: env && java -jar /app/generator-standalone.jar -generate
 
       - uses: actions/upload-artifact@v3
         with:
@@ -28,6 +28,7 @@ jobs:
 
   upload:
     runs-on: ubuntu-latest
+    needs: generate
     permissions:
       contents: read
       packages: write
