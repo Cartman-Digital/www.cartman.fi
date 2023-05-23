@@ -35,7 +35,7 @@ jobs:
       run: clojure -T:build uber
 
     - name: Publish package
-      run: mvn --batch-mode deploy:deploy-file -DrepositoryId=github -DpomFile=pom.xml -Dfile=target/generator-standalone.jar -DgeneratePom=false
+      run: mvn --batch-mode deploy:deploy-file -Durl=https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -DrepositoryId=github -DpomFile=pom.xml -Dfile=target/generator-standalone.jar -DgeneratePom=false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
