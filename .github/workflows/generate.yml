@@ -54,7 +54,7 @@ jobs:
         uses: actions/cache/save@v3
         with:
           path: generator.jar
-          key: ${{ steps.restore-cache.outputs.cache-primary-key }}
+          key: ${{ github.sha }}
 
       - name: Generate
         run: java -jar generator.jar -generate
