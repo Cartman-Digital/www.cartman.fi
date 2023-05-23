@@ -39,11 +39,26 @@ jobs:
           server-username: USER
           server-password: TOKEN
 
+      - name: Restore jar cache
+        id: restore-cache
+        uses: actions/cache@v3
+        with:
+          path: generator-1.0.0.jar
+          key: ${{ GITHUB_SHA }}
+
       - name: Install
+        if: steps.restore-cache.outputs.cache-hit != 'true'
         run: mvn dependency:get -DremoteRepositories=github::::https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -Ddest=. -DgroupId=com.github.Cartman-Digital -DartifactId=generator -Dversion=1.0.0 -Dtransitive=false
         env:
           TOKEN: "${{ secrets.MVN_PAT }}"
           USER: paveq
+
+      - name: Save jar cache
+        id: cache-jar
+        uses: actions/cache/save@v3
+        with:
+          path: generator-1.0.0.jar
+          key: ${{ steps.restore-cache.outputs.cache-primary-key }}
 
       - name: Generate
         run: java -jar generator-1.0.0.jar -generate
