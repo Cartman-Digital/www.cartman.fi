@@ -39,14 +39,16 @@ jobs:
                 <url>https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi</url>
               </repository>
             </distributionManagement>
-            <dependency>
-              <groupId>com.github.Cartman-Digital</groupId>
-              <artifactId>www.cartman.fi</artifactId>
-              <version>0.0.1-SNAPSHOT</version>
-            </dependency>
+            <dependencies>
+              <dependency>
+                <groupId>com.github.Cartman-Digital</groupId>
+                <artifactId>www.cartman.fi</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+              </dependency>
+            </dependencies>
           </project>
           EOF
-          
+
       - name: Install
         run: mvn install
 
