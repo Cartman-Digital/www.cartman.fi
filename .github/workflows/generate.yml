@@ -11,6 +11,9 @@ jobs:
       contents: 'read'
       id-token: 'write'
       packages: 'read'
+      repository-projects: read
+      deployments: read
+      contents: read
     runs-on: ubuntu-latest
     # container:
     #   image: ghcr.io/cartman-digital/www.cartman.fi:main
