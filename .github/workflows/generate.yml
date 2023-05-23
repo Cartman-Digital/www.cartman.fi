@@ -21,6 +21,12 @@ jobs:
     #     CONTENTFUL_TOKEN: "${{ secrets.CONTENTFUL_TOKEN }}"
     #     BASE_URL: "${{ vars.BASE_URL }}"
     steps:
+      - name: Install
+        run: echo "<dependency><groupId>com.github.Cartman-Digital</groupId><artifactId>www.cartman.fi</artifactId><version>0.0.1-SNAPSHOT</version></dependency>" > pom.xml && mvn install
+
+      - name: Generate
+        run: ls -al
+
       - name: Generate
         run: java -jar /app/generator-standalone.jar -generate
         env:
