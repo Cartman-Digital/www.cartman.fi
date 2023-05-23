@@ -43,25 +43,26 @@ jobs:
         id: restore-cache
         uses: actions/cache@v3
         with:
-          path: generator-1.0.0.jar
-          key: ${{ GITHUB_SHA }}
+          path: generator.jar
+          key: ${{ env.GITHUB_SHA }}
 
       - name: Install
         if: steps.restore-cache.outputs.cache-hit != 'true'
-        run: mvn dependency:get -DremoteRepositories=github::::https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -Ddest=. -DgroupId=com.github.Cartman-Digital -DartifactId=generator -Dversion=1.0.0 -Dtransitive=false
+        run: mvn dependency:get -DremoteRepositories=github::::https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -Ddest=. -DgroupId=com.github.Cartman-Digital -DartifactId=generator -Dversion=1.0.0-$SHA -Dtransitive=false && mv generator-1.0.0-$SHA.jar generator.jar
         env:
           TOKEN: "${{ secrets.MVN_PAT }}"
           USER: paveq
+          SHA: ${{ env.GITHUB_SHA }}
 
       - name: Save jar cache
         id: cache-jar
         uses: actions/cache/save@v3
         with:
-          path: generator-1.0.0.jar
+          path: generator.jar
           key: ${{ steps.restore-cache.outputs.cache-primary-key }}
 
       - name: Generate
-        run: java -jar generator-1.0.0.jar -generate
+        run: java -jar generator.jar -generate
         env:
           CONTENTFUL_ENVIRONMENT: "${{ vars.CONTENTFUL_ENVIRONMENT }}"
           CONTENTFUL_SPACE: "${{ vars.CONTENTFUL_SPACE }}"
