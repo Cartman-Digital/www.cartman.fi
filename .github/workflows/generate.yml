@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/cartman-digital/www.cartman.fi:main
-      volumes:
-        - output:/app/build
+      #volumes:
+      #  - output:/app/build
       options: --cpus 1
       env:
         CONTENTFUL_ENVIRONMENT: "${{ vars.CONTENTFUL_ENVIRONMENT }}"
@@ -24,7 +24,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: site
-          path: output/
+          path: /app/build/
 
   upload:
     runs-on: ubuntu-latest
