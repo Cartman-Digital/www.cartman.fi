@@ -14,8 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/cartman-digital/www.cartman.fi:main
-      volumes:
-        - /output:/__w/www.cartman.fi/www.cartman.fi/build
       options: --cpus 1
       env:
         CONTENTFUL_ENVIRONMENT: "${{ vars.CONTENTFUL_ENVIRONMENT }}"
@@ -24,9 +22,6 @@ jobs:
     steps:
       - name: Generate
         run: java -jar /app/generator-standalone.jar -generate
-
-      - name: pwd
-        run: pwd && ls -al
 
       - id: 'auth'
         uses: 'google-github-actions/auth@v1'
