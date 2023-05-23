@@ -60,9 +60,8 @@ jobs:
         with:
           version: '>= 416.0.0'
 
-      - name: testing
-        run: pwd && ls -al && ls -al build
-
+      - name: Move static assets
+        run: mv resources/public/* build/
 
       - name: Upload
         run: gsutil -m rsync -d -r build gs://www-cartman-fi-prod
