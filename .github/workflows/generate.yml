@@ -25,6 +25,9 @@ jobs:
       - name: Generate
         run: java -jar /app/generator-standalone.jar -generate
 
+      - name: pwd
+        run: pwd && ls -al /
+
       - id: 'auth'
         uses: 'google-github-actions/auth@v1'
         with:
