@@ -1,0 +1,50 @@
+name: Generate site
+
+on:
+  repository_dispatch:
+    types: [publish-event]
+
+env:
+  IMAGE: ghcr.io/cartman-digital/www.cartman.fi:webserver-setup
+
+jobs:
+
+
+  generate:
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ env.IMAGE }}
+      volumes:
+        - output:/app/build
+      options: --cpus 1
+      env:
+        CONTENTFUL_ENVIRONMENT: "${{ vars.CONTENTFUL_ENVIRONMENT }}"
+        CONTENTFUL_SPACE: "{{ vars.CONTENTFUL_SPACE }}"
+        CONTENTFUL_TOKEN: "{{ secrets.CONTENTFUL_TOKEN }}"
+    steps:
+      - name: Generate
+        run: java -jar /app/generator-standalone.jar -generate
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: site
+          path: output/
+
+  upload:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: actions/download-artifact@v3
+      with:
+        name: site
+
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        workload_identity_provider: 'projects/43005639550/locations/global/workloadIdentityPools/github/providers/github'
+        service_account: 'github-uploader@www-cartman-fi.iam.gserviceaccount.com'
