@@ -6,19 +6,10 @@
    [sitemap.validator])
   (:import java.io.File))
 
-(def base-url "https://cartman.fi")
-
-(defn slug-to-url
-  "Creates the url by appending .html extension, then adds leading / character and finally combines it with defined base-url"
-  [slug]
-  (let [url (create-url slug)
-        prefixed-url (if (= (take-last 1 url) '(\/)) url (str "/" url))]
-    (str base-url prefixed-url)))
-
 (defn format-sitemap
   "Prepares a sequence for sitemap.xml"
   [sitemap-page]
-  {:loc (slug-to-url (:slug sitemap-page))
+  {:loc (create-url (:slug sitemap-page))
    :lastmod (get-in sitemap-page [:sys :publishedAt]) ;; Contentful returns ISO 8601 with format yyyy-MM-dd'T'hh:mm:ss.SSS'Z
    :changefreq (:seoUpdateFrequency sitemap-page)
    :priority (:sitemapPriority sitemap-page)})

@@ -9,22 +9,31 @@
 (defn prepend-base-url
   "Adds base url to url path given, if url doesn't start with \"http\""
   [url]
-  (if (string/starts-with? url "http")
-    url
-    (str (get-env "BASE_URL") url)))
+  (str (get-env "BASE_URL") url))
+
+(defn local-url?
+  [s]
+  (if (string/starts-with? s "http") false true))
+
+(defn frontpage-url?
+  [s]
+  (if (= (count s) 1) true false))
 
 (defn create-url
   "Convert string to valid uri by prepending base_url and appending .html if url doesn't end with /"
   [slug]
-  (prepend-base-url (if (= (take-last 1 slug) '(\/)) slug (str slug ".html"))))
-
+  (if (local-url? slug)
+   (if (frontpage-url? slug)
+    (prepend-base-url "")
+    (prepend-base-url (str slug ".html")))
+   slug))
 
 (defn render-main-menu []
   (let [menu-data (contentful/get-contentful :nav-collection-query {:name top-nav})
         nav-item-collection (have map? (get-in menu-data [:navCollection :items 0 :linkedFrom :navItemCollection]))]
     [:nav {:class "navigation"} 
      [:div {:class "nav-wrapper"}
-      [:a {:href (prepend-base-url "") :class "logo"}
+      [:a {:href (create-url "/") :class "logo"}
        [:img {:src (prepend-base-url "assets/images/cartman_digital_logo.svg") :title "Cartman Digital"}]
        [:span {:class "sr-only"} "Cartman Digital"]]
       [:button {:data-collapse-toggle "navbar-default" :type "button" :aria-controls "navbar-default" :aria-expanded "false"}
