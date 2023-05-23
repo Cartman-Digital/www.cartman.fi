@@ -3,6 +3,7 @@ name: Generate site
 on:
   repository_dispatch:
     types: [publish-event]
+  workflow_dispatch:
 
 env:
   IMAGE: ghcr.io/cartman-digital/www.cartman.fi:webserver-setup
