@@ -9,7 +9,7 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/cartman-digital/www.cartman.fi:webserver-setup
+      image: ghcr.io/cartman-digital/www.cartman.fi:main
       volumes:
         - output:/app/build
       options: --cpus 1
