@@ -44,6 +44,8 @@
   []
   (let [pages-data (contentful/get-contentful :page-collection-query)
         pages (have vector? (get-in pages-data [:pageCollection :items]))]
-    (mapv #(vector
-            (if (not= (:slug %) "/") (str "/" (:slug %) ".html") (str "/index.html"))
-            (fn [context] (render-page %))) pages)))
+    (into {} (mapv #(vector
+                     (if (not= (:slug %) "/") (str "/" (:slug %) ".html") (str "/index.html"))
+                     (fn [context] (render-page %))) pages))))
+
+(get-pages)
