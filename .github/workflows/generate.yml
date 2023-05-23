@@ -5,16 +5,11 @@ on:
     types: [publish-event]
   workflow_dispatch:
 
-env:
-  IMAGE: ghcr.io/cartman-digital/www.cartman.fi:webserver-setup
-
 jobs:
-
-
   generate:
     runs-on: ubuntu-latest
     container:
-      image: ${{ env.IMAGE }}
+      image: ghcr.io/cartman-digital/www.cartman.fi:webserver-setup
       volumes:
         - output:/app/build
       options: --cpus 1
