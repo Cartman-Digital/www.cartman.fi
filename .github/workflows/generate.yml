@@ -10,6 +10,7 @@ jobs:
     permissions:
       contents: 'read'
       id-token: 'write'
+      packages: 'read'
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/cartman-digital/www.cartman.fi:main
