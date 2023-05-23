@@ -34,11 +34,8 @@ jobs:
     - name: Create uberjar
       run: clojure -T:build uber
 
-    - name: POM
-      run: cat pom.xml
-
     - name: Publish package
-      run: mvn --batch-mode deploy
+      run: mvn --batch-mode deploy:deploy-file -DrepositoryId=github -DpomFile=pom.xml -Dfile=target/generator-standalone.jar -DgeneratePom=false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
