@@ -11,8 +11,6 @@ jobs:
       contents: 'read'
       id-token: 'write'
       packages: 'read'
-      repository-projects: read
-      deployments: read
     runs-on: ubuntu-latest
     # container:
     #   image: ghcr.io/cartman-digital/www.cartman.fi:main
@@ -29,9 +27,12 @@ jobs:
           java-version: 17
           distribution: 'temurin'
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+          server-username: paveq
+          server-password: "${{ secrets.MVN_PAT }}"
 
       - name: testing
         run: cat ~/.m2/settings.xml
+
 
       - name: Install
         run: mvn dependency:get -DremoteRepositories=github::::https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -Ddest=. -DgroupId=com.github.Cartman-Digital -DartifactId=generator -Dversion=1.0.0 -Dtransitive=false
