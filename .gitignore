@@ -19,3 +19,4 @@ pom.xml.asc
 node_modules/
 build/
 resources/public/sitemap.xml
+sensitive-config.edn

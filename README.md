@@ -1,3 +1,14 @@
+# Configuration files and Environment variables
+This project supports configuration via Environment variables or two config files `generator-config.edn` or `sensitive-config.edn` at the root of the project. sensitive-config file should not be committed to git repository.
+To successfully run the project the following environment variables must be configured:
+
+```
+BASE_URL - website's frontpage url
+CONTENTFUL_SPACE - string contentful's space hash
+CONTENTFUL_ENVIRONMENT - string environment code from contentful
+CONTENTFUL_TOKEN - string contentful's token
+```
+
 # Local development
 To launch local environment do the following:
 1. Launch REPL using deps.edn (no alias required)
@@ -15,6 +26,7 @@ You can launch the webserver with
 alternatively to generate html and sitemap files you can run
 `clj -M:project/run -generate` command.
 
+## Frontend customization
 To compile styles run the following:
 ```
 npm install;
@@ -31,11 +43,11 @@ VS-code settings for local style development:
 Known issues:
 - Tailwind parser used in the project is not true less parser and might experience issues when processing less files with some expressions in them. These files are still css files with nesting enabled. Less file definition is used here to prevent vscode validation from breaking with the nesting enabled by Tailwindcss.
 
-## Sitemap Generation 
+## Other useful actions
+
+### Sitemap Generation 
 Alias project/generate-sitemap triggers sitemap generation defined in sitemap.clj file.
 ```
 clj -M:project/generate-sitemap
-````
-
+```
 This creates sitemap.xml file under public directory in the project.
-Sitemap must be generated separately it is not compiled during export or local environment start

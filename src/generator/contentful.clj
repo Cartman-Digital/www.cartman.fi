@@ -6,16 +6,17 @@
    [clj-http.client :as client] 
    [muuntaja.core :as m]
    [clojure.data.json :as json]
-   [clojure.core.memoize :as memo]))
+   [clojure.core.memoize :as memo]
+   [generator.config :refer [get-env]]))
    
 
-(def contentful-space "038s6vr0kmv0")
+(def contentful-space (get-env "CONTENTFUL_SPACE"))
 (def contentful-environment "master")
 (def contentful-url (str "https://graphql.contentful.com/content/v1/spaces/" 
                          contentful-space 
                          "/environments/" 
                          contentful-environment))
-(def headers {:Authorization "Bearer QJSIZZ8-mkUZPBySwQTtVwfirskzh2ZnplerHDo6xpE"})
+(def headers {:Authorization (str "Bearer " (get-env "CONTENTFUL_TOKEN"))})
 
 (declare graphql-queries)
 

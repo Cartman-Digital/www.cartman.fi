@@ -4,10 +4,10 @@
 ;; Strips out all communication parts from the original code. Rely on existing information.
 ;; Updates method to return hiccup syntax
 (ns generator.renderer
-  (:require [hiccup.element :refer (link-to image)]
+  (:require [hiccup.element :refer [image]]
             [generator.contentful :as contentful]
-            [generator.navigation :refer (create-url)]
-            [taoensso.truss :as truss :refer (have)]))
+            [generator.navigation :refer [create-url prepend-base-url]]
+            [taoensso.truss :as truss :refer [have]]))
 
 (declare render)
 
@@ -90,7 +90,7 @@
 
 (defmethod richtext->html "hyperlink"
   [m]
-  (into [:a {:href (:uri (:data m))}]
+  (into [:a {:href (prepend-base-url (get-in m [:data :uri]))}]
    (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "list-item"
@@ -175,34 +175,3 @@
      (for [item (:items nav-item-collection)]
        [:li {:class (str "nav-item " (:additionalCssClasses item))}
         [:a {:href (create-url (:slug item))} (get item :title)]])]]))
-
-;; Test content
-(comment (println (get-in (contentful/get-contentful :card-list-query {:listId "70MjOghTNtz17gmB9BuSZ7"}) [:cardList :cardsCollection :items])))
-(comment (render {:__typename "CardList" :sys {:id "2pJ63nhY2QKbVesxgWOvq9"}}))
-(comment (richtext->html {:nodeType "paragraph", :content [{:nodeType "text", :value "Testataan", :marks [], :data {}}], :data {}}))
-(comment (richtext->html {:nodeType "text", :value "Testataan", :marks [], :data {}}))
-(comment (richtext->html {:nodeType "document",
-                 :content
-                 [{:nodeType "heading-2", :content [{:nodeType "text", :value "About us", :marks [], :data {}}], :data {}}
-                  {:nodeType "paragraph",
-                   :content
-                   [{:nodeType "text",
-                     :value
-                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut tempor mauris. Mauris tincidunt ac libero commodo ultricies. Duis egestas libero eget tincidunt lobortis. Phasellus cursus pretium pellentesque. Phasellus mattis dui non felis semper finibus. Integer tincidunt dignissim sagittis. Proin augue nunc, commodo eget dolor vel, rhoncus imperdiet eros. Etiam faucibus ut dui sit amet commodo. Aliquam turpis lorem, rhoncus eget erat a, aliquet pharetra purus. Etiam laoreet eget arcu at bibendum. Aenean id sem malesuada lectus luctus imperdiet ut ut erat.",
-                     :marks [],
-                     :data {}}],
-                   :data {}}
-                  {:nodeType "paragraph",
-                   :content
-                   [{:nodeType "text",
-                     :value
-                     "Vestibulum sit amet metus felis. Maecenas dictum facilisis eleifend. Aenean lectus eros, posuere quis porta a, hendrerit sit amet ante. In hac habitasse platea dictumst. Donec tempor enim non odio fringilla rhoncus. Ut elit augue, aliquet eget eleifend pretium, pulvinar et dolor. Duis pulvinar, lacus commodo laoreet venenatis, mauris felis cursus dolor, nec pretium neque neque et ipsum. Vestibulum egestas scelerisque lacus at malesuada. Mauris ultrices iaculis tortor, a condimentum ligula maximus in. In est nisl, elementum id neque sit amet, convallis elementum libero. Nunc maximus ante consequat mollis interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
-                     :marks [],
-                     :data {}}],
-                   :data {}}],
-                 :data {}}))
-
-(comment (richtext->html {:nodeType "embedded-entry-inline",
-                          :content [],
-                          :data {:target {:sys {:type "Link", :id "5A99h098MezIKu66x5XQcB", :linkType "Entry"}}}}))
-(comment (contentful/get-contentful :entry-query {:entryId "5A99h098MezIKu66x5XQcB"}))
