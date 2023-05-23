@@ -7,6 +7,9 @@ on:
 
 jobs:
   generate:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/cartman-digital/www.cartman.fi:main
@@ -19,7 +22,7 @@ jobs:
         CONTENTFUL_TOKEN: "${{ secrets.CONTENTFUL_TOKEN }}"
     steps:
       - name: Generate
-        run: env && java -jar /app/generator-standalone.jar -generate
+        run: java -jar /app/generator-standalone.jar -generate
 
       - id: 'auth'
         uses: 'google-github-actions/auth@v1'
