@@ -1,6 +1,8 @@
 (ns build
   (:require [clojure.tools.build.api :as b]))
 
+(def lib 'com.github.Cartman-Digital/www.cartman.fi)
+(def version (format "1.0.%s" (b/git-count-revs nil)))
 (def class-dir "target/classes")
 (def basis (b/create-basis {:project "deps.edn"}))
 (def uber-file "target/generator-standalone.jar")
@@ -10,6 +12,11 @@
 
 (defn uber [_]
   (clean nil)
+  (b/write-pom {:class-dir class-dir
+                :lib lib
+                :version version
+                :basis basis
+                :src-dirs ["src"]})
   (b/copy-dir {:src-dirs ["src" "resources"]
                :target-dir class-dir})
   (b/compile-clj {:basis basis

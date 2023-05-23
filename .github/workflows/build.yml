@@ -34,6 +34,9 @@ jobs:
     - name: Create uberjar
       run: clojure -T:build uber
 
+    - name: POM
+      run: cat pom.xml
+
     - name: Publish package
       run: mvn --batch-mode deploy
       env:
