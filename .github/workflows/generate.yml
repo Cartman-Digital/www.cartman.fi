@@ -15,7 +15,7 @@ jobs:
     container:
       image: ghcr.io/cartman-digital/www.cartman.fi:main
       volumes:
-        - output:/app/build
+        - /output:/app/build
       options: --cpus 1
       env:
         CONTENTFUL_ENVIRONMENT: "${{ vars.CONTENTFUL_ENVIRONMENT }}"
@@ -34,7 +34,7 @@ jobs:
       - id: 'upload-files'
         uses: 'google-github-actions/upload-cloud-storage@v1'
         with:
-          path: 'output'
+          path: '/output'
           destination: 'www-cartman-fi-prod'
           parent: false
 
