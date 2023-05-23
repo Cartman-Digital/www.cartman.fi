@@ -1,11 +1,11 @@
 (ns generator.core
-  (:require [stasis.core :as stasis]
-            [generator.pages :as pages]))
+  (:require
+   [generator.builder :as builder]
+   [generator.webserver :as webserver]) (:gen-class))
 
-(def export-directory "./build/")
-
-(defn -main []
-  (stasis/empty-directory! export-directory) 
-  (stasis/export-pages (pages/get-pages) export-directory)
-  (println)
-  (println  "Export complete"))
+(defn -main [& args]
+  (let [[flag & remaining-args] args]
+    (cond
+      (= flag "-generate") (builder/generate)
+      (= flag "-webserver") (webserver/start-webserver)
+      :else (println "Invalid flag. Supported flags are -generate and -webserver."))))

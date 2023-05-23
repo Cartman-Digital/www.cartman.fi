@@ -1,9 +1,18 @@
-{:deps {org.clojure/clojure {:mvn/version "1.11.1"}
+{:deps {org.clojure/clojure             {:mvn/version "1.11.1"}
         com.taoensso/truss              {:mvn/version "1.9.0"}
         clj-http/clj-http               {:mvn/version "3.12.3"}
         hiccup/hiccup                   {:mvn/version "2.0.0-alpha2"}
         metosin/muuntaja                {:mvn/version "0.6.8"}
         floatingpointio/graphql-builder {:mvn/version "0.1.14"}
-        stasis/stasis                   {:mvn/version "2.5.1"}}
+        stasis/stasis                   {:mvn/version "2.5.1"}
+        optimus/optimus                 {:mvn/version "2023-02-08"}
+        org.clojure/data.json           {:mvn/version "2.4.0"}
+        ring/ring-jetty-adapter         {:mvn/version "1.8.2"}
+        ring/ring-devel                 {:mvn/version "1.8.2"}
+        ring/ring-spec                  {:mvn/version "0.0.4"}
+        sitemap/sitemap                 {:mvn/version "0.4.0"}}
  :paths ["src" "resources"]
- :aliases {:project/run {:main-opts ["-m" "generator.core"]}}}
+ :aliases {:project/run {:main-opts ["-m" "generator.core"]}
+           :project/generate-sitemap {:main-opts ["-m" "generator.sitemap"]}
+           :build {:deps {io.github.clojure/tools.build {:mvn/version "0.9.4"}}
+                   :ns-default build}}}

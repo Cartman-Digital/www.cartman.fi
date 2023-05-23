@@ -1,5 +1,5 @@
 query pageCollectionQuery {
-  pageCollection {
+  pageCollection (limit:25) {
     items {
       sys {
         id
@@ -10,14 +10,33 @@ query pageCollectionQuery {
         items {
           __typename
           ... on CtaBanner {
+            bannerText {
+              json
+            }
+            banner {
+              url
+              title
+            }
+            ctaUrl
+            ctaButtonText
+          }
+          ... on CardList {
             sys {
               id
             }
           }
-          ... on ContentBlock {
-            sys {
-              id
+          ... on Nav {
+            name
+          }
+          ... on SideBySide {
+            rightColumn {
+              json
             }
+            leftColumn {
+              json
+            }
+          }
+          ... on ContentBlock {
             content {
               json
             }

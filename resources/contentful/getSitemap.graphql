@@ -1,0 +1,14 @@
+query sitemapQuery {
+  pageCollection {
+    items {
+      title
+      slug
+      seoUpdateFrequency
+      sitemapPriority
+      sys {
+        id
+        publishedAt
+      }
+    }
+  }
+}

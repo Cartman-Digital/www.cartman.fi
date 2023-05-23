@@ -1,0 +1,480 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --color-primary: #F200E7;
+    --color-primary-offset: #FFD5F1;
+    --color-secondary: #0073D4;
+    --color-secondary-offset: #B1D5F3;
+    --color-accent: #FFD945;
+    --color-grey-primary: #231F20;
+    --color-grey-offset: #FFF;
+    /** Base layout off 8px increments */
+    --layout-spacing-horizontal: 24px;
+    --layout-spacing-vertical: 32px;
+    --layout-spacing-v-half: 16px;
+}
+
+/**
+ * Typeface declarations
+ */
+html {
+    @apply text-white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 16px; /* Root font size. use an increment of 8px, modifying this affects the spacing of rest of the website. */
+    letter-spacing: .01em;
+
+    body {
+        /* nav height */
+        padding-top: 57px;
+        font-size: 17px; /** if you want to adjust text size without changing the spacing, use this field to change it. */
+        line-height: 24px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 700;
+        letter-spacing: 0;
+        color: var(--color-grey-offset);
+    }
+
+
+    body h1 {
+        @apply mb-8;
+        font-size: 39px;
+        line-height: 64px;
+        color: var(--color-primary);
+    }
+
+    body h2 {
+        @apply mb-6;
+        font-size: 28px;
+        line-height: 38px;
+        text-transform: uppercase;
+        border-bottom: 2px solid var(--color-primary);
+        display: inline-block;
+        padding-bottom: 0;
+    }
+
+    body h3 {
+        @apply mb-4;
+        font-size: 23px;
+        line-height: 40px;
+    }
+
+    body h4 {
+        @apply mt-4 mb-2;
+        font-size: 19px;
+        line-height: 32px;
+    }
+
+    body h5 {
+        @apply mb-2;
+        font-size: 17px;
+        line-height: 32px;
+    }
+
+    blockquote {
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 300;
+        font-size: 28px;
+        line-height: 40px;
+        color: var(--color-primary);
+        quotes: "\201C" "\201D" "\2018" "\2019";
+
+        p {
+            display: inline;
+        }
+
+        &::before {
+            display: inline;
+            content: open-quote;
+        }
+
+        &::after {
+            display: inline;
+            content: close-quote;
+        }
+    }
+
+    >.content {
+        @apply mx-auto py-0;
+    }
+
+    p {
+        @apply mb-2;
+    }
+
+    li p {
+        @apply mb-0;
+    }
+}
+
+html body,
+html body nav {
+    background-color: var(--color-grey-primary);
+}
+
+/**
+ * Forms
+ */
+body input[type="text"],
+body input[type="email"],
+body input[type="textarea"] {
+    display: block;
+    color: var(--color-grey-primary);
+    margin-bottom: 1rem;
+    padding: 8px 16px;
+}
+
+body input[type="textarea"] {
+    resize: both;
+    min-width: 16rem;
+    min-height: 2.625rem;
+    box-sizing: border-box;
+}
+
+body label {
+    padding-left: 0.25rem;
+}
+
+body hr {
+    margin: 1rem 0;
+}
+
+.button {
+    display: inline-block;
+    padding: 8px 8px;
+    border-top: 1px solid var(--color-grey-offset);
+    border-bottom: 1px solid var(--color-grey-offset);
+    margin-top: 2rem;
+    margin-right: 1.5rem;
+    text-decoration: none;
+}
+
+.button.primary,
+.btn-primary {
+    border: 2px solid transparent;
+    display: inline-block;
+    padding: 8px;
+    border-left-color: var(--color-grey-offset);
+    border-right-color: var(--color-grey-offset);
+    background-color: transparent;
+    text-decoration: none;
+    color: var(--color-grey-offset);
+    position: relative;
+
+    &::before,
+    &::after {
+        position: absolute;
+        content: '';
+        background-size: 125%;
+        background-position-x: 50%;
+        transition: background-position-x 500ms ease-in-out;
+        height: 2px;
+        left: -2px;
+        right: -2px;
+    }
+
+    &::before {
+        top: -2px;
+        background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 24%, transparent 24.1%, transparent 30.9%, rgba(255, 255, 255, 1) 31%);
+    }
+
+    &::after {
+        bottom: -2px;
+        background-image: linear-gradient(90deg, rgba(255, 255, 255, 1) 69%, transparent 69.1%, transparent 75.9%, rgba(255, 255, 255, 1) 76%);
+    }
+
+    &:hover::before,
+    &:focus::before {
+        background-position-x: -175%;
+    }
+
+    &:hover::after,
+    &:focus::after {
+        background-position-x: 275%;
+    }
+}
+
+.button:hover {
+    background-color: var(--color-grey-offset);
+    color: var(--color-grey-primary);
+}
+
+.button.primary:hover,
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--color-grey-offset);
+
+    &:active {
+        background-color: var(--color-grey-offset);
+        color: var(--color-grey-primary);
+    }
+}
+
+body .action,
+body input[type="checkbox"],
+body input[type="radio"] {
+    cursor: pointer;
+}
+
+body a {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+body a:hover {
+    color: var(--color-secondary-offset);
+}
+
+/**     
+ * Layout
+ */
+.footer {
+    @apply py-4 border-t text-center;
+}
+
+/** nav */
+.navigation {
+    @apply fixed border-b w-full z-20 top-0 left-0;
+
+    .nav-wrapper {
+        @apply max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4;
+
+        >button {
+            @apply inline-flex items-center p-2 ml-3 text-sm md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 text-gray-400 focus:ring-gray-600;
+        }
+
+        svg {
+            @apply w-6 h-6;
+        }
+    }
+
+    .logo {
+        @apply flex items-center;
+
+        img {
+            @apply h-24 -mb-8 -mt-10 mr-3;
+        }
+
+        span {
+            @apply sr-only self-center text-2xl text-white font-semibold whitespace-nowrap;
+        }
+    }
+
+    .nav-list-wrapper {
+        @apply w-full md:block md:w-auto;
+
+        ul {
+            @apply font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0;
+        }
+
+        a {
+            @apply block py-2 pl-3 pr-4 rounded md:border-0 md:p-0 text-white md:hover:text-gray-500 hover:bg-gray-700 md:hover:bg-transparent;
+        }
+    }
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.footer, .navigation {
+    border-color: var(--color-grey-offset);
+}
+
+body .content>.doc,
+body .content>section {
+    @apply clear-left overflow-hidden m-auto py-16 px-2 2xl:px-0;
+}
+
+.content > .doc,
+.row {
+    @apply max-w-screen-2xl;
+}
+
+.row {
+    @apply py-10 clear-left overflow-hidden max-w-screen-2xl m-auto;
+
+    .side-by-side {
+        @apply md:w-2/4;
+    }
+
+    .side-by-side.right {
+        @apply md:float-right md:pl-6;
+    }
+
+    .side-by-side.left {
+        @apply md:float-left md:pr-6;
+    }
+}
+
+/* component styles */
+.sub-nav ul {
+    @apply px-4 xl:px-0;
+    gap: 0.5rem;
+
+    .nav-item {
+        @apply btn-primary w-full;
+        justify-self: center;
+
+        a {
+            @apply block w-full py-4 text-center;
+            font-family: 'Ubuntu', sans-serif;
+            color: var(--color-grey-offset);
+            font-weight: 300;
+            font-size: 24px;
+            line-height: 32px;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+                background-color: var(--color-grey-primary);
+            }
+
+            &::before {
+                content: "";
+                display: inline-block;;
+                margin: auto;
+                width: 32px;
+                height: 32px;
+                background-size: contain;
+                background-color: var(--color-grey-offset);
+                text-align: center;
+                margin: 0 0.5rem -0.5rem 0;
+            }
+
+            &:active {
+                color: var(--color-grey-primary);
+                background-color: var(--color-grey-offset);
+
+                &::before {
+                    background-color: var(--color-grey-primary);
+                }
+            }
+        }
+
+        &.link-solutions a::before {
+            mask-image: url(/assets/icons/idea.svg);
+        }
+        &.link-way a::before {
+            mask-image: url(/assets/icons/process.svg);
+        }
+        &.link-consulting a::before {
+            mask-image: url(/assets/icons/speech-bubble.svg);
+        }
+        &.link-audit a::before {
+            mask-image: url(/assets/icons/file.svg);
+        }
+    }
+}
+
+.form-container {
+    @apply clear-left pt-10 border border-white pb-2 mb-4 md:w-2/4;
+}
+
+body .content .hero-banner {
+    @apply py-10 bg-cover mb-4;
+    background-position: center 25%;
+    min-height: 32rem;
+    position: relative;
+
+    .banner-content-wrap {
+        @apply m-auto overflow-hidden max-w-screen-2xl;
+        position: relative;
+        z-index: 2;
+    }
+
+    .banner-text {
+        @apply w-3/4 lg:w-1/3 float-right mr-14 mt-14;
+    }
+
+    +div {
+        @apply border-t-0;
+    }
+}
+
+.hero-banner::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    display: block;
+    background-color: rgba(13, 14, 31, 0.5);
+    /* grey-primary in rgb with opacity */
+    z-index: 1;
+    @apply bg-opacity-50;
+}
+
+
+
+.social-media {
+    @apply mt-2;
+
+    .icon {
+        @apply text-center mx-2;
+
+        svg {
+            display: inline-block;
+        }
+    }
+}
+
+body .content .card-list {
+    width: 100%;
+    @apply py-0;
+
+    .intro {
+        @apply col-span-full text-center mb-4;
+    }
+
+    > .doc {
+        @apply text-center;
+        padding: 0 var(--layout-spacing-horizontal);
+    }
+
+    ul {
+        list-style-type: none;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/** Page specific styles */
+.services .content>section:nth-child(odd) {
+    background-color: #000;
+}
+
+.services .content .side-by-side {
+    &.left {
+        @apply sm:w-3/12;
+    }
+
+    &.right {
+        @apply sm:w-9/12 pt-2;
+
+        .doc a {
+            @apply btn-primary mt-6;
+        }
+    }
+
+    /** assume logo grid inside embedded content */
+    .embed {
+        .intro {
+            @apply text-left mt-4;
+        }
+
+        .grid {
+            @apply grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 2xl:grid-cols-10;
+        }
+    }
+}
