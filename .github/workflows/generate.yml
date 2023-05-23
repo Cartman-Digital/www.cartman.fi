@@ -21,6 +21,14 @@ jobs:
     #     CONTENTFUL_TOKEN: "${{ secrets.CONTENTFUL_TOKEN }}"
     #     BASE_URL: "${{ vars.BASE_URL }}"
     steps:
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'temurin'
+          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
+
       - name: Install
         run: mvn dependency:get -DremoteRepositories=https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -Ddest=. -DgroupId=com.github.Cartman-Digital -DartifactId=generator -Dversion=1.0.0 -Dtransitive=false
 
