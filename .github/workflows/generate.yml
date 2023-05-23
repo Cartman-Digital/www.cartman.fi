@@ -28,10 +28,10 @@ jobs:
           <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <modelVersion>4.0.0</modelVersion>
             <packaging>jar</packaging>
-            <groupId>com.github.Cartman-Digital</groupId>
-            <artifactId>www.cartman.fi</artifactId>
+            <groupId>com.github.cartman-site</groupId>
+            <artifactId>site</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <name>www.cartman.fi</name>
+            <name>website</name>
             <distributionManagement>
               <repository>
                 <id>github</id>
@@ -53,7 +53,7 @@ jobs:
         run: mvn install
 
       - name: Generate
-        run: java -jar /app/generator-standalone.jar -generate
+        run: ls -al && java -jar /app/generator-standalone.jar -generate
         env:
           CONTENTFUL_ENVIRONMENT: "${{ vars.CONTENTFUL_ENVIRONMENT }}"
           CONTENTFUL_SPACE: "${{ vars.CONTENTFUL_SPACE }}"
