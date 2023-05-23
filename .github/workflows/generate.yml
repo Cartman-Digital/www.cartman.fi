@@ -40,7 +40,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: generator.jar
-          key: ${{ env.GITHUB_SHA }}
+          key: ${{ github.sha }}
 
       - name: Install
         if: steps.restore-cache.outputs.cache-hit != 'true'
@@ -48,7 +48,6 @@ jobs:
         env:
           TOKEN: "${{ secrets.MVN_PAT }}"
           USER: paveq
-          SHA: ${{ env.GITHUB_SHA }}
 
       - name: Save jar cache
         id: cache-jar
