@@ -2,7 +2,7 @@ name: Generate site
 
 on:
   repository_dispatch:
-    types: [publish-event]
+    types: [contentful.deploy]
   workflow_dispatch:
 
 jobs:
