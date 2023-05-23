@@ -15,8 +15,8 @@ jobs:
       options: --cpus 1
       env:
         CONTENTFUL_ENVIRONMENT: "${{ vars.CONTENTFUL_ENVIRONMENT }}"
-        CONTENTFUL_SPACE: "{{ vars.CONTENTFUL_SPACE }}"
-        CONTENTFUL_TOKEN: "{{ secrets.CONTENTFUL_TOKEN }}"
+        CONTENTFUL_SPACE: "${{ vars.CONTENTFUL_SPACE }}"
+        CONTENTFUL_TOKEN: "${{ secrets.CONTENTFUL_TOKEN }}"
     steps:
       - name: Generate
         run: env && java -jar /app/generator-standalone.jar -generate
