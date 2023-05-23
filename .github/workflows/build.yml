@@ -34,18 +34,10 @@ jobs:
     - name: Create uberjar
       run: clojure -T:build uber
 
-    - name: Upload jar
-      uses: skx/github-action-publish-binaries@master
+    - name: Publish package
+      run: cd target && mvn --batch-mode deploy:deploy-file -DgroupId=com.github.Cartman-Digital -Durl=https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -DrepositoryId=github -DartifactId=www.cartman.fi -Dversion=1.0.0 -Dfile=generator-standalone.jar -DgeneratePom=false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        releaseId: latest
-        args: 'target/generator-standalone.jar'
-
-    # - name: Publish package
-    #   run: mvn --batch-mode deploy:deploy-file -Durl=https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -DrepositoryId=github -DpomFile=pom.xml -Dfile=target/generator-standalone.jar -DgeneratePom=false
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     # - name: Log in to the Container registry
     #   uses: docker/login-action@v2
