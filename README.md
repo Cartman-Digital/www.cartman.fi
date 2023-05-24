@@ -51,3 +51,5 @@ Alias project/generate-sitemap triggers sitemap generation defined in sitemap.cl
 clj -M:project/generate-sitemap
 ```
 This creates sitemap.xml file under public directory in the project.
+
+
