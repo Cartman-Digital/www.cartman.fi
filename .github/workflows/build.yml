@@ -46,17 +46,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Trigger deploy
-      uses: actions/github-script@v6
-      with:
-        script: |
-          github.rest.actions.createWorkflowDispatch({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            workflow_id: 'generate.yml',
-            ref: 'main',
-          })
-
     - name: Log in to the Container registry
       run: gcloud auth configure-docker europe-north1-docker.pkg.dev
 
@@ -79,3 +68,14 @@ jobs:
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
+        
+    - name: Trigger deploy
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.actions.createWorkflowDispatch({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            workflow_id: 'generate.yml',
+            ref: 'main',
+          })
