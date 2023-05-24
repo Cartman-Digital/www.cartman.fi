@@ -86,9 +86,9 @@ jobs:
       - name: Set metadata
         run: |
           gsutil -m setmeta -h "Cache-Control:public, max-age=300" -h "Content-Language:en" "gs://www-cartman-fi-prod/**/*.html" && \
-          gsutil -m setmeta -h "Cache-Control:public, max-age=3600" "gs://www-cartman-fi-prod/**/*.png" && \
-          gsutil -m setmeta -h "Cache-Control:public, max-age=3600" "gs://www-cartman-fi-prod/**/*.jpg" && \
-          gsutil -m setmeta -h "Cache-Control:public, max-age=3600" "gs://www-cartman-fi-prod/**/*.css" && \
-          gsutil -m setmeta -h "Cache-Control:public, max-age=3600" "gs://www-cartman-fi-prod/**/*.svg" && \
-          gsutil -m setmeta -h "Cache-Control:public, max-age=43200" "gs://www-cartman-fi-prod/**/*.xml"
+          gsutil -m setmeta -h "Cache-Control:public, max-age=3600" "gs://www-cartman-fi-prod/assets/*.css" && \
+          gsutil -m setmeta -h "Cache-Control:public, max-age=3600" "gs://www-cartman-fi-prod/assets/**/*.png" || true && \
+          gsutil -m setmeta -h "Cache-Control:public, max-age=3600" "gs://www-cartman-fi-prod/assets/**/*.jpg" || true && \
+          gsutil -m setmeta -h "Cache-Control:public, max-age=3600" "gs://www-cartman-fi-prod/assets/**/*.svg" || true && \
+          gsutil -m setmeta -h "Cache-Control:public, max-age=43200" "gs://www-cartman-fi-prod/sitemap.xml"
 
