@@ -47,7 +47,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Log in to the Container registry
-      run: gcloud --project www-cartman-fi auth configure-docker europe-north1-docker.pkg.dev
+      run: gcloud config set project www-cartman-fi && gcloud auth configure-docker europe-north1-docker.pkg.dev
 
     - name: Setup docker
       uses: docker/setup-buildx-action@v2
