@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  REGISTRY: europe-north1-docker.pkg.dev/site
+  IMAGE_NAME: app
+
 jobs:
   build:
 
@@ -52,3 +56,26 @@ jobs:
             workflow_id: 'generate.yml',
             ref: 'main',
           })
+
+    - name: Log in to the Container registry
+      run: gcloud auth configure-docker europe-north1-docker.pkg.dev
+
+    - name: Setup docker
+      uses: docker/setup-buildx-action@v2
+
+    - name: Docker meta
+      id: meta
+      uses: docker/metadata-action@v4
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+
+    - name: Build and push
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
