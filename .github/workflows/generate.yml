@@ -50,7 +50,7 @@ jobs:
           USER: paveq
 
       - name: Save jar cache
-        if: steps.restore-cache.outputs.cache-hit == 'true'
+        if: steps.restore-cache.outputs.cache-hit != 'true'
         id: cache-jar
         uses: actions/cache/save@v3
         with:
