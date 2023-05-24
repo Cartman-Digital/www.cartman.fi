@@ -88,10 +88,12 @@ jobs:
       
       - name: Set metadata
         run: |
-          gsutil -m setmeta -h "Cache-Control:public, max-age=300" -h "Content-Language:en" "gs://www-cartman-fi-prod/**/*.html" && \
-          gsutil -m setmeta -h "Cache-Control:public, max-age=3600" "gs://www-cartman-fi-prod/assets/*.css" && \
-          gsutil -m setmeta -h "Cache-Control:public, max-age=3600" "gs://www-cartman-fi-prod/assets/**/*.png" || true && \
-          gsutil -m setmeta -h "Cache-Control:public, max-age=3600" "gs://www-cartman-fi-prod/assets/**/*.jpg" || true && \
-          gsutil -m setmeta -h "Cache-Control:public, max-age=3600" "gs://www-cartman-fi-prod/assets/**/*.svg" || true && \
-          gsutil -m setmeta -h "Cache-Control:public, max-age=43200" "gs://www-cartman-fi-prod/sitemap.xml"
+          gsutil -m setmeta -h "Cache-Control:public, max-age=30, s-maxage=86400" -h "Content-Language:en" "gs://www-cartman-fi-prod/**/*.html" && \
+          gsutil -m setmeta -h "Cache-Control:public, max-age=3600, s-maxage=86400" "gs://www-cartman-fi-prod/assets/*.css" && \
+          gsutil -m setmeta -h "Cache-Control:public, max-age=3600, s-maxage=86400" "gs://www-cartman-fi-prod/assets/**/*.png" || true && \
+          gsutil -m setmeta -h "Cache-Control:public, max-age=3600, s-maxage=86400" "gs://www-cartman-fi-prod/assets/**/*.jpg" || true && \
+          gsutil -m setmeta -h "Cache-Control:public, max-age=3600, s-maxage=86400" "gs://www-cartman-fi-prod/assets/**/*.svg" || true && \
+          gsutil -m setmeta -h "Cache-Control:public, max-age=43200, s-maxage=86400" "gs://www-cartman-fi-prod/sitemap.xml"
 
+      - name: Invalidate CDN cache
+        run: gcloud --project www-cartman-fi compute url-maps invalidate-cdn-cache site --path "/*" --async
