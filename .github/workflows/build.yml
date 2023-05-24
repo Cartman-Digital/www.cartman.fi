@@ -58,7 +58,6 @@ jobs:
         version: '>= 416.0.0'
         skip_install: true
 
-
     - name: Log in to the Container registry
       run: gcloud config set project www-cartman-fi && gcloud auth configure-docker europe-north1-docker.pkg.dev
 
