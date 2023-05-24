@@ -35,7 +35,10 @@ jobs:
       run: clojure -T:build uber
 
     - name: Publish package
-      run: cd target && mvn --batch-mode deploy:deploy-file -DgroupId=com.github.Cartman-Digital -Durl=https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -DrepositoryId=github -DartifactId=generator -Dversion=1.0.0-${SHORT_SHA} -Dfile=generator.jar -DgeneratePom=false
+      run: |
+        cd target && mvn --batch-mode deploy:deploy-file \
+        -DgroupId=com.github.Cartman-Digital -Durl=https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -DrepositoryId=github \
+        -DartifactId=generator -Dversion=1.0.0-${SHORT_SHA} -Dfile=generator.jar -DgeneratePom=false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

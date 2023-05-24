@@ -44,7 +44,10 @@ jobs:
 
       - name: Install
         if: steps.restore-cache.outputs.cache-hit != 'true'
-        run: mvn dependency:get -DremoteRepositories=github::::https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi -Ddest=. -DgroupId=com.github.Cartman-Digital -DartifactId=generator -Dversion=1.0.0-${SHORT_SHA} -Dtransitive=false && mv generator-1.0.0-${SHORT_SHA}.jar generator.jar
+        run: |
+          mvn dependency:get -DremoteRepositories=github::::https://maven.pkg.github.com/Cartman-Digital/www.cartman.fi \
+          -Ddest=. -DgroupId=com.github.Cartman-Digital -DartifactId=generator -Dversion=1.0.0-${SHORT_SHA} -Dtransitive=false && \
+          mv generator-1.0.0-${SHORT_SHA}.jar generator.jar
         env:
           TOKEN: "${{ secrets.MVN_PAT }}"
           USER: paveq
