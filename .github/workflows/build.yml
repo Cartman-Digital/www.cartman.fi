@@ -80,6 +80,7 @@ jobs:
           type=ref,event=pr
 
     - name: Build and push
+      id: build-docker
       uses: docker/build-push-action@v4
       with:
         context: .
@@ -87,7 +88,7 @@ jobs:
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
 
-    - name: Trigger deploy
+    - name: Trigger static generation
       uses: actions/github-script@v6
       with:
         script: |
@@ -97,3 +98,9 @@ jobs:
             workflow_id: 'generate.yml',
             ref: 'main',
           })
+
+    - name: Deploy Cloud run
+      uses: 'google-github-actions/deploy-cloudrun@v1'
+      with:
+        service: app
+        image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.build-docker.outputs.digest }}
