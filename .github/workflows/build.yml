@@ -46,6 +46,19 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        workload_identity_provider: 'projects/43005639550/locations/global/workloadIdentityPools/github/providers/github'
+        service_account: 'github-uploader@www-cartman-fi.iam.gserviceaccount.com'
+
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v1'
+      with:
+        version: '>= 416.0.0'
+        skip_install: true
+
+
     - name: Log in to the Container registry
       run: gcloud config set project www-cartman-fi && gcloud auth configure-docker europe-north1-docker.pkg.dev
 
