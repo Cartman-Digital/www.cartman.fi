@@ -528,10 +528,6 @@ video {
   border-width: 0;
 }
 
-.m-auto {
-  margin: auto;
-}
-
 .grid {
   display: grid;
 }
@@ -542,26 +538,6 @@ video {
 
 .hidden {
   display: none;
-}
-
-.max-w-screen-xl {
-  max-width: 1280px;
-}
-
-.list-decimal {
-  list-style-type: decimal;
-}
-
-.list-disc {
-  list-style-type: disc;
-}
-
-.p-1 {
-  padding: 0.25rem;
-}
-
-.font-bold {
-  font-weight: 700;
 }
 
 .italic {
