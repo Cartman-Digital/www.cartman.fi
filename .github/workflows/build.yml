@@ -103,5 +103,6 @@ jobs:
       uses: 'google-github-actions/deploy-cloudrun@v1'
       with:
         service: app
-        image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.build-docker.outputs.digest }}
+        image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build-docker.outputs.digest }}
         region: europe-north1
+
