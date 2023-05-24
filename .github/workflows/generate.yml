@@ -50,6 +50,7 @@ jobs:
           USER: paveq
 
       - name: Save jar cache
+        if: steps.restore-cache.outputs.cache-hit == 'true'
         id: cache-jar
         uses: actions/cache/save@v3
         with:
@@ -64,6 +65,9 @@ jobs:
           CONTENTFUL_TOKEN: "${{ secrets.CONTENTFUL_TOKEN }}"
           BASE_URL: "${{ vars.BASE_URL }}"
 
+      - name: Move static assets
+        run: mv repo/resources/public/* build/
+
       - id: 'auth'
         uses: 'google-github-actions/auth@v1'
         with:
@@ -74,9 +78,7 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v1'
         with:
           version: '>= 416.0.0'
-
-      - name: Move static assets
-        run: mv repo/resources/public/* build/
+          skip_install: true
 
       - name: Upload
         run: gsutil -m rsync -d -r build gs://www-cartman-fi-prod
