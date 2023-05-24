@@ -21,6 +21,7 @@
     (include-css "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css")
     [:link {:rel "preconnect" :href "https://fonts.googleapis.com"}]
     [:link {:rel "preconnect" :href "https://fonts.gstatic.com" :crossorigin ""}]
+    [:link {:rel "icon" :type "image/png" :href (nav/prepend-base-url "assets/favicon.png")}]
     [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Ubuntu:wght@300;700&display=swap"}]]
    [:body {:class (:slug page)}
     (nav/render-main-menu)
