@@ -104,3 +104,4 @@ jobs:
       with:
         service: app
         image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.build-docker.outputs.digest }}
+        region: europe-north1
