@@ -51,7 +51,7 @@ jobs:
       with:
         version: '>= 416.0.0'
         skip_install: true
-        
+
     - id: 'auth'
       uses: 'google-github-actions/auth@v1'
       with:
@@ -62,7 +62,7 @@ jobs:
     - name: Login to Google Artifact Registry
       uses: docker/login-action@v2.0.0
       with:
-        registry: urope-north1-docker.pkg.dev
+        registry: europe-north1-docker.pkg.dev
         username: oauth2accesstoken
         password: ${{ steps.auth.outputs.access_token }}
         logout: false
