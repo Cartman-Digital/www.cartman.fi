@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  REGISTRY: europe-north1-docker.pkg.dev/site
+  REGISTRY: europe-north1-docker.pkg.dev/www-cartman-fi/site
   IMAGE_NAME: app
 
 jobs:
