@@ -1,6 +1,5 @@
 @generate:
-  clojure -X:project/run
+  clj -M:project/run -generate
 
-@main:
-  clojure -M -m generator.core
-
+@serve:
+  clj -M:project/run -webserver

@@ -1,18 +1,14 @@
-;; Local webserver definition. This class works by defining a local webserver. The server gets it's handler from stasis with assets wrapped by optimus and jetty's middleware to get the right headers. Once the handler is ready. it is wrapped with reload and stacktrace functions from ring middleware. After all definitions starting the application can be done by running .start and .stop from the end of this file. 
+;; Local webserver definition. This class works by defining a local webserver. The server gets it's handler from stasis and jetty's middleware to get the right headers. Once the handler is ready. it is wrapped with reload and stacktrace functions from ring middleware. After all definitions starting the application can be done by running .start and .stop from the end of this file. 
 (ns generator.webserver
   (:require
    [generator.pages :refer [get-pages]]
    [generator.builder :refer [generate]]
-   [optimus.assets :as assets]
-   [optimus.export]
-   [optimus.optimizations :as optimizations]
-   [optimus.prime :as optimus]
-   [optimus.strategies :refer [serve-live-assets]] 
    [ring.adapter.jetty :as jetty]
    [ring.middleware.content-type :refer [wrap-content-type]]
    [ring.middleware.not-modified :refer [wrap-not-modified]]
    [ring.middleware.reload :refer [wrap-reload]]
    [ring.middleware.stacktrace :refer [wrap-stacktrace]] 
+   [ring.middleware.resource :refer [wrap-resource]]
    [ring.util.response :as response]
    [stasis.core :as stasis]))
 
@@ -34,12 +30,8 @@
         (= uri "/api/ping") (response/header (response/response "pong") "Content-Type" "text/plain")
         :else (handler request)))))
 
-(defn get-assets []
-  (assets/load-assets "public" ["/assets/main.css" 
-                                #".*\.(jpg|svg|png|js|xml)$"]))
-
 (def app (-> (stasis/serve-pages get-pages) ;; should return map of slug -> render call
-             (optimus/wrap get-assets optimizations/all serve-live-assets)
+             (wrap-resource "public")
              (wrap-api-routes)
              (wrap-content-type)
              (wrap-not-modified)
