@@ -1,4 +1,5 @@
 {:deps {org.clojure/clojure             {:mvn/version "1.11.1"}
+        org.clojure/core.memoize        {:mvn/version "1.0.257"}
         com.taoensso/truss              {:mvn/version "1.9.0"}
         clj-http/clj-http               {:mvn/version "3.12.3"}
         hiccup/hiccup                   {:mvn/version "2.0.0-alpha2"}
