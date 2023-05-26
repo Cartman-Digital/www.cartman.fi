@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.3.1 | MIT License | https://tailwindcss.com
+! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -436,6 +436,9 @@ video {
   --tw-pan-y:  ;
   --tw-pinch-zoom:  ;
   --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
   --tw-ordinal:  ;
   --tw-slashed-zero:  ;
   --tw-numeric-figure:  ;
@@ -483,6 +486,9 @@ video {
   --tw-pan-y:  ;
   --tw-pinch-zoom:  ;
   --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
   --tw-ordinal:  ;
   --tw-slashed-zero:  ;
   --tw-numeric-figure:  ;
@@ -856,7 +862,7 @@ body a:hover {
   --tw-ring-color: rgb(75 85 99 / var(--tw-ring-opacity));
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .navigation .nav-wrapper >button {
     display: none;
   }
@@ -901,7 +907,7 @@ body a:hover {
   width: 100%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .navigation .nav-list-wrapper {
     display: block;
     width: auto;
@@ -916,7 +922,7 @@ body a:hover {
   font-weight: 500;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .navigation .nav-list-wrapper ul {
     margin-top: 0px;
     flex-direction: row;
@@ -949,7 +955,7 @@ body a:hover {
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .navigation .nav-list-wrapper a {
     border-width: 0px;
     padding: 0px;
