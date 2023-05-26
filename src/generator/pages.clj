@@ -7,7 +7,7 @@
    [hiccup.element :refer [link-to]]
    [taoensso.truss :as truss :refer (have)]))
 
-(def assets-version (apply str "version" (repeatedly 5 #(rand-int 9))))
+(def assets-version (apply str "v/" (repeatedly 5 #(rand-int 9))))
 
 (defn render-content
   [content] 
