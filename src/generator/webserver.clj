@@ -31,6 +31,7 @@
     (let [uri (:uri request)]
       (cond 
         (= uri "/api/generate") (handle-generate request)
+        (= uri "/api/ping") (response/header (response/response "pong") "Content-Type" "text/plain")
         :else (handler request)))))
 
 (defn get-assets []
