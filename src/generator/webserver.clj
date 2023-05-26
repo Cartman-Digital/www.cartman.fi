@@ -1,6 +1,7 @@
 ;; Local webserver definition. This class works by defining a local webserver. The server gets it's handler from stasis and jetty's middleware to get the right headers. Once the handler is ready. it is wrapped with reload and stacktrace functions from ring middleware. After all definitions starting the application can be done by running .start and .stop from the end of this file. 
 (ns generator.webserver
   (:require
+   [clojure.string :as string]
    [generator.pages :refer [get-pages]]
    [generator.builder :refer [generate]]
    [ring.adapter.jetty :as jetty]
@@ -28,6 +29,7 @@
       (cond 
         (= uri "/api/generate") (handle-generate request)
         (= uri "/api/ping") (response/header (response/response "pong") "Content-Type" "text/plain")
+        (string/starts-with? uri "/assets/version") (response/redirect (clojure.string/replace uri #"version[0-9]*/" ""))
         :else (handler request)))))
 
 (def app (-> (stasis/serve-pages get-pages) ;; should return map of slug -> render call

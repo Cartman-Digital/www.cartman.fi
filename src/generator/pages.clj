@@ -7,6 +7,8 @@
    [hiccup.element :refer [link-to]]
    [taoensso.truss :as truss :refer (have)]))
 
+(def assets-version (apply str "version" (repeatedly 5 #(rand-int 9))))
+
 (defn render-content
   [content] 
   (let [collection-items (get-in content [:contentCollection :items])] 
@@ -17,11 +19,11 @@
    [:head
     [:meta {:charset "utf-8"}]
     [:title (get page :title)]
-    (include-css (nav/prepend-base-url "assets/main.css"))
+    (include-css (nav/prepend-base-url (str "assets/" assets-version "/main.css")))
     (include-css "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css")
     [:link {:rel "preconnect" :href "https://fonts.googleapis.com"}]
     [:link {:rel "preconnect" :href "https://fonts.gstatic.com" :crossorigin ""}]
-    [:link {:rel "icon" :type "image/png" :href (nav/prepend-base-url "assets/favicon.png")}]
+    [:link {:rel "icon" :type "image/png" :href (nav/prepend-base-url (str "assets/" assets-version "/favicon.png"))}]
     [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Ubuntu:wght@300;700&display=swap"}]]
    [:body {:class (:slug page)}
     (nav/render-main-menu)
