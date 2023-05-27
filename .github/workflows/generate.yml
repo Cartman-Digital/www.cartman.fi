@@ -68,12 +68,17 @@ jobs:
           password: ${{ steps.auth.outputs.access_token }}
           logout: false
 
-      - uses: shrink/actions-docker-extract@v2
+      # - uses: shrink/actions-docker-extract@v2
+      #   if: steps.restore-cache.outputs.cache-hit != 'true'
+      #   id: extract
+      #   with:
+      #     image: europe-north1-docker.pkg.dev/www-cartman-fi/site/app:main
+      #     path: /app/generator.jar
+
+      - name: extract-jar
         if: steps.restore-cache.outputs.cache-hit != 'true'
-        id: extract
-        with:
-          image: europe-north1-docker.pkg.dev/www-cartman-fi/site/app:main
-          path: /app/generator.jar
+        run: |
+          docker cp $(docker create europe-north1-docker.pkg.dev/www-cartman-fi/site/app:main):/app/generator.jar generator.jar
 
       - name: Save jar cache
         if: steps.restore-cache.outputs.cache-hit != 'true'
