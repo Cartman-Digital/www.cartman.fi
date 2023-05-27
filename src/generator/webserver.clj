@@ -28,11 +28,9 @@
     (let [uri (:uri request)]
       (cond 
         (= uri "/api/generate") (handle-generate request)
-        (= uri "/api/ping") (response/header (response/response "pong") "Content-Type" "text/plain")
+        (= uri "/api/ping") (response/header (response/response "pong\n") "Content-Type" "text/plain")
         (string/starts-with? uri "/assets/v/") (response/redirect (clojure.string/replace-first uri #"v/[0-9]*/" ""))
         :else (handler request)))))
-
-(println (clojure.string/replace-first "http://localhost:8000/assets/v/04816/main.css" #"v/[0-9]*/" ""))
 
 (def app (-> (stasis/serve-pages get-pages) ;; should return map of slug -> render call
              (wrap-resource "public")
