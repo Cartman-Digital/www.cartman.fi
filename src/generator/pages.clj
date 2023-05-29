@@ -3,18 +3,21 @@
    [generator.contentful :as contentful]
    [generator.navigation :as nav]
    [generator.renderer :as renderer]
-   [hiccup.page :refer [html5 include-css include-js]]
+   [generator.pages.render :as pages.render]
    [hiccup.element :refer [link-to]]
+   [hiccup.page :refer [html5 include-css include-js]]
    [taoensso.truss :as truss :refer (have)]))
 
 (def assets-version (apply str "v/" (repeatedly 5 #(rand-int 9))))
 
 (defn render-content
-  [content] 
+  [context content] 
   (let [collection-items (get-in content [:contentCollection :items])] 
-    (into [:div.content] (mapv #(renderer/render %) collection-items))))
+    (into [:div.content
+           (pages.render/get-html context)] (mapv #(renderer/render %) collection-items))))
 
-(defn render-page [page]
+(defn render-page
+  [context page]
   (html5
    [:head
     [:meta {:charset "utf-8"}]
@@ -27,7 +30,7 @@
     [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Ubuntu:wght@300;700&display=swap"}]]
    [:body {:class (:slug page)}
     (nav/render-main-menu)
-    (render-content page)
+    (render-content context page)
     [:footer {:class "footer"}
      [:span "&copy 2023 Cartman Digital Oy"]
      [:div.social-media 
@@ -50,4 +53,4 @@
         pages (have vector? (get-in pages-data [:pageCollection :items]))]
     (into {} (mapv #(vector
                      (if (not= (:slug %) "/") (str "/" (:slug %) ".html") (str "/index.html"))
-                     (fn [context] (render-page %))) pages))))
+                     (fn [context] (render-page context %))) pages))))

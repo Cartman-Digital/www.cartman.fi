@@ -2,11 +2,13 @@
 (ns generator.webserver
   (:require
    [clojure.string :as string]
-   [generator.pages :refer [get-pages]]
    [generator.builder :refer [generate]]
+   [generator.notion-form :as contact] 
+   [generator.pages :refer [get-pages]]
    [ring.adapter.jetty :as jetty]
    [ring.middleware.content-type :refer [wrap-content-type]]
    [ring.middleware.not-modified :refer [wrap-not-modified]]
+   [ring.middleware.params :as ring.params]
    [ring.middleware.reload :refer [wrap-reload]]
    [ring.middleware.stacktrace :refer [wrap-stacktrace]] 
    [ring.middleware.resource :refer [wrap-resource]]
@@ -22,12 +24,24 @@
   (generate)
   (response/header (response/response "") "Content-Type" "Text/html"))
 
+;; Todo format post to expected stuff and pass into submit form
+(defn handle-contact
+  [request]
+  (let [{:strs [name email message g-recaptcha-response]} (:form-params (ring.params/params-request request))]
+    (contact/process-submit {:name name
+                             :email email
+                             :message message
+                             :g-captcha g-recaptcha-response})
+    (response/header (response/response "") "Content-Type" "Text/html")))
+  
+
 ;; Define the Jetty server handler
 (defn wrap-api-routes [handler]
   (fn [request]
     (let [uri (:uri request)]
       (cond 
         (= uri "/api/generate") (handle-generate request)
+        (= uri "/api/contact") (handle-contact request)
         (= uri "/api/ping") (response/header (response/response "pong\n") "Content-Type" "text/plain")
         (string/starts-with? uri "/assets/v/") (response/redirect (clojure.string/replace-first uri #"v/[0-9]*/" ""))
         :else (handler request)))))
