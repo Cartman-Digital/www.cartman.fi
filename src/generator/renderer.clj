@@ -35,6 +35,9 @@
       [:textarea {:name fieldName :id fieldName}]
       [:input {:type fieldType :name fieldName :id fieldName}])]))
 
+(defn newline->br [s]
+  (clojure.string/replace s #"\r\n|\n|\r" "<br />\n"))
+
 ;; https://github.com/contentful/rich-text/blob/master/packages/rich-text-types/src/marks.ts
 ;; Used automatically by richtext->html
 (defmulti apply-text-mark
@@ -120,7 +123,7 @@
 (defmethod richtext->html "text"
   [m]
   (reduce #(apply-text-mark (:type %2) %)
-          (:value m)
+          (newline->br (:value m))
           (:marks m)))
 
 (defmethod richtext->html "unordered-list"
