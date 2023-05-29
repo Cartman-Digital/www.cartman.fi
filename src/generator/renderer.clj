@@ -5,9 +5,11 @@
 ;; Updates method to return hiccup syntax
 (ns generator.renderer
   (:require
+   [generator.config :as config]
    [generator.contentful :as contentful]
    [generator.navigation :refer [create-url prepend-base-url]]
    [hiccup.element :refer [image]]
+   [hiccup.form :as form]
    [taoensso.truss :as truss :refer [have]]))
 
 (declare render)
@@ -23,6 +25,15 @@
   [args]
   (let [entryCollection (get-in (contentful/get-contentful :entry-query {:entryId (get-in args [:data :target :sys :id])}) [:entryCollection :items])]
     (into [:div.embed] (mapv render entryCollection))))
+
+(defn create-field
+  [field]
+ (let [{:keys [fieldName label fieldType]} field]
+   [:div.field-wrap
+    (form/label fieldName label)
+    (if (= fieldType "textarea")
+      [:textarea {:name fieldName :id fieldName}]
+      [:input {:type fieldType :name fieldName :id fieldName}])]))
 
 ;; https://github.com/contentful/rich-text/blob/master/packages/rich-text-types/src/marks.ts
 ;; Used automatically by richtext->html
@@ -176,3 +187,25 @@
      (for [item (:items nav-item-collection)]
        [:li {:class (str "nav-item " (:additionalCssClasses item))}
         [:a {:href (create-url (:slug item))} (get item :title)]])]]))
+
+(defmethod render "Form"
+ [args]
+ (let [id (random-uuid)
+       form-fields (get-in args [:fieldsCollection :items])]
+   [:div.form-wrap
+    [:form {:id id :action (str (config/get-env "BASE_URL") (:actionUrl args)) :method "POST"}
+     [:script {:type "text/javascript", :src "https://www.google.com/recaptcha/api.js" :defer "" :async ""}]
+     [:script {:type "text/javascript"} (str "function onSubmit(token) {document.getElementById(\""
+                                             id
+                                             "\").submit();}")]
+     (for [field form-fields] 
+          (create-field field))
+     [:button.button.action.primary.g-recaptcha {:data-sitekey (config/get-env "CAPTCHA_PUBLIC_KEY") :data-callback "onSubmit"} "Contact us"]]]))
+
+(comment (render {:__typename "Form",
+                  :fieldsCollection
+                  {:items
+                   [{:fieldName "name", :label "What is your name?", :fieldType "text"}
+                    {:fieldName "email", :label "What is your email?", :fieldType "email"}
+                    {:fieldName "message", :label "How can we help you?", :fieldType "textarea"}]},
+                  :sys {:id "782ka3lNsGXBrnE88Qf3jt"}}))

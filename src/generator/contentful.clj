@@ -61,6 +61,7 @@
 
 (comment (get-contentful :nav-collection-query {:name "Main menu"}))
 (comment (get-contentful :asset-query {:$assetId "34YRcoaS4WJ5ORhpMlMHRM"}))
+(comment (get-contentful :entry-query {:entryId "782ka3lNsGXBrnE88Qf3jt"}))
 (comment (get-contentful :card-list-query {:listId "2pJ63nhY2QKbVesxgWOvq9"}))
 (comment (json/write-str (:graphql ((get-in query-map [:query :asset-query]) {:assetId "34YRcoaS4WJ5ORhpMlMHRM"}))))
 (comment (:variables (:graphql ((get-in query-map [:query :nav-collection-query]) {:name "Main menu"}))))
