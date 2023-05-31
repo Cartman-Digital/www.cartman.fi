@@ -42,10 +42,11 @@
 (defn post
   [data]
   (let [{:keys [name email message]} data]
-    (notion.page/create-page (config/get-env "NOTION_INTEGRATION_TOKEN") {:parent {:database_id (config/get-env "NOTION_MESSAGE_DB_ID")}
+    (->> (notion.page/create-page (config/get-env "NOTION_INTEGRATION_TOKEN") {:parent {:database_id (config/get-env "NOTION_MESSAGE_DB_ID")}
                               :properties {:title {:title [{:text {:content name}}]}
                                            :Email {:email email}
-                                           :Message {:rich_text [{:text {:content message}}]}}})))
+                                           :Message {:rich_text [{:text {:content message}}]}}})
+        println)))
 
 (defn process-submit
   [data]
