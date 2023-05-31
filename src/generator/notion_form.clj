@@ -49,9 +49,7 @@
 
 (defn process-submit
   [data]
-  (println (str "captcha pkey: " captcha-private-key))
-  (println (str "data: " data))
-  (captcha-valid? data)
+  (comment captcha-valid? data)
   (validate-fields data)
   (-> data 
    (sanitize)
