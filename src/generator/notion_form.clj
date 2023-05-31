@@ -41,7 +41,6 @@
 (defn post
   [data]
   (let [{:keys [name email message]} data]
-    (println (str "captcha pkey: " captcha-private-key))
     (notion.page/create-page (config/get-env "NOTION_INTEGRATION_TOKEN") {:parent {:database_id (config/get-env "NOTION_MESSAGE_DB_ID")}
                               :properties {:title {:title [{:text {:content name}}]}
                                            :Email {:email email}
@@ -49,6 +48,8 @@
 
 (defn process-submit
   [data]
+  (println (str "captcha pkey: " captcha-private-key))
+  (println (str "data: " data))
   (captcha-valid? data)
   (validate-fields data)
   (-> data 
