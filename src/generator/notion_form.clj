@@ -6,6 +6,8 @@
    [lovelace.pages.core :as notion.page]
    [taoensso.truss :as truss]))
 
+(def captcha-private-key (config/get-env "CAPTCHA_PRIVATE_KEY"))
+
 (defn email?
   [email]
   (let [email-pattern #".+@.+\..+"
@@ -31,7 +33,7 @@
 
 (defn captcha-valid?
   [data]
-  (if-let [valid (:valid? (captcha/verify (config/get-env "CAPTCHA_PRIVATE_KEY") (:g-captcha data)))]
+  (if-let [valid (:valid? (captcha/verify captcha-private-key (:g-captcha data)))]
     valid
     (throw (IllegalArgumentException. "Captcha invalid"))))
 
@@ -39,6 +41,7 @@
 (defn post
   [data]
   (let [{:keys [name email message]} data]
+    (println (str "captcha pkey: " captcha-private-key))
     (notion.page/create-page (config/get-env "NOTION_INTEGRATION_TOKEN") {:parent {:database_id (config/get-env "NOTION_MESSAGE_DB_ID")}
                               :properties {:title {:title [{:text {:content name}}]}
                                            :Email {:email email}
