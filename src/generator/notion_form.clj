@@ -33,9 +33,10 @@
 
 (defn captcha-valid?
   [data]
-  (if-let [valid (:valid? (captcha/verify captcha-private-key (:g-captcha data)))]
-    valid
-    (throw (IllegalArgumentException. "Captcha invalid"))))
+  (let [result (captcha/verify captcha-private-key (:g-captcha data))]
+    (if (:valid? result)
+      true
+      (throw (IllegalArgumentException. (str "Captcha invalid: " result))))))
 
 ;; TODO try catch wrappers and logs
 (defn post
