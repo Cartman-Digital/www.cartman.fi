@@ -78,6 +78,7 @@ jobs:
           CONTENTFUL_SPACE: "${{ vars.CONTENTFUL_SPACE }}"
           CONTENTFUL_TOKEN: "${{ secrets.CONTENTFUL_TOKEN }}"
           BASE_URL: "${{ vars.BASE_URL }}"
+          CAPTCHA_PUBLIC_KEY: "${{ vars.CAPTCHA_PUBLIC_KEY }}"
 
       - name: Move static assets
         run: mv repo/resources/public/* build/
