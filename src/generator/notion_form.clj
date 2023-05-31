@@ -50,7 +50,7 @@
 
 (defn process-submit
   [data]
-  (comment captcha-valid? data)
+  (captcha-valid? data)
   (validate-fields data)
   (-> data 
    (sanitize)
