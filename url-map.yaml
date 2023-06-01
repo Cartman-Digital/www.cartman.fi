@@ -29,5 +29,5 @@ pathMatchers:
 - name: redirect
   defaultUrlRedirect:
     httpsRedirect: True
-    hostRedirect: "www.example.com"
+    hostRedirect: "www.cartman.fi"
 selfLink: https://www.googleapis.com/compute/v1/projects/www-cartman-fi/global/urlMaps/site

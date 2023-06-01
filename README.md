@@ -55,5 +55,5 @@ This creates sitemap.xml file under public directory in the project.
 ### Update GCP load balancer url-map
 
 ```
-gcloud compute url-maps import --global --source=url-map.yaml site
+gcloud compute url-maps import --project www-cartman-fi --global --source=url-map.yaml site
 ```
