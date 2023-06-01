@@ -7,6 +7,8 @@
    [taoensso.truss :as truss]))
 
 (def captcha-private-key (config/get-env "CAPTCHA_PRIVATE_KEY"))
+(def notion-integration-token (config/get-env "NOTION_INTEGRATION_TOKEN"))
+(def notion-message-db-id (config/get-env "NOTION_MESSAGE_DB_ID"))
 
 (defn email?
   [email]
@@ -38,15 +40,15 @@
       true
       (throw (IllegalArgumentException. (str "Captcha invalid: " result))))))
 
-;; TODO try catch wrappers and logs
 (defn post
   [data]
-  (let [{:keys [name email message]} data]
-    (->> (notion.page/create-page (config/get-env "NOTION_INTEGRATION_TOKEN") {:parent {:database_id (config/get-env "NOTION_MESSAGE_DB_ID")}
-                              :properties {:title {:title [{:text {:content name}}]}
-                                           :Email {:email email}
-                                           :Message {:rich_text [{:text {:content message}}]}}})
-        println)))
+  (let [{:keys [name email message]} data
+        result (notion.page/create-page notion-integration-token {:parent {:database_id notion-message-db-id}
+                                                                  :properties {:title {:title [{:text {:content name}}]}
+                                                                               :Email {:email email}
+                                                                               :Message {:rich_text [{:text {:content message}}]}}})]
+    (println result)
+    (when (:error result) (throw (ex-info "Failed to POST data" {:error (:error result)})))))
 
 (defn process-submit
   [data]
