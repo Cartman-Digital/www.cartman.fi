@@ -1,0 +1,30 @@
+creationTimestamp: '2023-05-23T02:16:26.622-07:00'
+defaultRouteAction:
+  urlRewrite:
+    hostRewrite: www.cartman.fi
+defaultService: https://www.googleapis.com/compute/v1/projects/www-cartman-fi/global/backendBuckets/site
+fingerprint: pdv8cdcD1EY=
+hostRules:
+- hosts:
+  - www.cartman.fi
+  pathMatcher: path-matcher-1
+id: 8051041835868568197
+kind: compute#urlMap
+name: site
+pathMatchers:
+- defaultService: https://www.googleapis.com/compute/v1/projects/www-cartman-fi/global/backendBuckets/site
+  name: path-matcher-1
+  routeRules:
+  - description: Api
+    matchRules:
+    - {}
+    priority: 1
+    service: https://www.googleapis.com/compute/v1/projects/www-cartman-fi/global/backendServices/container
+  - description: Assets
+    matchRules:
+    - {}
+    priority: 2
+    routeAction:
+      urlRewrite: {}
+    service: https://www.googleapis.com/compute/v1/projects/www-cartman-fi/global/backendBuckets/site
+selfLink: https://www.googleapis.com/compute/v1/projects/www-cartman-fi/global/urlMaps/site
