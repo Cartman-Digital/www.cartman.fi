@@ -34,7 +34,6 @@
                              :g-captcha g-recaptcha-response})
     (response/header (response/response "Your message has been received. We will respond to you as soon as we can.") "Content-Type" "Text/html")))
   
-
 ;; Define the Jetty server handler
 (defn wrap-api-routes [handler]
   (fn [request]
