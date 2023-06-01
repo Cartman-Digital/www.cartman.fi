@@ -19,6 +19,7 @@
   (html5
    [:head
     [:meta {:charset "utf-8"}]
+    [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
     [:title (get page :title)]
     (include-css (nav/prepend-base-url (str "assets/" assets-version "/main.css")))
     (include-css "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css")
