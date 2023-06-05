@@ -112,6 +112,10 @@ html {
         @apply mb-2;
     }
 
+    ul {
+        @apply list-disc pl-4;
+    }
+
     li p {
         @apply mb-0;
     }
@@ -277,7 +281,7 @@ body a:hover {
         @apply w-full lg:block lg:w-auto;
 
         ul {
-            @apply font-medium flex flex-col p-4 lg:p-0 mt-4 lg:flex-row lg:space-x-8 lg:mt-0;
+            @apply list-none font-medium flex flex-col p-4 lg:p-0 mt-4 lg:flex-row lg:space-x-8 lg:mt-0;
         }
 
         a {
@@ -296,7 +300,11 @@ body a:hover {
 
 body .content>.doc,
 body .content>section {
-    @apply clear-left overflow-hidden m-auto py-16 px-2 2xl:px-0;
+    @apply clear-left overflow-hidden m-auto py-16 px-6 2xl:px-0;
+}
+
+body {
+
 }
 
 .content > .doc,
@@ -447,6 +455,7 @@ body .content .card-list {
     }
 
     ul {
+        @apply px-0;
         list-style-type: none;
         margin-bottom: 0.5rem;
     }
