@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com
+! tailwindcss v3.3.1 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -436,9 +436,6 @@ video {
   --tw-pan-y:  ;
   --tw-pinch-zoom:  ;
   --tw-scroll-snap-strictness: proximity;
-  --tw-gradient-from-position:  ;
-  --tw-gradient-via-position:  ;
-  --tw-gradient-to-position:  ;
   --tw-ordinal:  ;
   --tw-slashed-zero:  ;
   --tw-numeric-figure:  ;
@@ -486,9 +483,6 @@ video {
   --tw-pan-y:  ;
   --tw-pinch-zoom:  ;
   --tw-scroll-snap-strictness: proximity;
-  --tw-gradient-from-position:  ;
-  --tw-gradient-via-position:  ;
-  --tw-gradient-to-position:  ;
   --tw-ordinal:  ;
   --tw-slashed-zero:  ;
   --tw-numeric-figure:  ;
@@ -676,6 +670,11 @@ html >.content {
 
 html p {
   margin-bottom: 0.5rem;
+}
+
+html ul {
+  list-style-type: disc;
+  padding-left: 1rem;
 }
 
 html li p {
@@ -920,6 +919,7 @@ body a:hover {
 .navigation .nav-list-wrapper ul {
   margin-top: 1rem;
   display: flex;
+  list-style-type: none;
   flex-direction: column;
   padding: 1rem;
   font-weight: 500;
@@ -986,8 +986,8 @@ body .content>section {
   overflow: hidden;
   padding-top: 4rem;
   padding-bottom: 4rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 @media (min-width: 1536px) {
@@ -996,6 +996,9 @@ body .content>section {
     padding-left: 0px;
     padding-right: 0px;
   }
+}
+
+body {
 }
 
 .content > .doc,
@@ -1260,6 +1263,8 @@ body .content .card-list > .doc {
 }
 
 body .content .card-list ul {
+  padding-left: 0px;
+  padding-right: 0px;
   list-style-type: none;
   margin-bottom: 0.5rem;
 }
