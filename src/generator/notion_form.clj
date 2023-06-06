@@ -27,8 +27,7 @@
              [k (sanitize-string v)])))
 
 (defn validate-fields
-  [data]
-  
+  [data] 
   (truss/have map? data)
   (truss/have [:ks>= #{:name :email :message}] data)
   (truss/have email? (:email data)))

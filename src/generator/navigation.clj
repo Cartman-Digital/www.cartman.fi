@@ -1,15 +1,10 @@
 (ns generator.navigation
-  (:require [taoensso.truss :as truss :refer (have)]
+  (:require [clojure.string :as string]
             [generator.contentful :as contentful]
-            [generator.config :refer [get-env]]
-            [clojure.string :as string]))
+            [generator.renderer.static :as static]
+            [taoensso.truss :as truss :refer (have)]))
 
 (def top-nav "Main menu")
-
-(defn prepend-base-url
-  "Adds base url to url path given, if url doesn't start with \"http\""
-  [url]
-  (str (get-env "BASE_URL") url))
 
 (defn local-url?
   [s]
@@ -20,12 +15,12 @@
   (if (= (count s) 1) true false))
 
 (defn create-url
-  "Convert string to valid uri by prepending base_url and appending .html if url doesn't end with /"
+  "Convert string to valid uri by prepending base_url and appending .html if url doesn't end with / ."
   [slug]
   (if (local-url? slug)
    (if (frontpage-url? slug)
-    (prepend-base-url "")
-    (prepend-base-url (str slug ".html")))
+    (static/prepend-base-url "")
+    (static/prepend-base-url (str slug ".html")))
    slug))
 
 (defn render-main-menu []
@@ -34,7 +29,7 @@
     [:nav {:class "navigation"} 
      [:div {:class "nav-wrapper"}
       [:a {:href (create-url "/") :class "logo"}
-       [:img {:src (prepend-base-url "assets/images/cartman_digital_logo.svg") :title "Cartman Digital"}]
+       [:img {:src (static/get-asset-url "images/cartman_digital_logo.svg") :title "Cartman Digital"}]
        [:span {:class "sr-only"} "Cartman Digital"]]
       [:button {:data-collapse-toggle "navbar-default" :type "button" :aria-controls "navbar-default" :aria-expanded "false"}
        [:span {:class "sr-only"} "Open main menu"]

@@ -7,9 +7,11 @@
   (:require
    [generator.config :as config]
    [generator.contentful :as contentful]
-   [generator.navigation :refer [create-url prepend-base-url]]
+   [generator.navigation :refer [create-url]]
+   [generator.renderer.static :as static]
    [hiccup.element :refer [image]]
    [hiccup.form :as form]
+   [hiccup.page :as page]
    [taoensso.truss :as truss :refer [have]]))
 
 (declare render)
@@ -32,8 +34,8 @@
    [:div.field-wrap
     (form/label fieldName label)
     (if (= fieldType "textarea")
-      [:textarea {:name fieldName :id fieldName}]
-      [:input {:type fieldType :name fieldName :id fieldName}])]))
+      [:textarea {:name fieldName :id fieldName :required ""}]
+      [:input {:type fieldType :name fieldName :id fieldName :required ""}])]))
 
 (defn newline->br [s]
   (clojure.string/replace s #"\r\n|\n|\r" "<br />\n"))
@@ -105,7 +107,7 @@
 
 (defmethod richtext->html "hyperlink"
   [m]
-  (into [:a {:href (prepend-base-url (get-in m [:data :uri]))}]
+  (into [:a {:href (static/prepend-base-url (get-in m [:data :uri]))}]
    (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "list-item"
@@ -196,14 +198,22 @@
  (let [id (random-uuid)
        form-fields (get-in args [:fieldsCollection :items])]
    [:div.form-wrap
-    [:form {:id id :action (str (config/get-env "BASE_URL") (:actionUrl args)) :method "POST"}
-     [:script {:type "text/javascript", :src "https://www.google.com/recaptcha/api.js" :defer "" :async ""}]
-     [:script {:type "text/javascript"} (str "function onSubmit(token) {document.getElementById(\""
-                                             id
-                                             "\").submit();}")]
-     (for [field form-fields] 
-          (create-field field))
-     [:button.button.action.primary.g-recaptcha {:data-sitekey (config/get-env "CAPTCHA_PUBLIC_KEY") :data-callback "onSubmit"} "Contact us"]]]))
+    [:script {:type "text/javascript", :src "https://www.google.com/recaptcha/api.js" :defer "" :async ""}] 
+    [:form {:id id :action (str (config/get-env "BASE_URL") (:actionUrl args)) :method "POST" :onsubmit "return submitForm(this);"}
+     [:div.bar-loader 
+      [:div]
+      [:div]
+      [:div]]
+     [:div.message-container
+      [:p.message ""]]
+     (static/get-local-js "async-form.js")
+     (for [field form-fields]
+       (create-field field))
+     [:div.g-recaptcha {:data-sitekey (config/get-env "CAPTCHA_PUBLIC_KEY") :data-theme "dark"}]
+     [:div.action.button.primary
+      [:input {:type "submit" :class "submit" :value "Contact us"}]]]
+    [:div {:style "" :class "success-wrap"}
+     [:h3 "Thank you for getting in touch with us. We will get back to you as soon as we can."]]]))
 
 (comment (render {:__typename "Form",
                   :fieldsCollection

@@ -3,11 +3,10 @@
    [generator.contentful :as contentful]
    [generator.navigation :as nav]
    [generator.renderer :as renderer]
+   [generator.renderer.static :as static]
    [hiccup.element :refer [link-to]]
    [hiccup.page :refer [html5 include-css include-js]]
    [taoensso.truss :as truss :refer (have)]))
-
-(def assets-version (apply str "v/" (repeatedly 5 #(rand-int 9))))
 
 (defn render-content
   [content] 
@@ -21,12 +20,12 @@
     [:meta {:charset "utf-8"}]
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
     [:title (get page :title)]
-    (include-css (nav/prepend-base-url (str "assets/" assets-version "/main.css")))
+    (static/get-local-css "main.css")
     (include-css "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css")
     [:link {:rel "preconnect" :href "https://fonts.googleapis.com"}]
     [:script {:src "https://cdn-eu.usefathom.com/script.js" :data-site "KVDXDFWF" :defer true}]
     [:link {:rel "preconnect" :href "https://fonts.gstatic.com" :crossorigin ""}]
-    [:link {:rel "icon" :type "image/png" :href (nav/prepend-base-url (str "assets/" assets-version "/favicon.png"))}]
+    [:link {:rel "icon" :type "image/png" :href (static/get-asset-url "favicon.png")}]
     [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Ubuntu:wght@300;700&display=swap"}]]
    [:body {:class (:slug page)}
     (nav/render-main-menu)
