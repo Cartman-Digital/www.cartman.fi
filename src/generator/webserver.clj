@@ -9,9 +9,9 @@
    [ring.middleware.content-type :refer [wrap-content-type]]
    [ring.middleware.not-modified :refer [wrap-not-modified]]
    [ring.middleware.params :as ring.params]
-   [ring.middleware.reload :refer [wrap-reload]]
+   [ring.middleware.reload :refer [wrap-reload]] 
+   [ring.middleware.resource :refer [wrap-resource]] 
    [ring.middleware.stacktrace :refer [wrap-stacktrace]] 
-   [ring.middleware.resource :refer [wrap-resource]]
    [ring.util.response :as response]
    [stasis.core :as stasis]))
 
@@ -27,11 +27,12 @@
 ;; Todo format post to expected stuff and pass into submit form
 (defn handle-contact
   [request]
-  (let [{:strs [name email message g-recaptcha-response]} (:form-params (ring.params/params-request request))]
+  (let [parsed-request (ring.params/params-request request)
+        {:strs [name email message g-recaptcha-response]} (:form-params parsed-request)] 
     (contact/process-submit {:name name
                              :email email
                              :message message
-                             :g-captcha g-recaptcha-response})
+                             :g-captcha g-recaptcha-response}) 
     (response/header (response/response "Your message has been received. We will respond to you as soon as we can.") "Content-Type" "Text/html")))
   
 ;; Define the Jetty server handler
