@@ -20,6 +20,9 @@ query entryQuery($entryId: String!) {
       }
       ... on Form {
         actionUrl
+        successMessage {
+          json
+        }
         fieldsCollection {
           items {
             fieldName
