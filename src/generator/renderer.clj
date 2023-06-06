@@ -213,7 +213,7 @@
      [:div.action.button.primary
       [:input {:type "submit" :class "submit" :value "Contact us"}]]]
     [:div {:style "" :class "success-wrap"}
-     [:h3 "Thank you for getting in touch with us. We will get back to you as soon as we can."]]]))
+     (richtext->html (get-in args [:successMessage :json]))]]))
 
 (comment (render {:__typename "Form",
                   :fieldsCollection
