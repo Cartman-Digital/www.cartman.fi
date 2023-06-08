@@ -99,7 +99,8 @@ jobs:
           gsutil -m setmeta -h "Cache-Control:public, max-age=3600, s-maxage=86400" "gs://www-cartman-fi-prod/assets/**/*.png" || true && \
           gsutil -m setmeta -h "Cache-Control:public, max-age=3600, s-maxage=86400" "gs://www-cartman-fi-prod/assets/**/*.jpg" || true && \
           gsutil -m setmeta -h "Cache-Control:public, max-age=3600, s-maxage=86400" "gs://www-cartman-fi-prod/assets/**/*.svg" || true && \
-          gsutil -m setmeta -h "Cache-Control:public, max-age=7200, s-maxage=7200" "gs://www-cartman-fi-prod/sitemap.xml"
+          gsutil -m setmeta -h "Cache-Control:public, max-age=10800, s-maxage=10800" "gs://www-cartman-fi-prod/sitemap.xml"
+          gsutil -m setmeta -h "Cache-Control:public, max-age=10800, s-maxage=10800" "gs://www-cartman-fi-prod/robots.txt"
 
       # No need after static content versioning
       # - name: Invalidate CDN cache
