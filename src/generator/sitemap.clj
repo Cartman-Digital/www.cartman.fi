@@ -16,7 +16,7 @@
 
 (defn -main 
   [target-dir]
-  (let [sitemap-input (map format-sitemap (get-in (get-contentful :sitemap-query) [:pageCollection :items]))
+  (let [sitemap-input (map format-sitemap (filter #(if (false? (:seoIndexing %)) false true) (get-in (get-contentful :sitemap-query) [:pageCollection :items])))
         sitemap (sitemap.core/generate-sitemap sitemap-input)
         validation-result (sitemap.validator/validate-sitemap sitemap)] 
     (if (> (count validation-result) 0) 

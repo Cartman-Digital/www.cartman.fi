@@ -3,6 +3,7 @@ query sitemapQuery {
     items {
       title
       slug
+      seoIndexing
       seoUpdateFrequency
       sitemapPriority
       sys {

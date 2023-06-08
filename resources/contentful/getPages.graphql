@@ -6,6 +6,7 @@ query pageCollectionQuery {
       }
       title
       slug
+      seoIndexing
       contentCollection {
         items {
           __typename
