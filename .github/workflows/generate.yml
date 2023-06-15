@@ -95,7 +95,7 @@ jobs:
       - name: Set metadata
         run: |
           gsutil -m setmeta -h "Cache-Control:public, max-age=120, s-maxage=120" -h "Content-Language:en" "gs://www-cartman-fi-prod/**/*.html" && \
-          gsutil -m setmeta -h "Cache-Control:public, max-age=86400, s-maxage=86400" "gs://www-cartman-fi-prod/assets/*.css" && \
+          gsutil -m setmeta -h "Cache-Control:public, max-age=7200, s-maxage=7200" "gs://www-cartman-fi-prod/assets/*.css" && \
           gsutil -m setmeta -h "Cache-Control:public, max-age=3600, s-maxage=86400" "gs://www-cartman-fi-prod/assets/**/*.png" || true && \
           gsutil -m setmeta -h "Cache-Control:public, max-age=3600, s-maxage=86400" "gs://www-cartman-fi-prod/assets/**/*.jpg" || true && \
           gsutil -m setmeta -h "Cache-Control:public, max-age=3600, s-maxage=86400" "gs://www-cartman-fi-prod/assets/**/*.svg" || true && \
