@@ -5,6 +5,8 @@ hostRules:
   pathMatcher: path-matcher-1
 - hosts:
   - cartman.fi
+  - hallatek.com
+  - www.hallatek.com
   pathMatcher: redirect
 id: 8051041835868568197
 kind: compute#urlMap

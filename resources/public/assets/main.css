@@ -1395,10 +1395,25 @@ body .content .card-list ul {
   overflow: hidden;
 }
 
+.form-wrap input, .form-wrap textarea {
+  width: 18rem;
+}
+
+@media (min-width: 1024px) {
+  .form-wrap input, .form-wrap textarea {
+    width: 24rem;
+  }
+}
+
+.form-wrap textarea {
+  height: 100px;
+}
+
 .form-wrap form {
   transition: 250ms;
   position: relative;
   left: 0;
+  margin-bottom: 10px;
 }
 
 .form-wrap form.loading {

@@ -495,10 +495,19 @@ body .content .card-list {
     position: relative;
     overflow: hidden;
 
+    input, textarea {
+        @apply lg:w-96 w-72;
+    }
+
+    textarea {
+        height: 100px;
+    }
+
     form {
         transition: 250ms;
         position: relative;
         left: 0;
+        margin-bottom: 10px;
 
         &.loading {
             position: relative;
