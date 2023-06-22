@@ -69,3 +69,4 @@
 
 (comment (start-webserver))
 (comment (stop-webserver))
+(comment (get-pages))
