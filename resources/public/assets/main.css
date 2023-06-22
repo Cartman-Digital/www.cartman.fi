@@ -578,34 +578,54 @@ video {
   --layout-spacing-v-half: 16px;
 }
 
+/*****
+Cartman.fi main css file
+Use the code comments to navigate the file to adjust styles you need
+
+1. Typeface
+2. Forms
+3. Generic input styles
+4. Layout
+5. Navigation
+6. Footer
+7. Body components
+    A. Row and side-by-side
+    B. Sub navigation
+    C. Hero banner
+    D. Card list
+8. Page specific styles
+    A. Services page.
+
+Hint: search in file.
+*****/
+
 /**
  * Typeface declarations
  */
 
 html {
+  /* Root font size. use an increment of 8px, modifying this affects the spacing of rest of the website. */
+  font-size: 16px;
+}
+
+html body {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
-  font-size: 16px;
-  /* Root font size. use an increment of 8px, modifying this affects the spacing of rest of the website. */
   letter-spacing: .01em;
-}
-
-html body {
-  /* nav height */
   padding-top: 57px;
-  font-size: 17px;
   /** if you want to adjust text size without changing the spacing, use this field to change it. */
+  font-size: 17px;
   line-height: 24px;
 }
 
-html h1,
-    html h2,
-    html h3,
-    html h4,
-    html h5,
-    html h6 {
+html body h1,
+    html body h2,
+    html body h3,
+    html body h4,
+    html body h5,
+    html body h6 {
   font-family: 'Ubuntu', sans-serif;
   font-weight: 700;
   letter-spacing: 0;
@@ -648,7 +668,7 @@ html body h5 {
   line-height: 32px;
 }
 
-html blockquote {
+html body blockquote {
   font-family: 'Ubuntu', sans-serif;
   font-weight: 300;
   font-size: 28px;
@@ -657,39 +677,48 @@ html blockquote {
   quotes: "\201C" "\201D" "\2018" "\2019";
 }
 
-html blockquote p {
+html body blockquote p {
   display: inline;
 }
 
-html blockquote::before {
+html body blockquote::before {
   display: inline;
   content: open-quote;
 }
 
-html blockquote::after {
+html body blockquote::after {
   display: inline;
   content: close-quote;
 }
 
-html >.content {
+html body >.content {
   margin-left: auto;
   margin-right: auto;
   padding-top: 0px;
   padding-bottom: 0px;
 }
 
-html p {
+html body p {
   margin-bottom: 0.5rem;
 }
 
-html ul {
+html body ul {
   margin-bottom: 0.5rem;
   list-style-type: disc;
   padding-left: 1rem;
 }
 
-html li p {
+html body li p {
   margin-bottom: 0px;
+}
+
+html body a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+html body a:hover {
+  color: var(--color-secondary-offset);
 }
 
 html body,
@@ -702,16 +731,14 @@ html body nav {
  */
 
 body input[type="text"],
-body input[type="email"],
-body input[type="textarea"],
-body textarea {
+    body input[type="email"],
+    body textarea {
   display: block;
   color: var(--color-grey-primary);
   margin-bottom: 1rem;
   padding: 8px 16px;
 }
 
-body input[type="textarea"],
 body textarea {
   resize: both;
   min-width: 16rem;
@@ -723,9 +750,185 @@ body label {
   padding-left: 0.25rem;
 }
 
-body hr {
-  margin: 1rem 0;
+body .action,
+    body input[type="checkbox"],
+    body input[type="radio"] {
+  cursor: pointer;
 }
+
+body hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+body .form-container {
+  clear: left;
+  margin-bottom: 1rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+  padding-top: 2.5rem;
+  padding-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  body .form-container {
+    width: 50%;
+  }
+}
+
+.form-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.form-wrap input,
+    .form-wrap textarea {
+  width: 18rem;
+}
+
+@media (min-width: 1024px) {
+  .form-wrap input,
+    .form-wrap textarea {
+    width: 24rem;
+  }
+}
+
+/**
+     * workaround: submit input cannot have before and after elements 
+     * this breaks button animation styles. Apply the styles to wrapping div for animations
+     * and remove the wrappers padding to avoid deadzone inside button borders
+     */
+
+.form-wrap div.action.button.primary {
+  /* width set because of box-border requirement getting ignored without it. */
+  box-sizing: border-box;
+  width: 18rem;
+  padding: 0px;
+}
+
+@media (min-width: 1024px) {
+  .form-wrap div.action.button.primary {
+    width: 24rem;
+  }
+}
+
+.form-wrap .submit {
+  /* Workaround continuation: apply padding to input directly. */
+  width: 100%;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.form-wrap textarea {
+  min-height: 100px;
+}
+
+.form-wrap form {
+  transition: 250ms;
+  position: relative;
+  left: 0;
+  margin-bottom: 10px;
+}
+
+.form-wrap form.loading {
+  position: relative;
+}
+
+.form-wrap form.loading::before {
+  position: absolute;
+  content: ' ';
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: var(--color-grey-primary);
+  opacity: 0.4;
+}
+
+.form-wrap form.loading .bar-loader {
+  position: absolute;
+  display: inline-block;
+  top: 35%;
+  left: 30%;
+  z-index: 101;
+}
+
+.form-wrap .success-wrap {
+  /** visibility used instead of display due to css transition */
+  visibility: hidden;
+  position: absolute;
+  left: 105%;
+  transition: 250ms;
+  top: 0;
+}
+
+.form-wrap.success form {
+  left: -100%;
+  transition: 250ms;
+}
+
+.form-wrap.success .message-container {
+  display: none;
+}
+
+.form-wrap.success .success-wrap {
+  visibility: visible;
+  left: 0;
+  transition: 250ms;
+}
+
+.form-wrap.error .message-container {
+  display: block;
+}
+
+.bar-loader {
+  display: none;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.bar-loader div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #fff;
+  animation: bar-loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+
+.bar-loader div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+
+.bar-loader div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+
+.bar-loader div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+
+@keyframes bar-loader {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+
+  50%, 100% {
+    top: 24px;
+    height: 32px;
+  }
+}
+
+/**
+ * Generic input styling.
+ */
 
 .button {
   display: inline-block;
@@ -805,33 +1008,37 @@ body hr {
   color: var(--color-grey-primary);
 }
 
-body .action,
-body input[type="checkbox"],
-body input[type="radio"] {
-  cursor: pointer;
-}
-
-body a {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-body a:hover {
-  color: var(--color-secondary-offset);
-}
-
 /**     
  * Layout
  */
 
-.footer {
-  border-top-width: 1px;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  text-align: center;
+body .content>.doc,
+body .content>section {
+  clear: left;
+  margin: auto;
+  overflow: hidden;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
-/** nav */
+@media (min-width: 1536px) {
+  body .content>.doc,
+body .content>section {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+.content > .doc,
+.row {
+  max-width: 1536px;
+}
+
+/**
+ * Navigation
+ */
 
 .navigation {
   position: fixed;
@@ -929,6 +1136,7 @@ body a:hover {
 
 .navigation .nav-list-wrapper ul {
   margin-top: 1rem;
+  margin-bottom: 0px;
   display: flex;
   list-style-type: none;
   flex-direction: column;
@@ -986,36 +1194,40 @@ body a:hover {
   text-decoration: none;
 }
 
+/**
+ * Footer content styling.
+ */
+
 .footer, .navigation {
   border-color: var(--color-grey-offset);
 }
 
-body .content>.doc,
-body .content>section {
-  clear: left;
-  margin: auto;
-  overflow: hidden;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+.footer {
+  border-top-width: 1px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: center;
 }
 
-@media (min-width: 1536px) {
-  body .content>.doc,
-body .content>section {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
+.social-media {
+  margin-top: 0.5rem;
 }
 
-body {
+.social-media .icon {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  text-align: center;
 }
 
-.content > .doc,
-.row {
-  max-width: 1536px;
+.social-media .icon svg {
+  display: inline-block;
 }
+
+/**
+ * Body component styles
+ * 
+ * Row and side-by-side
+ */
 
 .row {
   clear: left;
@@ -1042,7 +1254,7 @@ body {
   }
 }
 
-/* component styles */
+/** Sub navigation */
 
 .sub-nav ul {
   padding-left: 1rem;
@@ -1177,21 +1389,7 @@ body {
           mask-image: url(/assets/icons/file.svg);
 }
 
-.form-container {
-  clear: left;
-  margin-bottom: 1rem;
-  border-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
-  padding-top: 2.5rem;
-  padding-bottom: 0.5rem;
-}
-
-@media (min-width: 768px) {
-  .form-container {
-    width: 50%;
-  }
-}
+/** Hero banner */
 
 body .content .hero-banner {
   margin-bottom: 1rem;
@@ -1242,19 +1440,7 @@ body .content .hero-banner +div {
   --tw-bg-opacity: 0.5;
 }
 
-.social-media {
-  margin-top: 0.5rem;
-}
-
-.social-media .icon {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  text-align: center;
-}
-
-.social-media .icon svg {
-  display: inline-block;
-}
+/** Card list */
 
 body .content .card-list {
   width: 100%;
@@ -1280,7 +1466,11 @@ body .content .card-list ul {
   margin-bottom: 0.5rem;
 }
 
-/** Page specific styles */
+/**
+ * Page specific styles 
+ */
+
+/** Services page */
 
 .services .content>section:nth-child(odd) {
   background-color: #000;
@@ -1387,128 +1577,6 @@ body .content .card-list ul {
 @media (min-width: 1536px) {
   .services .content .side-by-side .embed .grid {
     grid-template-columns: repeat(10, minmax(0, 1fr));
-  }
-}
-
-.form-wrap {
-  position: relative;
-  overflow: hidden;
-}
-
-.form-wrap input, .form-wrap textarea {
-  width: 18rem;
-}
-
-@media (min-width: 1024px) {
-  .form-wrap input, .form-wrap textarea {
-    width: 24rem;
-  }
-}
-
-.form-wrap textarea {
-  height: 100px;
-}
-
-.form-wrap form {
-  transition: 250ms;
-  position: relative;
-  left: 0;
-  margin-bottom: 10px;
-}
-
-.form-wrap form.loading {
-  position: relative;
-}
-
-.form-wrap form.loading::before {
-  position: absolute;
-  content: ' ';
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  background-color: var(--color-grey-primary);
-  opacity: 0.4;
-}
-
-.form-wrap form.loading .bar-loader {
-  position: absolute;
-  display: inline-block;
-  top: 35%;
-  left: 30%;
-  z-index: 101;
-}
-
-.form-wrap .submit {
-  cursor: pointer;
-}
-
-.form-wrap .success-wrap {
-  position: absolute;
-  left: 105%;
-  transition: 250ms;
-  top: 0;
-}
-
-.form-wrap.success form {
-  left: -100%;
-  transition: 250ms;
-}
-
-.form-wrap.success .message-container {
-  display: none;
-}
-
-.form-wrap.success .success-wrap {
-  left: 0;
-  transition: 250ms;
-}
-
-.form-wrap.error .message-container {
-  display: block;
-}
-
-.bar-loader {
-  display: none;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-
-.bar-loader div {
-  display: inline-block;
-  position: absolute;
-  left: 8px;
-  width: 16px;
-  background: #fff;
-  animation: bar-loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-}
-
-.bar-loader div:nth-child(1) {
-  left: 8px;
-  animation-delay: -0.24s;
-}
-
-.bar-loader div:nth-child(2) {
-  left: 32px;
-  animation-delay: -0.12s;
-}
-
-.bar-loader div:nth-child(3) {
-  left: 56px;
-  animation-delay: 0;
-}
-
-@keyframes bar-loader {
-  0% {
-    top: 8px;
-    height: 64px;
-  }
-
-  50%, 100% {
-    top: 24px;
-    height: 32px;
   }
 }
 

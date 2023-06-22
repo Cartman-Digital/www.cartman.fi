@@ -212,7 +212,7 @@
      [:div.g-recaptcha {:data-sitekey (config/get-env "CAPTCHA_PUBLIC_KEY") :data-theme "dark"}]
      [:div.action.button.primary
       [:input {:type "submit" :class "submit" :value "Contact us"}]]]
-    [:div {:style "" :class "success-wrap"}
+    [:div {:class "success-wrap"}
      (richtext->html (get-in args [:successMessage :json]))]]))
 
 (comment (render {:__typename "Form",

@@ -16,22 +16,46 @@
     --layout-spacing-v-half: 16px;
 }
 
+
+
+/*****
+Cartman.fi main css file
+Use the code comments to navigate the file to adjust styles you need
+
+1. Typeface
+2. Forms
+3. Generic input styles
+4. Layout
+5. Navigation
+6. Footer
+7. Body components
+    A. Row and side-by-side
+    B. Sub navigation
+    C. Hero banner
+    D. Card list
+8. Page specific styles
+    A. Services page.
+
+Hint: search in file.
+*****/
+
 /**
  * Typeface declarations
  */
-html {
+ html {
+    /* Root font size. use an increment of 8px, modifying this affects the spacing of rest of the website. */
+    font-size: 16px; 
+}
+
+html body {
     @apply text-white;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
-    font-size: 16px; /* Root font size. use an increment of 8px, modifying this affects the spacing of rest of the website. */
     letter-spacing: .01em;
-
-    body {
-        /* nav height */
-        padding-top: 57px;
-        font-size: 17px; /** if you want to adjust text size without changing the spacing, use this field to change it. */
-        line-height: 24px;
-    }
+    padding-top: 57px;
+    /** if you want to adjust text size without changing the spacing, use this field to change it. */
+    font-size: 17px;
+    line-height: 24px;
 
     h1,
     h2,
@@ -46,14 +70,14 @@ html {
     }
 
 
-    body h1 {
+    h1 {
         @apply mb-8;
         font-size: 39px;
         line-height: 64px;
         color: var(--color-primary);
     }
 
-    body h2 {
+    h2 {
         @apply mb-6;
         font-size: 28px;
         line-height: 38px;
@@ -63,19 +87,19 @@ html {
         padding-bottom: 0;
     }
 
-    body h3 {
+    h3 {
         @apply mb-4;
         font-size: 23px;
         line-height: 40px;
     }
 
-    body h4 {
+    h4 {
         @apply mt-4 mb-2;
         font-size: 19px;
         line-height: 32px;
     }
 
-    body h5 {
+    h5 {
         @apply mb-2;
         font-size: 17px;
         line-height: 32px;
@@ -119,6 +143,15 @@ html {
     li p {
         @apply mb-0;
     }
+
+    a {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    
+    a:hover {
+        color: var(--color-secondary-offset);
+    }
 }
 
 html body,
@@ -129,32 +162,175 @@ html body nav {
 /**
  * Forms
  */
-body input[type="text"],
-body input[type="email"],
-body input[type="textarea"],
-body textarea {
-    display: block;
-    color: var(--color-grey-primary);
-    margin-bottom: 1rem;
-    padding: 8px 16px;
+body {
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        display: block;
+        color: var(--color-grey-primary);
+        margin-bottom: 1rem;
+        padding: 8px 16px;
+    }
+
+    textarea {
+        resize: both;
+        min-width: 16rem;
+        min-height: 2.625rem;
+        box-sizing: border-box;
+    }
+
+    label {
+        padding-left: 0.25rem;
+    }
+    
+    .action,
+    input[type="checkbox"],
+    input[type="radio"] {
+        cursor: pointer;
+    }
+
+    hr {
+        @apply my-4;
+    }
+
+    .form-container {
+        @apply clear-left pt-10 border border-white pb-2 mb-4 md:w-2/4;
+    }
 }
 
-body input[type="textarea"],
-body textarea {
-    resize: both;
-    min-width: 16rem;
-    min-height: 2.625rem;
-    box-sizing: border-box;
+.form-wrap {
+    position: relative;
+    overflow: hidden;
+
+    input,
+    textarea {
+        @apply lg:w-96 w-72;
+    }
+
+    /**
+     * workaround: submit input cannot have before and after elements 
+     * this breaks button animation styles. Apply the styles to wrapping div for animations
+     * and remove the wrappers padding to avoid deadzone inside button borders
+     */
+    div.action.button.primary {
+        /* width set because of box-border requirement getting ignored without it. */
+        @apply lg:w-96 w-72 p-0 box-border;
+    }
+
+    .submit {
+        /* Workaround continuation: apply padding to input directly. */
+        @apply w-full p-2;
+        cursor: pointer;
+    }
+
+    textarea {
+        min-height: 100px;
+    }
+
+    form {
+        transition: 250ms;
+        position: relative;
+        left: 0;
+        margin-bottom: 10px;
+
+        &.loading {
+            position: relative;
+        
+            &::before {
+                position: absolute;
+                content: ' ';
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 100;
+                background-color: var(--color-grey-primary);
+                opacity: 0.4;
+            }
+        
+            .bar-loader {
+                position: absolute;
+                display: inline-block;
+                top: 35%;
+                left: 30%;
+                z-index: 101;
+            }
+        }
+    }
+
+    .success-wrap {
+        /** visibility used instead of display due to css transition */
+        visibility: hidden;
+        position: absolute;
+        left: 105%;
+        transition: 250ms;
+        top: 0;
+    }
+
+    &.success {
+        form {
+            left: -100%;
+            transition: 250ms;
+        }
+
+        .message-container {
+            display: none;
+        }
+
+        .success-wrap {
+            visibility: visible;
+            left: 0;
+            transition: 250ms;
+        }
+    }
+
+    &.error {
+        .message-container {
+            display: block;
+        }
+    }
 }
 
-body label {
-    padding-left: 0.25rem;
+.bar-loader {
+    display: none;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.bar-loader div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    background: #fff;
+    animation: bar-loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.bar-loader div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.24s;
+}
+.bar-loader div:nth-child(2) {
+    left: 32px;
+    animation-delay: -0.12s;
+}
+.bar-loader div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0;
+}
+@keyframes bar-loader {
+    0% {
+      top: 8px;
+      height: 64px;
+    }
+    50%, 100% {
+      top: 24px;
+      height: 32px;
+    }
 }
 
-body hr {
-    margin: 1rem 0;
-}
-
+/**
+ * Generic input styling.
+ */
 .button {
     display: inline-block;
     padding: 8px 8px;
@@ -227,29 +403,22 @@ body hr {
     }
 }
 
-body .action,
-body input[type="checkbox"],
-body input[type="radio"] {
-    cursor: pointer;
-}
-
-body a {
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-body a:hover {
-    color: var(--color-secondary-offset);
-}
-
 /**     
  * Layout
  */
-.footer {
-    @apply py-4 border-t text-center;
+body .content>.doc,
+body .content>section {
+    @apply clear-left overflow-hidden m-auto py-16 px-6 2xl:px-0;
 }
 
-/** nav */
+.content > .doc,
+.row {
+    @apply max-w-screen-2xl;
+}
+
+/**
+ * Navigation
+ */
 .navigation {
     @apply fixed border-b w-full z-20 top-0 left-0;
 
@@ -281,7 +450,7 @@ body a:hover {
         @apply w-full lg:block lg:w-auto;
 
         ul {
-            @apply list-none font-medium flex flex-col p-4 lg:p-0 mt-4 lg:flex-row lg:space-x-8 lg:mt-0;
+            @apply list-none font-medium flex flex-col p-4 lg:p-0 mt-4 mb-0 lg:flex-row lg:space-x-8 lg:mt-0;
         }
 
         a {
@@ -294,24 +463,34 @@ body a:hover {
     }
 }
 
+/**
+ * Footer content styling.
+ */
 .footer, .navigation {
     border-color: var(--color-grey-offset);
 }
 
-body .content>.doc,
-body .content>section {
-    @apply clear-left overflow-hidden m-auto py-16 px-6 2xl:px-0;
+.footer {
+    @apply py-4 border-t text-center;
 }
 
-body {
+.social-media {
+    @apply mt-2;
 
+    .icon {
+        @apply text-center mx-2;
+
+        svg {
+            display: inline-block;
+        }
+    }
 }
 
-.content > .doc,
-.row {
-    @apply max-w-screen-2xl;
-}
-
+/**
+ * Body component styles
+ * 
+ * Row and side-by-side
+ */
 .row {
     @apply py-10 clear-left overflow-hidden max-w-screen-2xl m-auto;
 
@@ -328,7 +507,7 @@ body {
     }
 }
 
-/* component styles */
+/** Sub navigation */
 .sub-nav ul {
     @apply px-4 xl:px-0;
     gap: 0.5rem;
@@ -388,10 +567,7 @@ body {
     }
 }
 
-.form-container {
-    @apply clear-left pt-10 border border-white pb-2 mb-4 md:w-2/4;
-}
-
+/** Hero banner */
 body .content .hero-banner {
     @apply py-10 bg-cover mb-4;
     background-position: center 25%;
@@ -427,20 +603,7 @@ body .content .hero-banner {
     @apply bg-opacity-50;
 }
 
-
-
-.social-media {
-    @apply mt-2;
-
-    .icon {
-        @apply text-center mx-2;
-
-        svg {
-            display: inline-block;
-        }
-    }
-}
-
+/** Card list */
 body .content .card-list {
     width: 100%;
     @apply py-0;
@@ -461,7 +624,11 @@ body .content .card-list {
     }
 }
 
-/** Page specific styles */
+/**
+ * Page specific styles 
+ */
+
+/** Services page */
 .services .content>section:nth-child(odd) {
     background-color: #000;
 }
@@ -488,122 +655,6 @@ body .content .card-list {
         .grid {
             @apply grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 2xl:grid-cols-10;
         }
-    }
-}
-
-.form-wrap {
-    position: relative;
-    overflow: hidden;
-
-    input, textarea {
-        @apply lg:w-96 w-72;
-    }
-
-    textarea {
-        height: 100px;
-    }
-
-    form {
-        transition: 250ms;
-        position: relative;
-        left: 0;
-        margin-bottom: 10px;
-
-        &.loading {
-            position: relative;
-        
-            &::before {
-                position: absolute;
-                content: ' ';
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                z-index: 100;
-                background-color: var(--color-grey-primary);
-                opacity: 0.4;
-            }
-        
-            .bar-loader {
-                position: absolute;
-                display: inline-block;
-                top: 35%;
-                left: 30%;
-                z-index: 101;
-            }
-        }
-    }
-
-    .submit {
-        cursor: pointer;
-    }
-    
-    .success-wrap {
-        position: absolute;
-        left: 105%;
-        transition: 250ms;
-        top: 0;
-    }
-
-    &.success {
-        form {
-            left: -100%;
-            transition: 250ms;
-        }
-
-        .message-container {
-            display: none;
-        }
-
-        .success-wrap {
-            left: 0;
-            transition: 250ms;
-        }
-    }
-
-    &.error {
-        .message-container {
-            display: block;
-        }
-    }
-}
-
-
-
-.bar-loader {
-    display: none;
-    position: relative;
-    width: 80px;
-    height: 80px;
-}
-.bar-loader div {
-    display: inline-block;
-    position: absolute;
-    left: 8px;
-    width: 16px;
-    background: #fff;
-    animation: bar-loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-}
-.bar-loader div:nth-child(1) {
-    left: 8px;
-    animation-delay: -0.24s;
-}
-.bar-loader div:nth-child(2) {
-    left: 32px;
-    animation-delay: -0.12s;
-}
-.bar-loader div:nth-child(3) {
-    left: 56px;
-    animation-delay: 0;
-}
-@keyframes bar-loader {
-    0% {
-      top: 8px;
-      height: 64px;
-    }
-    50%, 100% {
-      top: 24px;
-      height: 32px;
     }
 }
   
