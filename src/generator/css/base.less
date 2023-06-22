@@ -16,8 +16,6 @@
     --layout-spacing-v-half: 16px;
 }
 
-
-
 /*****
 Cartman.fi main css file
 Use the code comments to navigate the file to adjust styles you need
@@ -406,13 +404,15 @@ body {
 /**     
  * Layout
  */
-body .content>.doc,
-body .content>section {
+body .content > .doc,
+body .content > section,
+body .content .post-list {
     @apply clear-left overflow-hidden m-auto py-16 px-6 2xl:px-0;
 }
 
 .content > .doc,
-.row {
+.row,
+.post-list {
     @apply max-w-screen-2xl;
 }
 

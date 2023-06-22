@@ -1012,8 +1012,9 @@ body .form-container {
  * Layout
  */
 
-body .content>.doc,
-body .content>section {
+body .content > .doc,
+body .content > section,
+body .content .post-list {
   clear: left;
   margin: auto;
   overflow: hidden;
@@ -1024,15 +1025,17 @@ body .content>section {
 }
 
 @media (min-width: 1536px) {
-  body .content>.doc,
-body .content>section {
+  body .content > .doc,
+body .content > section,
+body .content .post-list {
     padding-left: 0px;
     padding-right: 0px;
   }
 }
 
 .content > .doc,
-.row {
+.row,
+.post-list {
   max-width: 1536px;
 }
 

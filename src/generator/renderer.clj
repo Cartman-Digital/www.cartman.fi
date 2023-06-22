@@ -193,7 +193,7 @@
        [:li {:class (str "nav-item " (:additionalCssClasses item))}
         [:a {:href (create-url (:slug item))} (get item :title)]])]]))
 
-(defmethod render "Form"
+(defmethod render "Form" 
  [args]
  (let [id (random-uuid)
        form-fields (get-in args [:fieldsCollection :items])]
@@ -215,10 +215,128 @@
     [:div {:class "success-wrap"}
      (richtext->html (get-in args [:successMessage :json]))]]))
 
-(comment (render {:__typename "Form",
-                  :fieldsCollection
-                  {:items
-                   [{:fieldName "name", :label "What is your name?", :fieldType "text"}
-                    {:fieldName "email", :label "What is your email?", :fieldType "email"}
-                    {:fieldName "message", :label "How can we help you?", :fieldType "textarea"}]},
-                  :sys {:id "782ka3lNsGXBrnE88Qf3jt"}}))
+(defmethod render "Post"
+  [args]
+  (println args)
+  [:li.post 
+   [:h2 (:title args)]
+   [:p [:span.author (get-in args [:author :name])]]
+   [:p [:span.published (:publishDate args)]]
+   [:div.post-body (richtext->html (get-in args [:content :json]))]])
+
+(defmethod render "PostCollection"
+  [args]
+  [:div 
+   (into [:ul.post-list] (mapv render (:items args)))])
+
+(comment (render {:__typename "PostCollection",
+                  :items
+                  [{:__typename "Post",
+                    :content
+                    {:json
+                     {:nodeType "document",
+                      :content
+                      [{:nodeType "paragraph",
+                        :content
+                        [{:nodeType "text",
+                          :value "So happy to announce that Cartman has been reborn and is now Cartman Digital. Woop woop!",
+                          :marks [],
+                          :data {}}],
+                        :data {}}
+                       {:nodeType "paragraph",
+                        :content
+                        [{:nodeType "text",
+                          :value
+                          "The new Cartman Digital has a unique team with vast experience in both business and technical development. We have done it all, from B2B to B2C to D2C, and we have done it together.",
+                          :marks [],
+                          :data {}}],
+                        :data {}}
+                       {:nodeType "paragraph",
+                        :content [{:nodeType "text", :value "Meet our amazing team:", :marks [], :data {}}],
+                        :data {}}
+                       {:nodeType "unordered-list",
+                        :content
+                        [{:nodeType "list-item",
+                          :content
+                          [{:nodeType "paragraph",
+                            :content [{:nodeType "text", :value "Janne Sävy, Commercial guy", :marks [], :data {}}],
+                            :data {}}],
+                          :data {}}
+                         {:nodeType "list-item",
+                          :content
+                          [{:nodeType "paragraph",
+                            :content
+                            [{:nodeType "text", :value "", :marks [], :data {}}
+                             {:nodeType "embedded-entry-inline",
+                              :content [],
+                              :data {:target {:sys {:type "Link", :id "6VQ6AYyBkWg22mN10i5DrA", :linkType "Entry"}}}}
+                             {:nodeType "text", :value ", Technical guy", :marks [], :data {}}],
+                            :data {}}],
+                          :data {}}
+                         {:nodeType "list-item",
+                          :content
+                          [{:nodeType "paragraph",
+                            :content [{:nodeType "text", :value "Tommi Martin, Development guy", :marks [], :data {}}],
+                            :data {}}],
+                          :data {}}],
+                        :data {}}
+                       {:nodeType "paragraph",
+                        :content
+                        [{:nodeType "text",
+                          :value
+                          "Our team is small, but with a modern tech stack like ours, you don't need an army of developers to build what your business needs or to maintain it. Pay for business value, not for excessive meetings, project \"extras\" just hanging around, company overhead, constant tech stack updates or anything else not needed. For things we don't do, we have trusted partners.",
+                          :marks [],
+                          :data {}}],
+                        :data {}}
+                       {:nodeType "paragraph", :content [{:nodeType "text", :value "What we do:", :marks [], :data {}}], :data {}}
+                       {:nodeType "unordered-list",
+                        :content
+                        [{:nodeType "list-item",
+                          :content
+                          [{:nodeType "paragraph",
+                            :content [{:nodeType "text", :value "Commerce solutions", :marks [], :data {}}],
+                            :data {}}],
+                          :data {}}
+                         {:nodeType "list-item",
+                          :content
+                          [{:nodeType "paragraph",
+                            :content [{:nodeType "text", :value "Software development", :marks [], :data {}}],
+                            :data {}}],
+                          :data {}}
+                         {:nodeType "list-item",
+                          :content
+                          [{:nodeType "paragraph",
+                            :content [{:nodeType "text", :value "Integrations", :marks [], :data {}}],
+                            :data {}}],
+                          :data {}}
+                         {:nodeType "list-item",
+                          :content
+                          [{:nodeType "paragraph",
+                            :content [{:nodeType "text", :value "Business and technical consulting", :marks [], :data {}}],
+                            :data {}}],
+                          :data {}}],
+                        :data {}}
+                       {:nodeType "paragraph",
+                        :content
+                        [{:nodeType "text",
+                          :value
+                          "We are WYSIWYG: What you see is what you get. We don't have a sales team or pre-sales team, only our A team, from start to finish. You will get real value starting from the first meeting. Get in touch to test us!",
+                          :marks [],
+                          :data {}}],
+                        :data {}}
+                       {:nodeType "paragraph",
+                        :content
+                        [{:nodeType "text",
+                          :value
+                          "Customer experience is key for us and our customers. We enable you to build your architecture based on your business needs and make it future-proof. No more forcing solutions where they don't naturally fit. The age of monoliths is over.",
+                          :marks [],
+                          :data {}}],
+                        :data {}}
+                       {:nodeType "paragraph",
+                        :content [{:nodeType "text", :value "Work smarter, work with Cartman!", :marks [], :data {}}],
+                        :data {}}],
+                      :data {}}},
+                    :type ["news"],
+                    :publishDate "2023-04-05T00:00:00.000+03:00",
+                    :title "Cartman Digital: The Game-Changing Team for Your Business",
+                    :author {:name "Paavo Pokkinen"}}]}))

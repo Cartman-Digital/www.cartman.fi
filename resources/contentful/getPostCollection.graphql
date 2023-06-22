@@ -1,0 +1,17 @@
+query postCollectionQuery($type: [String]) {
+  postCollection(where: {type_contains_some: $type}) {
+    __typename
+    items {
+      __typename
+      author {
+        name
+      }
+      type
+      title
+      publishDate
+      content {
+        json
+      }
+    }
+  }
+}
