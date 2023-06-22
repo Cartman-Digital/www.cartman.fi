@@ -3,10 +3,16 @@ This project supports configuration via Environment variables or two config file
 To successfully run the project the following environment variables must be configured:
 
 ```
-BASE_URL - website's frontpage url ending with /
-CONTENTFUL_SPACE - string contentful's space hash
-CONTENTFUL_ENVIRONMENT - string environment code from contentful
-CONTENTFUL_TOKEN - string contentful's token
+BASE_URL - string - website's frontpage url ending with /
+CONTENTFUL_SPACE - string - contentful's space hash
+CONTENTFUL_ENVIRONMENT - string - environment code from contentful
+CONTENTFUL_TOKEN - string - contentful's token
+```
+
+Following env variables are optional for majority of pages but required for contact form.
+```
+NOTION_MESSAGE_DB_ID - string - Database id where contact form messages are pushed
+NOTION_INTEGRATION_TOKEN - string - Token used for pushing messages to notion.
 ```
 
 # Local development
