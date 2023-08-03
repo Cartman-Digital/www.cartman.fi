@@ -61,9 +61,6 @@
       [:textarea {:name fieldName :id fieldName :required ""}]
       [:input {:type fieldType :name fieldName :id fieldName :required ""}])]))
 
-(defn newline->br [s]
-  (clojure.string/replace s #"\r\n|\n|\r" "<br />\n"))
-
 ;; https://github.com/contentful/rich-text/blob/master/packages/rich-text-types/src/marks.ts
 ;; Used automatically by richtext->html
 (defmulti apply-text-mark
@@ -131,7 +128,7 @@
 
 (defmethod richtext->html "hyperlink"
   [m]
-  (into [:a {:href (static/prepend-base-url (get-in m [:data :uri]))}]
+  (into [:a {:href (create-url (get-in m [:data :uri]))}]
    (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "list-item"
@@ -149,7 +146,7 @@
 (defmethod richtext->html "text"
   [m]
   (reduce #(apply-text-mark (:type %2) %)
-          (newline->br (util/escape-html (:value m)))
+          (util/escape-html (:value m))
           (:marks m)))
 
 (defmethod richtext->html "table"
@@ -260,7 +257,7 @@
   [args]
   (let [fullbody (empty? (:shortDescription args))
         content (if (empty? (:shortDescription args)) (:content args) (:shortDescription args))]
-  [:div.post
+  [(if fullbody :div.post :li.post)
    [:h2 (:title args)]
    [:div.author
     [:span.name (get-in args [:author :name])]
@@ -279,7 +276,8 @@
 ; Todo implement two person logics: embedded and person page.
 (defmethod render "Person"
   [args]
-  [:div.person])
+  [:div.person
+   [:span.name (:name args)]])
 
 (comment (render {:__typename "PostCollection",
                   :items
@@ -392,3 +390,12 @@
                     :publishDate "2023-04-05T00:00:00.000+03:00",
                     :title "Cartman Digital: The Game-Changing Team for Your Business",
                     :author {:name "Paavo Pokkinen"}}]}))
+
+(comment (hiccup2.core/html (richtext->html {:nodeType "paragraph",
+           :content
+           [{:nodeType "text",
+             :value
+             "kubectl get bucket\nNAME              READY   SYNCED   STORAGE_CLASS    LOCATION   AGE\nbucket-for-demo   True    True     MULTI_REGIONAL   EU         102s",
+             :marks [{:type "code"}],
+             :data {}}],
+           :data {}})))
