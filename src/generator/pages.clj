@@ -17,7 +17,9 @@
 
 (defn render-posts
   [post-collection]
-  [:div.content (renderer/render (:postCollection post-collection))])
+  [:div.content 
+   [:h1 "Blog"]
+   (renderer/render (:postCollection post-collection))])
 
 (defn render-page-head
   "Must be called from hiccup. Outputs common page html head with links to static files and metadata."

@@ -138,7 +138,15 @@ html body {
     }
 
     ul {
-        @apply list-disc pl-4 mb-2;
+        @apply list-disc list-inside mb-2;
+    }
+
+    ol {
+        @apply list-decimal list-inside mb-2;
+        
+        li p {
+            @apply inline-block;
+        }
     }
 
     li p {
@@ -411,7 +419,7 @@ body .content > .doc,
 body .content > section,
 body .content .post-list,
 body .content > .post {
-    @apply clear-left overflow-hidden m-auto py-16 px-6 md:px-12 2xl:px-0;
+    @apply clear-left overflow-hidden m-auto py-16 px-6 md:px-12 2xl:px-4;
 }
 
 .content > .doc,
@@ -667,6 +675,20 @@ body .content .card-list {
     }
 }
 
+/** Table */
+body table {
+    @apply border border-spacing-1 my-8;
+
+    td,
+    th {
+        @apply border-gray-500 border p-2;
+    }
+
+    p {
+        @apply m-0;
+    }
+}
+
 /**
  * Page specific styles 
  */
@@ -703,6 +725,10 @@ body .content .card-list {
 
 /** Post list page */
 body.postlist {
+    h1 {
+        @apply mt-8 text-center;
+    }
+
     .post-list {
         @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:px-8;
 
@@ -725,21 +751,7 @@ body.postlist {
     }
 }
 
-/** Table */
-body table {
-    @apply border border-spacing-1 my-8;
-
-    td,
-    th {
-        @apply border-gray-500 border p-2;
-    }
-
-    p {
-        @apply m-0;
-    }
-}
-
-/** Post pages */
+/** Post page */
 body.post-page {
     font-size: 20px;
     line-height: 1.6rem;
@@ -753,7 +765,7 @@ body.post-page {
     }
     
     code {
-        @apply text-base block shadow-white border border-white bg-black p-4;
+        @apply text-base block shadow-white border border-white bg-black p-4 whitespace-pre-wrap;
         box-shadow: inset 1px 1px 3px;
         overflow-wrap: break-word;
     } 
