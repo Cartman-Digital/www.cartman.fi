@@ -1,4 +1,8 @@
-# Configuration files and Environment variables
+# www.cartman.fi website
+
+This repository contains static HTML generator www.cartman.fi website implemented using Clojure. Website data is fetched from Contentful. A running Cloud Run container hosts API endpoints for handling eg. forms and preview mode.
+
+## Configuration files and Environment variables
 This project supports configuration via Environment variables or two config files `generator-config.edn` or `sensitive-config.edn` at the root of the project. sensitive-config file should not be committed to git repository.
 To successfully run the project the following environment variables must be configured:
 
@@ -15,7 +19,7 @@ NOTION_MESSAGE_DB_ID - string - Database id where contact form messages are push
 NOTION_INTEGRATION_TOKEN - string - Token used for pushing messages to notion.
 ```
 
-# Local development
+## Local development
 To launch local environment do the following:
 1. Launch REPL using deps.edn (no alias required)
 2. Open to src/generator/webserver.clj
