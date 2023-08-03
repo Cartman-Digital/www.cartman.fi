@@ -26,7 +26,8 @@
   "contentful/getCardList.graphql"
   "contentful/getSitemap.graphql"
   "contentful/getEntry.graphql"
-  "contentful/getPostCollection.graphql")
+  "contentful/getPostCollection.graphql"
+  "contentful/getPostList.graphql")
 (def query-map (graphql-core/query-map graphql-queries))
 
 (defn ^:private api-call

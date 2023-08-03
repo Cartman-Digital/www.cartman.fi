@@ -31,6 +31,13 @@ query entryQuery($entryId: String!) {
           }
         }
       }
+      ... on Person {
+        name
+        email
+        picture {
+          url
+        }
+      }
     }
   }
 }

@@ -12,4 +12,17 @@ query sitemapQuery {
       }
     }
   }
+  postCollection {
+    items {
+      title
+      slug
+      seoIndexing
+      seoUpdateFrequency
+      sitemapPriority
+      sys {
+        id
+        publishedAt
+      }
+    }
+  }
 }

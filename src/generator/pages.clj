@@ -9,9 +9,11 @@
    [taoensso.truss :as truss :refer (have)]))
 
 (defn render-content
-  [content] 
-  (let [collection-items (get-in content [:contentCollection :items])] 
-    (into [:div.content] (mapv #(renderer/render %) collection-items))))
+  [m] 
+  (let [collection-items (get-in m [:contentCollection :items])]
+    (into [:div.content] (if (not-empty collection-items)
+                           (mapv #(renderer/render %) collection-items)
+                           [(renderer/render m)]))))
 
 (defn render-posts
   [post-collection]
@@ -51,35 +53,48 @@
               [:span {:class "sr-only"} "Twitter"]])]])
 
 (defn render-page
-  [page]
+  [page body-class]
   (html5 
    (render-page-head (:seoIndexing page) (:title page))
-   [:body {:class (:slug page)}
+   [:body {:class (str (:slug page) " " body-class)}
     (nav/render-main-menu)
     (render-content page)
     (render-page-footer)
     (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
 
-(defn render-posts-page
+(defn render-post-list-page
   []
   (html5
    (render-page-head true "Articles")
-   [:body {:class "articles"}
+   [:body {:class "postlist"}
     (nav/render-main-menu)
-    (render-posts (contentful/get-contentful :post-collection-query {:type ["news" "article"]}))
+    (render-posts (contentful/get-contentful :post-list-query {:type ["news" "article" "dev"]}))
     (render-page-footer)
     (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
 
-(defn get-pages
-  "Returns map of filename (eg. index.html) -> html" 
-  []
+(defn get-static-pages 
+  [m]
   (let [pages-data (contentful/get-contentful :page-collection-query)
-        pages (have vector? (get-in pages-data [:pageCollection :items]))]
-    (into {"/articles.html" (fn [context] (render-posts-page))} 
-          (mapv #(vector 
-                  (if (not= (:slug %) "/") (str "/" (:slug %) ".html") (str "/index.html")) 
-                  (fn [context] (render-page %))) pages))))
+        pages (have vector? (get-in pages-data [:pageCollection :items]))] 
+    (into m (mapv #(vector
+            (if (not= (:slug %) "/") (str "/" (:slug %) ".html") (str "/index.html"))
+            (fn [context] (render-page % "static-page"))) pages))))
 
+(defn get-post-pages
+  "Returns map of filename (eg. index.html) -> html"
+  [m]
+  (let [posts-data (contentful/get-contentful :post-collection-query {:type ["news" "article" "dev"]})
+        posts (have vector? (get-in posts-data [:postCollection :items]))]
+   (into m (mapv #(vector
+            (str "/" (:slug %) ".html")
+            (fn [context] (render-page % "post-page"))) posts))))
+
+(defn get-pages
+  "Creates a map of page slug -> render calls."
+  []
+  (-> {"/articles.html" (fn [context] (render-post-list-page))} 
+      get-static-pages
+      get-post-pages))
 
 (comment (:postCollection (contentful/get-contentful :post-collection-query {:type ["news" "article"]})))
-
+(comment (get-pages))
