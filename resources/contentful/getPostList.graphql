@@ -1,4 +1,4 @@
-query postCollectionQuery($type: [String]) {
+query postListQuery($type: [String]) {
   postCollection(
     where: {type_contains_some: $type}
     order: publishDate_DESC
@@ -17,7 +17,7 @@ query postCollectionQuery($type: [String]) {
       title
       publishDate
       slug
-      content {
+      shortDescription {
         json
       }
     }

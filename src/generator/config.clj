@@ -31,6 +31,3 @@
         (let [env-value (read-config var-name)]
           (swap! env-cache assoc keyword-name env-value)
           env-value))))
-
-
-(comment (get-env "CONTENTFUL_SPACE"))

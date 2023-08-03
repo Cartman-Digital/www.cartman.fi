@@ -12,9 +12,33 @@
    [hiccup.element :refer [image]]
    [hiccup.form :as form]
    [hiccup.page :as page]
+   [hiccup.util :as util]
    [taoensso.truss :as truss :refer [have]]))
 
 (declare render)
+
+(defn iso-to-relative
+  [iso-date]
+  (let [zone (java.time.ZoneId/of "Europe/Helsinki")
+        todayOff (java.time.OffsetDateTime/now zone)
+        today (.toLocalDate (.atZoneSameInstant todayOff (java.time.ZoneId/systemDefault)))
+        thenOff (java.time.OffsetDateTime/parse iso-date)
+        then (.toLocalDate (.atZoneSameInstant thenOff (java.time.ZoneId/systemDefault)))
+        period (java.time.Period/between then today)
+        days (.getDays period)
+        weeks (int (Math/floor (/ days 7)))
+        months (.getMonths period)
+        years (.getYears period)]
+    (cond
+      (= 1 years) (str years " year ago")
+      (< 1 years) (str years " years ago")
+      (= 1 months) (str months " month ago")
+      (< 1 months) (str months " months ago")
+      (= 1 weeks) (str weeks " week ago")
+      (< 1 weeks) (str weeks " weeks ago")
+      (= 1 days) " yesterday"
+      (< 1 days) " days ago"
+      (= 0 days) "Today")))
 
 ;; Workaround to get grid styles compiled into the sheet.
 ;; Returns one of sm:grid-cols-1 sm:grid-cols-2 sm:grid-cols-3 sm:grid-cols-4
@@ -125,8 +149,25 @@
 (defmethod richtext->html "text"
   [m]
   (reduce #(apply-text-mark (:type %2) %)
-          (newline->br (:value m))
+          (newline->br (util/escape-html (:value m)))
           (:marks m)))
+
+(defmethod richtext->html "table"
+  [m]
+  (into [:table] (mapv richtext->html (:content m))))
+
+(defmethod richtext->html "table-row"
+  [m]
+  (into [:tr] (mapv richtext->html (:content m))))
+
+;; Todo: requires colspan support
+(defmethod richtext->html "table-header-cell"
+  [m]
+  (into [:th] (mapv richtext->html (:content m))))
+
+(defmethod richtext->html "table-cell"
+  [m]
+  (into [:td] (mapv richtext->html (:content m))))
 
 (defmethod richtext->html "unordered-list"
   [m]
@@ -217,22 +258,33 @@
 
 (defmethod render "Post"
   [args]
-  (println args)
-  [:li.post 
+  (let [fullbody (empty? (:shortDescription args))
+        content (if (empty? (:shortDescription args)) (:content args) (:shortDescription args))]
+  [:div.post
    [:h2 (:title args)]
-   [:p [:span.author (get-in args [:author :name])]]
-   [:p [:span.published (:publishDate args)]]
-   [:div.post-body (richtext->html (get-in args [:content :json]))]])
+   [:div.author
+    [:span.name (get-in args [:author :name])]
+    [:span.published (iso-to-relative (:publishDate args))]]
+   (into [:div.types] (mapv #(vector :span {:class (str "type " %)} %) (:type args)))
+   [:div.post-body (richtext->html (:json content))]
+   (if (not fullbody)
+     [:a {:class "button action primary" :href (create-url (:slug args))} "Read more"]
+     nil)]))
 
 (defmethod render "PostCollection"
   [args]
   [:div 
    (into [:ul.post-list] (mapv render (:items args)))])
 
+; Todo implement two person logics: embedded and person page.
+(defmethod render "Person"
+  [args]
+  [:div.person])
+
 (comment (render {:__typename "PostCollection",
                   :items
                   [{:__typename "Post",
-                    :content
+                    :shortDescription
                     {:json
                      {:nodeType "document",
                       :content
