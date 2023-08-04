@@ -26,6 +26,12 @@ query pageCollectionQuery {
               id
             }
           }
+          ... on ArticleList {
+            sys {
+              id
+            }
+            numberOfPostsShown
+          }
           ... on Nav {
             name
           }
