@@ -605,14 +605,14 @@ Use the code comments to navigate the file to adjust styles you need
     B. Sub navigation
     C. Hero banner
     D. Card list
-    E. Post
-    F. Table
+    E. Post list 
+    F. Post
+    G. Table
 8. Page specific styles
     A. Services page.
     B. Post list page
     C. Post page
 
-Hint: search in file.
 *****/
 
 /**
@@ -716,6 +716,7 @@ html body >.content {
 
 html body p {
   margin-bottom: 0.5rem;
+  white-space: pre-wrap;
 }
 
 html body ul {
