@@ -17,6 +17,8 @@ Following env variables are optional for majority of pages but required for cont
 ```
 NOTION_MESSAGE_DB_ID - string - Database id where contact form messages are pushed
 NOTION_INTEGRATION_TOKEN - string - Token used for pushing messages to notion.
+CAPTCHA_PUBLIC_KEY - string - Captcha public key from google  
+CAPTCHA_PRIVATE_KEY - string - Captcha private key from google. 
 ```
 
 ## Local development
