@@ -6,7 +6,9 @@ query navCollectionQuery($name: String) {
       }
       name
       linkedFrom {
-        navItemCollection {
+        navItemCollection (
+          order: weight_ASC
+        ) {
           total
           items {
             sys {
