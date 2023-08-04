@@ -1792,6 +1792,8 @@ body.post-page .post-body {
 }
 
 body.post-page code {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   display: block;
   white-space: pre-wrap;
   border-width: 1px;
@@ -1806,6 +1808,11 @@ body.post-page code {
   --tw-shadow: var(--tw-shadow-colored);
   box-shadow: inset 1px 1px 3px;
   overflow-wrap: break-word;
+}
+
+body.post-page img {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 @media (min-width: 640px) {
