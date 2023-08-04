@@ -1,0 +1,23 @@
+query postsByListQuery($listId: String!, $limit: Int!) {
+  articleList(id: $listId) {
+    websiteTitle
+    numberOfPostsShown
+    linkedFrom {
+      postCollection(limit: $limit, order: publishDate_DESC) {
+        items {
+          __typename
+          type
+          slug
+          title
+          shortDescription {
+            json
+          }
+          publishDate
+          author {
+            name
+          }
+        }
+      }
+    }
+  }
+}

@@ -9,36 +9,13 @@
    [generator.contentful :as contentful]
    [generator.navigation :refer [create-url]]
    [generator.renderer.static :as static]
+   [generator.renderer.util :as renderer.util]
    [hiccup.element :refer [image]]
    [hiccup.form :as form]
-   [hiccup.page :as page]
    [hiccup.util :as util]
    [taoensso.truss :as truss :refer [have]]))
 
 (declare render)
-
-(defn iso-to-relative
-  [iso-date]
-  (let [zone (java.time.ZoneId/of "Europe/Helsinki")
-        todayOff (java.time.OffsetDateTime/now zone)
-        today (.toLocalDate (.atZoneSameInstant todayOff (java.time.ZoneId/systemDefault)))
-        thenOff (java.time.OffsetDateTime/parse iso-date)
-        then (.toLocalDate (.atZoneSameInstant thenOff (java.time.ZoneId/systemDefault)))
-        period (java.time.Period/between then today)
-        days (.getDays period)
-        weeks (int (Math/floor (/ days 7)))
-        months (.getMonths period)
-        years (.getYears period)]
-    (cond
-      (= 1 years) (str years " year ago")
-      (< 1 years) (str years " years ago")
-      (= 1 months) (str months " month ago")
-      (< 1 months) (str months " months ago")
-      (= 1 weeks) (str weeks " week ago")
-      (< 1 weeks) (str weeks " weeks ago")
-      (= 1 days) " yesterday"
-      (< 1 days) " days ago"
-      (= 0 days) "Today")))
 
 ;; Workaround to get grid styles compiled into the sheet.
 ;; Returns one of sm:grid-cols-1 sm:grid-cols-2 sm:grid-cols-3 sm:grid-cols-4
@@ -261,7 +238,7 @@
    [:h2 (:title args)]
    [:div.author
     [:span.name (get-in args [:author :name])]
-    [:span.published (iso-to-relative (:publishDate args))]]
+    [:span.published (renderer.util/iso-to-relative (:publishDate args))]]
    (into [:div.types] (mapv #(vector :span {:class (str "type " %)} %) (:type args)))
    [:div.post-body (richtext->html (:json content))]
    (if (not fullbody)
@@ -273,129 +250,23 @@
   [:div 
    (into [:ul.post-list] (mapv render (:items args)))])
 
+(defmethod render "ArticleList" 
+  [args]
+  (let [contentful-map (contentful/get-contentful 
+                        :posts-by-list-query {:listId (get-in args [:sys :id]) 
+                                              :limit (:numberOfPostsShown args)})]
+    [:section.post-list-wrap
+     [:div.intro
+       [:h2 (get-in contentful-map [:articleList :websiteTitle])]]
+     (into [:ul.post-list] (mapv render (get-in contentful-map [:articleList :linkedFrom :postCollection :items])))]))
+
 ; Todo implement two person logics: embedded and person page.
 (defmethod render "Person"
   [args]
   [:div.person
    [:span.name (:name args)]])
 
-(comment (render {:__typename "PostCollection",
-                  :items
-                  [{:__typename "Post",
-                    :shortDescription
-                    {:json
-                     {:nodeType "document",
-                      :content
-                      [{:nodeType "paragraph",
-                        :content
-                        [{:nodeType "text",
-                          :value "So happy to announce that Cartman has been reborn and is now Cartman Digital. Woop woop!",
-                          :marks [],
-                          :data {}}],
-                        :data {}}
-                       {:nodeType "paragraph",
-                        :content
-                        [{:nodeType "text",
-                          :value
-                          "The new Cartman Digital has a unique team with vast experience in both business and technical development. We have done it all, from B2B to B2C to D2C, and we have done it together.",
-                          :marks [],
-                          :data {}}],
-                        :data {}}
-                       {:nodeType "paragraph",
-                        :content [{:nodeType "text", :value "Meet our amazing team:", :marks [], :data {}}],
-                        :data {}}
-                       {:nodeType "unordered-list",
-                        :content
-                        [{:nodeType "list-item",
-                          :content
-                          [{:nodeType "paragraph",
-                            :content [{:nodeType "text", :value "Janne Sävy, Commercial guy", :marks [], :data {}}],
-                            :data {}}],
-                          :data {}}
-                         {:nodeType "list-item",
-                          :content
-                          [{:nodeType "paragraph",
-                            :content
-                            [{:nodeType "text", :value "", :marks [], :data {}}
-                             {:nodeType "embedded-entry-inline",
-                              :content [],
-                              :data {:target {:sys {:type "Link", :id "6VQ6AYyBkWg22mN10i5DrA", :linkType "Entry"}}}}
-                             {:nodeType "text", :value ", Technical guy", :marks [], :data {}}],
-                            :data {}}],
-                          :data {}}
-                         {:nodeType "list-item",
-                          :content
-                          [{:nodeType "paragraph",
-                            :content [{:nodeType "text", :value "Tommi Martin, Development guy", :marks [], :data {}}],
-                            :data {}}],
-                          :data {}}],
-                        :data {}}
-                       {:nodeType "paragraph",
-                        :content
-                        [{:nodeType "text",
-                          :value
-                          "Our team is small, but with a modern tech stack like ours, you don't need an army of developers to build what your business needs or to maintain it. Pay for business value, not for excessive meetings, project \"extras\" just hanging around, company overhead, constant tech stack updates or anything else not needed. For things we don't do, we have trusted partners.",
-                          :marks [],
-                          :data {}}],
-                        :data {}}
-                       {:nodeType "paragraph", :content [{:nodeType "text", :value "What we do:", :marks [], :data {}}], :data {}}
-                       {:nodeType "unordered-list",
-                        :content
-                        [{:nodeType "list-item",
-                          :content
-                          [{:nodeType "paragraph",
-                            :content [{:nodeType "text", :value "Commerce solutions", :marks [], :data {}}],
-                            :data {}}],
-                          :data {}}
-                         {:nodeType "list-item",
-                          :content
-                          [{:nodeType "paragraph",
-                            :content [{:nodeType "text", :value "Software development", :marks [], :data {}}],
-                            :data {}}],
-                          :data {}}
-                         {:nodeType "list-item",
-                          :content
-                          [{:nodeType "paragraph",
-                            :content [{:nodeType "text", :value "Integrations", :marks [], :data {}}],
-                            :data {}}],
-                          :data {}}
-                         {:nodeType "list-item",
-                          :content
-                          [{:nodeType "paragraph",
-                            :content [{:nodeType "text", :value "Business and technical consulting", :marks [], :data {}}],
-                            :data {}}],
-                          :data {}}],
-                        :data {}}
-                       {:nodeType "paragraph",
-                        :content
-                        [{:nodeType "text",
-                          :value
-                          "We are WYSIWYG: What you see is what you get. We don't have a sales team or pre-sales team, only our A team, from start to finish. You will get real value starting from the first meeting. Get in touch to test us!",
-                          :marks [],
-                          :data {}}],
-                        :data {}}
-                       {:nodeType "paragraph",
-                        :content
-                        [{:nodeType "text",
-                          :value
-                          "Customer experience is key for us and our customers. We enable you to build your architecture based on your business needs and make it future-proof. No more forcing solutions where they don't naturally fit. The age of monoliths is over.",
-                          :marks [],
-                          :data {}}],
-                        :data {}}
-                       {:nodeType "paragraph",
-                        :content [{:nodeType "text", :value "Work smarter, work with Cartman!", :marks [], :data {}}],
-                        :data {}}],
-                      :data {}}},
-                    :type ["news"],
-                    :publishDate "2023-04-05T00:00:00.000+03:00",
-                    :title "Cartman Digital: The Game-Changing Team for Your Business",
-                    :author {:name "Paavo Pokkinen"}}]}))
-
-(comment (hiccup2.core/html (richtext->html {:nodeType "paragraph",
-           :content
-           [{:nodeType "text",
-             :value
-             "kubectl get bucket\nNAME              READY   SYNCED   STORAGE_CLASS    LOCATION   AGE\nbucket-for-demo   True    True     MULTI_REGIONAL   EU         102s",
-             :marks [{:type "code"}],
-             :data {}}],
-           :data {}})))
+(comment (render {:__typename "ArticleList" :sys {:id "4N25RfloTD2aq3YtrDEzLk"} :numberOfPostsShown 3}))
+(comment (contentful/get-contentful
+          :posts-by-list-query {:listId "4N25RfloTD2aq3YtrDEzLk"
+                                :limit 3}))
