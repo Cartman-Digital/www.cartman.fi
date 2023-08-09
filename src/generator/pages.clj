@@ -23,14 +23,15 @@
 
 (defn render-page-head
   "Must be called from hiccup. Outputs common page html head with links to static files and metadata."
-  [seoIndexing title]
+  [page-map]
   [:head
    [:meta {:charset "utf-8"}]
    [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
-   (when (false? seoIndexing) [:meta {:name "robots" :content "noindex"}])
-   [:title title]
+   (when (false? (:seoIndexing page-map)) [:meta {:name "robots" :content "noindex"}])
+   [:title (:title page-map)]
    (static/get-local-css "main.css")
    (include-css "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css")
+   [:link {:rel "canonical" :href (nav/create-url (:slug page-map))}] 
    [:link {:rel "preconnect" :href "https://fonts.googleapis.com"}]
    [:script {:src "https://cdn-eu.usefathom.com/script.js" :data-site "KVDXDFWF" :defer true}]
    [:link {:rel "preconnect" :href "https://fonts.gstatic.com" :crossorigin ""}]
@@ -65,7 +66,9 @@
 (defn render-page
   [page body-class]
   (html5 
-   (render-page-head (:seoIndexing page) (:title page))
+   (render-page-head {:slug (:slug page)
+                      :title (:title page)
+                      :seoIndexing (:seoIndexing page)}  )
    [:body {:class (str (:slug page) " " body-class)}
     (nav/render-main-menu)
     (render-content page)
@@ -75,7 +78,9 @@
 (defn render-post-list-page
   []
   (html5
-   (render-page-head true "Articles")
+   (render-page-head {:seoIndexing true
+                      :title "Articles"
+                      :slug "articles"})
    [:body {:class "postlist"}
     (nav/render-main-menu)
     (render-posts (contentful/get-contentful :post-list-query {:type ["news" "article" "dev"]}))
