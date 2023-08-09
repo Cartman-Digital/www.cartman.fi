@@ -3,8 +3,7 @@
    [generator.contentful :refer [get-contentful]]
    [generator.navigation :refer [create-url]]
    [sitemap.core]
-   [sitemap.validator]
-   [generator.contentful :as contentful])
+   [sitemap.validator])
   (:import java.io.File))
 
 (defn format-sitemap
@@ -48,4 +47,3 @@
 
 
 (comment (get-sitemap-items))
-(comment ())
