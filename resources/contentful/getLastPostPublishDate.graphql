@@ -1,0 +1,10 @@
+query lastPostPublishDate {
+  postCollection(
+    order: publishDate_DESC
+    limit: 1
+  ) {
+    items {
+      publishDate
+    }
+  }
+}

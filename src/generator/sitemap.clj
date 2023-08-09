@@ -3,7 +3,8 @@
    [generator.contentful :refer [get-contentful]]
    [generator.navigation :refer [create-url]]
    [sitemap.core]
-   [sitemap.validator])
+   [sitemap.validator]
+   [generator.contentful :as contentful])
   (:import java.io.File))
 
 (defn format-sitemap
@@ -17,11 +18,13 @@
 (defn get-custom-items
   "Returns custom sitemap items that are not present in Contentful data"
   []
-  [{:slug "articles"
-    :seoIndexing true
-    :title "Blog"
-    :sitemapPriority 0.7
-    :seoUpdateFrequency "weekly"}])
+  (let [post-collection (get-in (get-contentful :last-post-publish-date) [:postCollection :items])]
+       [{:slug "articles"
+         :seoIndexing true
+         :title "Blog"
+         :sitemapPriority 0.7
+         :sys {:publishedAt (:publishDate (first post-collection))}
+         :seoUpdateFrequency "weekly"}]))
 
 (defn get-sitemap-items
   []
