@@ -56,18 +56,11 @@
     (link-to "https://www.itewiki.fi/cartman-digital"
              [:span.icon
               [:svg {:xmlns "http://www.w3.org/2000/svg"  :width "24" :height "24" :viewBox "0 0 177.7 177.7" :x "0px" :y "0px" :style "enable-background:new 0 0 177.7 177.7;" :xml:space "preserve"}
-               [:st0 [:style {:type "text/css" :fill-rule "evenodd" :clip-rule "evenodd" :fill "rgb(255,255,255)"} ]]
-               [:g [:path {:fill "rgb(255,255,255)" :class "st0" :d "M84.3,129l-40-40.3L0.2,44.2L0,133.5l39.8,39.6L84.3,129L84.3,129z M93.4,48.7l40,40.3l44.1,44.4l0.2-0.2V44.2
-                                                     		L137.9,4.6L93.4,48.7z" }]
-                [:polygon  {:fill "rgb(255,255,255)" :class "st0"  :points "129,93.4 88.6,133.4 44.2,177.5 133.5,177.7 173.1,137.9 	"}]
-                [:polygon  {:fill "rgb(255,255,255)" :class "st0" :points "48.7,84.3 89,44.3 133.5,0.2 44.2,0 4.6,39.8 	"}]
-                ]
-               
-               ]
-              [:span {:class "sr-only"} "Itewiki"]]
-             )
-    
-    ]])
+               [:g [:path {:fill "rgb(255,255,255)"  :d "M84.3,129l-40-40.3L0.2,44.2L0,133.5l39.8,39.6L84.3,129L84.3,129z M93.4,48.7l40,40.3l44.1,44.4l0.2-0.2V44.2L137.9,4.6L93.4,48.7z"}]
+                [:polygon  {:fill "rgb(255,255,255)"   :points "129,93.4 88.6,133.4 44.2,177.5 133.5,177.7 173.1,137.9"}]
+                [:polygon  {:fill "rgb(255,255,255)"  :points "48.7,84.3 89,44.3 133.5,0.2 44.2,0 4.6,39.8"}]
+                ]]
+              [:span {:class "sr-only"} "Itewiki"]])]])
 
 (defn render-page
   [page body-class]
