@@ -13,8 +13,9 @@ CONTENTFUL_ENVIRONMENT - string - environment code from contentful
 CONTENTFUL_TOKEN - string - contentful's token
 ```
 
-Following env variables are optional for majority of pages but required for contact form.
+Following env variables are optional for majority of pages but can be required by other features such as contact form and preview
 ```
+CONTENTFUL_PREVIEW_TOKEN - string - token used to fetch previews such as draft and changed content.
 NOTION_MESSAGE_DB_ID - string - Database id where contact form messages are pushed
 NOTION_INTEGRATION_TOKEN - string - Token used for pushing messages to notion.
 CAPTCHA_PUBLIC_KEY - string - Captcha public key from google  

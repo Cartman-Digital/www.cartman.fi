@@ -4,7 +4,7 @@
    [clojure.string :as string]
    [generator.builder :refer [generate]]
    [generator.notion-form :as contact] 
-   [generator.pages :refer [get-pages]]
+   [generator.pages :as pages]
    [ring.adapter.jetty :as jetty]
    [ring.middleware.content-type :refer [wrap-content-type]]
    [ring.middleware.not-modified :refer [wrap-not-modified]]
@@ -14,7 +14,8 @@
    [ring.middleware.resource :refer [wrap-resource]] 
    [ring.middleware.stacktrace :refer [wrap-stacktrace]] 
    [ring.util.response :as response]
-   [stasis.core :as stasis]))
+   [stasis.core :as stasis]
+   [generator.contentful :as contentful]))
 
 ;; Handler for "/api/generate" endpoint WIP:
 ;; currently calling this causes the files to generate but browser triggers a file download.
@@ -25,7 +26,21 @@
   (generate)
   (response/header (response/response "") "Content-Type" "Text/html"))
 
-;; Todo format post to expected stuff and pass into submit form
+(defn get-id-from-request
+  "Returns the Contentful sys_id from api/preview/X urls"
+  [request] 
+  (let [params (ring.params/params-request request)
+        {:strs [id]} (:query-params params)]
+    id))
+
+(defn handle-preview
+  "Load and output a preview page"
+  [request query type]
+  (let [data (type (contentful/get-contentful-preview query {:id (get-id-from-request request)}))]
+    (response/header 
+     (response/response (pages/render-page data (if (= type :post) "post-page preview" "preview")))
+     "Content-Type" "Text/html")))
+
 (defn handle-contact
   [request]
   (let [parsed-request (ring.params/params-request request)
@@ -44,10 +59,12 @@
         (= uri "/api/generate") (handle-generate request)
         (= uri "/api/contact") (handle-contact request)
         (= uri "/api/ping") (response/header (response/response "pong\n") "Content-Type" "text/plain")
+        (string/starts-with? uri "/api/preview/page") (handle-preview request :preview-page-query :page)
+        (string/starts-with? uri "/api/preview/post") (handle-preview request :preview-post-query :post)
         (string/starts-with? uri "/assets/v/") (response/redirect (clojure.string/replace-first uri #"v/[0-9]*/" ""))
         :else (handler request)))))
 
-(def app (-> (stasis/serve-pages get-pages) ;; should return map of slug -> render call
+(def app (-> (stasis/serve-pages pages/get-pages) ;; should return map of slug -> render call
              (wrap-resource "public")
              (wrap-api-routes)
              (wrap-content-type)
@@ -70,7 +87,6 @@
     (println "Web server stopped.")))
 
 (comment
-  
-  (start-webserver)
-  (stop-webserver)
-  (get-pages))
+ (start-webserver) 
+ (stop-webserver)
+ (pages/get-pages))
