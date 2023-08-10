@@ -234,26 +234,24 @@
   [args]
   (let [fullbody (empty? (:shortDescription args))
         content (if (empty? (:shortDescription args)) (:content args) (:shortDescription args))]
-  [(if fullbody :div.post :li.post)
-  ;;Testing out the image rendering in the site 
-  
-   [:div.image
-   
-    (if (:url (:postImage args))
-      [:img {:src (:url (:postImage args))}]
-      
-      ;;nil
-      [:img {:src "https://img.freepik.com/free-photo/closeup-shot-pine-tree-branch-with-blurred-background_181624-4220.jpg?w=1800&t=st=1691665555~exp=1691666155~hmac=e353d953720b127a7c21680fdbe89c812ff2c0366d3f31bbc003e8cc9fef3809"}]
-      )]
-   [:div.body [:h2 (:title args)]
-   [:div.author
-    [:span.name (get-in args [:author :name])]
-    [:span.published (renderer.util/iso-to-relative (:publishDate args))]]
-   (into [:div.types] (mapv #(vector :span {:class (str "type " %)} %) (:type args)))
-   [:div.post-body (richtext->html (:json content))]
-   (if (not fullbody)
-     [:a {:class "button action primary" :href (create-url (:slug args))} "Read more"]
-     nil)]]))
+    [(if fullbody :div.post :li.post)
+     [:div.image
+      (if (:url (:postImage args))
+        ;; Alt name not working- doesnt get the info from args
+
+        [:img {:alt (get-in args (:postImage :title)) :src (:url (:postImage args))}]
+
+     
+        [:img {:src "https://img.freepik.com/free-photo/closeup-shot-pine-tree-branch-with-blurred-background_181624-4220.jpg?w=1800&t=st=1691665555~exp=1691666155~hmac=e353d953720b127a7c21680fdbe89c812ff2c0366d3f31bbc003e8cc9fef3809" :alt "pinetree-closeup"}])]
+     [:div.body [:h2 (:title args)]
+      [:div.author
+       [:span.name (get-in args [:author :name])]
+       [:span.published (renderer.util/iso-to-relative (:publishDate args))]]
+      (into [:div.types] (mapv #(vector :span {:class (str "type " %)} %) (:type args)))
+      [:div.post-body (richtext->html (:json content))]
+      (if (not fullbody)
+        [:a {:class "button action primary" :href (create-url (:slug args))} "Read more"]
+        nil)]]))
 
 (defmethod render "PostCollection"
   [args]

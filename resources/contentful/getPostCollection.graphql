@@ -19,6 +19,7 @@ query postCollectionQuery($type: [String]) {
       slug
       postImage{
         url
+        title
       }
       content {
         json
