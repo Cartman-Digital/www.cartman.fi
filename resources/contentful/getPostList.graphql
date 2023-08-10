@@ -17,6 +17,9 @@ query postListQuery($type: [String]) {
       title
       publishDate
       slug
+      postImage{
+        url
+      }
       shortDescription {
         json
       }

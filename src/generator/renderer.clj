@@ -235,7 +235,14 @@
   (let [fullbody (empty? (:shortDescription args))
         content (if (empty? (:shortDescription args)) (:content args) (:shortDescription args))]
   [(if fullbody :div.post :li.post)
-   [:h2 (:title args)]
+  ;;Testing out the image rendering in the site 
+  
+   [:div.image
+   
+    (if (:url (:postImage args))
+      [:img {:src (:url (:postImage args))}]
+      nil)]
+   [:div.body [:h2 (:title args)]
    [:div.author
     [:span.name (get-in args [:author :name])]
     [:span.published (renderer.util/iso-to-relative (:publishDate args))]]
@@ -243,22 +250,30 @@
    [:div.post-body (richtext->html (:json content))]
    (if (not fullbody)
      [:a {:class "button action primary" :href (create-url (:slug args))} "Read more"]
-     nil)]))
+     nil)]]))
 
 (defmethod render "PostCollection"
   [args]
   [:div 
-   (into [:ul.post-list] (mapv render (:items args)))])
+   (into [:ul.post-list] (mapv render (:items args ))  )
+   
+   ])
 
 (defmethod render "ArticleList" 
   [args]
   (let [contentful-map (contentful/get-contentful 
-                        :posts-by-list-query {:listId (get-in args [:sys :id]) 
-                                              :limit (:numberOfPostsShown args)})]
+                        :posts-by-list-query {:listId (get-in args [:sys :id ]) 
+                                              :limit (:numberOfPostsShown args)
+                                              
+                                              })]
     [:section.post-list-wrap
      [:div.intro
-       [:h2 (get-in contentful-map [:articleList :websiteTitle])]]
-     (into [:ul.post-list] (mapv render (get-in contentful-map [:articleList :linkedFrom :postCollection :items])))]))
+       [:h2 (get-in contentful-map [:articleList :websiteTitle])] 
+       ] 
+       
+     
+     
+     (into [:ul.post-list] (mapv render (get-in contentful-map [:articleList :linkedFrom :postCollection :items ])))]))
 
 ; Todo implement two person logics: embedded and person page.
 (defmethod render "Person"

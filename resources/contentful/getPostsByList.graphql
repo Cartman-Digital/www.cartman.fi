@@ -9,6 +9,9 @@ query postsByListQuery($listId: String!, $limit: Int!) {
           type
           slug
           title
+          postImage{
+            url
+          }
           shortDescription {
             json
           }

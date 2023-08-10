@@ -17,6 +17,9 @@ query postCollectionQuery($type: [String]) {
       title
       publishDate
       slug
+      postImage{
+        url
+      }
       content {
         json
       }
