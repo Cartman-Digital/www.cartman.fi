@@ -67,6 +67,8 @@
     (reset! server nil)
     (println "Web server stopped.")))
 
-(comment (start-webserver))
-(comment (stop-webserver))
-(comment (get-pages))
+(comment
+  (start-webserver)
+  (stop-webserver)
+  (get-pages))
+
