@@ -648,12 +648,15 @@ body .content .card-list {
     @apply grid ;
 
     .post {
-        @apply mb-16 align-text-bottom grid  gap-4 ;
+        @apply mb-16 mx-16 align-text-bottom grid  gap-10 ;
         grid-template-columns: 40% 60%;
+        width: 80vw;
         
     
         a.action {
             @apply self-start mt-auto;
+            
+            align-self:flex-end
         }
         .image {
             @apply col-span-1;
@@ -668,6 +671,7 @@ body .content .card-list {
 
         .post-body {
             @apply mb-3;
+            width: 90%;
             
         }
     
