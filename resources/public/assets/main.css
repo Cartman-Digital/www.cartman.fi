@@ -1553,9 +1553,11 @@ body .content .card-list ul {
 }
 
 .post-list .post {
+  margin-left: 4rem;
+  margin-right: 4rem;
   margin-bottom: 4rem;
   display: grid;
-  gap: 1rem;
+  gap: 2.5rem;
   vertical-align: text-bottom;
 }
 
@@ -1589,11 +1591,13 @@ body .content .card-list ul {
 
 .post-list .post {
   grid-template-columns: 40% 60%;
+  width: 80vw;
 }
 
 .post-list .post a.action {
   margin-top: auto;
   align-self: flex-start;
+  align-self:flex-end;
 }
 
 .post-list .post .image {
@@ -1610,6 +1614,7 @@ body .content .card-list ul {
 
 .post-list .post .post-body {
   margin-bottom: 0.75rem;
+  width: 90%;
 }
 
 .post-list .post h2 {
