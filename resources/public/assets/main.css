@@ -1522,6 +1522,7 @@ body .content .card-list ul {
 
 .post-list {
   display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .services .content .side-by-side .embed .post-list {
@@ -1549,30 +1550,6 @@ body .content .card-list ul {
 @media (min-width: 1536px) {
   .services .content .side-by-side .embed .post-list {
     grid-template-columns: repeat(10, minmax(0, 1fr));
-  }
-}
-
-.post-list .post {
-  margin-bottom: 4rem;
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 2.5rem;
-  vertical-align: text-bottom;
-}
-
-.services .content .side-by-side .embed .post-list .post {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-@media (min-width: 768px) {
-  .services .content .side-by-side .embed .post-list .post {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .services .content .side-by-side .embed .post-list .post {
-    grid-template-columns: repeat(7, minmax(0, 1fr));
   }
 }
 
