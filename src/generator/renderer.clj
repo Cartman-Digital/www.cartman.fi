@@ -241,7 +241,10 @@
    
     (if (:url (:postImage args))
       [:img {:src (:url (:postImage args))}]
-      nil)]
+      
+      ;;nil
+      [:img {:src "https://img.freepik.com/free-photo/closeup-shot-pine-tree-branch-with-blurred-background_181624-4220.jpg?w=1800&t=st=1691665555~exp=1691666155~hmac=e353d953720b127a7c21680fdbe89c812ff2c0366d3f31bbc003e8cc9fef3809"}]
+      )]
    [:div.body [:h2 (:title args)]
    [:div.author
     [:span.name (get-in args [:author :name])]
