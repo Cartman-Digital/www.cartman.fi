@@ -645,17 +645,30 @@ body .content .card-list {
 }
 
 .post-list {
-    @apply grid grid-cols-1  ;
+    @apply grid ;
 
     .post {
-        @apply mb-16 align-text-bottom flex flex-col;
+        @apply mb-16 align-text-bottom grid  gap-4 ;
+        grid-template-columns: 40% 60%;
+        
     
         a.action {
             @apply self-start mt-auto;
         }
-    
+        .image {
+            @apply col-span-1;
+            max-height: 40vh;
+         
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
         .post-body {
             @apply mb-3;
+            
         }
     
         h2 {
@@ -776,5 +789,6 @@ body.post-page {
 
     img {
         @apply my-8;
+        display: none;
     }
 }
