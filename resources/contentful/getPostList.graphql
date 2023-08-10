@@ -19,6 +19,7 @@ query postListQuery($type: [String]) {
       slug
       postImage{
         url
+        title
       }
       shortDescription {
         json
