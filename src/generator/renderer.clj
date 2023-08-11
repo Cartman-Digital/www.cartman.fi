@@ -239,7 +239,7 @@
       (if (:url (:postImage args))
         [:img {:alt (get-in args [:postImage :title]) :src (:url (:postImage args))}]
         [:img {:alt "working-hands-and-laptops" :src "https://images.ctfassets.net/038s6vr0kmv0/3shYr3pz9Ldd0w5qzSUYdP/d3f0af0310d1aa71a47e4130ee238040/scott-graham-5fNmWej4tAA-unsplash.jpg?h=250"}])]
-     [:div.body [:h2 (:title args)]
+     [:div.body [:a {:href (create-url (:slug args))}[:h2 (:title args)]]
       [:div.author
        [:span.name (get-in args [:author :name])]
        [:span.published (renderer.util/iso-to-relative (:publishDate args))]]
