@@ -251,26 +251,18 @@
 
 (defmethod render "PostCollection"
   [args]
-  [:div 
-   (into [:ul.post-list] (mapv render (:items args ))  )
-   
-   ])
+  [:div
+   (into [:ul.post-list] (mapv render (:items args)))])
 
-(defmethod render "ArticleList" 
+(defmethod render "ArticleList"
   [args]
-  (let [contentful-map (contentful/get-contentful 
-                        :posts-by-list-query {:listId (get-in args [:sys :id ]) 
-                                              :limit (:numberOfPostsShown args)
-                                              
-                                              })]
+  (let [contentful-map (contentful/get-contentful
+                        :posts-by-list-query {:listId (get-in args [:sys :id])
+                                              :limit (:numberOfPostsShown args)})]
     [:section.post-list-wrap
      [:div.intro
-       [:h2 (get-in contentful-map [:articleList :websiteTitle])] 
-       ] 
-       
-     
-     
-     (into [:ul.post-list] (mapv render (get-in contentful-map [:articleList :linkedFrom :postCollection :items ])))]))
+      [:h2 (get-in contentful-map [:articleList :websiteTitle])]]
+     (into [:ul.post-list] (mapv render (get-in contentful-map [:articleList :linkedFrom :postCollection :items])))]))
 
 ; Todo implement two person logics: embedded and person page.
 (defmethod render "Person"
