@@ -1,5 +1,5 @@
-query pageCollectionQuery {
-  pageCollection (limit:25) {
+query pageCollectionQuery($preview: Boolean = false, $where: PageFilter) {
+  pageCollection (preview: $preview, where: $where, limit:25) {
     items {
       sys {
         id
@@ -7,7 +7,7 @@ query pageCollectionQuery {
       title
       slug
       seoIndexing
-      contentCollection {
+      contentCollection(preview: $preview) {
         items {
           __typename
           ... on CtaBanner {

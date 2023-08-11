@@ -1,8 +1,13 @@
-query postCollectionQuery($type: [String]) {
+query postCollectionQuery(
+  $type: [String],
+  $list: Boolean = false,
+  $preview: Boolean = false
+) {
   postCollection(
     where: {type_contains_some: $type}
-    order: publishDate_DESC
-    ) {
+    order: publishDate_DESC,
+    preview: $preview
+  ) {
     __typename
     items {
       __typename
@@ -21,9 +26,12 @@ query postCollectionQuery($type: [String]) {
         url
         title
       }
-      content {
+      content @skip(if: $list) {
         json
       }
+      shortDescription @include(if: $list) {
+        json
+      } 
     }
   }
 }

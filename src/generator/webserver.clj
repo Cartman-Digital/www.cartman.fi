@@ -35,10 +35,12 @@
 
 (defn handle-preview
   "Load and output a preview page"
-  [request query type]
-  (let [data (type (contentful/get-contentful-preview query {:id (get-id-from-request request)}))]
+  [request query content-type]
+  (let [raw-response (contentful/get-contentful-preview query {:preview true 
+                                                               :where {:sys {:id (get-id-from-request request)}}})
+        data (first (get-in raw-response (if (= content-type :page) [:pageCollection :items] [:postCollection :items])))]
     (response/header 
-     (response/response (pages/render-page data (if (= type :post) "post-page preview" "preview")))
+     (response/response (pages/render-page data (if (= content-type :post) "post-page preview" "preview")))
      "Content-Type" "Text/html")))
 
 (defn handle-contact
@@ -59,8 +61,8 @@
         (= uri "/api/generate") (handle-generate request)
         (= uri "/api/contact") (handle-contact request)
         (= uri "/api/ping") (response/header (response/response "pong\n") "Content-Type" "text/plain")
-        (string/starts-with? uri "/api/preview/page") (handle-preview request :preview-page-query :page)
-        (string/starts-with? uri "/api/preview/post") (handle-preview request :preview-post-query :post)
+        (string/starts-with? uri "/api/preview/page") (handle-preview request :page-collection-query :page)
+        (string/starts-with? uri "/api/preview/post") (handle-preview request :post-collection-query :post)
         (string/starts-with? uri "/assets/v/") (response/redirect (clojure.string/replace-first uri #"v/[0-9]*/" ""))
         :else (handler request)))))
 
