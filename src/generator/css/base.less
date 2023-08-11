@@ -648,34 +648,28 @@ body .content .card-list {
     @apply grid ;
 
     .post {
-        @apply mb-16  align-text-bottom grid grid-cols-1 md:grid-cols-10 gap-10 ;
-        
-        
-    
+        @apply mb-16  align-text-bottom grid grid-cols-1 md:grid-cols-10 gap-10;
+
         a.action {
             @apply self-start mt-auto float-left md:float-right;
-            
-            align-self:flex-end
         }
+
         .image {
             @apply col-span-4  hidden md:block;
             max-height: 40vh;
-         
-            img {
-                
+            img {    
                 height: 100%;
                 width: 100%;
                 object-fit: cover;
             }
         }
+
         .body {
             @apply col-span-6;
         }
-
+        
         .post-body {
-            @apply mb-3;
-            width: 90%;
-            
+            @apply mb-3;   
         }
     
         h2 {
@@ -793,9 +787,4 @@ body.post-page {
         box-shadow: inset 1px 1px 3px;
         overflow-wrap: break-word;
     } 
-
-    img {
-        @apply my-8;
-        display: none;
-    }
 }
