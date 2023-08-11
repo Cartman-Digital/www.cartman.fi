@@ -1845,9 +1845,7 @@ body.post-page .post-body {
   text-align: left;
 }
 
-body.post-page img {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+body.post-page .image {
   display: none;
 }
 
