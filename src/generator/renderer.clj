@@ -237,12 +237,8 @@
     [(if fullbody :div.post :li.post)
      [:div.image
       (if (:url (:postImage args))
-        ;; Alt name not working- doesnt get the info from args
-
-        [:img {:alt (get-in args (:postImage :title)) :src (:url (:postImage args))}]
-
-     
-        [:img {:src "https://img.freepik.com/free-photo/closeup-shot-pine-tree-branch-with-blurred-background_181624-4220.jpg?w=1800&t=st=1691665555~exp=1691666155~hmac=e353d953720b127a7c21680fdbe89c812ff2c0366d3f31bbc003e8cc9fef3809" :alt "pinetree-closeup"}])]
+        [:img {:alt (get-in args [:postImage :title]) :src (:url (:postImage args))}]
+        [:img {:alt "working-hands-and-laptops" :src "https://images.ctfassets.net/038s6vr0kmv0/3shYr3pz9Ldd0w5qzSUYdP/d3f0af0310d1aa71a47e4130ee238040/scott-graham-5fNmWej4tAA-unsplash.jpg?h=250"}])]
      [:div.body [:h2 (:title args)]
       [:div.author
        [:span.name (get-in args [:author :name])]
