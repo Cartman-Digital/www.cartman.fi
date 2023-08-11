@@ -29,11 +29,8 @@
   "contentful/getSitemap.graphql"
   "contentful/getEntry.graphql"
   "contentful/getPostCollection.graphql" ; Post Collection is used by generator to create full post pages
-  "contentful/getPostList.graphql" ; Post list is used to load posts on articles page
   "contentful/getPostsByList.graphql" ; Posts by list is used by contentful widgets that load articles on any page.
-  "contentful/getLastPostPublishDate.graphql"
-  "contentful/preview/page.graphql"
-  "contentful/preview/post.graphql")
+  "contentful/getLastPostPublishDate.graphql")
 (def query-map (graphql-core/query-map graphql-queries))
 
 (defn ^:private api-call
@@ -77,7 +74,7 @@
 
 
 (comment
-  (get-contentful-preview :preview-page-query {:id "Y4ckSNl5cvGfhy9cfxgW9"})
+  (get-contentful-preview :page-collection-query {:preview true :where {:sys {:id "Y4ckSNl5cvGfhy9cfxgW9"}}})
   (get-contentful :nav-collection-query {:name "Main menu"})
   (get-contentful :asset-query {:$assetId "34YRcoaS4WJ5ORhpMlMHRM"})
   (get-contentful :entry-query {:entryId "782ka3lNsGXBrnE88Qf3jt"})
