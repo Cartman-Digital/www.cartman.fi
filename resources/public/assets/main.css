@@ -1715,6 +1715,14 @@ body table p {
  * Page specific styles 
  */
 
+/** Front page */
+
+@media (min-width: 1536px) {
+  .front-page div:not(.banner-content-wrap) p {
+    max-width: 1280px;
+  }
+}
+
 /** Services page */
 
 .services .content>section:nth-child(odd) {
