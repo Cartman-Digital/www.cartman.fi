@@ -51,7 +51,8 @@
              (wrap-resource "public")
              (wrap-api-routes)
              (wrap-content-type)
-             (wrap-not-modified)
+             (wrap-not-modified) 
+             (wrap-refresh)
              (wrap-reload {:dirs ["src/generator" "resources/public"]})
              (wrap-stacktrace)))
 
@@ -69,6 +70,7 @@
     (println "Web server stopped.")))
 
 (comment
+  
   (start-webserver)
   (stop-webserver)
   (get-pages))
