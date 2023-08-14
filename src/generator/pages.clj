@@ -65,11 +65,13 @@
 
 (defn render-page
   [page body-class]
-  (html5 
+  (html5
    (render-page-head {:slug (:slug page)
                       :title (:title page)
-                      :seoIndexing (:seoIndexing page)}  )
-   [:body {:class (str (:slug page) " " body-class)}
+                      :seoIndexing (:seoIndexing page)})
+   [:body {:class (if (= (:slug page) "/")
+                    (str "front-page" " " body-class)
+                    (str (:slug page) " " body-class))}
     (nav/render-main-menu)
     (render-content page)
     (render-page-footer)
