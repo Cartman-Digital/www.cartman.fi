@@ -131,10 +131,12 @@ html body {
 
     >.content {
         @apply mx-auto py-0;
+      
     }
 
     p {
         @apply mb-2 whitespace-pre-wrap;
+       
     }
 
     ul {
@@ -628,7 +630,7 @@ body .content .card-list {
     }
 
     > .doc {
-        @apply text-center;
+        @apply text-center ;
         padding: 0 var(--layout-spacing-horizontal);
     }
 
@@ -734,6 +736,15 @@ body table {
 /**
  * Page specific styles 
  */
+
+
+ /** Front page */
+.front-page {
+    div:not(.banner-content-wrap) p {
+        @apply 2xl:max-w-screen-xl;
+    }
+}
+
 
 /** Services page */
 .services .content>section:nth-child(odd) {
