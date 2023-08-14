@@ -9,6 +9,7 @@
    [ring.middleware.content-type :refer [wrap-content-type]]
    [ring.middleware.not-modified :refer [wrap-not-modified]]
    [ring.middleware.params :as ring.params]
+   [ring.middleware.refresh :refer [wrap-refresh]]
    [ring.middleware.reload :refer [wrap-reload]] 
    [ring.middleware.resource :refer [wrap-resource]] 
    [ring.middleware.stacktrace :refer [wrap-stacktrace]] 
@@ -51,6 +52,7 @@
              (wrap-api-routes)
              (wrap-content-type)
              (wrap-not-modified)
+             (wrap-refresh)
              (wrap-reload {:dirs ["src/generator" "resources/public"]})
              (wrap-stacktrace)))
 
