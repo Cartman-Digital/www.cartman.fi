@@ -19,6 +19,6 @@
       (< 1 months) (str months " months ago")
       (= 1 weeks) (str weeks " week ago")
       (< 1 weeks) (str weeks " weeks ago")
-      (= 1 days) " yesterday"
-      (< 1 days) " days ago"
+      (= 1 days) "Yesterday"
+      (< 1 days) (str days " days ago")
       (= 0 days) "Today")))

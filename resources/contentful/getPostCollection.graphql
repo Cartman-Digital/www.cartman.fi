@@ -1,10 +1,10 @@
 query postCollectionQuery(
-  $type: [String],
-  $list: Boolean = false,
-  $preview: Boolean = false
+  $single: Boolean = true,
+  $preview: Boolean = false,
+  $where: PostFilter = {},
 ) {
   postCollection(
-    where: {type_contains_some: $type}
+    where: $where,
     order: publishDate_DESC,
     preview: $preview
   ) {
@@ -26,10 +26,10 @@ query postCollectionQuery(
         url
         title
       }
-      content @skip(if: $list) {
+      content @include(if: $single) {
         json
       }
-      shortDescription @include(if: $list) {
+      shortDescription @skip(if: $single) {
         json
       } 
     }

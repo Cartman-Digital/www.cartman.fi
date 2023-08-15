@@ -22,6 +22,10 @@
 (declare graphql-queries)
 
 ;; defgraphql does not support queries that start with graphql comments.
+;; Debugging tips:
+;;  - If you encounter Macroexpanding errors while evaluating this expression check your graphql for errors.
+;;  - Please try to avoid "Boolean = false" variable declarations in graphql queries. 
+;;    They do not work as intended and send NULL to contentful instead!
 (defgraphql graphql-queries "contentful/getNavTree.graphql"
   "contentful/getPages.graphql"
   "contentful/getAsset.graphql"
@@ -35,11 +39,12 @@
 
 (defn ^:private api-call
   [query & [preview?]]
-  (let [graphql (have map? (:graphql query))]
+  (let [graphql (have map? (:graphql query))
+        json (json/write-str {:query (:query graphql)
+                              :variables (:variables graphql)})]
     (->> (client/post contentful-url {:accept :json
                                       :debug false
-                                      :body (json/write-str {:query (:query graphql)
-                                                             :variables (:variables graphql)})
+                                      :body json
                                       :headers (if preview? preview-headers headers) ; preview content from graphql requires a different authorization token to view it.
                                       :throw-entire-message? true
                                       :content-type :json})
@@ -74,14 +79,12 @@
 
 
 (comment
-  (get-contentful-preview :page-collection-query {:preview true :where {:sys {:id "Y4ckSNl5cvGfhy9cfxgW9"}}})
+  (get-contentful :page-collection-query)
   (get-contentful :nav-collection-query {:name "Main menu"})
   (get-contentful :asset-query {:$assetId "34YRcoaS4WJ5ORhpMlMHRM"})
   (get-contentful :entry-query {:entryId "782ka3lNsGXBrnE88Qf3jt"})
   (get-contentful :card-list-query {:listId "2pJ63nhY2QKbVesxgWOvq9"})
-  (get-contentful :post-collection-query {:type ["news" "dev" "article"]})
+  (get-contentful :post-collection-query)
   (json/write-str (:graphql ((get-in query-map [:query :asset-query]) {:assetId "34YRcoaS4WJ5ORhpMlMHRM"})))
-  (:variables (:graphql ((get-in query-map [:query :nav-collection-query]) {:name "Main menu"})))
+  (:query (:graphql ((get-in query-map [:query :post-collection-query]))))
   (memo/memo-clear! api-call)) ; evaluate this in REPL to clear memoize cache from api-call this allows you to update page content from contentful without restart 
-
- 
