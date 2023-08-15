@@ -85,7 +85,7 @@
                       :slug "articles"})
    [:body {:class "postlist"}
     (nav/render-main-menu)
-    (render-posts (contentful/get-contentful :post-list-query {:type ["news" "article" "dev"]}))
+    (render-posts (contentful/get-contentful :post-collection-query {:single false}))
     (render-page-footer)
     (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
 
@@ -100,7 +100,7 @@
 (defn get-post-pages
   "Returns map of filename (eg. index.html) -> html"
   [m]
-  (let [posts-data (contentful/get-contentful :post-collection-query {:type ["news" "article" "dev"]})
+  (let [posts-data (contentful/get-contentful :post-collection-query )
         posts (have vector? (get-in posts-data [:postCollection :items]))]
    (into m (mapv #(vector
             (str "/" (:slug %) ".html")
@@ -114,4 +114,5 @@
       get-post-pages))
 
 (comment (:postCollection (contentful/get-contentful :post-collection-query {:type ["news" "article"]})))
-(comment (get-pages))
+(comment (get-pages)
+         (get-post-pages {}))

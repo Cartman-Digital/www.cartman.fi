@@ -1,68 +1,31 @@
 ;; Local webserver definition. This class works by defining a local webserver. The server gets it's handler from stasis and jetty's middleware to get the right headers. Once the handler is ready. it is wrapped with reload and stacktrace functions from ring middleware. After all definitions starting the application can be done by running .start and .stop from the end of this file. 
 (ns generator.webserver
   (:require
-   [clojure.string :as string]
-   [generator.builder :refer [generate]]
-   [generator.notion-form :as contact] 
+   [clojure.string :as string] 
    [generator.pages :as pages]
+   [generator.webserver.build :as build]
+   [generator.webserver.contact :as contact]
+   [generator.webserver.preview :as preview]
    [ring.adapter.jetty :as jetty]
    [ring.middleware.content-type :refer [wrap-content-type]]
-   [ring.middleware.not-modified :refer [wrap-not-modified]]
-   [ring.middleware.params :as ring.params]
+   [ring.middleware.not-modified :refer [wrap-not-modified]] 
    [ring.middleware.refresh :refer [wrap-refresh]]
-   [ring.middleware.reload :refer [wrap-reload]] 
-   [ring.middleware.resource :refer [wrap-resource]] 
-   [ring.middleware.stacktrace :refer [wrap-stacktrace]] 
+   [ring.middleware.reload :refer [wrap-reload]]
+   [ring.middleware.resource :refer [wrap-resource]]
+   [ring.middleware.stacktrace :refer [wrap-stacktrace]]
    [ring.util.response :as response]
-   [stasis.core :as stasis]
-   [generator.contentful :as contentful]))
-
-;; Handler for "/api/generate" endpoint WIP:
-;; currently calling this causes the files to generate but browser triggers a file download.
-;; caused by invalid returns?
-(defn handle-generate
-  [request]
-  (System/getenv "")
-  (generate)
-  (response/header (response/response "") "Content-Type" "Text/html"))
-
-(defn get-id-from-request
-  "Returns the Contentful sys_id from api/preview/X urls"
-  [request] 
-  (let [params (ring.params/params-request request)
-        {:strs [id]} (:query-params params)]
-    id))
-
-(defn handle-preview
-  "Load and output a preview page"
-  [request query content-type]
-  (let [raw-response (contentful/get-contentful-preview query {:preview true 
-                                                               :where {:sys {:id (get-id-from-request request)}}})
-        data (first (get-in raw-response (if (= content-type :page) [:pageCollection :items] [:postCollection :items])))]
-    (response/header 
-     (response/response (pages/render-page data (if (= content-type :post) "post-page preview" "preview")))
-     "Content-Type" "Text/html")))
-
-(defn handle-contact
-  [request]
-  (let [parsed-request (ring.params/params-request request)
-        {:strs [name email message g-recaptcha-response]} (:form-params parsed-request)] 
-    (contact/process-submit {:name name
-                             :email email
-                             :message message
-                             :g-captcha g-recaptcha-response}) 
-    (response/header (response/response "Your message has been received. We will respond to you as soon as we can.") "Content-Type" "Text/html")))
-  
+   [stasis.core :as stasis]))
+ 
 ;; Define the Jetty server handler
 (defn wrap-api-routes [handler]
   (fn [request]
     (let [uri (:uri request)]
       (cond 
-        (= uri "/api/generate") (handle-generate request)
-        (= uri "/api/contact") (handle-contact request)
+        (= uri "/api/generate") (build/execute request)
+        (= uri "/api/contact") (contact/execute request)
         (= uri "/api/ping") (response/header (response/response "pong\n") "Content-Type" "text/plain")
-        (string/starts-with? uri "/api/preview/page") (handle-preview request :page-collection-query :page)
-        (string/starts-with? uri "/api/preview/post") (handle-preview request :post-collection-query :post)
+        (string/starts-with? uri "/api/preview/page") (preview/execute request :page)
+        (string/starts-with? uri "/api/preview/post") (preview/execute request :post)
         (string/starts-with? uri "/assets/v/") (response/redirect (clojure.string/replace-first uri #"v/[0-9]*/" ""))
         :else (handler request)))))
 

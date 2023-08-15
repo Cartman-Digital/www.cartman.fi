@@ -1,5 +1,12 @@
-query pageCollectionQuery($preview: Boolean = false, $where: PageFilter) {
-  pageCollection (preview: $preview, where: $where, limit:25) {
+query pageCollectionQuery(
+  $preview: Boolean = false,
+  $where: PageFilter = {}
+) {
+  pageCollection (
+    preview: $preview,
+    where: $where,
+    limit:25
+  ) {
     items {
       sys {
         id
