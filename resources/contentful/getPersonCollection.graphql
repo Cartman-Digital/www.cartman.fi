@@ -1,0 +1,32 @@
+query personCollectionQuery(
+  $single: Boolean = false,
+  $preview: Boolean = false,
+  $where: PersonFilter = {},
+) {
+  personCollection(
+    where: $where,
+    preview: $preview
+  ) {
+    __typename
+    items {
+      __typename
+      name
+      email
+      jobTitle
+      office {
+        name
+      }
+      slug
+      picture {
+        url
+        title
+      }
+      description @include(if: $single) {
+        json
+      }
+      shortText @skip(if: $single) {
+        json
+      }
+    }  
+  }
+}

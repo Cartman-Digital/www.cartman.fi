@@ -39,6 +39,11 @@ query pageCollectionQuery(
             }
             numberOfPostsShown
           }
+           ... on PeopleList {
+            sys {
+              id
+            }
+          }
           ... on Nav {
             name
           }

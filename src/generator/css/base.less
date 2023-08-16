@@ -803,3 +803,48 @@ body.post-page {
         overflow-wrap: break-word;
     }
 }
+
+
+/** People page */
+.people-list-wrap {
+    @apply py-0;
+    text-align: center;
+
+    .people-list {
+        @apply grid sm:grid-cols-3 py-0;
+        width: 100%;
+
+        .person {
+            @apply grid mb-16 align-text-top text-center place-items-center;
+            padding: 0 var(--layout-spacing-horizontal);
+           
+
+            a{
+                text-decoration: none;
+            }
+            a:hover{
+                cursor: pointer;
+            }
+            .image {
+                @apply md:block;
+
+                img {
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+
+}
+
+
+/**Individual Person page*/
+
+.person-page{
+    
+    a{
+        text-decoration: none;
+       
+    }
+}
