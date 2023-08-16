@@ -35,9 +35,12 @@ Use the code comments to navigate the file to adjust styles you need
     F. Post
     G. Table
 8. Page specific styles
-    A. Services page.
-    B. Post list page
-    C. Post page
+    A. Front page
+    B. Services page.
+    C. Post list page 
+    D. Post page
+    E. People list page
+    F. Individual Person page
 
 *****/
 
@@ -825,6 +828,10 @@ body.post-page {
             a:hover{
                 cursor: pointer;
             }
+            /*Temporary  solution for lack of conditional when rendering peopleList vs person*/
+            .tech-logos{
+                display: none;
+            }
             .image {
                 @apply md:block;
 
@@ -840,11 +847,21 @@ body.post-page {
 
 
 /**Individual Person page*/
+.person-page {
+    .person {
+        @apply grid mt-16 mb-16 align-text-top text-center place-items-center;
+        padding: 0 var(--layout-spacing-horizontal);
 
-.person-page{
-    
-    a{
+        .image {
+            @apply md:block;
+
+            img {
+                max-height: 50vh;
+            }
+        }
+    }
+
+    a {
         text-decoration: none;
-       
     }
 }

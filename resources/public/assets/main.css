@@ -609,9 +609,12 @@ Use the code comments to navigate the file to adjust styles you need
     F. Post
     G. Table
 8. Page specific styles
-    A. Services page.
-    B. Post list page
-    C. Post page
+    A. Front page
+    B. Services page.
+    C. Post list page 
+    D. Post page
+    E. People list page
+    F. Individual Person page
 
 *****/
 
@@ -1976,6 +1979,12 @@ body.post-page code {
   cursor: pointer;
 }
 
+/*Temporary  solution for lack of conditional when rendering peopleList vs person*/
+
+.people-list-wrap .people-list .person .tech-logos{
+  display: none;
+}
+
 @media (min-width: 768px) {
   .people-list-wrap .people-list .person .image {
     display: block;
@@ -1990,7 +1999,58 @@ body.post-page code {
 
 /**Individual Person page*/
 
-.person-page a{
+.person-page .person {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  vertical-align: text-top;
+}
+
+.services .content .side-by-side .embed .person-page .person {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .services .content .side-by-side .embed .person-page .person {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .services .content .side-by-side .embed .person-page .person {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .services .content .side-by-side .embed .person-page .person {
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1536px) {
+  .services .content .side-by-side .embed .person-page .person {
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+  }
+}
+
+.person-page .person {
+  padding: 0 var(--layout-spacing-horizontal);
+}
+
+@media (min-width: 768px) {
+  .person-page .person .image {
+    display: block;
+  }
+}
+
+.person-page .person .image img {
+  max-height: 50vh;
+}
+
+.person-page a {
   text-decoration: none;
 }
 

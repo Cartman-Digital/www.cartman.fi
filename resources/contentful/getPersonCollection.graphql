@@ -1,5 +1,5 @@
 query personCollectionQuery(
-  $single: Boolean = false,
+  $single: Boolean = true,
   $preview: Boolean = false,
   $where: PersonFilter = {},
 ) {
