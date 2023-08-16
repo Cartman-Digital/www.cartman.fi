@@ -287,6 +287,7 @@
 
 
 ; Todo implement two person logics: embedded and person page.
+;; WIP: people list page does not get short version of info 
 (defmethod render "Person"
   [args]
   (println (empty? (:shortText args)))
