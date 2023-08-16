@@ -249,10 +249,19 @@
         [:a {:class "button action primary" :href (create-url (:slug args))} "Read more"]
         nil)]]))
 
+
 (defmethod render "PostCollection"
   [args]
   [:div
    (into [:ul.post-list] (mapv render (:items args)))])
+
+
+ 
+(defmethod  render "PersonCollection" 
+ [args]
+  [:div
+   (into [:ul.people-list] (mapv render (:items args)))]
+ )
 
 (defmethod render "ArticleList"
   [args]
@@ -264,11 +273,32 @@
       [:h2 (get-in contentful-map [:articleList :websiteTitle])]]
      (into [:ul.post-list] (mapv render (get-in contentful-map [:articleList :linkedFrom :postCollection :items])))]))
 
+
+(defmethod render "PeopleList"
+  [args]
+  (let [contentful-map (contentful/get-contentful
+                        :people-by-list-query{:listId (get-in args [:sys :id])})]
+    [:section.people-list-wrap
+     [:div.intro
+      [:h2 "Personel-Our Amazing Team :D"]]
+     (into [:ul.people-list] (mapv render (get-in contentful-map [:peopleList :linkedFrom :personCollection :items])))
+     ]
+    ))
+
+
 ; Todo implement two person logics: embedded and person page.
 (defmethod render "Person"
   [args]
-  [:div.person
-   [:span.name (:name args)]])
+  (println (empty? (:shortText args)))
+  (let [fullbody (empty? (:shortText args))
+        content (if (empty? (:shortText args)) (:description args) (:shortText args))]
+    [(if fullbody :div.person :li.person-body)
+     [:div.image
+      [:img {:alt (get-in args [:picture :title]) :src (:url (:picture args))}]]
+     [:div.body [:a {:href (create-url (:slug args))} [:h3 (:name args)]]
+      (into [:div.types] (mapv #(vector :span {:class (str "type " %)} %) (:type args)))
+      [:div.person-body (richtext->html (:json content))]
+      [:div.tech-logos [:h3 "Logos go here"]]]]))
 
 (comment (render {:__typename "ArticleList" :sys {:id "4N25RfloTD2aq3YtrDEzLk"} :numberOfPostsShown 3}))
 (comment (contentful/get-contentful

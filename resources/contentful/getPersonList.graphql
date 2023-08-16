@@ -1,0 +1,20 @@
+query peopleByListQuery($listId: String!){
+  peopleList(id: $listId) {
+    internalName
+    numberOfEmployeesShown
+    linkedFrom {
+      personCollection{
+        items {
+          __typename
+          slug
+          name
+          jobTitle
+          picture{
+            url
+          }
+         
+        }
+      }
+    }
+  }
+}

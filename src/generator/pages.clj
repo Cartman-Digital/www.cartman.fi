@@ -21,6 +21,8 @@
    [:h1 "Blog"]
    (renderer/render (:postCollection post-collection))])
 
+
+
 (defn render-page-head
   "Must be called from hiccup. Outputs common page html head with links to static files and metadata."
   [page-map]
@@ -77,6 +79,7 @@
     (render-page-footer)
     (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
 
+
 (defn render-post-list-page
   []
   (html5
@@ -88,6 +91,8 @@
     (render-posts (contentful/get-contentful :post-collection-query {:single false}))
     (render-page-footer)
     (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
+
+
 
 (defn get-static-pages 
   [m]
@@ -106,12 +111,23 @@
             (str "/" (:slug %) ".html")
             (fn [context] (render-page % "post-page"))) posts))))
 
+(defn get-person-pages
+  "Returns map of filename (eg. index.html) -> html"
+  [m]
+  (let [people-data (contentful/get-contentful :person-collection-query {:$single true})
+        people (have vector? (get-in people-data [:personCollection :items]))]
+    (def debug people)
+    (into m (mapv #(vector
+                    (str "/" (:slug %) ".html")
+                    (fn [context] (render-page % "person-page"))) people))))
+
 (defn get-pages
   "Creates a map of page slug -> render calls."
   []
-  (-> {"/articles.html" (fn [context] (render-post-list-page))} 
+  (-> {"/articles.html" (fn [context] (render-post-list-page))}  
       get-static-pages
-      get-post-pages))
+      get-post-pages
+      get-person-pages))
 
 (comment (:postCollection (contentful/get-contentful :post-collection-query {:type ["news" "article"]})))
 (comment (get-pages)
