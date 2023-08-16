@@ -3,9 +3,7 @@
    [generator.builder :refer [generate]]
    [ring.util.response :as response]))
 
-;; Handler for "/api/generate" endpoint WIP:
-;; currently calling this causes the files to generate but browser triggers a file download.
-;; caused by invalid returns?
+;; Handler for "/api/generate" endpoint 
 (defn execute
   "Triggers a build from stasis."
   [request]

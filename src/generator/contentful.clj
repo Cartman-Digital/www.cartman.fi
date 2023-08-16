@@ -61,7 +61,7 @@
    (have map? gql-filter)
    (let [graphql-fn (have fn? (get-in query-map [:query query]))
          graphql    (graphql-fn gql-filter)]
-     (dispatch graphql true))))
+     (api-call graphql true))))
 
 (defn get-contentful
   "get Contentful entities"
