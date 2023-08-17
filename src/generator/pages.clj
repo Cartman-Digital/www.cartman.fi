@@ -92,8 +92,6 @@
     (render-page-footer)
     (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
 
-
-
 (defn get-static-pages 
   [m]
   (let [pages-data (contentful/get-contentful :page-collection-query)
@@ -114,9 +112,8 @@
 (defn get-person-pages
   "Returns map of filename (eg. index.html) -> html"
   [m]
-  (let [people-data (contentful/get-contentful :person-collection-query {:$single true})
+  (let [people-data (contentful/get-contentful :person-collection-query)
         people (have vector? (get-in people-data [:personCollection :items]))]
-    (def debug people)
     (into m (mapv #(vector
                     (str "/" (:slug %) ".html")
                     (fn [context] (render-page % "person-page"))) people))))
@@ -124,11 +121,15 @@
 (defn get-pages
   "Creates a map of page slug -> render calls."
   []
-  (-> {"/articles.html" (fn [context] (render-post-list-page))}  
+  (-> {"/articles.html" (fn [context] (render-post-list-page))}
       get-static-pages
       get-post-pages
       get-person-pages))
 
 (comment (:postCollection (contentful/get-contentful :post-collection-query {:type ["news" "article"]})))
 (comment (get-pages)
+<<<<<<< HEAD
          (get-post-pages {}))
+=======
+         (get-person-pages {}))
+>>>>>>> 2be9a46 (WIP: Debugging contentful person-collection-query conditionals)

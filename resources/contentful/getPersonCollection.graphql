@@ -1,10 +1,8 @@
 query personCollectionQuery(
   $single: Boolean = true,
   $preview: Boolean = false,
-  $where: PersonFilter = {},
 ) {
   personCollection(
-    where: $where,
     preview: $preview
   ) {
     __typename
@@ -21,10 +19,11 @@ query personCollectionQuery(
         url
         title
       }
-      description @include(if: $single) {
+      __typename
+      shortText @skip(if: $single) {
         json
       }
-      shortText @skip(if: $single) {
+      description @include(if: $single) {
         json
       }
     }  
