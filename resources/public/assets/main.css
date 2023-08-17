@@ -2026,10 +2026,15 @@ body.post-page code {
   max-height: 50vh;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .person-page .person .body {
     max-width: 56rem;
   }
+}
+
+.person-page .person .person-body {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 .person-page a {
