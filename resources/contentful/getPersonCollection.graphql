@@ -1,5 +1,5 @@
 query personCollectionQuery(
-  $single: Boolean = true,
+  $list: Boolean = true,
   $preview: Boolean = false,
 ) {
   personCollection(
@@ -20,10 +20,10 @@ query personCollectionQuery(
         title
       }
       __typename
-      shortText @skip(if: $single) {
+      shortText @include(if: $list) {
         json
       }
-      description @include(if: $single) {
+      description @skip(if: $list) {
         json
       }
     }  

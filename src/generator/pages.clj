@@ -112,7 +112,7 @@
 (defn get-person-pages
   "Returns map of filename (eg. index.html) -> html"
   [m]
-  (let [people-data (contentful/get-contentful :person-collection-query)
+  (let [people-data (contentful/get-contentful :person-collection-query {:list false})
         people (have vector? (get-in people-data [:personCollection :items]))]
     (into m (mapv #(vector
                     (str "/" (:slug %) ".html")
