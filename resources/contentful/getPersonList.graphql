@@ -11,6 +11,7 @@ query peopleByListQuery($listId: String!){
           jobTitle
           picture{
             url
+            title
           }
          
         }
