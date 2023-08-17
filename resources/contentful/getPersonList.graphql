@@ -9,6 +9,9 @@ query peopleByListQuery($listId: String!){
           slug
           name
           jobTitle
+          shortText{
+            json
+          }
           picture{
             url
             title

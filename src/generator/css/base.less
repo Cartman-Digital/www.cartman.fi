@@ -810,39 +810,36 @@ body.post-page {
 
 /** People page */
 .people-list-wrap {
-    @apply py-0;
-    text-align: center;
+    @apply text-center lg:max-w-7xl;
+
+    .intro {
+        @apply my-10
+    }
 
     .people-list {
         @apply grid sm:grid-cols-3 py-0;
         width: 100%;
+        list-style-type: none;
+        padding: initial;
 
-        .person {
-            @apply grid mb-16 align-text-top text-center place-items-center;
-            padding: 0 var(--layout-spacing-horizontal);
-           
+        .person-body {
+            @apply my-5 text-center;
+            padding: 0 var(--layout-spacing-v-half);
 
-            a{
+            a {
                 text-decoration: none;
             }
-            a:hover{
+
+            a:hover {
                 cursor: pointer;
             }
-            /*Temporary  solution for lack of conditional when rendering peopleList vs person*/
-            .tech-logos{
-                display: none;
-            }
-            .image {
-                @apply md:block;
 
-                img {
-                    height: 100%;
-                    object-fit: cover;
-                }
+            .image {
+                @apply mb-5 lg:block md:mb-0;
+
             }
         }
     }
-
 }
 
 
@@ -858,6 +855,9 @@ body.post-page {
             img {
                 max-height: 50vh;
             }
+        }
+        .body{
+            @apply lg:max-w-4xl
         }
     }
 

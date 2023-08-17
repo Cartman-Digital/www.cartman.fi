@@ -290,16 +290,17 @@
 ;; WIP: people list page does not get short version of info 
 (defmethod render "Person"
   [args]
-  (println (empty? (:shortText args)))
   (let [fullbody (empty? (:shortText args))
         content (if (empty? (:shortText args)) (:description args) (:shortText args))]
     [(if fullbody :div.person :li.person-body)
+     [:a {:href (create-url (:slug args))} (if fullbody [:h2 (:name args)] [:h3 (:name args)])]
      [:div.image
       [:img {:alt (get-in args [:picture :title]) :src (:url (:picture args))}]]
-     [:div.body [:a {:href (create-url (:slug args))} [:h3 (:name args)]]
+     [:div.body 
       (into [:div.types] (mapv #(vector :span {:class (str "type " %)} %) (:type args)))
+      [:h4 (:jobTitle args)]
       [:div.person-body (richtext->html (:json content))]
-      [:div.tech-logos [:h3 "Logos go here"]]]]))
+      (if fullbody [:div.tech-logos [:h3 "Logos go here"]] nil)]]))
 
 (comment (render {:__typename "ArticleList" :sys {:id "4N25RfloTD2aq3YtrDEzLk"} :numberOfPostsShown 3}))
 (comment (contentful/get-contentful

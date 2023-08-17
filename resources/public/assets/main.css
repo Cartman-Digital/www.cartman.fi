@@ -1882,9 +1882,18 @@ body.post-page code {
 /** People page */
 
 .people-list-wrap {
-  padding-top: 0px;
-  padding-bottom: 0px;
   text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .people-list-wrap {
+    max-width: 80rem;
+  }
+}
+
+.people-list-wrap .intro {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .people-list-wrap .people-list {
@@ -1929,72 +1938,39 @@ body.post-page code {
 
 .people-list-wrap .people-list {
   width: 100%;
+  list-style-type: none;
+  padding: initial;
 }
 
-.people-list-wrap .people-list .person {
-  margin-bottom: 4rem;
-  display: grid;
-  place-items: center;
+.people-list-wrap .people-list .person-body {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
   text-align: center;
-  vertical-align: text-top;
+  padding: 0 var(--layout-spacing-v-half);
 }
 
-.services .content .side-by-side .embed .people-list-wrap .people-list .person {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+.people-list-wrap .people-list .person-body a {
+  text-decoration: none;
+}
+
+.people-list-wrap .people-list .person-body a:hover {
+  cursor: pointer;
+}
+
+.people-list-wrap .people-list .person-body .image {
+  margin-bottom: 1.25rem;
 }
 
 @media (min-width: 768px) {
-  .services .content .side-by-side .embed .people-list-wrap .people-list .person {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+  .people-list-wrap .people-list .person-body .image {
+    margin-bottom: 0px;
   }
 }
 
 @media (min-width: 1024px) {
-  .services .content .side-by-side .embed .people-list-wrap .people-list .person {
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1280px) {
-  .services .content .side-by-side .embed .people-list-wrap .people-list .person {
-    grid-template-columns: repeat(9, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1536px) {
-  .services .content .side-by-side .embed .people-list-wrap .people-list .person {
-    grid-template-columns: repeat(10, minmax(0, 1fr));
-  }
-}
-
-.people-list-wrap .people-list .person {
-  padding: 0 var(--layout-spacing-horizontal);
-}
-
-.people-list-wrap .people-list .person a{
-  text-decoration: none;
-}
-
-.people-list-wrap .people-list .person a:hover{
-  cursor: pointer;
-}
-
-/*Temporary  solution for lack of conditional when rendering peopleList vs person*/
-
-.people-list-wrap .people-list .person .tech-logos{
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .people-list-wrap .people-list .person .image {
+  .people-list-wrap .people-list .person-body .image {
     display: block;
   }
-}
-
-.people-list-wrap .people-list .person .image img {
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 
 /**Individual Person page*/
@@ -2048,6 +2024,12 @@ body.post-page code {
 
 .person-page .person .image img {
   max-height: 50vh;
+}
+
+@media (min-width: 1024px) {
+  .person-page .person .body {
+    max-width: 56rem;
+  }
 }
 
 .person-page a {
