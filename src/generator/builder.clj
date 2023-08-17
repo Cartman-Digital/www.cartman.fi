@@ -10,4 +10,5 @@
   (stasis/empty-directory! export-directory)
   (stasis/export-pages (pages/get-pages) export-directory)
   (sitemap/-main export-directory)
-  (println  "Export complete"))
+  (println  "Export complete")
+  (System/exit 0))
