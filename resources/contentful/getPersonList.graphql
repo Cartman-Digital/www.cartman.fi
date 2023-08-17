@@ -3,7 +3,8 @@ query peopleByListQuery($listId: String!){
     internalName
     numberOfEmployeesShown
     linkedFrom {
-      personCollection{
+      personCollection(
+        order: sortOrder_ASC){
         items {
           __typename
           slug
