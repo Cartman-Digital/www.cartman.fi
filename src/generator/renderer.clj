@@ -161,6 +161,30 @@
   [args]
   (get-embed-block-html args))
 
+;;person-singleview and people-list view repeat to make styling and content changes easier
+(defn person-single-view
+  [args]
+  [:div.person
+   [:h2 (:name args)]
+   [:div.image
+    [:img {:alt (get-in args [:picture :title]) :src (:url (:picture args))}]]
+   [:div.body
+    [:h4 (:jobTitle args)]
+    [:p.office (:name (:office args))]
+    [:div.person-body (richtext->html (:json (:description args)))]]])
+
+(defn people-list-view
+  [args]
+  [:li.person-body
+   ;;Add link to single person view
+   ;;[:a {:href (create-url (:slug args))} [:h3 (:name args)]]
+   [:h3 (:name args)]
+   [:div.image
+    [:img {:alt (get-in args [:picture :title]) :src (:url (:picture args))}]]
+   [:div.body
+    [:h4 (:jobTitle args)]
+    [:div.person-body (richtext->html (:json (:shortText args)))]]])
+
 (defmulti render :__typename)
 
 (defmethod render :default
@@ -275,28 +299,6 @@
                         :people-by-list-query {:listId (get-in args [:sys :id])})]
     [:section.people-list-wrap 
      (into [:ul.people-list] (mapv render (get-in contentful-map [:peopleList :linkedFrom :personCollection :items])))]))
-
-;;person-singleview and people-list view repeat to make styling and content changes easier
-(defn person-single-view
-  [args]
-  [:div.person
-   [:a {:href (create-url (:slug args))} [:h2 (:name args)]]
-   [:div.image
-    [:img {:alt (get-in args [:picture :title]) :src (:url (:picture args))}]]
-   [:div.body
-    [:h4 (:jobTitle args)]
-    [:p.office (:name (:office args))]
-    [:div.person-body (richtext->html (:json (:description args)))]]])
-
-(defn people-list-view
-  [args]
-  [:li.person-body
-   [:a {:href (create-url (:slug args))} [:h3 (:name args)]]
-   [:div.image
-    [:img {:alt (get-in args [:picture :title]) :src (:url (:picture args))}]]
-   [:div.body
-    [:h4 (:jobTitle args)]
-    [:div.person-body (richtext->html (:json (:shortText args)))]]])
 
 (defmethod render "Person"
   [args]
