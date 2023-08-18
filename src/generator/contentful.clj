@@ -79,7 +79,6 @@
          graphql    (graphql-fn)]
      (dispatch graphql))))
 
-
 (comment (get-contentful :nav-collection-query {:name "Main menu"}))
 (comment (get-contentful :asset-query {:assetId "34YRcoaS4WJ5ORhpMlMHRM"}))
 (comment (get-contentful :entry-query {:entryId "782ka3lNsGXBrnE88Qf3jt"}))

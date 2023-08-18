@@ -249,19 +249,15 @@
         [:a {:class "button action primary" :href (create-url (:slug args))} "Read more"]
         nil)]]))
 
-
 (defmethod render "PostCollection"
   [args]
   [:div
    (into [:ul.post-list] (mapv render (:items args)))])
 
-
- 
-(defmethod  render "PersonCollection" 
- [args]
+(defmethod  render "PersonCollection"
+  [args]
   [:div
-   (into [:ul.people-list] (mapv render (:items args)))]
- )
+   (into [:ul.people-list] (mapv render (:items args)))])
 
 (defmethod render "ArticleList"
   [args]
@@ -273,21 +269,14 @@
       [:h2 (get-in contentful-map [:articleList :websiteTitle])]]
      (into [:ul.post-list] (mapv render (get-in contentful-map [:articleList :linkedFrom :postCollection :items])))]))
 
-
 (defmethod render "PeopleList"
   [args]
   (let [contentful-map (contentful/get-contentful
-                        :people-by-list-query{:listId (get-in args [:sys :id])})]
-    [:section.people-list-wrap
-     [:div.intro
-      [:h2 "Personel-Our Amazing Team :D"]]
-     (into [:ul.people-list] (mapv render (get-in contentful-map [:peopleList :linkedFrom :personCollection :items])))
-     ]
-    ))
+                        :people-by-list-query {:listId (get-in args [:sys :id])})]
+    [:section.people-list-wrap 
+     (into [:ul.people-list] (mapv render (get-in contentful-map [:peopleList :linkedFrom :personCollection :items])))]))
 
-
-; Todo implement two person logics: embedded and person page.
-;; WIP: people list page does not get short version of info 
+;; Renders People-list and person page
 (defmethod render "Person"
   [args]
   (let [fullbody (empty? (:shortText args))
@@ -296,13 +285,12 @@
      [:a {:href (create-url (:slug args))} (if fullbody [:h2 (:name args)] [:h3 (:name args)])]
      [:div.image
       [:img {:alt (get-in args [:picture :title]) :src (:url (:picture args))}]]
-     [:div.body 
+     [:div.body
       (into [:div.types] (mapv #(vector :span {:class (str "type " %)} %) (:type args)))
       [:h4 (:jobTitle args)]
-      [:div.person-body (richtext->html (:json content))]
-      (if fullbody [:div.tech-logos [:h3 "Logos go here"]] nil)]]))
+      [:p.office (:name (:office args))]
+      [:div.person-body (richtext->html (:json content))]]]))
 
 (comment (render {:__typename "ArticleList" :sys {:id "4N25RfloTD2aq3YtrDEzLk"} :numberOfPostsShown 3}))
-(comment (contentful/get-contentful
-          :posts-by-list-query {:listId "4N25RfloTD2aq3YtrDEzLk"
-                                :limit 3}))
+(comment (contentful/get-contentful :posts-by-list-query {:listId "4N25RfloTD2aq3YtrDEzLk"
+                                                          :limit 3}))

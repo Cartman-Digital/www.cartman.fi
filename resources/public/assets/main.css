@@ -1891,11 +1891,6 @@ body.post-page code {
   }
 }
 
-.people-list-wrap .intro {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-}
-
 .people-list-wrap .people-list {
   display: grid;
   padding-top: 0px;
@@ -2026,6 +2021,10 @@ body.post-page code {
   max-height: 50vh;
 }
 
+.person-page .person .office{
+  font-weight: bold;
+}
+
 @media (min-width: 768px) {
   .person-page .person .body {
     max-width: 56rem;
@@ -2037,8 +2036,8 @@ body.post-page code {
   margin-bottom: 3rem;
 }
 
-.person-page a {
-  text-decoration: none;
+.person-page .person a {
+  pointer-events: none;
 }
 
 @media (min-width: 640px) {
