@@ -21,8 +21,6 @@
    [:h1 "Blog"]
    (renderer/render (:postCollection post-collection))])
 
-
-
 (defn render-page-head
   "Must be called from hiccup. Outputs common page html head with links to static files and metadata."
   [page-map]
@@ -78,7 +76,6 @@
     (render-content page)
     (render-page-footer)
     (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
-
 
 (defn render-post-list-page
   []
