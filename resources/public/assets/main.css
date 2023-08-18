@@ -1879,7 +1879,13 @@ body.post-page code {
   overflow-wrap: break-word;
 }
 
-/** People page */
+/** People List page */
+
+@media (min-width: 1024px) {
+  .people .doc {
+    max-width: 72rem;
+  }
+}
 
 .people-list-wrap {
   text-align: center;

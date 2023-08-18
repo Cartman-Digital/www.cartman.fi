@@ -1,6 +1,5 @@
 query peopleByListQuery($listId: String!){
   peopleList(id: $listId) {
-    internalName
     numberOfEmployeesShown
     linkedFrom {
       personCollection(
@@ -17,7 +16,6 @@ query peopleByListQuery($listId: String!){
             url
             title
           }
-         
         }
       }
     }

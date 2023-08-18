@@ -19,7 +19,6 @@ query personCollectionQuery(
         url
         title
       }
-      __typename
       shortText @include(if: $list) {
         json
       }
