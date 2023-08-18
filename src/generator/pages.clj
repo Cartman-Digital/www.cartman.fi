@@ -128,8 +128,4 @@
 
 (comment (:postCollection (contentful/get-contentful :post-collection-query {:type ["news" "article"]})))
 (comment (get-pages)
-<<<<<<< HEAD
          (get-post-pages {}))
-=======
-         (get-person-pages {}))
->>>>>>> 2be9a46 (WIP: Debugging contentful person-collection-query conditionals)
