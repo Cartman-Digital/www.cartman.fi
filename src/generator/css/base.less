@@ -809,12 +809,9 @@ body.post-page {
 
 
 /** People page */
+
 .people-list-wrap {
     @apply text-center lg:max-w-7xl;
-
-    .intro {
-        @apply my-10
-    }
 
     .people-list {
         @apply grid sm:grid-cols-3 py-0;
@@ -856,17 +853,21 @@ body.post-page {
                 max-height: 50vh;
             }
         }
-      
-        .body{
-            @apply md:max-w-4xl
+
+        .office{
+        font-weight: bold;
         }
+
+        .body{
+            @apply md:max-w-4xl;
+        }
+
         .person-body {
             @apply my-12;
         }
-    }
 
-
-    a {
-        text-decoration: none;
-    }
+        a {
+            pointer-events: none;
+        }
+    }    
 }
