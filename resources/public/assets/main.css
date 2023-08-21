@@ -1836,6 +1836,11 @@ body table p {
   }
 }
 
+.services .content .side-by-side .embed .doc {
+  padding: 0;
+  grid-column: span 2
+}
+
 /** Post list page */
 
 body.postlist h1 {
