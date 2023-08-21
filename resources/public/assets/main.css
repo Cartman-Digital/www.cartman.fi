@@ -1528,7 +1528,8 @@ body .content .card-list ul {
 }
 
 .services .content .side-by-side .embed .post-list {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
 }
 
 @media (min-width: 768px) {
@@ -1564,7 +1565,8 @@ body .content .card-list ul {
 }
 
 .services .content .side-by-side .embed .post-list .post {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
 }
 
 @media (min-width: 768px) {
@@ -1809,7 +1811,8 @@ body table p {
 }
 
 .services .content .side-by-side .embed .grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
 }
 
 @media (min-width: 768px) {
@@ -1909,7 +1912,8 @@ body.post-page code {
 }
 
 .services .content .side-by-side .embed .people-list-wrap .people-list {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
 }
 
 @media (min-width: 768px) {
@@ -1991,7 +1995,8 @@ body.post-page code {
 }
 
 .services .content .side-by-side .embed .person-page .person {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
 }
 
 @media (min-width: 768px) {
