@@ -26,20 +26,23 @@
 
 (defn get-embed-block-html
   [args]
-  ; check type value of args if it's link trigger different logic
-  ; for links we want to get title/name and slug on posts, pages and persons
-  (if (= (get-in args [:data :target :sys :type]) "Link")
-    (let [entryCollection (get-in
-                           (contentful/get-contentful :entry-query {:entryId (get-in args [:data :target :sys :id])})
-                           [:entryCollection :items])]
-    ;;if entrycollections has 
-      (into [:div.embed] (mapv render entryCollection)))
-    (let [entryCollection (get-in
-                           (contentful/get-contentful :entry-link-query {:entryId (get-in args [:data :target :sys :id])})
-                           [:entryCollection :items])]
-        ;;if entrycollections has 
-      (into [:a {:href (create-url (get-in entryCollection [:slug]))}]))))
+  (let [[entryCollection] (get-in
+                         (contentful/get-contentful :entry-query {:entryId (get-in args [:data :target :sys :id])})
+                         [:entryCollection :items])]
+    (into [:div.embed] (mapv render entryCollection))))
 
+(defn create-entry-field-link
+  [args]
+  (let [entry-id (get-in args [:data :target :sys :id])
+        link-label (get-in args [:content 0 :value]) 
+        ;; fetch slug and title
+        query-result (contentful/get-contentful :entry-link-query {:entryId entry-id})
+        {:keys [slug title]} (get-in query-result [:entryCollection :items 0])]
+    ;; render a tag use title as backup link-label if contentful doesnt provide
+    [:a {:href (create-url slug)}
+     (if (seq link-label)
+       link-label
+       title)]))
 
 (defn create-field
   [field]
@@ -161,15 +164,13 @@
 
 (defmethod richtext->html "embedded-asset-block"
   [args]
-  (if (= (get-in args [:data :target :sys :linkType]) "Asset")
+  (when (= (get-in args [:data :target :sys :linkType]) "Asset")
     (let [asset (:asset (contentful/get-contentful :asset-query {:assetId (get-in args [:data :target :sys :id])}))]
       (image (:url asset) (:description asset)))))
 
-
 (defmethod richtext->html "embedded-entry-inline"
   [args]
-  (get-embed-block-html args)
-  )
+ (create-entry-field-link args))
 
 (defmethod richtext->html "embedded-entry-block"
   [args]

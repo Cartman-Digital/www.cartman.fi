@@ -36,8 +36,8 @@
   "contentful/getPostsByList.graphql" ; Posts by list is used by contentful widgets that load articles on any page.
   "contentful/getLastPostPublishDate.graphql"
   "contentful/getPersonList.graphql"
-  "contentful/getPersonCollection.graphql"
-  "contentful/getEntryLink.graphql") ;Person Collection used for personel page 
+  "contentful/getPersonCollection.graphql";Person Collection used for personel page 
+  "contentful/getEntryLink.graphql"); Fetch entry-lin slug / title by entryId
 (def query-map (graphql-core/query-map graphql-queries))
 
 (defn ^:private api-call
@@ -83,8 +83,6 @@
 (comment (get-contentful :nav-collection-query {:name "Main menu"}))
 (comment (get-contentful :asset-query {:assetId "34YRcoaS4WJ5ORhpMlMHRM"}))
 (comment (get-contentful :entry-query {:entryId "782ka3lNsGXBrnE88Qf3jt"}))
-(comment (get-contentful :entry-query {:entryId "2zz7aR5bo2pvCHNyfVjCO5"}))
-(comment (get-contentful :entry-link-query {:entryId "2XgU9m1ruNXNqirUTKb1WW"}))
 (comment (get-contentful :card-list-query {:listId "2pJ63nhY2QKbVesxgWOvq9"}))
 (comment (get-contentful :post-collection-query {:type ["news" "dev" "article"]}))
 (comment (json/write-str (:graphql ((get-in query-map [:query :asset-query]) {:assetId "34YRcoaS4WJ5ORhpMlMHRM"}))))
