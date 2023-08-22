@@ -5,11 +5,6 @@ query entryQuery($entryId: String!) {
       sys {
         id
       }
-        ... on Post {
-       content{
-        json
-       }
-      }
       ... on CardList {
         introduction {
           json
