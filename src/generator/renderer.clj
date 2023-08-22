@@ -26,8 +26,20 @@
 
 (defn get-embed-block-html
   [args]
-  (let [entryCollection (get-in (contentful/get-contentful :entry-query {:entryId (get-in args [:data :target :sys :id])}) [:entryCollection :items])]
-    (into [:div.embed] (mapv render entryCollection))))
+  ; check type value of args if it's link trigger different logic
+  ; for links we want to get title/name and slug on posts, pages and persons
+  (if (= (get-in args [:data :target :sys :type]) "Link")
+    (let [entryCollection (get-in
+                           (contentful/get-contentful :entry-query {:entryId (get-in args [:data :target :sys :id])})
+                           [:entryCollection :items])]
+    ;;if entrycollections has 
+      (into [:div.embed] (mapv render entryCollection)))
+    (let [entryCollection (get-in
+                           (contentful/get-contentful :entry-link-query {:entryId (get-in args [:data :target :sys :id])})
+                           [:entryCollection :items])]
+        ;;if entrycollections has 
+      (into [:a {:href (create-url (get-in entryCollection [:slug]))}]))))
+
 
 (defn create-field
   [field]
@@ -153,9 +165,11 @@
     (let [asset (:asset (contentful/get-contentful :asset-query {:assetId (get-in args [:data :target :sys :id])}))]
       (image (:url asset) (:description asset)))))
 
+
 (defmethod richtext->html "embedded-entry-inline"
   [args]
-  (get-embed-block-html args))
+  (get-embed-block-html args)
+  )
 
 (defmethod richtext->html "embedded-entry-block"
   [args]

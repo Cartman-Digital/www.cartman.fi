@@ -1,0 +1,14 @@
+query entryLinkQuery($entryId: String!) {
+  entryCollection(where: { sys: { id: $entryId } }) {
+    items {
+      __typename
+      sys {
+        id
+      }
+      ... on Post {
+        title
+        slug
+      }
+    }
+  }
+}
