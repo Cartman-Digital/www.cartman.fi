@@ -34,9 +34,18 @@ query entryQuery($entryId: String!) {
       ... on Person {
         name
         email
+        slug
         picture {
           url
         }
+      }
+       ... on Post {
+        title
+        slug
+      }
+       ... on Page {
+        title
+        slug
       }
     }
   }
