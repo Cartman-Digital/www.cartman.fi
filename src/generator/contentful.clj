@@ -36,8 +36,7 @@
   "contentful/getPostsByList.graphql" ; Posts by list is used by contentful widgets that load articles on any page.
   "contentful/getLastPostPublishDate.graphql"
   "contentful/getPersonList.graphql"
-  "contentful/getPersonCollection.graphql";Person Collection used for personel page 
-  "contentful/getEntryLink.graphql"); Fetch entry-lin slug / title by entryId
+  "contentful/getPersonCollection.graphql");Person Collection used for personel page
 (def query-map (graphql-core/query-map graphql-queries))
 
 (defn ^:private api-call
