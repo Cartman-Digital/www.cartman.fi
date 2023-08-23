@@ -9,6 +9,10 @@ query entryLinkQuery($entryId: String!) {
         title
         slug
       }
+       ... on Post {
+        name
+        slug
+      }
     }
   }
 }
