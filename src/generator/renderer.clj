@@ -35,10 +35,10 @@
   [args]
   (let [entry-id (get-in args [:data :target :sys :id])
         link-label (get-in args [:content 0 :value]) 
-        ;; fetch slug and title
+        ;; fetch slug and title/or name
         query-result (contentful/get-contentful :entry-query {:entryId entry-id})
         {:keys [slug title name]} (get-in query-result [:entryCollection :items 0])]
-    ;; render a tag use title as backup link-label if contentful doesnt provide
+    ;; render a tag use title/name as backup link-label if contentful doesnt provide
     [:a {:href (create-url slug)}
      (if (seq link-label)
        link-label
