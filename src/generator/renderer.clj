@@ -36,13 +36,13 @@
   (let [entry-id (get-in args [:data :target :sys :id])
         link-label (get-in args [:content 0 :value]) 
         ;; fetch slug and title
-        query-result (contentful/get-contentful :entry-link-query {:entryId entry-id})
-        {:keys [slug title]} (get-in query-result [:entryCollection :items 0])]
+        query-result (contentful/get-contentful :entry-query {:entryId entry-id})
+        {:keys [slug title name]} (get-in query-result [:entryCollection :items 0])]
     ;; render a tag use title as backup link-label if contentful doesnt provide
     [:a {:href (create-url slug)}
      (if (seq link-label)
        link-label
-       title)]))
+       (or title name))]))
 
 (defn create-field
   [field]
@@ -171,6 +171,10 @@
 (defmethod richtext->html "embedded-entry-inline"
   [args]
  (create-entry-field-link args))
+
+(defmethod richtext->html "entry-hyperlink"
+  [args]
+  (create-entry-field-link args))
 
 (defmethod richtext->html "embedded-entry-block"
   [args]
