@@ -55,6 +55,7 @@
           (response/response (pages/render-page data (:custom-html-classes query-keys)))
           "Content-Type" "Text/html")))
     (catch clojure.lang.ExceptionInfo exception
+      (println (.getMessage exception))
       (-> (response/response "<h1>Invalid token</h1>")
           (response/status 400)
           (response/header "Content-Type" "Text/html")))))
