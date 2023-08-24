@@ -96,7 +96,7 @@
 
 (defmethod richtext->html "heading-2"
   [m]
-  (into [:h2] (mapv richtext->html (:content m))))
+  [:div.title-wrap (into [:h2] (mapv richtext->html (:content m)))])
 
 (defmethod richtext->html "heading-3"
   [m]

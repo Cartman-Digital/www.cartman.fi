@@ -1728,6 +1728,10 @@ body table p {
   }
 }
 
+.front-page .title-wrap{
+  text-align: center;
+}
+
 /** Services page */
 
 .services .content>section:nth-child(odd) {
