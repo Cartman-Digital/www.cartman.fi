@@ -26,7 +26,7 @@
 
 (defn get-embed-block-html
   [args]
-  (let [[entryCollection] (get-in
+  (let [entryCollection (get-in
                          (contentful/get-contentful :entry-query {:entryId (get-in args [:data :target :sys :id])})
                          [:entryCollection :items])]
     (into [:div.embed] (mapv render entryCollection))))
@@ -170,7 +170,7 @@
 
 (defmethod richtext->html "embedded-entry-inline"
   [args]
- (create-entry-field-link args))
+ (get-embed-block-html args))
 
 (defmethod richtext->html "entry-hyperlink"
   [args]
