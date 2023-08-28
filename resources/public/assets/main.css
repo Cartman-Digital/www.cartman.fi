@@ -1722,12 +1722,6 @@ body table p {
 
 /** Front page */
 
-@media (min-width: 1536px) {
-  .front-page div:not(.banner-content-wrap) p {
-    max-width: 1280px;
-  }
-}
-
 .front-page .title-wrap{
   text-align: center;
 }
