@@ -6,23 +6,7 @@
    [generator.renderer.static :as static]
    [hiccup.element :refer [link-to]]
    [hiccup.page :refer [html5 include-css include-js]]
-   [taoensso.truss :as truss :refer (have)]
-   [jsonista.core :as j]))
-
-
-;;jsonista.core to parse schema into json
-(comment
-  (defn render-json-ld [args]
-    (let [schema {
-                  "@context" "https://schema.org/"
-                  "@type" "BlogPosting"
-                  "@id"(nav/create-url(:slug args))
-                  :name (:title args)}]
-      (j/write-value-as-string schema)))
-  
-  (render-json-ld {:title "foobar" :slug "foobar"}))
-
-
+   [taoensso.truss :as truss :refer (have)]))
 
 (defn render-content
   [m] 
