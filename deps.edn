@@ -13,7 +13,8 @@
         sitemap/sitemap                 {:mvn/version "0.4.0"}
         org.clojars.arthurbarroso/lovelace {:mvn/version "0.1.2"}
         clj-recaptcha/clj-recaptcha     {:mvn/version "0.0.2"}
-        ring-refresh/ring-refresh       {:mvn/version "0.1.3"}}
+        ring-refresh/ring-refresh       {:mvn/version "0.1.3"}
+        metosin/jsonista                {:mvn/version "0.3.7"}}
  :paths ["src" "resources"]
  :aliases {:project/run {:main-opts ["-m" "generator.core"]}
            :project/generate-sitemap {:main-opts ["-m" "generator.sitemap"]}
