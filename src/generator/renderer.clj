@@ -13,7 +13,8 @@
    [hiccup.element :refer [image]]
    [hiccup.form :as form]
    [hiccup.util :as util]
-   [taoensso.truss :as truss :refer [have]]))
+   [taoensso.truss :as truss :refer [have]]
+   [jsonista.core :as j]))
 
 (declare render)
 
@@ -52,6 +53,55 @@
     (if (= fieldType "textarea")
       [:textarea {:name fieldName :id fieldName :required ""}]
       [:input {:type fieldType :name fieldName :id fieldName :required ""}])]))
+
+
+;;jsonista.core to parse schema into json
+(defn render-json-ld [args]
+  (let [schema {"@context" "https://schema.org/"
+                "@type" "BlogPosting"
+                "@id" (str (create-url (:slug args)) "#BlogPosting")
+                :name (:title args)
+                :datePublished (:publishDate args)
+                :url (create-url (:slug args))
+                :author {"@type" "Person"
+                                        ;;The id doesnt work here, requires person slug instead of name
+                         "@id" (str (create-url (get-in args [:author :name])) "#Person")
+                         :name (get-in args [:author :name])
+                         :image {"@type" "ImageObject"
+                                 "@id" (get-in args [:author :picture :url])}}
+                :image {"@type" "ImageObject"
+                        "@id" (get-in args [:postImage :url])
+                        :url (get-in args [:postImage :url])
+                        :name (get-in args [:postImage :title])}}]
+    (j/write-value-as-string schema)))
+
+(comment
+  (defn render-json-ld [args]
+    (let [schema {"@context" "https://schema.org/"
+                  "@type" "BlogPosting"
+                  "@id" (str (nav/create-url (:slug args)) "#BlogPosting")
+                  :name (:title args)
+                  :datePublished (:publishDate args)
+                  :url (nav/create-url (:slug args))
+                  :author {"@type" "Person"
+                                        ;;The id doesnt work here, requires person slug instead of name
+                           "@id" (str (nav/create-url (get-in args [:author :name])) "#Person")
+                           :name (get-in args [:author :name])
+                           :image {"@type" "ImageObject"
+                                   "@id" (get-in args [:author :picture :url])}}
+                  :image {"@type" "ImageObject"
+                          "@id" (get-in args [:postImage :url])
+                          :url (get-in args [:postImage :url])
+                          :name (get-in args [:postImage :title])}
+                  }]
+        (j/write-value-as-string schema)))
+  
+  (render-json-ld {:title "foobar" 
+                   :slug "foobar" 
+                   :author{:name "paavo pokkinen"
+                           :title "Paavo - Head"
+                           :img "https://images.ctfassets.net/038s6vr0kmv0/1Dl8g5SFt7WtQLlXA17BjC/7f7ad1fb23ba59709e334f38c2ac8a07/IMG_2530.jpg"}}))
+
 
 ;; https://github.com/contentful/rich-text/blob/master/packages/rich-text-types/src/marks.ts
 ;; Used automatically by richtext->html
@@ -278,11 +328,12 @@
   (let [fullbody (empty? (:shortDescription args))
         content (if (empty? (:shortDescription args)) (:content args) (:shortDescription args))]
     [(if fullbody :div.post :li.post)
+     [:script {:type "application/ld+json"} (render-json-ld args)]
      [:div.image
       (if (:url (:postImage args))
         [:img {:alt (get-in args [:postImage :title]) :src (:url (:postImage args))}]
         [:img {:alt "working-hands-and-laptops" :src "https://images.ctfassets.net/038s6vr0kmv0/3shYr3pz9Ldd0w5qzSUYdP/d3f0af0310d1aa71a47e4130ee238040/scott-graham-5fNmWej4tAA-unsplash.jpg?h=250"}])]
-     [:div.body [:a {:href (create-url (:slug args))}[:h2 (:title args)]]
+     [:div.body [:a {:href (create-url (:slug args))} [:h2 (:title args)]]
       [:div.author
        [:span.name (get-in args [:author :name])]
        [:span.published (renderer.util/iso-to-relative (:publishDate args))]]
