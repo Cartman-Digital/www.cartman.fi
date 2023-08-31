@@ -19,6 +19,11 @@ query postsByListQuery($listId: String!, $limit: Int!) {
           publishDate
           author {
             name
+            slug
+            picture {
+             url
+             title
+           }
           }
         }
       }
