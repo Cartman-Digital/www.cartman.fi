@@ -54,7 +54,6 @@
       [:textarea {:name fieldName :id fieldName :required ""}]
       [:input {:type fieldType :name fieldName :id fieldName :required ""}])]))
 
-
 ;;jsonista.core to parse schema into json
 (defn render-post-json-ld [args]
   (let [schema {"@context" "https://schema.org/"
@@ -64,6 +63,7 @@
                 :datePublished (:publishDate args)
                 :url (create-url (:slug args))
                 :author {"@type" "Person"
+                         ;; url uses nil as default if no args found/ else page breaks
                          "@id" (str (create-url (get-in args [:author :slug] nil)) "#Person")
                          :name (get-in args [:author :name])
                          :url (create-url (get-in args [:author :slug] nil))
@@ -80,12 +80,12 @@
                            "blog"]}]
     (j/write-value-as-string schema)))
 
-(defn render-postCollection-json-ld [args]
+(defn render-postCollection-json-ld []
   (let [schema {"@context" "https://schema.org/"
                 "@type" "Blog"
                 "@id" "https//:cartman.fi/articles.html#Blog"
                 :description "List of blog posts written by Cartman digital members"
-                :name (:websiteTitle args)
+                :name "Blog"
                 :url "https//:cartman.fi/articles.html"
                 :keywords ["blog",
                            "technology",
@@ -338,7 +338,7 @@
 (defmethod render "PostCollection"
   [args]
   [:div
-   [:script {:type "application/ld+json"} (render-postCollection-json-ld args)]
+   [:script {:type "application/ld+json"} (render-postCollection-json-ld)]
    (into [:ul.post-list] (mapv render (:items args)))])
 
 (defmethod  render "PersonCollection"
@@ -369,10 +369,8 @@
     (if fullbody (person-single-view args) (people-list-view args))))
 
 (comment (render {:__typename "ArticleList" :sys {:id "4N25RfloTD2aq3YtrDEzLk"} :numberOfPostsShown 3}))
-(comment (contentful/get-contentful :posts-by-list-query {:listId "4N25RfloTD2aq3YtrDEzLk"
-                                                          :limit 3}))
-(comment 
-  (render-post-json-ld {:title "foobar"
+(comment (contentful/get-contentful :posts-by-list-query {:listId "4N25RfloTD2aq3YtrDEzLk" :limit 3}))
+(comment (render-post-json-ld {:title "foobar"
                    :slug "foobar"
                    :author {:name "paavo pokkinen"
                             :title "Paavo - Head"
