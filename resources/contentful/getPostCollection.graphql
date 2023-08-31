@@ -13,6 +13,7 @@ query postCollectionQuery(
       __typename
       author {
         name
+        slug
         picture {
           url
           title

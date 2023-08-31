@@ -56,7 +56,7 @@
 
 
 ;;jsonista.core to parse schema into json
-(defn render-json-ld [args]
+(defn render-post-json-ld [args]
   (let [schema {"@context" "https://schema.org/"
                 "@type" "BlogPosting"
                 "@id" (str (create-url (:slug args)) "#BlogPosting")
@@ -64,44 +64,36 @@
                 :datePublished (:publishDate args)
                 :url (create-url (:slug args))
                 :author {"@type" "Person"
-                                        ;;The id doesnt work here, requires person slug instead of name
-                         "@id" (str (create-url (get-in args [:author :name])) "#Person")
+                         "@id" (str (create-url (get-in args [:author :slug] nil)) "#Person")
                          :name (get-in args [:author :name])
+                         :url (create-url (get-in args [:author :slug] nil))
                          :image {"@type" "ImageObject"
                                  "@id" (get-in args [:author :picture :url])}}
                 :image {"@type" "ImageObject"
                         "@id" (get-in args [:postImage :url])
                         :url (get-in args [:postImage :url])
-                        :name (get-in args [:postImage :title])}}]
+                        :name (get-in args [:postImage :title])}
+                :keywords ["technology",
+                           "ecommerce",
+                           "cartman.fi",
+                           "consulting",
+                           "blog"]}]
     (j/write-value-as-string schema)))
 
-(comment
-  (defn render-json-ld [args]
-    (let [schema {"@context" "https://schema.org/"
-                  "@type" "BlogPosting"
-                  "@id" (str (nav/create-url (:slug args)) "#BlogPosting")
-                  :name (:title args)
-                  :datePublished (:publishDate args)
-                  :url (nav/create-url (:slug args))
-                  :author {"@type" "Person"
-                                        ;;The id doesnt work here, requires person slug instead of name
-                           "@id" (str (nav/create-url (get-in args [:author :name])) "#Person")
-                           :name (get-in args [:author :name])
-                           :image {"@type" "ImageObject"
-                                   "@id" (get-in args [:author :picture :url])}}
-                  :image {"@type" "ImageObject"
-                          "@id" (get-in args [:postImage :url])
-                          :url (get-in args [:postImage :url])
-                          :name (get-in args [:postImage :title])}
-                  }]
-        (j/write-value-as-string schema)))
-  
-  (render-json-ld {:title "foobar" 
-                   :slug "foobar" 
-                   :author{:name "paavo pokkinen"
-                           :title "Paavo - Head"
-                           :img "https://images.ctfassets.net/038s6vr0kmv0/1Dl8g5SFt7WtQLlXA17BjC/7f7ad1fb23ba59709e334f38c2ac8a07/IMG_2530.jpg"}}))
-
+(defn render-postCollection-json-ld [args]
+  (let [schema {"@context" "https://schema.org/"
+                "@type" "Blog"
+                "@id" "https//:cartman.fi/articles.html#Blog"
+                :description "List of blog posts written by Cartman digital members"
+                :name (:websiteTitle args)
+                :url "https//:cartman.fi/articles.html"
+                :keywords ["blog",
+                           "technology",
+                           "cartman.fi",
+                           "kubernetes",
+                           "ecommerce",
+                           "consulting"]}]
+    (j/write-value-as-string schema)))
 
 ;; https://github.com/contentful/rich-text/blob/master/packages/rich-text-types/src/marks.ts
 ;; Used automatically by richtext->html
@@ -328,7 +320,7 @@
   (let [fullbody (empty? (:shortDescription args))
         content (if (empty? (:shortDescription args)) (:content args) (:shortDescription args))]
     [(if fullbody :div.post :li.post)
-     [:script {:type "application/ld+json"} (render-json-ld args)]
+     [:script {:type "application/ld+json"} (render-post-json-ld args)]
      [:div.image
       (if (:url (:postImage args))
         [:img {:alt (get-in args [:postImage :title]) :src (:url (:postImage args))}]
@@ -346,6 +338,7 @@
 (defmethod render "PostCollection"
   [args]
   [:div
+   [:script {:type "application/ld+json"} (render-postCollection-json-ld args)]
    (into [:ul.post-list] (mapv render (:items args)))])
 
 (defmethod  render "PersonCollection"
@@ -378,3 +371,10 @@
 (comment (render {:__typename "ArticleList" :sys {:id "4N25RfloTD2aq3YtrDEzLk"} :numberOfPostsShown 3}))
 (comment (contentful/get-contentful :posts-by-list-query {:listId "4N25RfloTD2aq3YtrDEzLk"
                                                           :limit 3}))
+(comment 
+  (render-post-json-ld {:title "foobar"
+                   :slug "foobar"
+                   :author {:name "paavo pokkinen"
+                            :title "Paavo - Head"
+                            :slug "people/paavo-pokkinen"
+                            :image "https://images.ctfassets.net/038s6vr0kmv0/1Dl8g5SFt7WtQLlXA17BjC/7f7ad1fb23ba59709e334f38c2ac8a07/IMG_2530.jpg"}}))
