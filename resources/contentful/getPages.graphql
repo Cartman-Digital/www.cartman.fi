@@ -22,7 +22,7 @@ query pageCollectionQuery(
               json
             }
             banner {
-              url
+              url(transform: {format: WEBP})
               title
             }
             ctaUrl

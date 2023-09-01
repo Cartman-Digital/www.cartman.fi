@@ -10,7 +10,7 @@ query postsByListQuery($listId: String!, $limit: Int!) {
           slug
           title
           postImage{
-            url
+            url(transform: {format: WEBP})
             title
           }
           shortDescription {
@@ -21,7 +21,7 @@ query postsByListQuery($listId: String!, $limit: Int!) {
             name
             slug
             picture {
-             url
+             url(transform: {format: WEBP})
              title
            }
           }
