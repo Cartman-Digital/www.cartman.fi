@@ -73,11 +73,13 @@
                         "@id" (get-in args [:postImage :url])
                         :url (get-in args [:postImage :url])
                         :name (get-in args [:postImage :title])}
-                :keywords ["technology",
-                           "ecommerce",
-                           "cartman.fi",
-                           "consulting",
-                           "blog"]}]
+                ;;If no keywords are provided in CMS post, default keywords used
+                :keywords (or (:keywords args) ["technology",
+                                                "ecommerce",
+                                                "cartman.fi",
+                                                "consulting",
+                                                "tech blog",
+                                                "technical consulting"])}]
     (j/write-value-as-string schema)))
 
 (defn render-postCollection-json-ld []
@@ -87,12 +89,12 @@
                 :description "List of blog posts written by Cartman digital members"
                 :name "Blog"
                 :url "https//:cartman.fi/articles.html"
+                ;;Get 5 most relevant keywords from last 6 posts
                 :keywords ["blog",
                            "technology",
                            "cartman.fi",
-                           "kubernetes",
                            "ecommerce",
-                           "consulting"]}]
+                           "ecommerce consulting"]}]
     (j/write-value-as-string schema)))
 
 ;; https://github.com/contentful/rich-text/blob/master/packages/rich-text-types/src/marks.ts

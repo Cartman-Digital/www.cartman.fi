@@ -24,6 +24,7 @@ query postCollectionQuery(
       title
       publishDate
       slug
+      keywords
       postImage{
         url
         title
