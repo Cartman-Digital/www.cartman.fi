@@ -1,6 +1,6 @@
 query assetQuery($assetId: String!) {
   asset(id: $assetId) {
-    url(transform: {format: WEBP})
+    url(transform: {format: WEBP quality: 85})
     size
     width
     height

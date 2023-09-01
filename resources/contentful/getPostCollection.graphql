@@ -15,7 +15,7 @@ query postCollectionQuery(
         name
         slug
         picture {
-          url(transform: {format: WEBP})
+          url(transform: {format: WEBP quality: 85})
           title
         }
         email
@@ -26,7 +26,7 @@ query postCollectionQuery(
       slug
       keywords
       postImage{
-        url(transform: {format: WEBP})
+        url(transform: {format: WEBP quality: 85})
         title
       }
       content @include(if: $single) {
