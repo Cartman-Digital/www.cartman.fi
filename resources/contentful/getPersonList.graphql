@@ -13,7 +13,7 @@ query peopleByListQuery($listId: String!){
             json
           }
           picture{
-            url
+            url(transform: {format: WEBP})
             title
           }
         }

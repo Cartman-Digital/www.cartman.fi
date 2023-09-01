@@ -16,7 +16,7 @@ query personCollectionQuery(
       }
       slug
       picture {
-        url
+        url(transform: {format: WEBP})
         title
       }
       shortText @include(if: $list) {
