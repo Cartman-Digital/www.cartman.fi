@@ -1720,6 +1720,13 @@ body table p {
  * Page specific styles 
  */
 
+.static-page .content > .doc > p,
+    .static-page .content > .doc > h3 {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 56rem;
+}
+
 /** Front page */
 
 .front-page .title-wrap{
