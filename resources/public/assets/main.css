@@ -736,12 +736,12 @@ html body ol {
           padding-inline-start: 2rem;
 }
 
-html body ol li p {
-  display: inline-block;
+html body li {
+  margin-bottom: 0px;
 }
 
 html body li p {
-  margin-bottom: 0px;
+  margin-bottom: 0.25rem;
 }
 
 html body a {

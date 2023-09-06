@@ -133,13 +133,11 @@ html body {
     }
 
     >.content {
-        @apply mx-auto py-0;
-      
+        @apply mx-auto py-0; 
     }
 
     p {
-        @apply mb-2 whitespace-pre-wrap;
-       
+        @apply mb-2 whitespace-pre-wrap;   
     }
 
     ul {
@@ -150,14 +148,14 @@ html body {
     ol {
         @apply list-decimal mb-2;
         padding-inline-start: 2rem;
-        
-        li p {
-            @apply inline-block;
-        }
     }
 
-    li p {
+    li {
         @apply mb-0;
+
+        p {
+            @apply mb-1;
+        }
     }
 
     a {
@@ -650,10 +648,10 @@ body .content .card-list {
 }
 
 .post-list {
-    @apply grid ;
+    @apply grid;
 
     .post {
-        @apply mb-16  align-text-bottom grid grid-cols-1 md:grid-cols-10 gap-10;
+        @apply mb-16 align-text-bottom grid grid-cols-1 md:grid-cols-10 gap-10;
 
         a.action {
             @apply self-start mt-auto float-left md:float-right;
