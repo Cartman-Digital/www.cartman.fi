@@ -1191,6 +1191,7 @@ body .content > .post {
   display: flex;
   list-style-type: none;
   flex-direction: column;
+  align-items: center;
   padding: 1rem;
   font-weight: 500;
 }
@@ -1210,6 +1211,23 @@ body .content > .post {
   .navigation .nav-list-wrapper ul {
     padding: 0px;
   }
+}
+
+.navigation .nav-list-wrapper li{
+  margin-top: 0;
+  margin-right: 0;
+  border-left-color: var(--color-primary);
+  border-right-color: var(--color-primary);
+}
+
+.navigation .nav-list-wrapper li::before {
+  top: -2px;
+  background-image: linear-gradient(90deg, #F200E7 20px, transparent 20px, transparent 45px, #F200E7 45px);
+}
+
+.navigation .nav-list-wrapper li::after {
+  bottom: -2px;
+  background-image: linear-gradient(-90deg, #F200E7 20px, transparent 20px, transparent 45px, #F200E7 45px);
 }
 
 .navigation .nav-list-wrapper a {

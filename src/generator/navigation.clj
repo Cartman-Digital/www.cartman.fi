@@ -38,5 +38,5 @@
       [:div {:class "nav-list-wrapper hidden" :id "navbar-default"}
        [:ul
         (for [item (:items nav-item-collection)]
-          [:li
+          [:li {:class (if (= (:slug item) "contact") "cta button action primary" nil)}
            [:a {:href (create-url (:slug item))} (get item :title)]])]]]]))
