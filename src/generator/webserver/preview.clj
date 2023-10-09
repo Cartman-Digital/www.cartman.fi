@@ -34,7 +34,10 @@
                             :collection-name :postCollection}
     (= preview-type :page) {:query :page-collection-query
                             :custom-html-classes ""
-                            :collection-name :pageCollection}
+                            :collection-name :pageCollection} 
+    (= preview-type :person) {:query :person-collection-query
+                            :custom-html-classes "person-page"
+                            :collection-name :personCollection}
     :else (throw (ex-info "Invalid preview type" 
                           {:unrecognized-type preview-type}))))
 
@@ -43,20 +46,18 @@
    Request must contain id and secret as query parameters"
   [request preview-type]
   (try
-    (do
-      (validate-secret request)
-      (have? keyword? preview-type)
-      (let [id (request-id request)
-            query-keys (page-data preview-type)
-            raw-data (contentful/get-contentful-preview (:query query-keys) {:preview true
-                                                               :where {:sys {:id id}}})
-            data (first (get-in raw-data [(:collection-name query-keys) :items]))]
-        (response/header
-          (response/response (pages/render-page data (:custom-html-classes query-keys)))
-          "Content-Type" "Text/html")))
-    (catch clojure.lang.ExceptionInfo exception
-      (println (.getMessage exception))
-      (-> (response/response "<h1>Invalid token</h1>")
-          (response/status 400)
-          (response/header "Content-Type" "Text/html")))))
-
+    (validate-secret request)
+    (have? keyword? preview-type)
+    (let [id (request-id request)
+          query-keys (page-data preview-type)
+          raw-data (contentful/get-contentful-preview (:query query-keys) {:preview true
+                                                                           :where {:sys {:id id}}})
+          data (first (get-in raw-data [(:collection-name query-keys) :items]))]
+      (response/header
+       (response/response (pages/render-page data (:custom-html-classes query-keys)))
+       "Content-Type" "Text/html"))
+   (catch clojure.lang.ExceptionInfo exception
+     (prn (.getMessage exception))
+     (-> (response/response "<h1>Invalid token</h1>")
+         (response/status 400)
+         (response/header "Content-Type" "Text/html")))))

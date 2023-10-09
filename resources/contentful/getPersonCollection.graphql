@@ -1,8 +1,10 @@
 query personCollectionQuery(
   $preview: Boolean = false,
+  $where: PersonFilter = {}
 ) {
     personCollection(
         preview: $preview
+        where: $where
         limit: 15
     ) {
         __typename
