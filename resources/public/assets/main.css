@@ -538,6 +538,18 @@ video {
   position: static;
 }
 
+.row-span-2 {
+  grid-row: span 2 / span 2;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.block {
+  display: block;
+}
+
 .table {
   display: table;
 }
@@ -562,6 +574,26 @@ video {
   display: none;
 }
 
+.list-none {
+  list-style-type: none;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.pr-2 {
+  padding-right: 0.5rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
 .italic {
   font-style: italic;
 }
@@ -583,6 +615,7 @@ video {
   --color-secondary-offset: #B1D5F3;
   --color-accent: #FFD945;
   --color-grey-primary: #231F20;
+  --color-grey-primary-light: #474747;
   --color-grey-offset: #FFF;
   /** Base layout off 8px increments */
   --layout-spacing-horizontal: 24px;
@@ -751,6 +784,39 @@ html body a {
 
 html body a:hover {
   color: var(--color-secondary-offset);
+}
+
+html body .chevron {
+  position:relative;
+  display:block;
+  height:20px;
+  /*Height should be double border thickness*/
+}
+
+html body .chevron::before,
+    html body .chevron::after {
+  position:absolute;
+  display:block;
+  content:"";
+  border:10px solid transparent;
+  /*Adjust chevron size*/
+}
+
+/*Change the four instances of 'top' below to rotate chevron*/
+
+/*Use (top/right/bottom/left) where you want the back of the chevron to be*/
+
+html body .chevron::before {
+  top:0;
+  border-top-color: var(--color-primary);
+  /*Chevron Color*/
+}
+
+html body .chevron::after {
+  top:-3px;
+  /*Adjust thickness*/
+  border-top-color:var(--color-grey-primary);
+  /*Match chevron background colour*/
 }
 
 html body,
@@ -2008,46 +2074,149 @@ body.post-page code {
 
 /**Individual Person page*/
 
-.person-page .person {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  vertical-align: text-top;
+.person-page {
+  padding-top: 5rem;
 }
 
-.services .content .side-by-side .embed .person-page .person {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.5rem;
+.person-page .person ul {
+  padding-left: 0px;
+}
+
+.person-page .person ul li {
+  margin-bottom: 0.5rem;
+  display: flex;
+}
+
+.person-page .person ul .logo {
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  padding-top: 0.5rem;
+  flex: 0 0 50px;
+  max-height: 50px;
+}
+
+.person-page .person ul .logo img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.person-page .person ul .name {
+  font-weight: 700;
+}
+
+.person-page .wrap {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: nowrap;
+  text-align: left;
+}
+
+.person-page .wrap .left {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 @media (min-width: 768px) {
-  .services .content .side-by-side .embed .person-page .person {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+  .person-page .wrap .left {
+    flex-direction: row;
+    padding-right: 2rem;
   }
+}
+
+.person-page .wrap .left {
+  flex: 0 0 20%;
+}
+
+.person-page .wrap .left span {
+  display: block;
+}
+
+.person-page .wrap .left .gap-line {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  height: 1px;
+  width: 1px;
+  flex-grow: 1;
+}
+
+@media (min-width: 768px) {
+  .person-page .wrap .left .gap-line {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    width: auto;
+  }
+}
+
+.person-page .wrap .left .gap-line {
+  flex: 1 0 0;
+  width: 1px;
+  background-color: #fff;
+}
+
+.person-page .wrap .right {
+  flex: 0 0 80%;
+  overflow: hidden;
+  position: relative;
+}
+
+.person-page .wrap .right .title,
+            .person-page .wrap .right .employer {
+  display: block;
+}
+
+.person-page .wrap .right .job-description p {
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  transition: max-height 500ms ease-in-out;
+  cursor: pointer;
+}
+
+.person-page .wrap .right.full .job-description p {
+  max-height: 25rem;
+}
+
+.person-page .wrap .right.full .job-description p::after {
+  display: none;
+}
+
+.person-page .wrap .right.full .read-more {
+  display: none;
+}
+
+.person-page h2 {
+  margin-top: 2rem;
+}
+
+.person-page .abilities .doc,
+    .person-page .abilities h3 {
+  margin-left: 20%;
+}
+
+.person-page .person {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (min-width: 1024px) {
-  .services .content .side-by-side .embed .person-page .person {
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1280px) {
-  .services .content .side-by-side .embed .person-page .person {
-    grid-template-columns: repeat(9, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1536px) {
-  .services .content .side-by-side .embed .person-page .person {
-    grid-template-columns: repeat(10, minmax(0, 1fr));
+  .person-page .person {
+    max-width: 80rem;
   }
 }
 
 .person-page .person {
-  padding: 0 var(--layout-spacing-horizontal);
+  padding: 0 var(--layout-spacing-horizontal) 2rem;
 }
 
 @media (min-width: 768px) {
@@ -2060,7 +2229,7 @@ body.post-page code {
   max-height: 50vh;
 }
 
-.person-page .person .office{
+.person-page .person .office {
   font-weight: bold;
 }
 
@@ -2073,6 +2242,12 @@ body.post-page code {
 .person-page .person .person-body {
   margin-top: 3rem;
   margin-bottom: 3rem;
+  max-width: 48rem;
+  text-align: left;
+}
+
+.person-page .person .person-body strong {
+  font-weight: 700;
 }
 
 @media (min-width: 640px) {
@@ -2099,9 +2274,23 @@ body.post-page code {
   .sm\:grid-cols-6 {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
+
+  .sm\:gap-8 {
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: 1024px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }

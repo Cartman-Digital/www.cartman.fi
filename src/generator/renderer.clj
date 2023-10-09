@@ -227,20 +227,32 @@
 ;;person-singleview and people-list view repeat to make styling and content changes easier
 (defn person-single-view
   [args]
-  [:div.person
-   [:h2 (:name args)]
-   [:div.image
-    [:img {:alt (get-in args [:picture :title]) :src (:url (:picture args))}]]
-   [:div.body
+  [:div.person.grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.sm:gap-8.items-start
+   [:div.who.row-span-2
+    [:h1.mt-4 (:name args)]
+    [:div.image
+     [:img {:alt (get-in args [:picture :title]) :src (:url (:picture args))}]]
     [:h4 (:jobTitle args)]
     [:p.office (:name (:office args))]
-    [:div.person-body (richtext->html (:json (:description args)))]]])
+    [:div.pr-2 (richtext->html (get-in args [:shortText :json]))]]
+   [:div.what
+    [:h2 "Skills"]
+    (into [:ul.soft-skills.list-none]
+          (mapv #(render %) (get-in args [:skillsCollection :items])))
+    (richtext->html (get-in args [:otherSkills :json]))]
+   [:div.where
+    [:h2 "Web skills"]
+    [:div.web
+     (into [:ul.web-talent.list-none]
+           (mapv #(render %) (get-in args [:webAppSkillsCollection :items])))]]
+   [:div.how 
+    [:h2 "Work highlights"]
+    (into [:ul.projects]
+          (mapv #(render %) (get-in args [:highlightCollection :items])))]])
 
 (defn people-list-view
   [args]
   [:li.person-body
-   ;;Add link to single person view
-   ;;[:a {:href (create-url (:slug args))} [:h3 (:name args)]]
    [:h3 (:name args)]
    [:div.image
     [:img {:alt (get-in args [:picture :title]) :src (:url (:picture args))}]]
@@ -294,6 +306,40 @@
      (for [item (:items nav-item-collection)]
        [:li {:class (str "nav-item " (:additionalCssClasses item))}
         [:a {:href (create-url (:slug item))} (get item :title)]])]]))
+
+(defmethod render "DigitalExperience"
+  [args]
+  (let [link (:techHomePageUrl args)
+        image-url (get-in args [:logo :url])
+        logo-wrap (if (empty? link) [:span.logo] [:a.logo {:href (create-url link)}])]
+   [:li.digital-experience
+     (merge
+      logo-wrap
+      (when (not-empty image-url)
+        (image {:title (:name args)} image-url (:name args)))) 
+    [:div
+     [:span.name.block (:name args)]
+     [:p (:description args)]]]))
+
+(defmethod render "WorkHighlight"
+  [args]
+  [:div 
+   [:span.name.block (:name args)]
+   [:div.description (richtext->html (get-in args [:description :json]))]])
+
+(defmethod render "Experience"
+  [args]
+  [:div.wrap
+   [:div.left
+    [:span.font-bold.end (if (:endYear args) (:endYear args) "Now")]
+    [:span.gap-line]
+    [:span.font-bold.start (:startYear args)]] 
+   [:div.right
+    [:span.font-bold.title (:jobTitle args)]
+    [:span.font-bold.employer (:employer args)]
+    ;(when (and (not (:onGoing args)) (:duration args))
+    ;  [:span (str " ( " (:duration args) " months )")])
+    [:div.job-description (richtext->html (get-in args [:jobDescription :json]))]]])
 
 (defmethod render "Form" 
  [args]
@@ -367,7 +413,7 @@
 
 (defmethod render "Person"
   [args]
-  (let [fullbody (empty? (:shortText args))]
+  (let [fullbody (not-empty (:highlightCollection args))]
     (if fullbody (person-single-view args) (people-list-view args))))
 
 (comment (render {:__typename "ArticleList" :sys {:id "4N25RfloTD2aq3YtrDEzLk"} :numberOfPostsShown 3}))
