@@ -26,6 +26,7 @@
         (= uri "/api/ping") (response/header (response/response "pong\n") "Content-Type" "text/plain")
         (string/starts-with? uri "/api/preview/page") (preview/execute request :page)
         (string/starts-with? uri "/api/preview/post") (preview/execute request :post)
+        (string/starts-with? uri "/api/preview/person") (preview/execute request :person)
         (string/starts-with? uri "/assets/v/") (response/redirect (clojure.string/replace-first uri #"v/[0-9]*/" ""))
         :else (handler request)))))
 
