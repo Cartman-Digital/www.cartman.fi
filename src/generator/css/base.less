@@ -9,6 +9,7 @@
     --color-secondary-offset: #B1D5F3;
     --color-accent: #FFD945;
     --color-grey-primary: #231F20;
+    --color-grey-primary-light: #474747;
     --color-grey-offset: #FFF;
     /** Base layout off 8px increments */
     --layout-spacing-horizontal: 24px;
@@ -165,6 +166,29 @@ html body {
     
     a:hover {
         color: var(--color-secondary-offset);
+    }
+
+    .chevron {
+        position:relative;
+        display:block;
+        height:20px; /*Height should be double border thickness*/
+    }
+    .chevron::before,
+    .chevron::after {
+        position:absolute;
+        display:block;
+        content:"";
+        border:10px solid transparent; /*Adjust chevron size*/
+    }
+    /*Change the four instances of 'top' below to rotate chevron*/
+    /*Use (top/right/bottom/left) where you want the back of the chevron to be*/
+    .chevron::before {
+        top:0;
+        border-top-color: var(--color-primary); /*Chevron Color*/
+    }
+    .chevron::after {
+        top:-3px; /*Adjust thickness*/
+        border-top-color:var(--color-grey-primary); /*Match chevron background colour*/
     }
 }
 
@@ -867,9 +891,96 @@ body.post-page {
 
 /**Individual Person page*/
 .person-page {
+    @apply pt-20;
+
+    .person ul {
+        @apply pl-0;
+
+        li {
+            @apply flex mb-2;
+        }
+
+        .logo {
+            @apply mr-4 inline-block pt-2 mb-2;
+            flex: 0 0 50px;
+            max-height: 50px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .name {
+            @apply font-bold;
+        }
+    }
+
+    .wrap {
+        @apply text-left flex flex-nowrap mb-4;
+
+        .left {
+            @apply py-2 flex flex-col md:flex-row justify-between flex-nowrap md:pr-8;
+            flex: 0 0 20%;
+
+            span {
+                display: block;
+            }
+
+            .gap-line {
+                @apply mx-5 my-2 md:mx-3 md:my-3 flex-grow w-px md:w-auto h-px;
+                flex: 1 0 0;
+                width: 1px;
+                background-color: #fff;
+            }
+        }
+        .right {
+            flex: 0 0 80%;
+            overflow: hidden;
+            position: relative;
+
+            .title,
+            .employer {
+                @apply block;
+            }
+
+            .job-description p {
+                @apply overflow-hidden;
+                position: relative;
+                text-overflow: ellipsis;
+                transition: max-height 500ms ease-in-out;
+                cursor: pointer;
+            }
+
+            &.full {
+                .job-description p {
+                    max-height: 25rem;
+
+                    &::after {
+                        @apply hidden;
+                    }
+                }
+
+                .read-more {
+                    @apply hidden;
+                }
+            }
+        }
+    }
+    
+    h2 {
+        @apply mt-8;
+    }
+
+    .abilities .doc,
+    .abilities h3 {
+        margin-left: 20%;
+    }
+
     .person {
-        @apply grid mt-16 mb-16 align-text-top text-center place-items-center;
-        padding: 0 var(--layout-spacing-horizontal);
+        @apply lg:max-w-7xl mx-auto;
+        padding: 0 var(--layout-spacing-horizontal) 2rem;
 
         .image {
             @apply md:block;
@@ -879,8 +990,8 @@ body.post-page {
             }
         }
 
-        .office{
-        font-weight: bold;
+        .office {
+            font-weight: bold;
         }
 
         .body{
@@ -888,7 +999,11 @@ body.post-page {
         }
 
         .person-body {
-            @apply my-12;
+            @apply my-12 max-w-3xl text-left;
+
+            strong {
+                @apply font-bold;
+            }
         }
     }    
 }

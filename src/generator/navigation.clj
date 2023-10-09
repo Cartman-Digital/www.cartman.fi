@@ -8,7 +8,7 @@
 
 (defn local-url?
   [s]
-  (if (string/starts-with? s "http") false true))
+  (when (not-empty s) (if (string/starts-with? s "http") false true)))
 
 (defn frontpage-url?
   [s]

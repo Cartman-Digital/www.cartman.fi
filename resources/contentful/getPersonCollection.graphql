@@ -1,30 +1,60 @@
 query personCollectionQuery(
-  $list: Boolean = true,
   $preview: Boolean = false,
 ) {
-  personCollection(
-    preview: $preview
-  ) {
+    personCollection(
+        preview: $preview
+        limit: 15
+    ) {
+        __typename
+        items {
+            __typename
+            name
+            email
+            jobTitle
+            office {
+              name
+            }
+            slug
+            picture {
+              url(transform: {format: WEBP quality: 85})
+              title
+            }
+            shortText {
+              json
+            }
+            skillsCollection {
+                items {
+                    ...skillFields
+                }
+            }
+            otherSkills {
+              json
+            }
+            highlightCollection {
+                items {
+                    __typename
+                    name
+                    description {
+                        json
+                    }
+                }
+            }
+            webAppSkillsCollection {
+              items {
+                ...skillFields
+              }
+            }
+        }
+    }
+}
+
+fragment skillFields on DigitalExperience {
     __typename
-    items {
-      __typename
-      name
-      email
-      jobTitle
-      office {
-        name
-      }
-      slug
-      picture {
-        url(transform: {format: WEBP quality: 85})
+    name
+    techHomePageUrl
+    description
+    logo {
+        url
         title
-      }
-      shortText @include(if: $list) {
-        json
-      }
-      description @skip(if: $list) {
-        json
-      }
-    }  
-  }
+    }
 }
