@@ -775,8 +775,12 @@ body table {
 /**
  * Page specific styles 
  */
+ .narrow > .content {
+    @apply max-w-screen-lg;
+}
 
-.static-page .content > .doc {
+
+.static-page:not(.narrow) .content > .doc {
     & > p,
     & > h3 {
         @apply max-w-4xl mx-auto;

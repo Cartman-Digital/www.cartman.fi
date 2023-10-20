@@ -89,4 +89,4 @@
 (comment (get-contentful :person-collection-query))
 (comment (get-contentful :post-list-query))
 (comment (get-contentful :people-by-list-query {:listId "3KpjOQlZHffoJCACpIGnvh"}))
-(comment (memo/memo-clear! api-call)) ; evaluate this in REPL to clear memoize cache from api-call this allows you to update page content from contentful without restart 
+(comment (memo/memo-cl§ear! api-call)) ; evaluate this in REPL to clear memoize cache from api-call this allows you to update page content from contentful without restart 

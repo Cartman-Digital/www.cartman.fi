@@ -33,7 +33,7 @@
                             :custom-html-classes "post-page"
                             :collection-name :postCollection}
     (= preview-type :page) {:query :page-collection-query
-                            :custom-html-classes ""
+                            :custom-html-classes "static-page"
                             :collection-name :pageCollection} 
     (= preview-type :person) {:query :person-collection-query
                             :custom-html-classes "person-page"
@@ -54,7 +54,12 @@
                                                                            :where {:sys {:id id}}})
           data (first (get-in raw-data [(:collection-name query-keys) :items]))]
       (response/header
-       (response/response (pages/render-page data (:custom-html-classes query-keys)))
+       (response/response
+        (pages/render-page
+         data
+         (str
+          (:custom-html-classes query-keys)
+          (when (:useNarrowLayout data) " narrow"))))
        "Content-Type" "Text/html"))
    (catch clojure.lang.ExceptionInfo exception
      (prn (.getMessage exception))

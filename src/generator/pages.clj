@@ -91,13 +91,17 @@
     (render-page-footer)
     (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
 
+(defn get-body-class
+  [default bool-narrow]
+  (str default " " (when bool-narrow "narrow")))
+
 (defn get-static-pages 
   [m]
   (let [pages-data (contentful/get-contentful :page-collection-query)
         pages (have vector? (get-in pages-data [:pageCollection :items]))] 
     (into m (mapv #(vector
             (if (not= (:slug %) "/") (str "/" (:slug %) ".html") (str "/index.html"))
-            (fn [context] (render-page % "static-page"))) pages))))
+            (fn [context] (render-page % (get-body-class "static-page" (:useNarrowLayout %))))) pages))))
 
 (defn get-post-pages
   "Returns map of filename (eg. index.html) -> html"
