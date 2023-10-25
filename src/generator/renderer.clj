@@ -232,7 +232,7 @@
         skills (mapv #(render %) (get-in args [:skillsCollection :items]))
         tech (mapv #(render %) (get-in args [:webAppSkillsCollection :items]))]
     [:div.person.grid.grid-cols-1.md:grid-cols-2.sm:gap-8.items-start
-     [:div.name.col-span-2.text-center
+     [:div.name.md:col-span-2.text-center
       [:h1.mt-4.mb-0 (:name args)]
       [:span.font-bold (str (:jobTitle args) " - ")
        [:span.office (:name (:office args))]]]
