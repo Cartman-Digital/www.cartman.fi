@@ -9,6 +9,7 @@ query peopleByListQuery($listId: String!){
           slug
           name
           jobTitle
+          createPersonPage
           shortText{
             json
           }

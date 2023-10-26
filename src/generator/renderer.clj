@@ -257,15 +257,16 @@
          (into [:ul.web-talent.list-none] tech)]])]))
 
 (defn people-list-view
-  [args]
+  [args] 
   [:li.person-body
-   [:a {:href (create-url (:slug args))}
+   [:a (if (= true (get-in args [:createPersonPage]))
+         {:href (create-url (:slug args))}
+         {:class "no-link-style" :href "javascript:void(0);"})
     [:h2.block.mb-0 (:name args)]
     [:span.block.font-bold.mb-2 (:jobTitle args)]
     [:div.image
      [:img {:alt (get-in args [:picture :title]) :src (:url (:picture args))}]]]
-   [:div.body
-    
+   [:div.body 
     [:div.person-body (richtext->html (:json (:shortText args)))]]])
 
 (defmulti render :__typename)
