@@ -116,10 +116,11 @@
   "Returns map of filename (eg. index.html) -> html"
   [m]
   (let [people-data (contentful/get-contentful :person-collection-query {:list false})
-        people (have vector? (get-in people-data [:personCollection :items]))]
+        people (have vector? (get-in people-data [:personCollection :items]))
+        filtered-people (filter #(get-in % [:createPersonPage]) people)]
     (into m (mapv #(vector
                     (str "/" (:slug %) ".html")
-                    (fn [context] (render-page % "person-page"))) people))))
+                    (fn [context] (render-page % "person-page"))) filtered-people))))
 
 (defn get-pages
   "Creates a map of page slug -> render calls."
