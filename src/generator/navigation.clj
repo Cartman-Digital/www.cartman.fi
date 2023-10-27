@@ -6,6 +6,12 @@
 
 (def top-nav "Main menu")
 
+(defn special-url?
+  [s]
+  (when (not-empty s) 
+    (or (string/starts-with? s "tel") 
+        (string/starts-with? s "mailto"))))
+
 (defn local-url?
   [s]
   (when (not-empty s) (if (string/starts-with? s "http") false true)))
@@ -17,11 +23,11 @@
 (defn create-url
   "Convert string to valid uri by prepending base_url and appending .html if url doesn't end with / ."
   [slug]
-  (if (local-url? slug)
+  (if (and (local-url? slug) (not (special-url? slug)))
    (if (frontpage-url? slug)
     (static/prepend-base-url "")
     (static/prepend-base-url (str slug ".html")))
-   slug))
+  slug))
 
 (defn render-main-menu []
   (let [menu-data (contentful/get-contentful :nav-collection-query {:name top-nav})
