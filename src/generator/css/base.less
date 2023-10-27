@@ -58,7 +58,7 @@ html body {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     letter-spacing: .01em;
-    padding-top: 57px;
+    padding-top: 77px;
     /** if you want to adjust text size without changing the spacing, use this field to change it. */
     font-size: 17px;
     line-height: 24px;
@@ -775,10 +775,20 @@ body table {
 /**
  * Page specific styles 
  */
- .narrow > .content {
+.narrow  > .content {
     @apply max-w-screen-lg;
-}
 
+    > .doc,
+    > section,
+    .post-list,
+    > .post {
+        @apply pt-0 pb-4;
+    }
+
+    > section .row {
+        @apply pt-0;
+    }
+}
 
 .static-page:not(.narrow) .content > .doc {
     & > p,
