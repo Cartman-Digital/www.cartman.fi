@@ -1,6 +1,7 @@
 # www.cartman.fi website
 
-This repository contains static HTML generator www.cartman.fi website implemented using Clojure. Website data is fetched from Contentful. A running Cloud Run container hosts API endpoints for handling eg. forms and preview mode.
+This repository contains the static HTML generator www.cartman.fi website 
+implemented using Clojure. Website data is fetched from Contentful. A running Cloud Run container hosts API endpoints for handling eg. forms and preview mode.
 
 ## Configuration files and Environment variables
 This project supports configuration via Environment variables or two config files `generator-config.edn` or `sensitive-config.edn` at the root of the project. sensitive-config file should not be committed to git repository.
