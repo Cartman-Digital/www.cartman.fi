@@ -102,6 +102,5 @@ jobs:
           gsutil -m setmeta -h "Cache-Control:public, max-age=10800, s-maxage=10800" "gs://www-cartman-fi-prod/sitemap.xml"
           gsutil -m setmeta -h "Cache-Control:public, max-age=10800, s-maxage=10800" "gs://www-cartman-fi-prod/robots.txt"
 
-      # No need after static content versioning
-      # - name: Invalidate CDN cache
-      #   run: gcloud --project www-cartman-fi compute url-maps invalidate-cdn-cache site --path "/*" --async
+      - name: Invalidate CDN cache
+        run: gcloud --project www-cartman-fi compute url-maps invalidate-cdn-cache site --path "/*" --async
