@@ -29,7 +29,7 @@
    [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
    (when (false? (:seoIndexing page-map)) [:meta {:name "robots" :content "noindex"}])
    [:title (:title page-map)]
-   (static/get-local-css "main.css")
+   [:link {:type "text/css", :href "./css/main.css", :rel "stylesheet"}]
    (include-css "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css")
    [:link {:rel "canonical" :href (nav/create-url (:slug page-map))}] 
    [:link {:rel "preconnect" :href "https://fonts.googleapis.com"}]
@@ -132,3 +132,14 @@
 (comment (:postCollection (contentful/get-contentful :post-collection-query {:type ["news" "article"]})))
 (comment (get-pages)
          (get-post-pages {}))
+
+(comment
+  (require '[stasis.core :as stasis])
+
+  (def pages
+    (->> (contentful/get-contentful :page-collection-query) :pageCollection :items
+         (reduce #(assoc %1 (:slug %2) %2) {})))
+
+  (let [page (get pages "/")]
+    (stasis/export-page "/" (render-page page "") "./build" {})))
+

@@ -8,7 +8,7 @@
     --color-secondary: #0073D4;
     --color-secondary-offset: #B1D5F3;
     --color-accent: #FFD945;
-    --color-grey-primary: #231F20;
+    --color-white-primary: #FFFFFF
     --color-grey-primary-light: #474747;
     --color-grey-offset: #FFF;
     /** Base layout off 8px increments */
@@ -188,13 +188,13 @@ html body {
     }
     .chevron::after {
         top:-3px; /*Adjust thickness*/
-        border-top-color:var(--color-grey-primary); /*Match chevron background colour*/
+        border-top-color:var(--color-white-primary); /*Match chevron background colour*/
     }
 }
 
 html body,
 html body nav {
-    background-color: var(--color-grey-primary);
+    background-color: var(--color-white-primary);
 }
 
 /**
@@ -205,7 +205,7 @@ body {
     input[type="email"],
     textarea {
         display: block;
-        color: var(--color-grey-primary);
+        color: var(--color-white-primary);
         margin-bottom: 1rem;
         padding: 8px 16px;
     }
@@ -282,7 +282,7 @@ body {
                 left: 0;
                 right: 0;
                 z-index: 100;
-                background-color: var(--color-grey-primary);
+                background-color: var(--color-white-primary);
                 opacity: 0.4;
             }
         
@@ -427,7 +427,7 @@ body {
 
 .button:hover {
     background-color: var(--color-grey-offset);
-    color: var(--color-grey-primary);
+    color: var(--color-white-primary);
 }
 
 .button.primary:hover,
@@ -437,7 +437,7 @@ body {
 
     &:active {
         background-color: var(--color-grey-offset);
-        color: var(--color-grey-primary);
+        color: var(--color-white-primary);
     }
 }
 
@@ -510,7 +510,7 @@ body .content > .post {
     }
 
         a {
-            @apply block py-2 pl-3 pr-4 rounded lg:border-0 lg:p-0 text-white lg:hover:text-gray-500 hover:bg-gray-700 lg:hover:bg-transparent;
+            @apply block py-2 pl-3 pr-4 rounded lg:border-0 lg:p-0 text-black lg:hover:text-gray-500 hover:bg-gray-700 lg:hover:bg-transparent;
         }
     }
 
@@ -583,7 +583,7 @@ body .content > .post {
 
             &:hover {
                 text-decoration: underline;
-                background-color: var(--color-grey-primary);
+                background-color: var(--color-white-primary);
             }
 
             &::before {
@@ -599,11 +599,11 @@ body .content > .post {
             }
 
             &:active {
-                color: var(--color-grey-primary);
+                color: var(--color-white-primary);
                 background-color: var(--color-grey-offset);
 
                 &::before {
-                    background-color: var(--color-grey-primary);
+                    background-color: var(--color-white-primary);
                 }
             }
         }

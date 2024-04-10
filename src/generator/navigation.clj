@@ -31,11 +31,12 @@
 
 (defn render-main-menu []
   (let [menu-data (contentful/get-contentful :nav-collection-query {:name top-nav})
-        nav-item-collection (have map? (get-in menu-data [:navCollection :items 0 :linkedFrom :navItemCollection]))]
+        nav-item-collection (have map? (get-in menu-data [:navCollection :items 0 :linkedFrom :navItemCollection]))
+        logo (contentful/get-image-by-slug "logo")]
     [:nav {:class "navigation"} 
      [:div {:class "nav-wrapper"}
       [:a {:href (create-url "/") :class "logo"}
-       [:img {:src (static/get-asset-url "images/cartman_digital_logo.svg") :title "Cartman Digital"}]
+       [:img {:src logo :title "Cartman Digital"}]
        [:span {:class "sr-only"} "Cartman Digital"]]
       [:button {:data-collapse-toggle "navbar-default" :type "button" :aria-controls "navbar-default" :aria-expanded "false"}
        [:span {:class "sr-only"} "Open main menu"]
@@ -44,5 +45,5 @@
       [:div {:class "nav-list-wrapper hidden" :id "navbar-default"}
        [:ul
         (for [item (:items nav-item-collection)]
-          [:li {:class (if (= (:slug item) "contact") "cta button action primary" nil)}
+          [:li
            [:a {:href (create-url (:slug item))} (get item :title)]])]]]]))

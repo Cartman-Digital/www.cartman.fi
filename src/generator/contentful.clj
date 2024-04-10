@@ -16,6 +16,11 @@
                          "/environments/" 
                          contentful-environment))
 
+(def api-url
+  (str "https://cdn.contentful.com/spaces/038s6vr0kmv0/environments/"
+       contentful-environment
+       "/entries"))
+
 (def headers {:Authorization (str "Bearer " (get-env "CONTENTFUL_TOKEN"))})
 (def preview-headers {:Authorization (str "Bearer " (get-env "CONTENTFUL_PREVIEW_TOKEN"))})
 
@@ -78,6 +83,26 @@
    (let [graphql-fn (have fn? (get-in query-map [:query query]))
          graphql    (graphql-fn)]
      (dispatch graphql))))
+
+(defn get-item-by-slug [content-type slug]
+  (let [params {:fields.slug slug
+                :content_type content-type
+                :include 10}
+        url (reduce (fn [url [k v]]
+                      (str url "&" (name k) "=" (str v)))
+                    (str api-url "?") params)
+        data (->> (client/get url {:headers headers}) :body json/read-json)]
+    {:items (-> data :items first)
+     :assets (-> data :includes :Asset)
+     :entries (-> data :includes :Entry)}))
+
+(defn get-image-by-slug [slug]
+  (if-let [data (get-item-by-slug "image" "logo")]
+    (let [id (-> data :items :fields :image :sys :id)]
+      (->> data
+        :assets
+        (filter #(= (-> % :sys :id) id))
+        first :fields :file :url))))
 
 (comment (get-contentful :nav-collection-query {:name "Main menu"}))
 (comment (get-contentful :asset-query {:assetId "34YRcoaS4WJ5ORhpMlMHRM"}))

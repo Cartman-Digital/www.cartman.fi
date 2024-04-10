@@ -425,6 +425,45 @@
   (let [fullbody (not-empty (:highlightCollection args))]
     (if fullbody (person-single-view args) (people-list-view args))))
 
+(defmethod render "Grid"
+  [args]
+  (let [title (:title args)
+        items (->> args :content :json :content)
+        class (-> title (clojure.string/replace " " "-") clojure.string/lower-case)]
+    [:div.columns-2 {:class class}
+     (for [item items]
+       [:div
+        (richtext->html item)])]))
+
+(defmethod render "Carousel"
+  [args]
+  (let [title (:title args)
+        slides (-> args :slidesCollection :items)
+        class (-> title (clojure.string/replace " " "-") clojure.string/lower-case)]
+    [:div.relative.w-full.p-16 {:data-carousel "slide"}
+     [:div.relative.h-56.overflow-hidden.rounded-lg {:class "md:h-96"}
+      (for [slide slides]
+        (let [img (get-in slide [:banner :url])]
+          [:div.hidden.duration-700.ease-in-out {:data-carousel-item true}
+           [:div.flex-1
+            [:img {:src img
+                   :class "absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"}]]
+           [:div.flex-1
+            (richtext->html (get-in slide [:bannerText :json]))]]))]]))
+
+(defmethod render "BlogLatest"
+  [args]
+  (let [title (:title args)
+        data (contentful/get-contentful :post-collection-query {:single false})
+        posts (->> data :postCollection :items (take 2))]
+    [:div.blog-recent
+     [:h2 title]
+     [:div.flex
+      (for [{:keys [postImage title slug]} posts]
+        [:div.flex-1.p-8 {:class "w-1/4"}
+         [:img {:class "w-full h-full" :src (:url postImage)}]
+         [:a {:href slug} title]])]]))
+
 (comment (render {:__typename "ArticleList" :sys {:id "4N25RfloTD2aq3YtrDEzLk"} :numberOfPostsShown 3}))
 (comment (contentful/get-contentful :posts-by-list-query {:listId "4N25RfloTD2aq3YtrDEzLk" :limit 3}))
 (comment (render-post-json-ld {:title "foobar"

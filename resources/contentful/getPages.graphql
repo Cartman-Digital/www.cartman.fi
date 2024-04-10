@@ -15,7 +15,7 @@ query pageCollectionQuery(
       slug
       seoIndexing
       useNarrowLayout
-      contentCollection(preview: $preview) {
+      contentCollection(preview: $preview, limit:20) {
         items {
           __typename
           ... on CtaBanner {
@@ -60,6 +60,34 @@ query pageCollectionQuery(
             content {
               json
             }
+          }
+	  ... on Grid {
+	    title
+            content {
+              json
+            }
+          }
+	  ... on BlogLatest {
+	    title
+          }
+	  ... on Carousel {
+	    title
+	    slidesCollection(limit:10) {
+	      items {
+	        __typename
+		... on CtaBanner {
+                  bannerText {
+                    json
+                  }
+                  banner {
+                    url(transform: {format: WEBP quality: 85})
+                    title
+                  }
+                  ctaUrl
+                  ctaButtonText
+                }
+	      }
+	    }
           }
         }
       }
