@@ -30,6 +30,7 @@ query pageCollectionQuery(
             ctaButtonText
           }
           ... on CardList {
+	    cssClass
             sys {
               id
             }

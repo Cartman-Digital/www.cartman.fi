@@ -301,7 +301,9 @@
  [args]
  (let [cardlist (:cardList (contentful/get-contentful :card-list-query {:listId (get-in args [:sys :id])})) 
        cardCollection (get-in cardlist [:cardsCollection :items])]
-   [:section (into [:div {:class (str "card-list row grid " (get-grid-class (:numberOfCardColumns cardlist)))} 
+   [:section (into [:div {:class ["card-list row grid"
+                                  (:cssClass args)
+                                  (get-grid-class (:numberOfCardColumns cardlist))]} 
           [:div {:class "intro"} 
            (richtext->html (get-in cardlist [:introduction :json]))]]
          (mapv #(render %) cardCollection))]))
@@ -430,9 +432,10 @@
   (let [title (:title args)
         items (->> args :content :json :content)
         class (-> title (clojure.string/replace " " "-") clojure.string/lower-case)]
-    [:div.columns-2 {:class class}
+    [:div.grid.grid-cols-2 {:class class}
      (for [item items]
-       [:div
+       [:div.justify-center.content-center.items-center.text-center.flex.p-8
+        {:class "size-10/12"}
         (richtext->html item)])]))
 
 (defmethod render "Carousel"
