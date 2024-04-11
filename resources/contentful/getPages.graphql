@@ -67,6 +67,11 @@ query pageCollectionQuery(
               json
             }
           }
+	  ... on MainBanner {
+	    image {
+	      url
+	    }
+          }
 	  ... on BlogLatest {
 	    title
           }

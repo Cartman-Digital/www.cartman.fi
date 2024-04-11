@@ -451,6 +451,18 @@
            [:div.flex-1
             (richtext->html (get-in slide [:bannerText :json]))]]))]]))
 
+(defmethod render "MainBanner"
+  [banner]
+  (let [img (-> banner :image :url)]
+    [:div.main-banner-block
+     [:div.main-banner-text
+      [:p.text-6xl.z-20.font-extrabold.tracking-widest {:class "text-[#FFEF5A]"}
+       "ECOMMERCE IS" [:br]
+       "WHAT WE DO" [:br]
+       [:strong.text-white.text-xl.tracking-widest.relative.left-16
+        "FUTURE-PROOF YOUR eCOMMERCE TODAY"]]]
+     [:img.z-10.absolute.left-80.bottom-5.size-48 {:src img}]]))
+
 (defmethod render "BlogLatest"
   [args]
   (let [title (:title args)
