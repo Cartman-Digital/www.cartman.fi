@@ -29,7 +29,7 @@
    [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
    (when (false? (:seoIndexing page-map)) [:meta {:name "robots" :content "noindex"}])
    [:title (:title page-map)]
-   [:link {:type "text/css", :href "./css/main.css", :rel "stylesheet"}]
+   [:link {:type "text/css", :href "/css/main.css", :rel "stylesheet"}]
    (include-css "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css")
    [:link {:rel "canonical" :href (nav/create-url (:slug page-map))}] 
    [:link {:rel "preconnect" :href "https://fonts.googleapis.com"}]
