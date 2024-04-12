@@ -3,18 +3,21 @@
 @tailwind utilities;
 
 :root {
-    --color-primary: #F200E7;
-    --color-primary-offset: #FFD5F1;
+    --color-primary: #FF00EF;
+    --color-primary-offset: #FFC4FB;
     --color-secondary: #0073D4;
-    --color-secondary-offset: #B1D5F3;
-    --color-accent: #FFD945;
+    --color-secondary-offset: #03B3FF;
+    --color-accent: #FFEF5A;
+    --color-grey-primary: #2A2A2A;
     --color-white-primary: #FFFFFF
     --color-grey-primary-light: #474747;
     --color-grey-offset: #FFF;
+
     /** Base layout off 8px increments */
     --layout-spacing-horizontal: 24px;
     --layout-spacing-vertical: 32px;
     --layout-spacing-v-half: 16px;
+    --navigation-height: 106px;
 }
 
 /*****
@@ -54,11 +57,11 @@ Use the code comments to navigate the file to adjust styles you need
 }
 
 html body {
-    @apply text-white;
+    @apply text-black;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     letter-spacing: .01em;
-    padding-top: 77px;
+    padding-top: var(--navigation-height);
     /** if you want to adjust text size without changing the spacing, use this field to change it. */
     font-size: 17px;
     line-height: 24px;
@@ -69,13 +72,15 @@ html body {
     h4,
     h5,
     h6 {
-        font-family: 'Ubuntu', sans-serif;
+        font-family: 'Roboto', sans-serif;
         font-weight: 700;
         letter-spacing: 0;
         color: var(--color-grey-offset);
     }
 
     h1 {
+        font-family: 'Akshar', sans-serif;
+        font-weight: 700;
         @apply mb-8;
         font-size: 39px;
         line-height: 64px;
@@ -83,6 +88,8 @@ html body {
     }
 
     h2 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
         @apply mb-6;
         font-size: 28px;
         line-height: 38px;
@@ -462,10 +469,11 @@ body .content > .post {
  * Navigation
  */
 .navigation {
-    @apply fixed border-b w-full z-20 top-0 left-0;
+    @apply fixed border-b w-full z-20 top-0 left-0 bg-white shadow-md;
+    height: var(--navigation-height);
 
     .nav-wrapper {
-        @apply max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4;
+        @apply max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto h-full;
 
         >button {
             @apply inline-flex items-center p-2 ml-3 text-sm lg:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 text-gray-400 focus:ring-gray-600;
@@ -477,10 +485,10 @@ body .content > .post {
     }
 
     .logo {
-        @apply flex items-center;
+        @apply block;
 
         img {
-            @apply h-24 -mb-8 -mt-10 mr-3;
+            @apply block h-16;
         }
 
         span {
@@ -489,28 +497,18 @@ body .content > .post {
     }
 
     .nav-list-wrapper {
-        @apply w-full lg:block lg:w-auto;
+        @apply w-full lg:block lg:w-auto max-w-2xl flex-grow;
 
         ul {
-            @apply list-none font-medium flex flex-col p-4 lg:p-0 mt-4 mb-0 lg:flex-row lg:space-x-8 lg:mt-0 items-center;
+            @apply list-none font-medium flex flex-col p-4 lg:p-0 mt-4 mb-0 lg:flex-row lg:space-x-8 lg:mt-0 items-center justify-between;
         }
-    li{
-        margin-top: 0;
-        margin-right: 0;
-        border-left-color: var(--color-primary);
-        border-right-color: var(--color-primary);
-        &::before {
-            top: -2px;
-            background-image: linear-gradient(90deg, #F200E7 20px, transparent 20px, transparent 45px, #F200E7 45px);
+
+        li:last-child a {
+            color: var(--color-primary);
         }
-        &::after {
-            bottom: -2px;
-            background-image: linear-gradient(-90deg, #F200E7 20px, transparent 20px, transparent 45px, #F200E7 45px);
-        }
-    }
 
         a {
-            @apply block py-2 pl-3 pr-4 rounded lg:border-0 lg:p-0 text-black lg:hover:text-gray-500 hover:bg-gray-700 lg:hover:bg-transparent;
+            @apply tracking-widest uppercase block py-2 pl-3 pr-4 rounded lg:border-0 lg:p-0 text-black lg:hover:text-gray-500 hover:bg-gray-700 lg:hover:bg-transparent;
         }
     }
 
@@ -627,17 +625,40 @@ body .content > .post {
 body .content .hero-banner {
     @apply py-10 bg-cover mb-4;
     background-position: center 25%;
-    min-height: 32rem;
     position: relative;
+    min-height: 100vh;
+
+    h1 {
+      @apply text-white text-7xl md:text-8xl xl:text-9xl;
+
+      &::first-line {
+        @apply text-[var(--color-primary)];
+      }
+    }
+
+    h1, .cta {
+      @apply uppercase;
+    }
 
     .banner-content-wrap {
-        @apply m-auto overflow-hidden max-w-screen-2xl;
+        @apply m-auto overflow-hidden max-w-screen-2xl px-4;
         position: relative;
         z-index: 2;
     }
 
+    .cta.primary {
+      @apply text-4xl tracking-wider bg-[var(--color-accent)] py-1 px-4 text-[var(--color-primary)];
+      font-family: 'Akshar', sans-serif;
+      font-weight: 700;
+      border: unset;
+
+      &::before, &::after {
+        display: none;
+      }
+    }
+
     .banner-text {
-        @apply w-3/4 lg:w-1/3 float-right mr-14 mt-14;
+        @apply w-full sm:w-3/4 lg:w-2/3 mr-14 mt-14;
     }
 
     +div {
