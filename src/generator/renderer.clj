@@ -471,7 +471,7 @@
   [args]
   (let [title (:title args)
         data (contentful/get-contentful :post-collection-query {:single false})
-        posts (->> data :postCollection :items (take 2))]
+        posts (->> data :postCollection :items (take 3))]
     [:div.blog-recent
      [:h2 title]
      [:div.flex
