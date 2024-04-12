@@ -10,7 +10,7 @@
    [taoensso.truss :as truss :refer (have)]))
 
 (def contentful-space (get-env "CONTENTFUL_SPACE"))
-(def contentful-environment "master")
+(def contentful-environment "design-update")
 (def contentful-url (str "https://graphql.contentful.com/content/v1/spaces/" 
                          contentful-space 
                          "/environments/" 
@@ -97,7 +97,7 @@
      :entries (-> data :includes :Entry)}))
 
 (defn get-image-by-slug [slug]
-  (if-let [data (get-item-by-slug "image" "logo")]
+  (if-let [data (get-item-by-slug "image" slug)]
     (let [id (-> data :items :fields :image :sys :id)]
       (->> data
         :assets
