@@ -606,6 +606,10 @@ video {
   z-index: 20;
 }
 
+.m-8 {
+  margin: 2rem;
+}
+
 .mb-0 {
   margin-bottom: 0px;
 }
@@ -652,11 +656,6 @@ video {
 
 .hidden {
   display: none;
-}
-
-.size-10\/12 {
-  width: 83.333333%;
-  height: 83.333333%;
 }
 
 .size-48 {
@@ -810,15 +809,38 @@ video {
   --color-secondary: #0073D4;
   --color-secondary-offset: #03B3FF;
   --color-accent: #FFEF5A;
+  --color-accent-dark: #1AACBF;
   --color-grey-primary: #2A2A2A;
-  --color-white-primary: #FFFFFF
-    --color-grey-primary-light: #474747;
+  --color-white-primary: #FFFFFF;
+  --color-grey-primary-light: #B8B7B7;
   --color-grey-offset: #FFF;
+  /** backgrounds **/
+  --color-section-bg: var(--color-primary-offset);
+  --color-section-greyscale-bg: var(--color-white-primary);
+  --color-nav-bg: var(--color-white-primary);
+  --color-page-bg: var(--color-white-primary);
+  /** text **/
+  --color-section-title: var(--color-grey-primary);
+  --color-body-text: var(--color-grey-primary);
+  --color-link-hover: var(--color-grey-primary-light);
   /** Base layout off 8px increments */
   --layout-spacing-horizontal: 24px;
   --layout-spacing-vertical: 32px;
   --layout-spacing-v-half: 16px;
   --navigation-height: 106px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /** backgrounds **/
+    --color-section-bg: var(--color-grey-primary);
+    --color-section-greyscale-bg: var(--color-grey-primary);
+    --color-nav-bg: var(--color-grey-primary);
+    --color-page-bg: var(--color-grey-primary);
+    /** text **/
+    --color-section-title: var(--color-white-primary);
+    --color-body-text: var(--color-white-primary);
+  }
 }
 
 /*****
@@ -859,8 +881,7 @@ html {
 }
 
 html body {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
+  color: var(--color-body-text);
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   letter-spacing: .01em;
@@ -879,7 +900,7 @@ html body h1,
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   letter-spacing: 0;
-  color: var(--color-grey-offset);
+  color: var(--color-section-title);
 }
 
 html body h1 {
@@ -1019,9 +1040,8 @@ html body .chevron::after {
   /*Match chevron background colour*/
 }
 
-html body,
-html body nav {
-  background-color: var(--color-white-primary);
+html body {
+  background-color: var(--color-page-bg);
 }
 
 /**
@@ -1032,7 +1052,7 @@ body input[type="text"],
     body input[type="email"],
     body textarea {
   display: block;
-  color: var(--color-white-primary);
+  color: var(--color-body-text);
   margin-bottom: 1rem;
   padding: 8px 16px;
 }
@@ -1066,8 +1086,7 @@ body .form-container {
   clear: left;
   margin-bottom: 1rem;
   border-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+  border-color: var(--color-body-text);
   padding-top: 2.5rem;
   padding-bottom: 0.5rem;
 }
@@ -1144,7 +1163,7 @@ body .form-container {
   left: 0;
   right: 0;
   z-index: 100;
-  background-color: var(--color-white-primary);
+  background-color: var(--color-body-text);
   opacity: 0.4;
 }
 
@@ -1234,8 +1253,8 @@ body .form-container {
 .button {
   display: inline-block;
   padding: 8px 8px;
-  border-top: 1px solid var(--color-grey-offset);
-  border-bottom: 1px solid var(--color-grey-offset);
+  border-top: 1px solid var(--color-body-text);
+  border-bottom: 1px solid var(--color-body-text);
   margin-top: 2rem;
   margin-right: 1.5rem;
   text-decoration: none;
@@ -1246,11 +1265,11 @@ body .form-container {
   border: 2px solid transparent;
   display: inline-block;
   padding: 8px;
-  border-left-color: var(--color-grey-offset);
-  border-right-color: var(--color-grey-offset);
+  border-left-color: var(--color-body-text);
+  border-right-color: var(--color-body-text);
   background-color: transparent;
   text-decoration: none;
-  color: var(--color-grey-offset);
+  color: var(--color-body-text);
   position: relative;
 }
 
@@ -1269,13 +1288,13 @@ body .form-container {
 
 .button.primary::before, .btn-primary::before {
   top: -2px;
-  background-image: linear-gradient(90deg, #FFF 20px, transparent 20px, transparent 45px, #FFF 45px);
+  background-image: linear-gradient(90deg, var(--color-body-text) 20px, transparent 20px, transparent 45px, var(--color-body-text) 45px);
   background-position-x: left, 0px;
 }
 
 .button.primary::after, .btn-primary::after {
   bottom: -2px;
-  background-image: linear-gradient(-90deg, #FFF 20px, transparent 20px, transparent 45px, #FFF 45px);
+  background-image: linear-gradient(-90deg, var(--color-body-text) 20px, transparent 20px, transparent 45px, var(--color-body-text) 45px);
   background-position-x: right, 0px;
 }
 
@@ -1294,19 +1313,19 @@ body .form-container {
 }
 
 .button:hover {
-  background-color: var(--color-grey-offset);
-  color: var(--color-white-primary);
+  background-color: var(--color-body-text);
+  color: var(--color-page-bg);
 }
 
 .button.primary:hover,
 .btn-primary:hover {
   background-color: transparent;
-  color: var(--color-grey-offset);
+  color: var(--color-body-text);
 }
 
 .button.primary:hover:active, .btn-primary:hover:active {
-  background-color: var(--color-grey-offset);
-  color: var(--color-white-primary);
+  background-color: var(--color-body-text);
+  color: var(--color-page-bg);
 }
 
 /**     
@@ -1363,12 +1382,10 @@ body .content > .post {
   left: 0px;
   z-index: 20;
   width: 100%;
-  border-bottom-width: 1px;
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  background-color: var(--color-nav-bg);
   height: var(--navigation-height);
 }
 
@@ -1439,8 +1456,6 @@ body .content > .post {
   font-size: 1.5rem;
   line-height: 2rem;
   font-weight: 600;
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .navigation .nav-list-wrapper {
@@ -1489,6 +1504,10 @@ body .content > .post {
   color: var(--color-primary);
 }
 
+.navigation .nav-list-wrapper li:last-child a:hover {
+  color: var(--color-primary-offset);
+}
+
 .navigation .nav-list-wrapper a {
   display: block;
   border-radius: 0.25rem;
@@ -1498,13 +1517,6 @@ body .content > .post {
   padding-right: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
-.navigation .nav-list-wrapper a:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 
 @media (min-width: 1024px) {
@@ -1515,9 +1527,12 @@ body .content > .post {
 
   .navigation .nav-list-wrapper a:hover {
     background-color: transparent;
-    --tw-text-opacity: 1;
-    color: rgb(107 114 128 / var(--tw-text-opacity));
+    color: var(--color-link-hover);
   }
+}
+
+.navigation .nav-list-wrapper a {
+  color: var(--color-body-text);
 }
 
 .navigation a {
@@ -1528,15 +1543,12 @@ body .content > .post {
  * Footer content styling.
  */
 
-.footer, .navigation {
-  border-color: var(--color-grey-offset);
-}
-
 .footer {
-  border-top-width: 1px;
   padding-top: 1rem;
   padding-bottom: 1rem;
   text-align: center;
+  background-color: var(--color-section-greyscale-bg);
+  color: var(--color-body-text);
 }
 
 .social-media {
@@ -1607,11 +1619,11 @@ body .content > .post {
   border: 2px solid transparent;
   display: inline-block;
   padding: 8px;
-  border-left-color: var(--color-grey-offset);
-  border-right-color: var(--color-grey-offset);
+  border-left-color: var(--color-body-text);
+  border-right-color: var(--color-body-text);
   background-color: transparent;
   text-decoration: none;
-  color: var(--color-grey-offset);
+  color: var(--color-body-text);
   position: relative;
 }
 
@@ -1627,13 +1639,13 @@ body .content > .post {
 
 .sub-nav ul .nav-item::before {
   top: -2px;
-  background-image: linear-gradient(90deg, #FFF 20px, transparent 20px, transparent 45px, #FFF 45px);
+  background-image: linear-gradient(90deg, var(--color-body-text) 20px, transparent 20px, transparent 45px, var(--color-body-text) 45px);
   background-position-x: left, 0px;
 }
 
 .sub-nav ul .nav-item::after {
   bottom: -2px;
-  background-image: linear-gradient(-90deg, #FFF 20px, transparent 20px, transparent 45px, #FFF 45px);
+  background-image: linear-gradient(-90deg, var(--color-body-text) 20px, transparent 20px, transparent 45px, var(--color-body-text) 45px);
   background-position-x: right, 0px;
 }
 
@@ -1647,12 +1659,12 @@ body .content > .post {
 
 .sub-nav ul .nav-item:hover {
   background-color: transparent;
-  color: var(--color-grey-offset);
+  color: var(--color-body-text);
 }
 
 .sub-nav ul .nav-item:hover:active {
-  background-color: var(--color-grey-offset);
-  color: var(--color-white-primary);
+  background-color: var(--color-body-text);
+  color: var(--color-page-bg);
 }
 
 .sub-nav ul .nav-item {
@@ -1666,7 +1678,7 @@ body .content > .post {
   padding-bottom: 1rem;
   text-align: center;
   font-family: 'Ubuntu', sans-serif;
-  color: var(--color-grey-offset);
+  color: var(--color-body-text);
   font-weight: 300;
   font-size: 24px;
   line-height: 32px;
@@ -1675,7 +1687,7 @@ body .content > .post {
 
 .sub-nav ul .nav-item a:hover {
   text-decoration: underline;
-  background-color: var(--color-white-primary);
+  background-color: var(--color-page-bg);
 }
 
 .sub-nav ul .nav-item a::before {
@@ -1685,18 +1697,18 @@ body .content > .post {
   width: 32px;
   height: 32px;
   background-size: contain;
-  background-color: var(--color-grey-offset);
+  background-color: var(--color-body-text);
   text-align: center;
   margin: 0 0.5rem -0.5rem 0;
 }
 
 .sub-nav ul .nav-item a:active {
-  color: var(--color-white-primary);
-  background-color: var(--color-grey-offset);
+  color: var(--color-page-bg);
+  background-color: var(--color-body-text);
 }
 
 .sub-nav ul .nav-item a:active::before {
-  background-color: var(--color-white-primary);
+  background-color: var(--color-page-bg);
 }
 
 .sub-nav ul .nav-item.link-solutions a::before {
@@ -1734,8 +1746,7 @@ body .content .hero-banner {
 body .content .hero-banner h1 {
   font-size: 4.5rem;
   line-height: 1;
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  color: var(--color-white-primary);
 }
 
 @media (min-width: 768px) {
@@ -1772,10 +1783,10 @@ body .content .hero-banner .banner-content-wrap {
 
 body .content .hero-banner .cta.primary {
   background-color: var(--color-accent);
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   font-size: 2.25rem;
   line-height: 2.5rem;
   letter-spacing: 0.05em;
@@ -1825,6 +1836,42 @@ body .content .hero-banner +div {
   --tw-bg-opacity: 0.5;
 }
 
+/** Grid */
+
+.grid-wrap {
+  background-color: var(--color-accent-dark);
+  padding: 3rem;
+  position: relative;
+}
+
+.grid-wrap .grid {
+  row-gap: 1.5rem;
+}
+
+.grid-wrap .grid > :nth-child(2),
+  .grid-wrap .grid > :nth-child(6) {
+  z-index: 10;
+  margin-left: -7rem;
+}
+
+.grid-wrap .grid > :nth-child(3),
+  .grid-wrap .grid > :nth-child(7) {
+  z-index: 10;
+  margin-left: 8rem;
+  margin-right: -8rem;
+}
+
+.grid-wrap .item {
+  position: relative;
+  max-width: 768px;
+  z-index: 1;
+  background-color: var(--color-white-primary);
+}
+
+.grid-wrap .item img {
+  margin: -2rem;
+}
+
 /** Card list */
 
 body .content .card-list {
@@ -1859,6 +1906,23 @@ body .content .card-list ul {
 
 .post-list {
   display: grid;
+}
+
+.grid-wrap .post-list {
+  row-gap: 1.5rem;
+}
+
+.grid-wrap .post-list > :nth-child(2),
+  .grid-wrap .post-list > :nth-child(6) {
+  z-index: 10;
+  margin-left: -7rem;
+}
+
+.grid-wrap .post-list > :nth-child(3),
+  .grid-wrap .post-list > :nth-child(7) {
+  z-index: 10;
+  margin-left: 8rem;
+  margin-right: -8rem;
 }
 
 .services .content .side-by-side .embed .post-list {
@@ -1896,6 +1960,23 @@ body .content .card-list ul {
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 2.5rem;
   vertical-align: text-bottom;
+}
+
+.grid-wrap .post-list .post {
+  row-gap: 1.5rem;
+}
+
+.grid-wrap .post-list .post > :nth-child(2),
+  .grid-wrap .post-list .post > :nth-child(6) {
+  z-index: 10;
+  margin-left: -7rem;
+}
+
+.grid-wrap .post-list .post > :nth-child(3),
+  .grid-wrap .post-list .post > :nth-child(7) {
+  z-index: 10;
+  margin-left: 8rem;
+  margin-right: -8rem;
 }
 
 .services .content .side-by-side .embed .post-list .post {
@@ -2110,11 +2191,11 @@ body table p {
   border: 2px solid transparent;
   display: inline-block;
   padding: 8px;
-  border-left-color: var(--color-grey-offset);
-  border-right-color: var(--color-grey-offset);
+  border-left-color: var(--color-body-text);
+  border-right-color: var(--color-body-text);
   background-color: transparent;
   text-decoration: none;
-  color: var(--color-grey-offset);
+  color: var(--color-body-text);
   position: relative;
 }
 
@@ -2130,13 +2211,13 @@ body table p {
 
 .services .content .side-by-side.right .doc a::before {
   top: -2px;
-  background-image: linear-gradient(90deg, #FFF 20px, transparent 20px, transparent 45px, #FFF 45px);
+  background-image: linear-gradient(90deg, var(--color-body-text) 20px, transparent 20px, transparent 45px, var(--color-body-text) 45px);
   background-position-x: left, 0px;
 }
 
 .services .content .side-by-side.right .doc a::after {
   bottom: -2px;
-  background-image: linear-gradient(-90deg, #FFF 20px, transparent 20px, transparent 45px, #FFF 45px);
+  background-image: linear-gradient(-90deg, var(--color-body-text) 20px, transparent 20px, transparent 45px, var(--color-body-text) 45px);
   background-position-x: right, 0px;
 }
 
@@ -2150,12 +2231,12 @@ body table p {
 
 .services .content .side-by-side.right .doc a:hover {
   background-color: transparent;
-  color: var(--color-grey-offset);
+  color: var(--color-body-text);
 }
 
 .services .content .side-by-side.right .doc a:hover:active {
-  background-color: var(--color-grey-offset);
-  color: var(--color-white-primary);
+  background-color: var(--color-body-text);
+  color: var(--color-page-bg);
 }
 
 /** assume logo grid inside embedded content */
@@ -2264,6 +2345,23 @@ body.post-page code {
   display: grid;
   padding-top: 0px;
   padding-bottom: 0px;
+}
+
+.grid-wrap .people-list-wrap .people-list {
+  row-gap: 1.5rem;
+}
+
+.grid-wrap .people-list-wrap .people-list > :nth-child(2),
+  .grid-wrap .people-list-wrap .people-list > :nth-child(6) {
+  z-index: 10;
+  margin-left: -7rem;
+}
+
+.grid-wrap .people-list-wrap .people-list > :nth-child(3),
+  .grid-wrap .people-list-wrap .people-list > :nth-child(7) {
+  z-index: 10;
+  margin-left: 8rem;
+  margin-right: -8rem;
 }
 
 .services .content .side-by-side .embed .people-list-wrap .people-list {
@@ -2431,7 +2529,7 @@ body.post-page code {
 .person-page .wrap .left .gap-line {
   flex: 1 0 0;
   width: 1px;
-  background-color: #fff;
+  background-color: var(--color-body-text);
 }
 
 .person-page .wrap .right {

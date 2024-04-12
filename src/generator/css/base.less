@@ -8,16 +8,42 @@
     --color-secondary: #0073D4;
     --color-secondary-offset: #03B3FF;
     --color-accent: #FFEF5A;
+    --color-accent-dark: #1AACBF;
     --color-grey-primary: #2A2A2A;
-    --color-white-primary: #FFFFFF
-    --color-grey-primary-light: #474747;
+    --color-white-primary: #FFFFFF;
+    --color-grey-primary-light: #B8B7B7;
     --color-grey-offset: #FFF;
+
+    /** backgrounds **/
+    --color-section-bg: var(--color-primary-offset);
+    --color-section-greyscale-bg: var(--color-white-primary);
+    --color-nav-bg: var(--color-white-primary);
+    --color-page-bg: var(--color-white-primary);
+
+    /** text **/
+    --color-section-title: var(--color-grey-primary);
+    --color-body-text: var(--color-grey-primary);
+    --color-link-hover: var(--color-grey-primary-light);
 
     /** Base layout off 8px increments */
     --layout-spacing-horizontal: 24px;
     --layout-spacing-vertical: 32px;
     --layout-spacing-v-half: 16px;
     --navigation-height: 106px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /** backgrounds **/
+    --color-section-bg: var(--color-grey-primary);
+    --color-section-greyscale-bg: var(--color-grey-primary);
+    --color-nav-bg: var(--color-grey-primary);
+    --color-page-bg: var(--color-grey-primary);;
+
+    /** text **/
+    --color-section-title: var(--color-white-primary);
+    --color-body-text: var(--color-white-primary);
+  }
 }
 
 /*****
@@ -57,7 +83,7 @@ Use the code comments to navigate the file to adjust styles you need
 }
 
 html body {
-    @apply text-black;
+    color: var(--color-body-text);
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     letter-spacing: .01em;
@@ -75,6 +101,7 @@ html body {
         font-family: 'Roboto', sans-serif;
         font-weight: 700;
         letter-spacing: 0;
+        color: var(--color-section-title);
     }
 
     h1 {
@@ -197,9 +224,8 @@ html body {
     }
 }
 
-html body,
-html body nav {
-    background-color: var(--color-white-primary);
+html body {
+    background-color: var(--color-page-bg);
 }
 
 /**
@@ -210,7 +236,7 @@ body {
     input[type="email"],
     textarea {
         display: block;
-        color: var(--color-white-primary);
+        color: var(--color-body-text);
         margin-bottom: 1rem;
         padding: 8px 16px;
     }
@@ -237,7 +263,7 @@ body {
     }
 
     .form-container {
-        @apply clear-left pt-10 border border-white pb-2 mb-4 md:w-2/4;
+        @apply clear-left pt-10 border border-[var(--color-body-text)] pb-2 mb-4 md:w-2/4;
     }
 }
 
@@ -287,7 +313,7 @@ body {
                 left: 0;
                 right: 0;
                 z-index: 100;
-                background-color: var(--color-white-primary);
+                background-color: var(--color-body-text);
                 opacity: 0.4;
             }
         
@@ -377,8 +403,8 @@ body {
 .button {
     display: inline-block;
     padding: 8px 8px;
-    border-top: 1px solid var(--color-grey-offset);
-    border-bottom: 1px solid var(--color-grey-offset);
+    border-top: 1px solid var(--color-body-text);
+    border-bottom: 1px solid var(--color-body-text);
     margin-top: 2rem;
     margin-right: 1.5rem;
     text-decoration: none;
@@ -389,11 +415,11 @@ body {
     border: 2px solid transparent;
     display: inline-block;
     padding: 8px;
-    border-left-color: var(--color-grey-offset);
-    border-right-color: var(--color-grey-offset);
+    border-left-color: var(--color-body-text);
+    border-right-color: var(--color-body-text);
     background-color: transparent;
     text-decoration: none;
-    color: var(--color-grey-offset);
+    color: var(--color-body-text);
     position: relative;
 
     &::before,
@@ -409,13 +435,13 @@ body {
 
     &::before {
         top: -2px;
-        background-image: linear-gradient(90deg, #FFF 20px, transparent 20px, transparent 45px, #FFF 45px);
+        background-image: linear-gradient(90deg, var(--color-body-text) 20px, transparent 20px, transparent 45px, var(--color-body-text) 45px);
         background-position-x: left, 0px;
     }
 
     &::after {
         bottom: -2px;
-        background-image: linear-gradient(-90deg, #FFF 20px, transparent 20px, transparent 45px, #FFF 45px);
+        background-image: linear-gradient(-90deg, var(--color-body-text) 20px, transparent 20px, transparent 45px, var(--color-body-text) 45px);
         background-position-x: right, 0px;
     }
 
@@ -431,18 +457,18 @@ body {
 }
 
 .button:hover {
-    background-color: var(--color-grey-offset);
-    color: var(--color-white-primary);
+    background-color: var(--color-body-text);
+    color: var(--color-page-bg);
 }
 
 .button.primary:hover,
 .btn-primary:hover {
     background-color: transparent;
-    color: var(--color-grey-offset);
+    color: var(--color-body-text);
 
     &:active {
-        background-color: var(--color-grey-offset);
-        color: var(--color-white-primary);
+        background-color: var(--color-body-text);
+        color: var(--color-page-bg);
     }
 }
 
@@ -467,7 +493,8 @@ body .content > .post {
  * Navigation
  */
 .navigation {
-    @apply fixed border-b w-full z-20 top-0 left-0 bg-white shadow-md;
+    @apply fixed w-full z-20 top-0 left-0 shadow-md;
+    background-color: var(--color-nav-bg);
     height: var(--navigation-height);
 
     .nav-wrapper {
@@ -490,7 +517,7 @@ body .content > .post {
         }
 
         span {
-            @apply sr-only self-center text-2xl text-white font-semibold whitespace-nowrap;
+            @apply sr-only self-center text-2xl font-semibold whitespace-nowrap;
         }
     }
 
@@ -502,11 +529,12 @@ body .content > .post {
         }
 
         li:last-child a {
-            color: var(--color-primary);
+            @apply text-[var(--color-primary)] hover:text-[var(--color-primary-offset)];
         }
 
         a {
-            @apply tracking-widest uppercase block py-2 pl-3 pr-4 rounded lg:border-0 lg:p-0 text-black lg:hover:text-gray-500 hover:bg-gray-700 lg:hover:bg-transparent;
+            @apply tracking-widest uppercase block py-2 pl-3 pr-4 rounded lg:border-0 lg:p-0 lg:hover:text-[var(--color-link-hover)] lg:hover:bg-transparent;
+            color: var(--color-body-text);
         }
     }
 
@@ -518,12 +546,10 @@ body .content > .post {
 /**
  * Footer content styling.
  */
-.footer, .navigation {
-    border-color: var(--color-grey-offset);
-}
-
 .footer {
-    @apply py-4 border-t text-center;
+    @apply py-4 text-center;
+    background-color: var(--color-section-greyscale-bg);
+    color: var(--color-body-text);
 }
 
 .social-media {
@@ -571,7 +597,7 @@ body .content > .post {
         a {
             @apply block w-full py-4 text-center;
             font-family: 'Ubuntu', sans-serif;
-            color: var(--color-grey-offset);
+            color: var(--color-body-text);
             font-weight: 300;
             font-size: 24px;
             line-height: 32px;
@@ -579,7 +605,7 @@ body .content > .post {
 
             &:hover {
                 text-decoration: underline;
-                background-color: var(--color-white-primary);
+                background-color: var(--color-page-bg);
             }
 
             &::before {
@@ -589,17 +615,17 @@ body .content > .post {
                 width: 32px;
                 height: 32px;
                 background-size: contain;
-                background-color: var(--color-grey-offset);
+                background-color: var(--color-body-text);
                 text-align: center;
                 margin: 0 0.5rem -0.5rem 0;
             }
 
             &:active {
-                color: var(--color-white-primary);
-                background-color: var(--color-grey-offset);
+                color: var(--color-page-bg);
+                background-color: var(--color-body-text);
 
                 &::before {
-                    background-color: var(--color-white-primary);
+                    background-color: var(--color-page-bg);
                 }
             }
         }
@@ -627,7 +653,7 @@ body .content .hero-banner {
     min-height: 100vh;
 
     h1 {
-      @apply text-white text-7xl md:text-8xl xl:text-9xl;
+      @apply text-[var(--color-white-primary)] text-7xl md:text-8xl xl:text-9xl;
 
       &::first-line {
         @apply text-[var(--color-primary)];
@@ -676,6 +702,37 @@ body .content .hero-banner {
     /* grey-primary in rgb with opacity */
     z-index: 1;
     @apply bg-opacity-50;
+}
+
+/** Grid */
+.grid-wrap {
+  @apply bg-[var(--color-accent-dark)] p-12;
+  position: relative;
+
+  .grid {
+    @apply gap-y-6;
+  }
+
+  .grid > :nth-child(2),
+  .grid > :nth-child(6) {
+    @apply -ml-28 z-10;
+  }
+
+  .grid > :nth-child(3),
+  .grid > :nth-child(7) {
+    @apply ml-32 -mr-32 z-10;
+  }
+
+
+  .item {
+    @apply max-w-screen-md relative;
+    z-index: 1;
+    background-color: var(--color-white-primary);
+
+    img {
+      @apply -m-8
+    }
+  }
 }
 
 /** Card list */
@@ -969,7 +1026,7 @@ body.post-page {
                 @apply mx-5 my-2 md:mx-3 md:my-3 flex-grow w-px md:w-auto h-px;
                 flex: 1 0 0;
                 width: 1px;
-                background-color: #fff;
+                background-color: var(--color-body-text);
             }
         }
         .right {

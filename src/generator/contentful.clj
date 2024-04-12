@@ -10,7 +10,7 @@
    [taoensso.truss :as truss :refer (have)]))
 
 (def contentful-space (get-env "CONTENTFUL_SPACE"))
-(def contentful-environment "design-update")
+(def contentful-environment (get-env "CONTENTFUL_ENVIRONMENT"))
 (def contentful-url (str "https://graphql.contentful.com/content/v1/spaces/" 
                          contentful-space 
                          "/environments/" 
