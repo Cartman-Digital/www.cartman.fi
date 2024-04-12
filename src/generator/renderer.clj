@@ -430,9 +430,10 @@
 (defmethod render "Grid"
   [args]
   (let [title (:title args)
+        cols (or (:title args) 2)
         items (->> args :content :json :content)
         class (-> title (clojure.string/replace " " "-") clojure.string/lower-case)]
-    [:div.grid.grid-cols-2 {:class class}
+    [:div.grid {:class [class (str "grid-cols-" cols)]}
      (for [item items]
        [:div.justify-center.content-center.items-center.text-center.flex.p-8
         {:class "size-10/12"}
