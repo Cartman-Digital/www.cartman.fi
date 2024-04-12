@@ -30,7 +30,7 @@ query pageCollectionQuery(
             ctaButtonText
           }
           ... on CardList {
-	    cssClass
+            cssClass
             sys {
               id
             }
@@ -41,7 +41,7 @@ query pageCollectionQuery(
             }
             numberOfPostsShown
           }
-           ... on PeopleList {
+          ... on PeopleList {
             sys {
               id
             }
@@ -62,27 +62,28 @@ query pageCollectionQuery(
               json
             }
           }
-	  ... on Grid {
-	    title
-	    cols
+          ... on Grid {
+            title
+            cols
+            cssClass
             content {
               json
             }
           }
-	  ... on MainBanner {
-	    image {
-	      url
-	    }
+          ... on MainBanner {
+            image {
+              url
+            }
           }
-	  ... on BlogLatest {
-	    title
+          ... on BlogLatest {
+            title
           }
-	  ... on Carousel {
-	    title
-	    slidesCollection(limit:10) {
-	      items {
-	        __typename
-		... on CtaBanner {
+          ... on Carousel {
+            title
+            slidesCollection(limit:10) {
+              items {
+                __typename
+                ... on CtaBanner {
                   bannerText {
                     json
                   }
@@ -93,8 +94,8 @@ query pageCollectionQuery(
                   ctaUrl
                   ctaButtonText
                 }
-	      }
-	    }
+              }
+            }
           }
         }
       }
