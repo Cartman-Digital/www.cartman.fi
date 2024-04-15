@@ -39,46 +39,73 @@
      [:link {:rel "icon" :type "image/png" :href (static/get-asset-url "favicon.png")}]
      [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Ubuntu:wght@300;700&display=swap"}]]))
 
+(defn menu-footer []
+  (let [menu-data (contentful/get-contentful :nav-collection-query {:name nav/top-nav})
+        nav-item-collection (have map?
+                                  (get-in menu-data [:navCollection :items 0 :linkedFrom :navItemCollection]))]
+    [:ul.menu
+     (for [item (:items nav-item-collection)]
+       [:li
+        [:a {:href (:slug item)} (get item :title)]])]))
+
 (defn render-page-footer
   "Must be called from hiccup. Outputs common page footer in a vector."
   []
-  [:footer {:class "footer"}
-   [:span "&copy 2023 Cartman Digital Oy"]
-   [:div.social-media
-    (link-to "https://www.linkedin.com/company/cartmandigital/"
-             [:span.icon
-              [:svg {:xmlns "http://www.w3.org/2000/svg" :width "24" :height "24" :viewBox "0 0 24 24"}
-               [:path {:fill "currentColor" :d "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"}]]
-              [:span {:class "sr-only"} "LinkedIn"]])
-    
-    (link-to "https://twitter.com/CartmanDigital"
-             [:span.icon
-              [:svg {:xmlns "http://www.w3.org/2000/svg" :width "24" :height "24" :viewBox "0 0 1200 1227"}
-               [:path {:fill "rgb(255,255,255)" :d "M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z"}]]
-              [:span {:class "sr-only"} "Twitter"]])
-    
-    (link-to "https://www.itewiki.fi/cartman-digital"
-             [:span.icon
-                 [:svg {:xmlns "http://www.w3.org/2000/svg"  :width "24" :height "24" :viewBox "0 0 177.7 177.7" :x "0px" :y "0px" :style "enable-background:new 0 0 177.7 177.7;" :xml:space "preserve"}
-                  [:g 
-                   [:path {:fill "rgb(255,255,255)"  :d "M84.3,129l-40-40.3L0.2,44.2L0,133.5l39.8,39.6L84.3,129L84.3,129z M93.4,48.7l40,40.3l44.1,44.4l0.2-0.2V44.2L137.9,4.6L93.4,48.7z"}]
-                   [:polygon  {:fill "rgb(255,255,255)"   :points "129,93.4 88.6,133.4 44.2,177.5 133.5,177.7 173.1,137.9"}]
-                   [:polygon  {:fill "rgb(255,255,255)"  :points "48.7,84.3 89,44.3 133.5,0.2 44.2,0 4.6,39.8"}]]]
-                 [:span {:class "sr-only"} "Itewiki"]])]])
+  [:div.place-items-center.grid.grid-cols-1
+   [:div.foot.grid.justify-items-center.grid-cols-3 {:class "footer"}
+    (menu-footer)
+    [:ul
+     [:li "Social media"]
+     [:li twitter-icon]
+     [:li linkedin-icon]
+     [:li itewiki-icon]]
+    [:ul
+     [:li "Company"]
+     [:li "Cartman Digital Oy"]
+     [:li "Tietotie 2, 90460 OULU"]
+     [:li "Phone: +358 40 088 0369"]
+     [:li "@cartman.fi"]]]
+   [:hr]
+   [:div "&copy 2023 Cartman Digital Oy"]])
+
+(def twitter-icon
+  [:span
+    [:svg {:xmlns "http://www.w3.org/2000/svg" :fill "none" :width "46" :height "46" :viewBox "0 0 46 46"}
+     [:g :clip-path="url(#clip0_2_635)"
+      [:path {:fill "#2A2A2A" :d "M36.8593 2.83521H2.82647C1.26704 2.83521 0 4.11997 0 5.69712V39.6679C0 41.2451 1.26704 42.5299 2.82647 42.5299H36.8593C38.4188 42.5299 39.6947 41.2451 39.6947 39.6679V5.69712C39.6947 4.11997 38.4188 2.83521 36.8593 2.83521ZM11.997 36.8592H6.11369V17.9156H12.0059V36.8592H11.997ZM9.05534 15.3284C7.16808 15.3284 5.64408 13.7955 5.64408 11.9171C5.64408 10.0387 7.16808 8.50587 9.05534 8.50587C10.9338 8.50587 12.4666 10.0387 12.4666 11.9171C12.4666 13.8044 10.9426 15.3284 9.05534 15.3284ZM34.0506 36.8592H28.1673V27.6444C28.1673 25.447 28.123 22.6205 25.1104 22.6205C22.0447 22.6205 21.5751 25.0128 21.5751 27.4849V36.8592H15.6918V17.9156H21.3359V20.5029H21.4156C22.2042 19.0143 24.1269 17.446 26.9888 17.446C32.943 17.446 34.0506 21.3712 34.0506 26.4748V36.8592Z"}]]
+     [:defs [:clipPath :id "clip0_2_635"]
+      [:rect :width "39.6947" :height "45.3653" :fill "white"]]]])
+
+(def itewiki-icon
+  [:span
+   [:svg {:xmlns "http://www.w3.org/2000/svg" :fill "none" :width "46" :height "46" :viewBox "0 0 46 46"}
+    [:path {:d "M31.1613 0H9.4839L0.270996 9.75484L10.2968 19.7806L31.1613 0Z"
+            :fill "#2A2A2A"}]
+    [:path {:d "M42 31.1614L41.4491 9.81976L31.9742 0.812988L21.4065 11.1098L42 31.1614Z"
+            :fill "#2A2A2A"}]
+    [:path {:d "M10.8386 42.542L32.1802 41.9911L41.187 32.2452L30.8902 21.9484L10.8386 42.542Z"
+            :fill "#2A2A2A"}]
+    [:path {:d "M0 11.1097L0 32.7871L9.75484 42L19.7806 31.7032L0 11.1097Z"
+            :fill "#2A2A2A"}]]])
+
+(def linkedin-icon
+  [:span
+   [:svg {:xmlns "http://www.w3.org/2000/svg" :fill "none" :width "46" :height "46" :viewBox "0 0 46 46"}
+    [:path {:fill "#2A2A2A" :d "M26.0351 19.7393L39.3693 3.771H36.2092L24.6285 17.635L15.382 3.771H4.71387L18.7005 24.7377L4.71387 41.4809H7.87396L20.1033 26.84L29.8702 41.4809H40.5383L26.0351 19.7393ZM21.706 24.9206L20.2881 22.8334L9.0128 6.22214H13.868L22.9674 19.628L24.3834 21.7153L36.2111 39.141H31.3578L21.706 24.9206Z"}]]])
 
 (defn render-page
   [page body-class]
   (html5
-   (render-page-head {:slug (:slug page)
-                      :title (:title page)
-                      :seoIndexing (:seoIndexing page)})
-   [:body {:class (if (= (:slug page) "/")
-                    (str "front-page" " " body-class)
-                    (str (:slug page) " " body-class))}
-    (nav/render-main-menu)
-    (render-content page)
-    (render-page-footer)
-    (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
+      (render-page-head {:slug (:slug page)
+                         :title (:title page)
+                         :seoIndexing (:seoIndexing page)})
+      [:body {:class (if (= (:slug page) "/")
+                       (str "front-page" " " body-class)
+                       (str (:slug page) " " body-class))}
+       (nav/render-main-menu)
+       (render-content page)
+       (render-page-footer)
+       (include-js "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")]))
 
 (defn render-post-list-page
   []

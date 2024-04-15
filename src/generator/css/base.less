@@ -149,7 +149,6 @@ html body {
 
     ul {
         @apply list-disc mb-2;
-        padding-inline-start: 2rem;
     }
 
     ol {
@@ -1065,7 +1064,7 @@ body.post-page {
     clip-path: polygon(0% 13%, 100% 0% ,100% 100%, 0% 87%);
 
     h2 {
-	@apply pt-10 pl-10 font-extrabold tracking-widest;
+	@apply pt-10 ml-10 font-extrabold tracking-widest;
     }
 
     a {
@@ -1073,11 +1072,20 @@ body.post-page {
 
     }
     a:hover {
-	@apply text-[#ff00ef]
-
+	@apply text-[#ff00ef];
     }
+}
+
+.block {
+  h2 {
+      @apply ml-12 font-extrabold tracking-widest;
+  }
 }
 
 .trusted-by:nth-child(odd) {
 
+}
+
+.foot ul {
+    @apply list-none content-start items-start;
 }
