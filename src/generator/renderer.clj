@@ -436,10 +436,10 @@
     [:div.grid-wrap.block {:class class}
      [:h2 title]
      [:div.grid {:class [class (str "grid-cols-" cols)]}
-       (for [item items]
-         [:div.justify-center.content-center.items-center.text-center.flex.p-8
-          {:class "size-10/12"}
-          (richtext->html item)])]]))
+      (for [item items]
+        [:div.item.justify-center.content-center.items-center.text-center.flex.p-8
+         {:class "size-10/12"}
+         (richtext->html item)])]]))
 
 (defmethod render "Carousel"
   [args]

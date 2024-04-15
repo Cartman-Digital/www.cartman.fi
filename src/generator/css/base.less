@@ -24,6 +24,7 @@
     --color-section-title: var(--color-grey-primary);
     --color-body-text: var(--color-grey-primary);
     --color-link-hover: var(--color-grey-primary-light);
+    --font-h1: "Ankshar", sans-serif;
 
     /** Base layout off 8px increments */
     --layout-spacing-horizontal: 24px;
@@ -105,7 +106,7 @@ html body {
     }
 
     h1 {
-        font-family: 'Akshar', sans-serif;
+        font-family: var(--font-h1);
         font-weight: 700;
         @apply mb-8;
         font-size: 39px;
@@ -682,7 +683,7 @@ body .content .hero-banner {
     }
 
     .banner-text {
-        @apply w-full sm:w-3/4 lg:w-2/3 mr-14 mt-14;
+        @apply w-full lg:w-4/5 xl:w-5/6 mr-14 mt-14;
     }
 
     +div {
@@ -705,32 +706,95 @@ body .content .hero-banner {
 }
 
 /** Grid */
-.grid-wrap {
-  @apply bg-[var(--color-accent-dark)] p-12;
+.what-we-do {
+  @apply bg-[var(--color-accent-dark)] py-52 px-20 -mt-32 z-10;
+  clip-path: polygon(100% 6.5%, 0% 0% ,0% 100%, 100% 93.5%);
   position: relative;
 
+  h2 {
+    font-family: var(--font-h1);
+    font-weight: 700;
+    @apply text-6xl mb-28;
+    border: unset;
+
+    span {
+      @apply text-[var(--color-accent)];
+    }
+  }
+
   .grid {
-    @apply gap-y-6;
+    @apply gap-y-16;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .grid > :nth-child(1),
+  .grid > :nth-child(2) {
+    grid-row: 1;
+  }
+
+  .grid > :nth-child(3),
+  .grid > :nth-child(4) {
+    grid-row: 2;
+  }
+
+  .grid > :nth-child(5),
+  .grid > :nth-child(6) {
+    grid-row: 3;
   }
 
   .grid > :nth-child(2),
+  .grid > :nth-child(3),
+  .grid > :nth-child(6),
+  .grid > :nth-child(7) {
+    @apply z-10 my-8 px-12 pt-16 pb-20;
+    background-color: var(--color-white-primary);
+    align-self: center;
+
+    p {
+      font-size: 1.75rem;
+      line-height: 2.85rem;
+
+      strong {
+        @apply tracking-widest text-4xl mb-9 block;
+        font-family: var(--font-h1);
+        font-weight: 700;
+      }
+    }
+  }
+
+  /** text boxes **/
+  .grid > :nth-child(2),
   .grid > :nth-child(6) {
-    @apply -ml-28 z-10;
+    grid-column: 7 / end;
+    @apply mr-11;
   }
 
   .grid > :nth-child(3),
   .grid > :nth-child(7) {
-    @apply ml-32 -mr-32 z-10;
+    grid-column: 1 / 7;
+    @apply ml-11;
   }
 
+  /** image boxes **/
+  .grid > :nth-child(1),
+  .grid > :nth-child(5) {
+    @apply -my-6 mr-8;
+    grid-column: 1 / 8;
+  }
+
+  .grid > :nth-child(4),
+  .grid > :nth-child(8) {
+    @apply -my-6 ml-8;
+    grid-column: 6 / end;
+  }
 
   .item {
-    @apply max-w-screen-md relative;
+    @apply relative;
     z-index: 1;
-    background-color: var(--color-white-primary);
 
     img {
-      @apply -m-8
+      width: 100%;
     }
   }
 }
