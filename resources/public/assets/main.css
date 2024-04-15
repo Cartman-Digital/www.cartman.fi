@@ -1947,6 +1947,15 @@ body .content .hero-banner +div {
   font-size: 2.25rem;
   line-height: 2.5rem;
   letter-spacing: 0.1em;
+}
+
+.what-we-do .grid > :nth-child(2) p strong h2, .what-we-do .grid > :nth-child(3) p strong h2, .what-we-do .grid > :nth-child(6) p strong h2, .what-we-do .grid > :nth-child(7) p strong h2 {
+  margin-left: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .grid > :nth-child(2) p strong, .what-we-do .grid > :nth-child(3) p strong, .what-we-do .grid > :nth-child(6) p strong, .what-we-do .grid > :nth-child(7) p strong {
   font-family: var(--font-h1);
   font-weight: 700;
 }
@@ -2075,6 +2084,57 @@ body .content .card-list ul {
   font-size: 2.25rem;
   line-height: 2.5rem;
   letter-spacing: 0.1em;
+}
+
+.what-we-do .post-list > :nth-child(2) p strong h2, .what-we-do .post-list > :nth-child(3) p strong h2, .what-we-do .post-list > :nth-child(6) p strong h2, .what-we-do .post-list > :nth-child(7) p strong h2 {
+  margin-left: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .post-list > :nth-child(2) p strong, .what-we-do .post-list > :nth-child(3) p strong, .what-we-do .post-list > :nth-child(6) p strong, .what-we-do .post-list > :nth-child(7) p strong {
+  margin-bottom: 2.25rem;
+  display: block;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .post-list > :nth-child(2) p strong h2, .what-we-do .post-list > :nth-child(3) p strong h2, .what-we-do .post-list > :nth-child(6) p strong h2, .what-we-do .post-list > :nth-child(7) p strong h2 {
+  margin-left: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .post-list > :nth-child(2) p strong, .what-we-do .post-list > :nth-child(3) p strong, .what-we-do .post-list > :nth-child(6) p strong, .what-we-do .post-list > :nth-child(7) p strong {
+  margin-bottom: 2.25rem;
+  display: block;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .post-list > :nth-child(2) p strong h2, .what-we-do .post-list > :nth-child(3) p strong h2, .what-we-do .post-list > :nth-child(6) p strong h2, .what-we-do .post-list > :nth-child(7) p strong h2 {
+  margin-left: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .post-list > :nth-child(2) p strong, .what-we-do .post-list > :nth-child(3) p strong, .what-we-do .post-list > :nth-child(6) p strong, .what-we-do .post-list > :nth-child(7) p strong {
+  margin-bottom: 2.25rem;
+  display: block;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .post-list > :nth-child(2) p strong h2, .what-we-do .post-list > :nth-child(3) p strong h2, .what-we-do .post-list > :nth-child(6) p strong h2, .what-we-do .post-list > :nth-child(7) p strong h2 {
+  margin-left: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .post-list > :nth-child(2) p strong, .what-we-do .post-list > :nth-child(3) p strong, .what-we-do .post-list > :nth-child(6) p strong, .what-we-do .post-list > :nth-child(7) p strong {
   font-family: var(--font-h1);
   font-weight: 700;
 }
@@ -2191,6 +2251,57 @@ body .content .card-list ul {
   font-size: 2.25rem;
   line-height: 2.5rem;
   letter-spacing: 0.1em;
+}
+
+.what-we-do .post-list .post > :nth-child(2) p strong h2, .what-we-do .post-list .post > :nth-child(3) p strong h2, .what-we-do .post-list .post > :nth-child(6) p strong h2, .what-we-do .post-list .post > :nth-child(7) p strong h2 {
+  margin-left: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .post-list .post > :nth-child(2) p strong, .what-we-do .post-list .post > :nth-child(3) p strong, .what-we-do .post-list .post > :nth-child(6) p strong, .what-we-do .post-list .post > :nth-child(7) p strong {
+  margin-bottom: 2.25rem;
+  display: block;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .post-list .post > :nth-child(2) p strong h2, .what-we-do .post-list .post > :nth-child(3) p strong h2, .what-we-do .post-list .post > :nth-child(6) p strong h2, .what-we-do .post-list .post > :nth-child(7) p strong h2 {
+  margin-left: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .post-list .post > :nth-child(2) p strong, .what-we-do .post-list .post > :nth-child(3) p strong, .what-we-do .post-list .post > :nth-child(6) p strong, .what-we-do .post-list .post > :nth-child(7) p strong {
+  margin-bottom: 2.25rem;
+  display: block;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .post-list .post > :nth-child(2) p strong h2, .what-we-do .post-list .post > :nth-child(3) p strong h2, .what-we-do .post-list .post > :nth-child(6) p strong h2, .what-we-do .post-list .post > :nth-child(7) p strong h2 {
+  margin-left: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .post-list .post > :nth-child(2) p strong, .what-we-do .post-list .post > :nth-child(3) p strong, .what-we-do .post-list .post > :nth-child(6) p strong, .what-we-do .post-list .post > :nth-child(7) p strong {
+  margin-bottom: 2.25rem;
+  display: block;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .post-list .post > :nth-child(2) p strong h2, .what-we-do .post-list .post > :nth-child(3) p strong h2, .what-we-do .post-list .post > :nth-child(6) p strong h2, .what-we-do .post-list .post > :nth-child(7) p strong h2 {
+  margin-left: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .post-list .post > :nth-child(2) p strong, .what-we-do .post-list .post > :nth-child(3) p strong, .what-we-do .post-list .post > :nth-child(6) p strong, .what-we-do .post-list .post > :nth-child(7) p strong {
   font-family: var(--font-h1);
   font-weight: 700;
 }
@@ -2647,6 +2758,57 @@ body.post-page code {
   font-size: 2.25rem;
   line-height: 2.5rem;
   letter-spacing: 0.1em;
+}
+
+.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
+  margin-left: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+  margin-bottom: 2.25rem;
+  display: block;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
+  margin-left: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+  margin-bottom: 2.25rem;
+  display: block;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
+  margin-left: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+  margin-bottom: 2.25rem;
+  display: block;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
+  margin-left: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
   font-family: var(--font-h1);
   font-weight: 700;
 }
@@ -2973,8 +3135,8 @@ body.post-page code {
 }
 
 .blog-recent h2 {
+  margin-left: 2.5rem;
   padding-top: 2.5rem;
-  padding-left: 2.5rem;
   font-weight: 800;
   letter-spacing: 0.1em;
 }
@@ -2990,6 +3152,12 @@ body.post-page code {
 .blog-recent a:hover {
   --tw-text-opacity: 1;
   color: rgb(255 0 239 / var(--tw-text-opacity));
+}
+
+.block h2 {
+  margin-left: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
 }
 
 .trusted-by:nth-child(odd) {
