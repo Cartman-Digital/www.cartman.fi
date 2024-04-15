@@ -754,6 +754,7 @@ body .content .hero-banner {
     p {
       font-size: 1.75rem;
       line-height: 2.85rem;
+      color: var(--color-grey-primary);
 
       strong {
         @apply tracking-widest text-4xl mb-9 block;
@@ -779,13 +780,13 @@ body .content .hero-banner {
   /** image boxes **/
   .grid > :nth-child(1),
   .grid > :nth-child(5) {
-    @apply -my-6 mr-8;
+    @apply -my-6 mr-8 p-0;
     grid-column: 1 / 8;
   }
 
   .grid > :nth-child(4),
   .grid > :nth-child(8) {
-    @apply -my-6 ml-8;
+    @apply -my-6 ml-8 p-0;
     grid-column: 6 / end;
   }
 

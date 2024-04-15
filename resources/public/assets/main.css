@@ -654,11 +654,6 @@ video {
   display: none;
 }
 
-.size-10\/12 {
-  width: 83.333333%;
-  height: 83.333333%;
-}
-
 .size-48 {
   width: 12rem;
   height: 12rem;
@@ -1939,6 +1934,7 @@ body .content .hero-banner +div {
 .what-we-do .grid > :nth-child(2) p, .what-we-do .grid > :nth-child(3) p, .what-we-do .grid > :nth-child(6) p, .what-we-do .grid > :nth-child(7) p {
   font-size: 1.75rem;
   line-height: 2.85rem;
+  color: var(--color-grey-primary);
 }
 
 .what-we-do .grid > :nth-child(2) p strong, .what-we-do .grid > :nth-child(3) p strong, .what-we-do .grid > :nth-child(6) p strong, .what-we-do .grid > :nth-child(7) p strong {
@@ -1981,6 +1977,7 @@ body .content .hero-banner +div {
   margin-top: -1.5rem;
   margin-bottom: -1.5rem;
   margin-right: 2rem;
+  padding: 0px;
   grid-column: 1 / 8;
 }
 
@@ -1989,6 +1986,7 @@ body .content .hero-banner +div {
   margin-top: -1.5rem;
   margin-bottom: -1.5rem;
   margin-left: 2rem;
+  padding: 0px;
   grid-column: 6 / end;
 }
 
@@ -2076,6 +2074,7 @@ body .content .card-list ul {
 .what-we-do .post-list > :nth-child(2) p, .what-we-do .post-list > :nth-child(3) p, .what-we-do .post-list > :nth-child(6) p, .what-we-do .post-list > :nth-child(7) p {
   font-size: 1.75rem;
   line-height: 2.85rem;
+  color: var(--color-grey-primary);
 }
 
 .what-we-do .post-list > :nth-child(2) p strong, .what-we-do .post-list > :nth-child(3) p strong, .what-we-do .post-list > :nth-child(6) p strong, .what-we-do .post-list > :nth-child(7) p strong {
@@ -2156,6 +2155,7 @@ body .content .card-list ul {
   margin-top: -1.5rem;
   margin-bottom: -1.5rem;
   margin-right: 2rem;
+  padding: 0px;
   grid-column: 1 / 8;
 }
 
@@ -2164,6 +2164,7 @@ body .content .card-list ul {
   margin-top: -1.5rem;
   margin-bottom: -1.5rem;
   margin-left: 2rem;
+  padding: 0px;
   grid-column: 6 / end;
 }
 
@@ -2243,6 +2244,7 @@ body .content .card-list ul {
 .what-we-do .post-list .post > :nth-child(2) p, .what-we-do .post-list .post > :nth-child(3) p, .what-we-do .post-list .post > :nth-child(6) p, .what-we-do .post-list .post > :nth-child(7) p {
   font-size: 1.75rem;
   line-height: 2.85rem;
+  color: var(--color-grey-primary);
 }
 
 .what-we-do .post-list .post > :nth-child(2) p strong, .what-we-do .post-list .post > :nth-child(3) p strong, .what-we-do .post-list .post > :nth-child(6) p strong, .what-we-do .post-list .post > :nth-child(7) p strong {
@@ -2323,6 +2325,7 @@ body .content .card-list ul {
   margin-top: -1.5rem;
   margin-bottom: -1.5rem;
   margin-right: 2rem;
+  padding: 0px;
   grid-column: 1 / 8;
 }
 
@@ -2331,6 +2334,7 @@ body .content .card-list ul {
   margin-top: -1.5rem;
   margin-bottom: -1.5rem;
   margin-left: 2rem;
+  padding: 0px;
   grid-column: 6 / end;
 }
 
@@ -2750,6 +2754,7 @@ body.post-page code {
 .what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
   font-size: 1.75rem;
   line-height: 2.85rem;
+  color: var(--color-grey-primary);
 }
 
 .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
@@ -2830,6 +2835,7 @@ body.post-page code {
   margin-top: -1.5rem;
   margin-bottom: -1.5rem;
   margin-right: 2rem;
+  padding: 0px;
   grid-column: 1 / 8;
 }
 
@@ -2838,6 +2844,7 @@ body.post-page code {
   margin-top: -1.5rem;
   margin-bottom: -1.5rem;
   margin-left: 2rem;
+  padding: 0px;
   grid-column: 6 / end;
 }
 
