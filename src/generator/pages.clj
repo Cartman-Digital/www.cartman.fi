@@ -83,9 +83,21 @@
     (menu-footer)
     [:ul
      [:li "Social media"]
-     [:li twitter-icon]
-     [:li linkedin-icon]
-     [:li itewiki-icon]]
+     [:li
+      [:a
+       {:href "https://twitter.com/CartmanDigital"}
+       twitter-icon
+       "Twitter"]]
+     [:li 
+      [:a 
+       {:href "https://www.linkedin.com/company/cartmandigital/"} 
+       linkedin-icon
+       "LinkedIn"]]
+     [:li
+      [:a 
+       {:href "https://www.itewiki.fi/cartman-digital"}
+       itewiki-icon
+       "Itewiki"]]]
     [:ul
      [:li "Company"]
      [:li "Cartman Digital Oy"]

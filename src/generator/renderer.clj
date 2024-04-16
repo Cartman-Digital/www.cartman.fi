@@ -301,12 +301,13 @@
  [args]
  (let [cardlist (:cardList (contentful/get-contentful :card-list-query {:listId (get-in args [:sys :id])})) 
        cardCollection (get-in cardlist [:cardsCollection :items])]
-   [:section (into [:div {:class ["card-list row grid"
-                                  (:cssClass args)
-                                  (get-grid-class (:numberOfCardColumns cardlist))]} 
-          [:div {:class "intro"} 
-           (richtext->html (get-in cardlist [:introduction :json]))]]
-         (mapv #(render %) cardCollection))]))
+    [:section
+     {:class (:cssClass args)}
+     [:div {:class "intro row"}
+      (richtext->html (get-in cardlist [:introduction :json]))]
+     (into [:div {:class ["card-list row grid"
+                          (get-grid-class (:numberOfCardColumns cardlist))]}]
+           (mapv #(render %) cardCollection))]))
 
 (defmethod render "Nav"
  [args]
@@ -445,16 +446,16 @@
   (let [title (:title args)
         slides (-> args :slidesCollection :items)
         class (-> title (clojure.string/replace " " "-") clojure.string/lower-case)]
-    [:div.relative.w-full.p-16 {:data-carousel "slide"}
+    [:div.relative.w-full.p-16
      [:div.relative.h-56.overflow-hidden.rounded-lg {:class "md:h-96"}
       (for [slide slides]
         (let [img (get-in slide [:banner :url])]
-          [:div.hidden.duration-700.ease-in-out {:data-carousel-item true}
-           [:div.flex-1
+          [:div.slide
+           [:div.text
+            (richtext->html (get-in slide [:bannerText :json]))]
+           [:div.image
             [:img {:src img
-                   :class "absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"}]]
-           [:div.flex-1
-            (richtext->html (get-in slide [:bannerText :json]))]]))]]))
+                   :class "absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"}]]]))]]))
 
 (defmethod render "MainBanner"
   [banner]
@@ -478,7 +479,7 @@
      [:div.flex
       (for [{:keys [postImage title slug]} posts]
         [:div.flex-1.p-8 {:class "w-1/4"}
-         [:img {:class "w-full h-full" :src (:url postImage)}]
+         [:img {:class "w-full" :src (:url postImage)}]
          [:a {:href slug} title]])]]))
 
 (comment (render {:__typename "ArticleList" :sys {:id "4N25RfloTD2aq3YtrDEzLk"} :numberOfPostsShown 3}))
