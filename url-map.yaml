@@ -15,15 +15,30 @@ pathMatchers:
 - defaultService: https://www.googleapis.com/compute/v1/projects/www-cartman-fi/global/backendBuckets/site
   name: path-matcher-1
   routeRules:
+  - description: Handbook
+    priority: 1
+    matchRules:
+    - pathTemplateMatch: /handbook
+    urlRedirect:
+      pathRedirect: "/handbook/" # Omit to keep the requested path; mutually exclusive to prefixRedirect
+      redirectResponseCode: FOUND
+  - description: Handbook
+    priority: 2
+    matchRules:
+    - pathTemplateMatch: /handbook/{remaining=**}
+    routeAction:
+      urlRewrite:
+        pathTemplateRewrite: /{remaining}
+    service: https://www.googleapis.com/compute/v1/projects/www-cartman-fi/global/backendBuckets/handbook
   - description: Api
     matchRules:
     - pathTemplateMatch: /api/**
-    priority: 1
+    priority: 3
     service: https://www.googleapis.com/compute/v1/projects/www-cartman-fi/global/backendServices/container
   - description: Assets
     matchRules:
     - pathTemplateMatch: /assets/v/*/{asset=**}
-    priority: 2
+    priority: 4
     routeAction:
       urlRewrite:
         pathTemplateRewrite: /assets/{asset}
