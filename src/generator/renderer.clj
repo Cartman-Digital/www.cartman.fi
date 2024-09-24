@@ -453,6 +453,7 @@
           [:div.slide
            [:div.text
             (richtext->html (get-in slide [:bannerText :json]))]
+           
            [:div.image
             [:img {:src img
                    :class "absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"}]]]))]]))
@@ -479,8 +480,10 @@
      [:div.flex
       (for [{:keys [postImage title slug]} posts]
         [:div.flex-1.p-8 {:class "w-1/4"}
-         [:img {:class "w-full" :src (:url postImage)}]
-         [:a {:href slug} title]])]]))
+         [:div.image-wrapper
+          [:img {:class "w-full" :src (:url postImage)}]]
+         [:div.text-wrapper
+         [:a {:href slug} title]]])]]))
 
 (comment (render {:__typename "ArticleList" :sys {:id "4N25RfloTD2aq3YtrDEzLk"} :numberOfPostsShown 3}))
 (comment (contentful/get-contentful :posts-by-list-query {:listId "4N25RfloTD2aq3YtrDEzLk" :limit 3}))

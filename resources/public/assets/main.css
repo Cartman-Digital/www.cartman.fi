@@ -1421,8 +1421,9 @@ body .content > .post {
 }
 
 .navigation .nav-wrapper svg {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 3rem;
+  width: 3rem;
+  color: #FF00EF;
 }
 
 .navigation .logo {
@@ -1430,9 +1431,15 @@ body .content > .post {
 }
 
 .navigation .logo h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .navigation .logo h2 {
+    margin-left: 3rem;
+  }
 }
 
 .navigation .logo img {
@@ -1441,9 +1448,19 @@ body .content > .post {
 }
 
 .navigation .logo img h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .navigation .logo img h2 {
+    margin-left: 3rem;
+  }
+}
+
+.navigation .logo img {
+  margin-left: 15px;
 }
 
 .navigation .logo span {
@@ -1504,6 +1521,10 @@ body .content > .post {
   }
 }
 
+.navigation .nav-list-wrapper ul {
+  margin-right: 15px;
+}
+
 .navigation .nav-list-wrapper li:last-child a {
   color: var(--color-primary);
 }
@@ -1524,9 +1545,15 @@ body .content > .post {
 }
 
 .navigation .nav-list-wrapper a h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .navigation .nav-list-wrapper a h2 {
+    margin-left: 3rem;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -1754,9 +1781,15 @@ body .content > .post {
 }
 
 .sub-nav ul .nav-item a h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .sub-nav ul .nav-item a h2 {
+    margin-left: 3rem;
+  }
 }
 
 .sub-nav ul .nav-item a {
@@ -1828,9 +1861,16 @@ body .content .hero-banner {
 }
 
 body .content .hero-banner h1 {
-  font-size: 4.5rem;
+  font-size: 3rem;
   line-height: 1;
   color: var(--color-white-primary);
+}
+
+@media (min-width: 640px) {
+  body .content .hero-banner h1 {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
 }
 
 @media (min-width: 768px) {
@@ -1880,6 +1920,13 @@ body .content .hero-banner .cta.primary {
   border: unset;
 }
 
+@media (max-width: 640px) {
+  body .content .hero-banner .cta.primary {
+    margin-left: 0;
+    margin-right: 0
+  }
+}
+
 body .content .hero-banner .cta.primary::before, body .content .hero-banner .cta.primary::after {
   display: none;
 }
@@ -1899,6 +1946,13 @@ body .content .hero-banner .banner-text {
 @media (min-width: 1280px) {
   body .content .hero-banner .banner-text {
     width: 83.333333%;
+  }
+}
+
+@media (max-width: 640px) {
+  body .content .hero-banner .banner-text {
+    text-align: center;
+    font-size: 36px;
   }
 }
 
@@ -1926,10 +1980,22 @@ body .content .hero-banner +div {
   z-index: 10;
   margin-top: -8rem;
   background-color: var(--color-accent-dark);
-  padding-top: 13rem;
-  padding-bottom: 13rem;
-  padding-left: 5rem;
-  padding-right: 5rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .what-we-do {
+    padding-top: 13rem;
+    padding-bottom: 13rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+.what-we-do {
   -webkit-clip-path: polygon(100% 6.5%, 0% 0% ,0% 100%, 100% 93.5%);
           clip-path: polygon(100% 6.5%, 0% 0% ,0% 100%, 100% 93.5%);
   position: relative;
@@ -1938,10 +2004,21 @@ body .content .hero-banner +div {
 .what-we-do h2 {
   font-family: var(--font-h1);
   font-weight: 700;
-  margin-bottom: 7rem;
+  margin-bottom: 0.25rem;
   margin-left: -2rem;
-  font-size: 3.75rem;
-  line-height: 1;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .what-we-do h2 {
+    margin-bottom: 7rem;
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+}
+
+.what-we-do h2 {
   border: unset;
 }
 
@@ -1949,10 +2026,28 @@ body .content .hero-banner +div {
   color: var(--color-accent);
 }
 
+@media (max-width: 640px) {
+  .what-we-do h2 {
+    margin-bottom: 8rem
+  }
+}
+
 .what-we-do .grid {
-  row-gap: 4rem;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  row-gap: 4rem;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .grid {
+    grid-template-rows: repeat(3, 1fr)
+  }
+}
+
+@media (max-width: 640px) {
+  .what-we-do .grid {
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 2rem
+  }
 }
 
 .what-we-do .grid > :nth-child(1),
@@ -1993,22 +2088,43 @@ body .content .hero-banner +div {
 }
 
 .what-we-do .grid > :nth-child(2) p strong, .what-we-do .grid > :nth-child(3) p strong, .what-we-do .grid > :nth-child(6) p strong, .what-we-do .grid > :nth-child(7) p strong {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1rem;
   display: block;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   letter-spacing: 0.1em;
 }
 
 .what-we-do .grid > :nth-child(2) p strong h2, .what-we-do .grid > :nth-child(3) p strong h2, .what-we-do .grid > :nth-child(6) p strong h2, .what-we-do .grid > :nth-child(7) p strong h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .grid > :nth-child(2) p strong h2, .what-we-do .grid > :nth-child(3) p strong h2, .what-we-do .grid > :nth-child(6) p strong h2, .what-we-do .grid > :nth-child(7) p strong h2 {
+    margin-left: 3rem;
+  }
+
+  .what-we-do .grid > :nth-child(2) p strong, .what-we-do .grid > :nth-child(3) p strong, .what-we-do .grid > :nth-child(6) p strong, .what-we-do .grid > :nth-child(7) p strong {
+    margin-bottom: 2.25rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 }
 
 .what-we-do .grid > :nth-child(2) p strong, .what-we-do .grid > :nth-child(3) p strong, .what-we-do .grid > :nth-child(6) p strong, .what-we-do .grid > :nth-child(7) p strong {
   font-family: var(--font-h1);
   font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .what-we-do .grid > :nth-child(2) p, .what-we-do .grid > :nth-child(3) p, .what-we-do .grid > :nth-child(6) p, .what-we-do .grid > :nth-child(7) p {
+    font-size: 1.25rem;
+    line-height: normal;
+    padding-top: 1rem;
+    padding-bottom: 0
+  }
 }
 
 /** text boxes **/
@@ -2019,10 +2135,29 @@ body .content .hero-banner +div {
   margin-right: 2.75rem;
 }
 
+@media (max-width: 640px) {
+  .what-we-do .grid > :nth-child(2),
+  .what-we-do .grid > :nth-child(6) {
+    grid-column: 2 / end;
+    padding-bottom: 1rem;
+    padding-top: 1rem
+  }
+}
+
 .what-we-do .grid > :nth-child(3),
   .what-we-do .grid > :nth-child(7) {
   grid-column: 1 / 7;
   margin-left: 2.75rem;
+}
+
+@media (max-width: 640px) {
+  .what-we-do .grid > :nth-child(3),
+  .what-we-do .grid > :nth-child(7) {
+    grid-column: 2 / 12;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    margin-left: 0
+  }
 }
 
 /** image boxes **/
@@ -2036,6 +2171,16 @@ body .content .hero-banner +div {
   grid-column: 1 / 8;
 }
 
+@media (max-width: 640px) {
+  .what-we-do .grid > :nth-child(1),
+  .what-we-do .grid > :nth-child(5) {
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-top: -12rem;
+    margin-left: -3rem
+  }
+}
+
 .what-we-do .grid > :nth-child(4),
   .what-we-do .grid > :nth-child(8) {
   margin-top: -1.5rem;
@@ -2043,6 +2188,16 @@ body .content .hero-banner +div {
   margin-left: 2rem;
   padding: 0px;
   grid-column: 6 / end;
+}
+
+@media (max-width: 640px) {
+  .what-we-do .grid > :nth-child(4),
+  .what-we-do .grid > :nth-child(8) {
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-top: -12rem;
+    margin-right: -3rem
+  }
 }
 
 .what-we-do .item {
@@ -2063,6 +2218,10 @@ body .content > section.why-us {
   background-color: var(--color-section-bg);
 }
 
+body .content > section.why-us section.why-us > .intro-row {
+  color:#0073D4;
+}
+
 body .content > section.why-us .title-wrap,
   body .content > section.why-us .doc {
   text-align: left;
@@ -2070,19 +2229,36 @@ body .content > section.why-us .title-wrap,
 
 body .content > section.why-us .doc {
   position: relative;
-  margin-bottom: 3rem;
+  margin-bottom: 0px;
   padding-left: 2.75rem;
   padding-right: 2.75rem;
   padding-top: 5rem;
+}
+
+@media (min-width: 640px) {
+  body .content > section.why-us .doc {
+    margin-bottom: 3rem;
+  }
 }
 
 body .content > section.why-us h2 {
   margin-left: -2rem;
   margin-bottom: 2rem;
   margin-top: 1rem;
-  font-size: 3.75rem;
+  font-size: 3rem;
   line-height: 1;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  body .content > section.why-us h2 {
+    font-size: 3.75rem;
+    line-height: 1;
+    letter-spacing: 0.1em;
+  }
+}
+
+body .content > section.why-us h2 {
   font-family: var(--font-h1);
   font-weight: 700;
   border: unset;
@@ -2111,9 +2287,15 @@ body .content > section.why-us strong {
 }
 
 body .content > section.why-us strong h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  body .content > section.why-us strong h2 {
+    margin-left: 3rem;
+  }
 }
 
 body .content > section.why-us strong {
@@ -2166,6 +2348,16 @@ body .content .quote-carousel .intro h2 {
   text-transform: unset;
 }
 
+@keyframes slide {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  50% {
+    transform: translateX(-320%);
+  }
+}
+
 body .content .quote-carousel .card-list {
   grid-auto-flow: column;
   align-items: center;
@@ -2173,12 +2365,13 @@ body .content .quote-carousel .card-list {
        column-gap: 2.75rem;
   grid-template-columns: unset;
   grid-auto-columns: 400px;
-  overflow-x: auto;
+  overflow-x: hidden;
 }
 
 body .content .quote-carousel .card-list .doc {
   display: flex;
   flex-wrap: wrap;
+  animation: slide 60s linear infinite alternate;
 }
 
 body .content .quote-carousel .card-list > .doc,
@@ -2231,7 +2424,7 @@ body .content .quote-carousel .card-list .doc:nth-child(odd) {
 }
 
 body .content .quote-carousel .card-list .doc:nth-child(even) {
-  height: 352px;
+  min-height: 352px;
 }
 
 body .content .quote-carousel .card-list > .doc:nth-child(1),
@@ -2260,9 +2453,21 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 }
 
 .what-we-do .post-list {
-  row-gap: 4rem;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  row-gap: 4rem;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .post-list {
+    grid-template-rows: repeat(3, 1fr)
+  }
+}
+
+@media (max-width: 640px) {
+  .what-we-do .post-list {
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 2rem
+  }
 }
 
 .what-we-do .post-list > :nth-child(1),
@@ -2303,64 +2508,121 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 }
 
 .what-we-do .post-list > :nth-child(2) p strong, .what-we-do .post-list > :nth-child(3) p strong, .what-we-do .post-list > :nth-child(6) p strong, .what-we-do .post-list > :nth-child(7) p strong {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1rem;
   display: block;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   letter-spacing: 0.1em;
 }
 
 .what-we-do .post-list > :nth-child(2) p strong h2, .what-we-do .post-list > :nth-child(3) p strong h2, .what-we-do .post-list > :nth-child(6) p strong h2, .what-we-do .post-list > :nth-child(7) p strong h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .post-list > :nth-child(2) p strong h2, .what-we-do .post-list > :nth-child(3) p strong h2, .what-we-do .post-list > :nth-child(6) p strong h2, .what-we-do .post-list > :nth-child(7) p strong h2 {
+    margin-left: 3rem;
+  }
+
+  .what-we-do .post-list > :nth-child(2) p strong, .what-we-do .post-list > :nth-child(3) p strong, .what-we-do .post-list > :nth-child(6) p strong, .what-we-do .post-list > :nth-child(7) p strong {
+    margin-bottom: 2.25rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 }
 
 .what-we-do .post-list > :nth-child(2) p strong, .what-we-do .post-list > :nth-child(3) p strong, .what-we-do .post-list > :nth-child(6) p strong, .what-we-do .post-list > :nth-child(7) p strong {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1rem;
   display: block;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   letter-spacing: 0.1em;
 }
 
 .what-we-do .post-list > :nth-child(2) p strong h2, .what-we-do .post-list > :nth-child(3) p strong h2, .what-we-do .post-list > :nth-child(6) p strong h2, .what-we-do .post-list > :nth-child(7) p strong h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .post-list > :nth-child(2) p strong h2, .what-we-do .post-list > :nth-child(3) p strong h2, .what-we-do .post-list > :nth-child(6) p strong h2, .what-we-do .post-list > :nth-child(7) p strong h2 {
+    margin-left: 3rem;
+  }
+
+  .what-we-do .post-list > :nth-child(2) p strong, .what-we-do .post-list > :nth-child(3) p strong, .what-we-do .post-list > :nth-child(6) p strong, .what-we-do .post-list > :nth-child(7) p strong {
+    margin-bottom: 2.25rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 }
 
 .what-we-do .post-list > :nth-child(2) p strong, .what-we-do .post-list > :nth-child(3) p strong, .what-we-do .post-list > :nth-child(6) p strong, .what-we-do .post-list > :nth-child(7) p strong {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1rem;
   display: block;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   letter-spacing: 0.1em;
 }
 
 .what-we-do .post-list > :nth-child(2) p strong h2, .what-we-do .post-list > :nth-child(3) p strong h2, .what-we-do .post-list > :nth-child(6) p strong h2, .what-we-do .post-list > :nth-child(7) p strong h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .post-list > :nth-child(2) p strong h2, .what-we-do .post-list > :nth-child(3) p strong h2, .what-we-do .post-list > :nth-child(6) p strong h2, .what-we-do .post-list > :nth-child(7) p strong h2 {
+    margin-left: 3rem;
+  }
+
+  .what-we-do .post-list > :nth-child(2) p strong, .what-we-do .post-list > :nth-child(3) p strong, .what-we-do .post-list > :nth-child(6) p strong, .what-we-do .post-list > :nth-child(7) p strong {
+    margin-bottom: 2.25rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 }
 
 .what-we-do .post-list > :nth-child(2) p strong, .what-we-do .post-list > :nth-child(3) p strong, .what-we-do .post-list > :nth-child(6) p strong, .what-we-do .post-list > :nth-child(7) p strong {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1rem;
   display: block;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   letter-spacing: 0.1em;
 }
 
 .what-we-do .post-list > :nth-child(2) p strong h2, .what-we-do .post-list > :nth-child(3) p strong h2, .what-we-do .post-list > :nth-child(6) p strong h2, .what-we-do .post-list > :nth-child(7) p strong h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .post-list > :nth-child(2) p strong h2, .what-we-do .post-list > :nth-child(3) p strong h2, .what-we-do .post-list > :nth-child(6) p strong h2, .what-we-do .post-list > :nth-child(7) p strong h2 {
+    margin-left: 3rem;
+  }
+
+  .what-we-do .post-list > :nth-child(2) p strong, .what-we-do .post-list > :nth-child(3) p strong, .what-we-do .post-list > :nth-child(6) p strong, .what-we-do .post-list > :nth-child(7) p strong {
+    margin-bottom: 2.25rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 }
 
 .what-we-do .post-list > :nth-child(2) p strong, .what-we-do .post-list > :nth-child(3) p strong, .what-we-do .post-list > :nth-child(6) p strong, .what-we-do .post-list > :nth-child(7) p strong {
   font-family: var(--font-h1);
   font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .what-we-do .post-list > :nth-child(2) p, .what-we-do .post-list > :nth-child(3) p, .what-we-do .post-list > :nth-child(6) p, .what-we-do .post-list > :nth-child(7) p {
+    font-size: 1.25rem;
+    line-height: normal;
+    padding-top: 1rem;
+    padding-bottom: 0
+  }
 }
 
 .what-we-do .post-list > :nth-child(2),
@@ -2369,10 +2631,29 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
   margin-right: 2.75rem;
 }
 
+@media (max-width: 640px) {
+  .what-we-do .post-list > :nth-child(2),
+  .what-we-do .post-list > :nth-child(6) {
+    grid-column: 2 / end;
+    padding-bottom: 1rem;
+    padding-top: 1rem
+  }
+}
+
 .what-we-do .post-list > :nth-child(3),
   .what-we-do .post-list > :nth-child(7) {
   grid-column: 1 / 7;
   margin-left: 2.75rem;
+}
+
+@media (max-width: 640px) {
+  .what-we-do .post-list > :nth-child(3),
+  .what-we-do .post-list > :nth-child(7) {
+    grid-column: 2 / 12;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    margin-left: 0
+  }
 }
 
 .what-we-do .post-list > :nth-child(1),
@@ -2384,6 +2665,16 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
   grid-column: 1 / 8;
 }
 
+@media (max-width: 640px) {
+  .what-we-do .post-list > :nth-child(1),
+  .what-we-do .post-list > :nth-child(5) {
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-top: -12rem;
+    margin-left: -3rem
+  }
+}
+
 .what-we-do .post-list > :nth-child(4),
   .what-we-do .post-list > :nth-child(8) {
   margin-top: -1.5rem;
@@ -2391,6 +2682,16 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
   margin-left: 2rem;
   padding: 0px;
   grid-column: 6 / end;
+}
+
+@media (max-width: 640px) {
+  .what-we-do .post-list > :nth-child(4),
+  .what-we-do .post-list > :nth-child(8) {
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-top: -12rem;
+    margin-right: -3rem
+  }
 }
 
 .services .content .side-by-side .embed .post-list {
@@ -2435,9 +2736,21 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 }
 
 .what-we-do .post-list .post {
-  row-gap: 4rem;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  row-gap: 4rem;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .post-list .post {
+    grid-template-rows: repeat(3, 1fr)
+  }
+}
+
+@media (max-width: 640px) {
+  .what-we-do .post-list .post {
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 2rem
+  }
 }
 
 .what-we-do .post-list .post > :nth-child(1),
@@ -2478,64 +2791,121 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 }
 
 .what-we-do .post-list .post > :nth-child(2) p strong, .what-we-do .post-list .post > :nth-child(3) p strong, .what-we-do .post-list .post > :nth-child(6) p strong, .what-we-do .post-list .post > :nth-child(7) p strong {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1rem;
   display: block;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   letter-spacing: 0.1em;
 }
 
 .what-we-do .post-list .post > :nth-child(2) p strong h2, .what-we-do .post-list .post > :nth-child(3) p strong h2, .what-we-do .post-list .post > :nth-child(6) p strong h2, .what-we-do .post-list .post > :nth-child(7) p strong h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .post-list .post > :nth-child(2) p strong h2, .what-we-do .post-list .post > :nth-child(3) p strong h2, .what-we-do .post-list .post > :nth-child(6) p strong h2, .what-we-do .post-list .post > :nth-child(7) p strong h2 {
+    margin-left: 3rem;
+  }
+
+  .what-we-do .post-list .post > :nth-child(2) p strong, .what-we-do .post-list .post > :nth-child(3) p strong, .what-we-do .post-list .post > :nth-child(6) p strong, .what-we-do .post-list .post > :nth-child(7) p strong {
+    margin-bottom: 2.25rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 }
 
 .what-we-do .post-list .post > :nth-child(2) p strong, .what-we-do .post-list .post > :nth-child(3) p strong, .what-we-do .post-list .post > :nth-child(6) p strong, .what-we-do .post-list .post > :nth-child(7) p strong {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1rem;
   display: block;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   letter-spacing: 0.1em;
 }
 
 .what-we-do .post-list .post > :nth-child(2) p strong h2, .what-we-do .post-list .post > :nth-child(3) p strong h2, .what-we-do .post-list .post > :nth-child(6) p strong h2, .what-we-do .post-list .post > :nth-child(7) p strong h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .post-list .post > :nth-child(2) p strong h2, .what-we-do .post-list .post > :nth-child(3) p strong h2, .what-we-do .post-list .post > :nth-child(6) p strong h2, .what-we-do .post-list .post > :nth-child(7) p strong h2 {
+    margin-left: 3rem;
+  }
+
+  .what-we-do .post-list .post > :nth-child(2) p strong, .what-we-do .post-list .post > :nth-child(3) p strong, .what-we-do .post-list .post > :nth-child(6) p strong, .what-we-do .post-list .post > :nth-child(7) p strong {
+    margin-bottom: 2.25rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 }
 
 .what-we-do .post-list .post > :nth-child(2) p strong, .what-we-do .post-list .post > :nth-child(3) p strong, .what-we-do .post-list .post > :nth-child(6) p strong, .what-we-do .post-list .post > :nth-child(7) p strong {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1rem;
   display: block;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   letter-spacing: 0.1em;
 }
 
 .what-we-do .post-list .post > :nth-child(2) p strong h2, .what-we-do .post-list .post > :nth-child(3) p strong h2, .what-we-do .post-list .post > :nth-child(6) p strong h2, .what-we-do .post-list .post > :nth-child(7) p strong h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .post-list .post > :nth-child(2) p strong h2, .what-we-do .post-list .post > :nth-child(3) p strong h2, .what-we-do .post-list .post > :nth-child(6) p strong h2, .what-we-do .post-list .post > :nth-child(7) p strong h2 {
+    margin-left: 3rem;
+  }
+
+  .what-we-do .post-list .post > :nth-child(2) p strong, .what-we-do .post-list .post > :nth-child(3) p strong, .what-we-do .post-list .post > :nth-child(6) p strong, .what-we-do .post-list .post > :nth-child(7) p strong {
+    margin-bottom: 2.25rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 }
 
 .what-we-do .post-list .post > :nth-child(2) p strong, .what-we-do .post-list .post > :nth-child(3) p strong, .what-we-do .post-list .post > :nth-child(6) p strong, .what-we-do .post-list .post > :nth-child(7) p strong {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1rem;
   display: block;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   letter-spacing: 0.1em;
 }
 
 .what-we-do .post-list .post > :nth-child(2) p strong h2, .what-we-do .post-list .post > :nth-child(3) p strong h2, .what-we-do .post-list .post > :nth-child(6) p strong h2, .what-we-do .post-list .post > :nth-child(7) p strong h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .post-list .post > :nth-child(2) p strong h2, .what-we-do .post-list .post > :nth-child(3) p strong h2, .what-we-do .post-list .post > :nth-child(6) p strong h2, .what-we-do .post-list .post > :nth-child(7) p strong h2 {
+    margin-left: 3rem;
+  }
+
+  .what-we-do .post-list .post > :nth-child(2) p strong, .what-we-do .post-list .post > :nth-child(3) p strong, .what-we-do .post-list .post > :nth-child(6) p strong, .what-we-do .post-list .post > :nth-child(7) p strong {
+    margin-bottom: 2.25rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 }
 
 .what-we-do .post-list .post > :nth-child(2) p strong, .what-we-do .post-list .post > :nth-child(3) p strong, .what-we-do .post-list .post > :nth-child(6) p strong, .what-we-do .post-list .post > :nth-child(7) p strong {
   font-family: var(--font-h1);
   font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .what-we-do .post-list .post > :nth-child(2) p, .what-we-do .post-list .post > :nth-child(3) p, .what-we-do .post-list .post > :nth-child(6) p, .what-we-do .post-list .post > :nth-child(7) p {
+    font-size: 1.25rem;
+    line-height: normal;
+    padding-top: 1rem;
+    padding-bottom: 0
+  }
 }
 
 .what-we-do .post-list .post > :nth-child(2),
@@ -2544,10 +2914,29 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
   margin-right: 2.75rem;
 }
 
+@media (max-width: 640px) {
+  .what-we-do .post-list .post > :nth-child(2),
+  .what-we-do .post-list .post > :nth-child(6) {
+    grid-column: 2 / end;
+    padding-bottom: 1rem;
+    padding-top: 1rem
+  }
+}
+
 .what-we-do .post-list .post > :nth-child(3),
   .what-we-do .post-list .post > :nth-child(7) {
   grid-column: 1 / 7;
   margin-left: 2.75rem;
+}
+
+@media (max-width: 640px) {
+  .what-we-do .post-list .post > :nth-child(3),
+  .what-we-do .post-list .post > :nth-child(7) {
+    grid-column: 2 / 12;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    margin-left: 0
+  }
 }
 
 .what-we-do .post-list .post > :nth-child(1),
@@ -2559,6 +2948,16 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
   grid-column: 1 / 8;
 }
 
+@media (max-width: 640px) {
+  .what-we-do .post-list .post > :nth-child(1),
+  .what-we-do .post-list .post > :nth-child(5) {
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-top: -12rem;
+    margin-left: -3rem
+  }
+}
+
 .what-we-do .post-list .post > :nth-child(4),
   .what-we-do .post-list .post > :nth-child(8) {
   margin-top: -1.5rem;
@@ -2566,6 +2965,16 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
   margin-left: 2rem;
   padding: 0px;
   grid-column: 6 / end;
+}
+
+@media (max-width: 640px) {
+  .what-we-do .post-list .post > :nth-child(4),
+  .what-we-do .post-list .post > :nth-child(8) {
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-top: -12rem;
+    margin-right: -3rem
+  }
 }
 
 .services .content .side-by-side .embed .post-list .post {
@@ -2908,9 +3317,15 @@ body.post-page code {
 }
 
 body.post-page code h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  body.post-page code h2 {
+    margin-left: 3rem;
+  }
 }
 
 body.post-page code {
@@ -2943,9 +3358,21 @@ body.post-page code {
 }
 
 .what-we-do .people-list-wrap .people-list {
-  row-gap: 4rem;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  row-gap: 4rem;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .people-list-wrap .people-list {
+    grid-template-rows: repeat(3, 1fr)
+  }
+}
+
+@media (max-width: 640px) {
+  .what-we-do .people-list-wrap .people-list {
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 2rem
+  }
 }
 
 .what-we-do .people-list-wrap .people-list > :nth-child(1),
@@ -2986,64 +3413,121 @@ body.post-page code {
 }
 
 .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1rem;
   display: block;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   letter-spacing: 0.1em;
 }
 
 .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
+    margin-left: 3rem;
+  }
+
+  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+    margin-bottom: 2.25rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 }
 
 .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1rem;
   display: block;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   letter-spacing: 0.1em;
 }
 
 .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
+    margin-left: 3rem;
+  }
+
+  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+    margin-bottom: 2.25rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 }
 
 .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1rem;
   display: block;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   letter-spacing: 0.1em;
 }
 
 .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
+    margin-left: 3rem;
+  }
+
+  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+    margin-bottom: 2.25rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 }
 
 .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1rem;
   display: block;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   letter-spacing: 0.1em;
 }
 
 .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
+    margin-left: 3rem;
+  }
+
+  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+    margin-bottom: 2.25rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 }
 
 .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
   font-family: var(--font-h1);
   font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
+    font-size: 1.25rem;
+    line-height: normal;
+    padding-top: 1rem;
+    padding-bottom: 0
+  }
 }
 
 .what-we-do .people-list-wrap .people-list > :nth-child(2),
@@ -3052,10 +3536,29 @@ body.post-page code {
   margin-right: 2.75rem;
 }
 
+@media (max-width: 640px) {
+  .what-we-do .people-list-wrap .people-list > :nth-child(2),
+  .what-we-do .people-list-wrap .people-list > :nth-child(6) {
+    grid-column: 2 / end;
+    padding-bottom: 1rem;
+    padding-top: 1rem
+  }
+}
+
 .what-we-do .people-list-wrap .people-list > :nth-child(3),
   .what-we-do .people-list-wrap .people-list > :nth-child(7) {
   grid-column: 1 / 7;
   margin-left: 2.75rem;
+}
+
+@media (max-width: 640px) {
+  .what-we-do .people-list-wrap .people-list > :nth-child(3),
+  .what-we-do .people-list-wrap .people-list > :nth-child(7) {
+    grid-column: 2 / 12;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    margin-left: 0
+  }
 }
 
 .what-we-do .people-list-wrap .people-list > :nth-child(1),
@@ -3067,6 +3570,16 @@ body.post-page code {
   grid-column: 1 / 8;
 }
 
+@media (max-width: 640px) {
+  .what-we-do .people-list-wrap .people-list > :nth-child(1),
+  .what-we-do .people-list-wrap .people-list > :nth-child(5) {
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-top: -12rem;
+    margin-left: -3rem
+  }
+}
+
 .what-we-do .people-list-wrap .people-list > :nth-child(4),
   .what-we-do .people-list-wrap .people-list > :nth-child(8) {
   margin-top: -1.5rem;
@@ -3074,6 +3587,16 @@ body.post-page code {
   margin-left: 2rem;
   padding: 0px;
   grid-column: 6 / end;
+}
+
+@media (max-width: 640px) {
+  .what-we-do .people-list-wrap .people-list > :nth-child(4),
+  .what-we-do .people-list-wrap .people-list > :nth-child(8) {
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-top: -12rem;
+    margin-right: -3rem
+  }
 }
 
 .services .content .side-by-side .embed .people-list-wrap .people-list {
@@ -3261,9 +3784,16 @@ body.post-page code {
 
 .person-page .wrap .right .title h2,
             .person-page .wrap .right .employer h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .person-page .wrap .right .title h2,
+            .person-page .wrap .right .employer h2 {
+    margin-left: 3rem;
+  }
 }
 
 .person-page .wrap .right .job-description p {
@@ -3384,11 +3914,22 @@ body.post-page code {
 }
 
 .blog-recent .flex-1 {
+  position: relative;
   margin-top: auto;
 }
 
-.blog-recent img {
+.blog-recent .image-wrapper {
+  height: auto;
   margin-bottom: 2rem;
+}
+
+.blog-recent .text-wrapper {
+  height: 20px;
+}
+
+.blog-recent img {
+  width: 100%;
+  display: block;
 }
 
 .blog-recent a {
@@ -3398,6 +3939,7 @@ body.post-page code {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   text-decoration-line: none;
+  margin-bottom: auto;
 }
 
 .blog-recent a:hover {
@@ -3406,9 +3948,15 @@ body.post-page code {
 }
 
 .block h2 {
-  margin-left: 3rem;
+  margin-left: 0.25rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
+}
+
+@media (min-width: 640px) {
+  .block h2 {
+    margin-left: 3rem;
+  }
 }
 
 .trusted-by h2 {
@@ -3465,6 +4013,19 @@ body.post-page code {
   align-items: flex-start;
 }
 
+.embla {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+}
+
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
 @media (min-width: 640px) {
   .sm\:grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -3514,3 +4075,4 @@ body.post-page code {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+

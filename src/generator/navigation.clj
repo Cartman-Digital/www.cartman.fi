@@ -31,12 +31,13 @@
 
 (defn render-main-menu []
   (let [menu-data (contentful/get-contentful :nav-collection-query {:name top-nav})
-        nav-item-collection (have map? (get-in menu-data [:navCollection :items 0 :linkedFrom :navItemCollection]))
-        logo (contentful/get-image-by-slug "logo")]
+        nav-item-collection (have map? (get-in menu-data [:navCollection :items 0 :linkedFrom :navItemCollection]))]
     [:nav {:class "navigation"} 
      [:div {:class "nav-wrapper"}
       [:a {:href (create-url "/") :class "logo"}
-       [:img {:src logo :title "Cartman Digital"}]
+       [:picture
+        [:source {:srcset "/assets/images/cartman_logo_purple_white.png" :media "(prefers-color-scheme: dark)"}]
+        [:img {:src "/assets/images/cartman_digital_logo_dark.png"}]]
        [:span {:class "sr-only"} "Cartman Digital"]]
       [:button {:data-collapse-toggle "navbar-default" :type "button" :aria-controls "navbar-default" :aria-expanded "false"}
        [:span {:class "sr-only"} "Open main menu"]

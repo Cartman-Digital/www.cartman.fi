@@ -3,5 +3,8 @@
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.22",
     "tailwindcss": "^3.4.3"
+  },
+  "dependencies": {
+    "embla-carousel": "^8.3.0"
   }
 }

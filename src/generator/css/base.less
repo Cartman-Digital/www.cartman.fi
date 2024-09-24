@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
     --color-primary: #FF00EF;
     --color-primary-offset: #FFC4FB;
@@ -506,15 +507,17 @@ body .content > .post {
         }
 
         svg {
-            @apply w-6 h-6;
+            @apply w-12 h-12;
+            color: #FF00EF;
         }
     }
 
     .logo {
         @apply block;
-
+        
         img {
             @apply block h-16;
+            margin-left: 15px;
         }
 
         span {
@@ -527,6 +530,7 @@ body .content > .post {
 
         ul {
             @apply list-none font-medium flex flex-col p-4 lg:p-0 mt-4 mb-0 lg:flex-row lg:space-x-8 lg:mt-0 items-center justify-between;
+            margin-right: 15px;
         }
 
         li:last-child a {
@@ -707,11 +711,14 @@ body .content .hero-banner {
     min-height: 970px;
 
     h1 {
-      @apply text-[var(--color-white-primary)] text-7xl md:text-8xl xl:text-9xl;
+      @apply text-[var(--color-white-primary)] text-5xl sm:text-7xl md:text-8xl xl:text-9xl;
 
       &::first-line {
         @apply text-[var(--color-primary)];
       }
+
+      
+      
     }
 
     h1, .cta {
@@ -722,6 +729,8 @@ body .content .hero-banner {
         @apply m-auto overflow-hidden max-w-screen-2xl px-4;
         position: relative;
         z-index: 2;
+
+      
     }
 
     .cta.primary {
@@ -730,6 +739,11 @@ body .content .hero-banner {
       font-weight: 700;
       border: unset;
 
+      @media (max-width: 640px) {
+       margin-left: 0;
+       margin-right: 0;
+    }   
+
       &::before, &::after {
         display: none;
       }
@@ -737,6 +751,11 @@ body .content .hero-banner {
 
     .banner-text {
         @apply w-full lg:w-4/5 xl:w-5/6 mr-14 mt-14;
+
+        @media (max-width: 640px) {
+            @apply text-center;
+            font-size: 36px;
+        }   
     }
 
     +div {
@@ -760,25 +779,39 @@ body .content .hero-banner {
 
 /** Grid */
 .what-we-do {
-  @apply bg-[var(--color-accent-dark)] py-52 px-20 -mt-32 z-10;
+  @apply bg-[var(--color-accent-dark)] py-24 sm:py-52 px-5 sm:px-20 -mt-32 z-10;
   clip-path: polygon(100% 6.5%, 0% 0% ,0% 100%, 100% 93.5%);
   position: relative;
+
+  
 
   h2 {
     font-family: var(--font-h1);
     font-weight: 700;
-    @apply text-6xl mb-28 -ml-8;
+    @apply text-4xl sm:text-6xl mb-1 sm:mb-28 -ml-8;
     border: unset;
-
     span {
       @apply text-[var(--color-accent)];
     }
+
+    @media (max-width: 640px) {
+        margin-bottom: 8rem;
+      }
   }
+  
 
   .grid {
-    @apply gap-y-16;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    @apply gap-y-16;
+    
+    @media (min-width: 640px) {
+        grid-template-rows: repeat(3, 1fr); 
+    }
+
+    @media (max-width: 640px) {
+        grid-template-rows: repeat(3, 1fr);
+        @apply gap-y-8;
+    }
   }
 
   .grid > :nth-child(1),
@@ -811,9 +844,16 @@ body .content .hero-banner {
       white-space: unset;
 
       strong {
-        @apply tracking-widest text-4xl mb-9 block;
+        @apply tracking-widest text-2xl sm:text-4xl mb-4 sm:mb-9 block;
         font-family: var(--font-h1);
         font-weight: 700;
+      }
+
+      @media (max-width: 640px) {
+       font-size: 1.25rem;
+       line-height: normal;
+       padding-top: 1rem;
+       padding-bottom: 0;
       }
     }
   }
@@ -823,12 +863,25 @@ body .content .hero-banner {
   .grid > :nth-child(6) {
     grid-column: 7 / end;
     @apply mr-11;
+
+    @media (max-width: 640px) {
+        grid-column: 2 / end;
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+    }
   }
 
   .grid > :nth-child(3),
   .grid > :nth-child(7) {
     grid-column: 1 / 7;
     @apply ml-11;
+
+    @media (max-width: 640px) {
+        grid-column: 2 / 12;
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+        margin-left: 0;
+    }
   }
 
   /** image boxes **/
@@ -836,12 +889,26 @@ body .content .hero-banner {
   .grid > :nth-child(5) {
     @apply -my-6 mr-8 p-0;
     grid-column: 1 / 8;
+
+    @media (max-width: 640px) {
+        margin-bottom: 0;
+        margin-right: 0;
+        margin-top: -12rem;
+        margin-left: -3rem;
+    }
   }
 
   .grid > :nth-child(4),
   .grid > :nth-child(8) {
     @apply -my-6 ml-8 p-0;
     grid-column: 6 / end;
+
+    @media (max-width: 640px) {
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-top: -12rem;
+        margin-right: -3rem;
+    }
   }
 
   .item {
@@ -858,17 +925,21 @@ body .content > section.why-us {
   @apply relative z-0 -mt-48 pt-32 mb-36;
   background-color: var(--color-section-bg);
 
+  section.why-us > .intro-row {
+   color:#0073D4;
+  }
+
   .title-wrap,
   .doc {
     @apply text-left;
   }
 
   .doc {
-    @apply px-11 mb-12 pt-20 relative;
+    @apply px-11 mb-0 sm:mb-12 pt-20 relative;
   }
 
   h2 {
-    @apply tracking-widest -ml-8 mb-8 mt-4 text-6xl;
+    @apply tracking-normal sm:tracking-widest -ml-8 mb-8 mt-4 text-5xl sm:text-6xl;
     font-family: var(--font-h1);
     font-weight: 700;
     border: unset;
@@ -912,22 +983,37 @@ body .content .card-list {
 }
 
 body .content .quote-carousel {
+  
   .intro {
     @apply ml-4 md:ml-0 2xl:ml-8;
+    
 
     h2 {
       text-transform: unset;
     }
   }
 
+  @keyframes slide {
+    0% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(-320%); 
+    }
+   }
+
   .card-list {
     @apply grid-flow-col gap-x-11 items-center;
     grid-template-columns: unset;
     grid-auto-columns: 400px;
-    overflow-x: auto;
+    overflow-x: hidden;
+    
+    
+    
 
     .doc {
       @apply flex flex-wrap;
+      animation: slide 60s linear infinite alternate;
     }
 
     > .doc,
@@ -968,7 +1054,7 @@ body .content .quote-carousel {
     }
 
     .doc:nth-child(even) {
-      height: 352px;
+      min-height: 352px;
     }
 
     > .doc:nth-child(1),
@@ -1343,7 +1429,7 @@ body.post-page {
 .blog-recent {
     @apply bg-[var(--color-accent-dark)] pt-32 pb-64;
     clip-path: polygon(0% 13%, 100% 0% ,100% 100%, 0% 87%);
-
+    
     h2 {
 	    @apply pt-10 ml-10 font-extrabold tracking-widest;
 
@@ -1353,15 +1439,31 @@ body.post-page {
     }
 
     .flex-1 {
-      @apply mt-auto;
+      @apply relative;
+      margin-top: auto;
+      
     }
 
-    img {
-      @apply mb-8;
+    .image-wrapper { 
+        height: auto;
+        @apply mb-8 ;
+        
     }
+    .text-wrapper { 
+       height: 20px;
+    }
+
+
+    img {  
+      width: 100%;
+      display: block;
+    }
+    
 
     a {
 	    @apply text-2xl font-bold tracking-wider uppercase no-underline;
+        margin-bottom: auto;
+
     }
 
     a:hover {
@@ -1371,8 +1473,9 @@ body.post-page {
 
 .block {
   h2 {
-      @apply ml-12 font-extrabold tracking-widest;
+      @apply ml-1 sm:ml-12 font-extrabold tracking-normal ;
   }
+  
 }
 
 .trusted-by {
@@ -1423,3 +1526,15 @@ body.post-page {
 .foot ul {
     @apply list-none content-start items-start;
 }
+
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
