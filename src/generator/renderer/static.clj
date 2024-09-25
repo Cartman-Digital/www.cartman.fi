@@ -23,6 +23,8 @@
   [filename]
   (page/include-js (prepend-base-url (get-version-path filename "js"))))
 
+
+
 (defn get-asset-url
   [asset-path]
   (prepend-base-url (get-version-path asset-path)))

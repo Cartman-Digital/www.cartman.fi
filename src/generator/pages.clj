@@ -79,20 +79,20 @@
   "Must be called from hiccup. Outputs common page footer in a vector."
   []
   [:div.place-items-center.grid.grid-cols-1
-   [:div.foot.grid.justify-items-center.grid-cols-3 {:class "footer"}
-    (menu-footer)
+   [:div.foot.grid.sm:justify-items-center.grid-cols-1.sm:grid-cols-3 {:class "footer"}
+    (menu-footer) 
     [:ul
      [:li "Social media"]
      [:li
       [:a
        {:href "https://twitter.com/CartmanDigital"}
        twitter-icon
-       "Twitter"]]
+       "LinkedIn"]]
      [:li 
       [:a 
        {:href "https://www.linkedin.com/company/cartmandigital/"} 
        linkedin-icon
-       "LinkedIn"]]
+       "Twitter"]]
      [:li
       [:a 
        {:href "https://www.itewiki.fi/cartman-digital"}
@@ -103,7 +103,7 @@
      [:li "Cartman Digital Oy"]
      [:li "Tietotie 2, 90460 OULU"]
      [:li "Phone: +358 40 088 0369"]
-     [:li "@cartman.fi"]]]
+     [:li "name.lastname@cartman.fi"]]]
    [:hr]
    [:div "&copy 2023 Cartman Digital Oy"]])
 

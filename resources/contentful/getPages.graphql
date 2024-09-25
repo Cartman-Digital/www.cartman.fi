@@ -78,21 +78,13 @@ query pageCollectionQuery(
           ... on BlogLatest {
             title
           }
-          ... on Carousel {
+            ... on Carousel {
             title
             slidesCollection(limit:10) {
               items {
                 __typename
-                ... on CtaBanner {
-                  bannerText {
-                    json
-                  }
-                  banner {
-                    url(transform: {format: WEBP quality: 85})
-                    title
-                  }
-                  ctaUrl
-                  ctaButtonText
+                sys {
+                  id
                 }
               }
             }

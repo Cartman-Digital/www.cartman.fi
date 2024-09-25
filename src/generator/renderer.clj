@@ -479,7 +479,7 @@
      [:h2 title]
      [:div.flex
       (for [{:keys [postImage title slug]} posts]
-        [:div.flex-1.p-8 {:class "w-1/4"}
+        [:div.flex-1.p-8 {:class "w-full sm:w-1/4"}
          [:div.image-wrapper
           [:img {:class "w-full" :src (:url postImage)}]]
          [:div.text-wrapper
