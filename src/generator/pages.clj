@@ -81,7 +81,8 @@
   [:div.place-items-center.grid.grid-cols-1
    [:div.foot.grid.sm:justify-items-center.grid-cols-1.sm:grid-cols-3 {:class "footer"}
     (menu-footer) 
-    [:ul
+    [:hr]
+    [:ul 
      [:li "Social media"]
      [:li
       [:a
@@ -98,6 +99,7 @@
        {:href "https://www.itewiki.fi/cartman-digital"}
        itewiki-icon
        "Itewiki"]]]
+     [:hr]
     [:ul
      [:li "Company"]
      [:li "Cartman Digital Oy"]
@@ -105,7 +107,7 @@
      [:li "Phone: +358 40 088 0369"]
      [:li "name.lastname@cartman.fi"]]]
    [:hr]
-   [:div "&copy 2023 Cartman Digital Oy"]])
+   [:div.text-xl.pb-5 "&copy 2023 Cartman Digital Oy"]])
 
 (defn render-page
   [page body-class]

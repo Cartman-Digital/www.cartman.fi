@@ -725,6 +725,10 @@ video {
   padding: 2rem;
 }
 
+.pb-5 {
+  padding-bottom: 1.25rem;
+}
+
 .pr-2 {
   padding-right: 0.5rem;
 }
@@ -1059,14 +1063,27 @@ body hr {
   margin-bottom: 2rem;
   margin-left: auto;
   margin-right: auto;
-  width: 66.666667%;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  body hr {
+    width: 66.666667%;
+  }
 }
 
 @media (max-width: 640px) {
   body hr {
     height: 5px;
     background-color: #000;
+    margin-left: 20px;
     width: 90%
+  }
+}
+
+@media (min-width: 640px) {
+  body hr {
+    display: none
   }
 }
 
@@ -1613,7 +1630,7 @@ body .content > .post {
 
 @media (max-width: 640px) {
   .footer {
-    padding-left: 3rem 
+    padding-left: 0 
   }
 }
 
@@ -1621,7 +1638,7 @@ body .content > .post {
   text-align: left;
   font-size: 1.875rem;
   line-height: 2.25rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.1em;
 }
 
@@ -1629,6 +1646,7 @@ body .content > .post {
   .footer .menu {
     font-size: 2.25rem;
     line-height: 2.5rem;
+    font-weight: 700;
   }
 }
 
@@ -1649,60 +1667,20 @@ body .content > .post {
   text-align: left;
 }
 
+@media (max-width: 640px) {
+  .footer ul {
+    padding-left: 3rem
+  }
+}
+
 .footer ul:nth-child(1) {
   margin-bottom: 2rem;
 }
 
-.footer ul:nth-child(2) li {
-  margin-bottom: 1.25rem;
-}
-
-.footer ul:nth-child(2) li:nth-child(1) {
-  font-size: 1.5rem;
-  line-height: 2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-@media (min-width: 640px) {
-  .footer ul:nth-child(2) li:nth-child(1) {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
+@media (max-width: 640px) {
+  .footer ul:nth-child(1) {
+    margin-bottom: 0
   }
-}
-
-.footer ul:nth-child(2) li:nth-child(1) {
-  font-family: var(--font-h1);
-  font-weight: 700;
-  line-height: 1.65;
-  margin-top: 1rem;
-}
-
-.footer ul:nth-child(2) a {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  text-decoration-line: none;
-}
-
-@media (min-width: 640px) {
-  .footer ul:nth-child(2) a {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
-}
-
-.footer ul:nth-child(2) svg {
-  margin-right: 1rem;
-  display: inline;
-}
-
-.footer ul:nth-child(3) {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  font-weight: 500;
-  margin-top: 2rem;
 }
 
 .footer ul:nth-child(3) li {
@@ -1727,6 +1705,70 @@ body .content > .post {
   font-family: var(--font-h1);
   font-weight: 700;
   line-height: 1.65;
+  margin-top: 1rem;
+}
+
+@media (min-width: 640px) {
+  .footer ul:nth-child(3) li:nth-child(1) {
+    margin-top: 0
+  }
+}
+
+.footer ul:nth-child(3) a {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration-line: none;
+}
+
+@media (min-width: 640px) {
+  .footer ul:nth-child(3) a {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
+.footer ul:nth-child(3) svg {
+  margin-right: 1rem;
+  display: inline;
+}
+
+.footer ul:nth-child(5) {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+  margin-top: 2rem;
+}
+
+@media (min-width: 640px) {
+  .footer ul:nth-child(5) {
+    margin-top: 0
+  }
+}
+
+.footer ul:nth-child(5) li {
+  margin-bottom: 1.25rem;
+}
+
+.footer ul:nth-child(5) li:nth-child(1) {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+@media (min-width: 640px) {
+  .footer ul:nth-child(5) li:nth-child(1) {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+.footer ul:nth-child(5) li:nth-child(1) {
+  font-family: var(--font-h1);
+  font-weight: 700;
+  line-height: 1.65;
 }
 
 .social-media {
@@ -1741,18 +1783,6 @@ body .content > .post {
 
 .social-media .icon svg {
   display: inline-block;
-}
-
-@media (max-width: 640px) {
-  .footer > ul:nth-child(2) {
-    border-top-width: 4px;
-    --tw-border-opacity: 1;
-    border-color: rgb(0 0 0 / var(--tw-border-opacity));
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 4px solid black;
-    width: 95%;
-  }
 }
 
 /**
@@ -4241,7 +4271,18 @@ body.post-page code {
 }
 
 .trusted-by h2 {
-  font-size: 3.75rem;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+@media (min-width: 640px) {
+  .trusted-by h2 {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+}
+
+.trusted-by h2 {
   line-height: 1.65;
   font-family: var(--font-h1);
   font-weight: 700;

@@ -261,12 +261,16 @@ body {
     }
 
     hr {
-        @apply w-4/6 my-8 mx-auto;
+        @apply w-full sm:w-4/6 my-8 mx-auto;
 
         @media (max-width: 640px) {
             height: 5px;
             background-color: #000;
+            margin-left: 20px;
             width: 90%;
+        }
+        @media (min-width: 640px) {
+        display: none;
         }
     }
 
@@ -564,11 +568,13 @@ body .content > .post {
     color: var(--color-body-text);
 
     @media (max-width: 640px) {
-       padding-left: 3rem ;
+       padding-left: 0 ;
     }
 
     .menu {
-      @apply text-left font-bold text-3xl sm:text-4xl tracking-widest;
+      @apply text-left font-semibold sm:font-bold text-3xl sm:text-4xl tracking-widest;
+
+    
 
       li {
         @media (max-width: 640px) {
@@ -586,13 +592,21 @@ body .content > .post {
 
     ul {
       @apply text-left; 
+
+      @media (max-width: 640px) {
+        padding-left: 3rem;
+     }
     }
 
     ul:nth-child(1) {
      margin-bottom: 2rem;
+
+     @media (max-width: 640px) {
+        margin-bottom: 0;
+     }
     }
 
-    ul:nth-child(2) {
+    ul:nth-child(3) {
      
       li {
         @apply mb-5;
@@ -604,6 +618,9 @@ body .content > .post {
         font-weight: 700;
         line-height: 1.65;
         margin-top: 1rem;
+        @media (min-width: 640px) {
+            margin-top: 0;
+         }
       }
 
       a {
@@ -615,10 +632,14 @@ body .content > .post {
       }
     }
 
-    ul:nth-child(3) {
+    ul:nth-child(5) {
       @apply text-xl;
       font-weight: 500;
       margin-top: 2rem;
+
+      @media (min-width: 640px) {
+        margin-top: 0;
+     }
         
       li {
         @apply mb-5;
@@ -644,13 +665,7 @@ body .content > .post {
         }
     }
 }
-.footer > ul:nth-child(2) {
-    @media (max-width: 640px) {
-        @apply border-t-4 border-black py-3;
-        border-bottom: 4px solid black;
-        width: 95%;
-     }
-}
+
 
 /**
  * Body component styles
@@ -1559,7 +1574,7 @@ body.post-page {
 
 .trusted-by {
   h2 {
-    @apply text-6xl;
+    @apply text-3xl sm:text-6xl;
     line-height: 1.65;
     font-family: var(--font-h1);
     font-weight: 700;
