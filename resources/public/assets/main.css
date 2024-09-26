@@ -1410,7 +1410,7 @@ body .content > .post {
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    max-width: 80%
+    max-width: 90%
   }
 
   .blog-recent .navigation .nav-wrapper :nth-child(3) {
@@ -1535,7 +1535,7 @@ body .content > .post {
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    max-width: 80%
+    max-width: 90%
   }
 
   .blog-recent .navigation .nav-list-wrapper ul :nth-child(3) {
@@ -1980,8 +1980,9 @@ body .content .hero-banner {
 }
 
 body .content .hero-banner h1 {
-  font-size: 3rem;
-  line-height: 1;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.1em;
   color: var(--color-white-primary);
 }
 
@@ -2026,14 +2027,27 @@ body .content .hero-banner .banner-content-wrap {
 
 body .content .hero-banner .cta.primary {
   background-color: var(--color-accent);
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   padding-top: 0.75rem;
   padding-bottom: 0.5rem;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-  letter-spacing: 0.05em;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.1em;
   color: var(--color-primary);
+}
+
+@media (min-width: 640px) {
+  body .content .hero-banner .cta.primary {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    letter-spacing: 0.05em;
+  }
+}
+
+body .content .hero-banner .cta.primary {
   font-family: 'Akshar', sans-serif;
   font-weight: 700;
   border: unset;
@@ -2100,8 +2114,8 @@ body .content .hero-banner +div {
   margin-top: -8rem;
   margin-bottom: 9rem;
   background-color: var(--color-accent-dark);
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+  padding-top: 9rem;
+  padding-bottom: 9rem;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
@@ -2126,8 +2140,8 @@ body .content .hero-banner +div {
   font-weight: 700;
   margin-bottom: 0.25rem;
   margin-left: -2rem;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 @media (min-width: 640px) {
@@ -2334,7 +2348,7 @@ body .content > section.why-us {
   z-index: 20;
   margin-top: -12rem;
   margin-bottom: 4rem;
-  padding-top: 0px;
+  padding-top: 2rem;
   padding-bottom: 1.25rem;
 }
 
@@ -2353,6 +2367,7 @@ body .content > section.why-us {
 
 body .content > section.why-us .intro.row {
   padding-bottom: 0;
+  margin-left: -8px;
 }
 
 body .content > section.why-us .intro.row :nth-child(1) {
@@ -2373,8 +2388,8 @@ body .content > section.why-us .title-wrap,
 body .content > section.why-us .doc {
   position: relative;
   margin-bottom: 0px;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   padding-top: 3.5rem;
 }
 
@@ -2388,8 +2403,7 @@ body .content > section.why-us .doc {
 }
 
 body .content > section.why-us h2 {
-  margin-left: -2rem;
-  margin-bottom: 0px;
+  margin-bottom: 1rem;
   margin-top: 1rem;
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -2398,6 +2412,7 @@ body .content > section.why-us h2 {
 
 @media (min-width: 640px) {
   body .content > section.why-us h2 {
+    margin-left: -2rem;
     margin-bottom: 2rem;
     font-size: 3.75rem;
     line-height: 1;
@@ -2523,8 +2538,22 @@ body .content .card-list ul {
   margin-bottom: 0.5rem;
 }
 
+@media (max-width: 640px) {
+  body .content .quote-carousel {
+    padding-left: 0
+  }
+
+  body .content .quote-carousel .intro.row {
+    padding-top: 0;
+  }
+
+  body .content .quote-carousel span {
+    color: var(--color-primary);
+  }
+}
+
 body .content .quote-carousel .intro {
-  margin-left: 1rem;
+  margin-left: 1.25rem;
 }
 
 @media (min-width: 768px) {
@@ -2536,6 +2565,18 @@ body .content .quote-carousel .intro {
 @media (min-width: 1536px) {
   body .content .quote-carousel .intro {
     margin-left: 2rem;
+  }
+}
+
+body .content .quote-carousel .intro h2 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+@media (min-width: 640px) {
+  body .content .quote-carousel .intro h2 {
+    font-size: 3.75rem;
+    line-height: 1;
   }
 }
 
@@ -2573,7 +2614,7 @@ body .content .quote-carousel .card-list .doc {
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    max-width: 80%
+    max-width: 90%
   }
 
   .blog-recent body .content .quote-carousel .card-list .doc :nth-child(3) {
@@ -2595,14 +2636,22 @@ body .content .quote-carousel .card-list .doc {
   padding-bottom: 3rem;
   padding-left: 2.75rem;
   padding-right: 2.75rem;
-  font-size: 1.5rem;
-  line-height: 2rem;
-  letter-spacing: 0.025em;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.1em;
+}
+
+@media (min-width: 640px) {
+  body .content .quote-carousel .card-list .doc {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
 }
 
 body .content .quote-carousel .card-list .doc p {
   margin-bottom: auto;
   clear: right;
+  font-weight: 400;
 }
 
 body .content .quote-carousel .card-list .doc img {
@@ -2937,6 +2986,8 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 @media (max-width: 640px) {
   .trusted-by .post-list {
     grid-template-columns: repeat(2 , 1fr);
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
@@ -3228,6 +3279,8 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 @media (max-width: 640px) {
   .trusted-by .post-list .post {
     grid-template-columns: repeat(2 , 1fr);
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
@@ -3858,6 +3911,8 @@ body.post-page code {
 @media (max-width: 640px) {
   .trusted-by .people-list-wrap .people-list {
     grid-template-columns: repeat(2 , 1fr);
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
@@ -3932,7 +3987,7 @@ body.post-page code {
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    max-width: 80%
+    max-width: 90%
   }
 
   .blog-recent .person-page .person ul li :nth-child(3) {
@@ -3972,7 +4027,7 @@ body.post-page code {
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    max-width: 80%
+    max-width: 90%
   }
 
   .blog-recent .person-page .wrap :nth-child(3) {
@@ -3994,7 +4049,7 @@ body.post-page code {
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    max-width: 80%
+    max-width: 90%
   }
 
   .blog-recent .person-page .wrap .left :nth-child(3) {
@@ -4157,7 +4212,7 @@ body.post-page code {
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    max-width: 80%
+    max-width: 90%
   }
 
   .blog-recent .main-banner-block :nth-child(3) {
@@ -4181,25 +4236,34 @@ body.post-page code {
 
 .blog-recent {
   background-color: var(--color-accent-dark);
-  padding-top: 8rem;
+  padding-top: 5rem;
   padding-bottom: 16rem;
+}
+
+@media (min-width: 640px) {
+  .blog-recent {
+    padding-top: 8rem;
+  }
+}
+
+.blog-recent {
   -webkit-clip-path: polygon(0% 13%, 100% 0% ,100% 100%, 0% 87%);
           clip-path: polygon(0% 13%, 100% 0% ,100% 100%, 0% 87%);
 }
 
 .blog-recent h2 {
   margin-left: 1.25rem;
-  padding-top: 2.5rem;
+  padding-top: 0px;
   font-size: 1.875rem;
   line-height: 2.25rem;
   font-weight: 800;
-  letter-spacing: 0em;
+  letter-spacing: 0.05em;
 }
 
 @media (min-width: 640px) {
   .blog-recent h2 {
     margin-left: 2.5rem;
-    letter-spacing: 0.1em;
+    padding-top: 2.5rem;
   }
 }
 
@@ -4217,7 +4281,7 @@ body.post-page code {
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    max-width: 80%
+    max-width: 90%
   }
 
   .blog-recent .flex :nth-child(3) {
@@ -4238,7 +4302,7 @@ body.post-page code {
 
 .blog-recent .image-wrapper {
   height: auto;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 @media (min-width: 640px) {
@@ -4257,7 +4321,7 @@ body.post-page code {
 }
 
 .blog-recent a {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   line-height: 1.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -4322,6 +4386,8 @@ body.post-page code {
 @media (max-width: 640px) {
   .trusted-by .grid {
     grid-template-columns: repeat(2 , 1fr);
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 

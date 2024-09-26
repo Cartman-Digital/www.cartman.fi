@@ -757,7 +757,7 @@ body .content .hero-banner {
     min-height: 970px;
 
     h1 {
-      @apply text-[var(--color-white-primary)] text-5xl sm:text-7xl md:text-8xl xl:text-9xl;
+      @apply text-[var(--color-white-primary)] text-4xl sm:text-7xl md:text-8xl xl:text-9xl tracking-widest;
 
       &::first-line {
         @apply text-[var(--color-primary)];
@@ -775,12 +775,10 @@ body .content .hero-banner {
         @apply m-auto overflow-hidden max-w-screen-2xl px-4;
         position: relative;
         z-index: 2;
-
-      
     }
 
     .cta.primary {
-      @apply text-4xl tracking-wider bg-[var(--color-accent)] pt-3 pb-2 px-5 text-[var(--color-primary)];
+      @apply text-2xl sm:text-4xl tracking-widest sm:tracking-wider bg-[var(--color-accent)] pt-3 pb-2 px-8 sm:px-5 text-[var(--color-primary)];
       font-family: 'Akshar', sans-serif;
       font-weight: 700;
       border: unset;
@@ -825,7 +823,7 @@ body .content .hero-banner {
 
 /** Grid */
 .what-we-do {
-  @apply bg-[var(--color-accent-dark)] py-24 sm:py-52 px-5 sm:px-20 -mt-32 z-10 mb-36;
+  @apply bg-[var(--color-accent-dark)] py-36 sm:py-52 px-5 sm:px-20 -mt-32 z-10 mb-36;
   clip-path: polygon(100% 6.5%, 0% 0% ,0% 100%, 100% 93.5%);
   position: relative;
 
@@ -835,7 +833,7 @@ body .content .hero-banner {
   h2 {
     font-family: var(--font-h1);
     font-weight: 700;
-    @apply text-4xl sm:text-6xl mb-1 sm:mb-28 -ml-8;
+    @apply text-3xl sm:text-6xl mb-1 sm:mb-28 -ml-8;
     border: unset;
     span {
       @apply text-[var(--color-accent)];
@@ -969,11 +967,12 @@ body .content .hero-banner {
 }
 
 body .content > section.why-us {
-  @apply relative z-20 sm:z-0 -mt-48 pt-0 sm:pt-32 mb-16 sm:mb-36 pb-5 sm:pb-12 ;
+  @apply relative z-20 sm:z-0 -mt-48 pt-8 sm:pt-32 mb-16 sm:mb-36 pb-5 sm:pb-12 ;
   background-color: var(--color-section-bg);
 
    .intro.row {
      padding-bottom: 0;
+     margin-left: -8px;
 
     :nth-child(1) {
       padding-top: 0.5rem;
@@ -990,13 +989,13 @@ body .content > section.why-us {
   }
 
   .doc {
-    @apply px-8 sm:px-11 mb-0 sm:mb-12 pt-14 sm:pt-20 relative;
+    @apply px-2 sm:px-11 mb-0 sm:mb-12 pt-14 sm:pt-20 relative;
 
    
   }
 
   h2 {
-    @apply tracking-tight sm:tracking-widest -ml-8 mb-0 sm:mb-8 mt-4 text-3xl sm:text-6xl;
+    @apply tracking-tight sm:tracking-widest sm:-ml-8 mb-4 sm:mb-8 mt-4 text-3xl sm:text-6xl;
     font-family: var(--font-h1);
     font-weight: 700;
     border: unset;
@@ -1056,11 +1055,26 @@ body .content .card-list {
 }
 
 body .content .quote-carousel {
+
+    @media (max-width: 640px) {
+        padding-left: 0;
+
+        .intro.row {
+            padding-top: 0;
+        }
+
+        span {
+            color: var(--color-primary);
+          }
+    }
+    
+    
   
   .intro {
-    @apply ml-4 md:ml-0 2xl:ml-8;
+    @apply ml-5 md:ml-0 2xl:ml-8;
     
     h2 {
+      @apply text-3xl sm:text-6xl;
       text-transform: unset;
     }
   }
@@ -1080,9 +1094,6 @@ body .content .quote-carousel {
     grid-auto-columns: 400px;
     overflow-x: hidden;
     
-    
-    
-
     .doc {
       @apply flex flex-wrap;
       animation: slide 60s linear infinite alternate;
@@ -1094,11 +1105,12 @@ body .content .quote-carousel {
     }
 
     .doc {
-      @apply py-12 px-11 text-2xl tracking-wide;
+      @apply py-12 px-11 text-base sm:text-2xl tracking-widest;
 
       p {
         @apply mb-auto;
         clear: right;
+        font-weight: 400;
       }
 
       img {
@@ -1499,11 +1511,11 @@ body.post-page {
 }
 
 .blog-recent {
-    @apply bg-[var(--color-accent-dark)] pt-32 pb-64;
+    @apply bg-[var(--color-accent-dark)] pt-20 sm:pt-32 pb-64;
     clip-path: polygon(0% 13%, 100% 0% ,100% 100%, 0% 87%);
     
     h2 {
-	    @apply pt-10 ml-5 sm:ml-10 font-extrabold tracking-normal sm:tracking-widest text-3xl;
+	    @apply pt-0 sm:pt-10 ml-5 sm:ml-10 font-extrabold tracking-wider text-3xl;
 
       span {
         @apply text-[var(--color-accent)];
@@ -1520,7 +1532,7 @@ body.post-page {
        flex-direction: column;
         margin-left: auto;
         margin-right: auto;
-        max-width: 80%;
+        max-width: 90%;
         :nth-child(3) {
         display: none;
        }
@@ -1539,7 +1551,7 @@ body.post-page {
 
     .image-wrapper { 
         height: auto;
-        @apply mb-4 sm:mb-8 ;
+        @apply mb-3 sm:mb-8 ;
         
     }
     .text-wrapper { 
@@ -1554,7 +1566,7 @@ body.post-page {
     
 
     a {
-	    @apply text-xl sm:text-2xl font-bold tracking-wider uppercase no-underline;
+	    @apply text-lg sm:text-2xl font-bold tracking-wider uppercase no-underline;
         margin-bottom: auto;
 
     }
@@ -1574,7 +1586,6 @@ body.post-page {
 .trusted-by {
   h2 {
     @apply text-3xl sm:text-6xl pl-5 sm:pl-3 leading-tight sm:leading-normal;
-   
     font-family: var(--font-h1);
     font-weight: 700;
     border: unset;
@@ -1588,6 +1599,8 @@ body.post-page {
   @media (max-width: 640px) {
     .grid {
         grid-template-columns: repeat(2 , 1fr);
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
   }
 

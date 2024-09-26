@@ -304,7 +304,8 @@
     [:section
      {:class (:cssClass args)}
      [:div {:class "intro row"}
-      (richtext->html (get-in cardlist [:introduction :json]))]
+      [:h2 (:internalName cardlist)]
+      #_(richtext->html (get-in cardlist [:introduction :json]))]
      (into [:div {:class ["card-list row grid"
                           (get-grid-class (:numberOfCardColumns cardlist))]}]
            (mapv #(render %) cardCollection))]))
