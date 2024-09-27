@@ -1979,10 +1979,16 @@ body .content .hero-banner {
   min-height: 970px;
 }
 
+@media (max-width: 640px) {
+  body .content .hero-banner {
+    min-height: 100%
+  }
+}
+
 body .content .hero-banner h1 {
   font-size: 2.25rem;
   line-height: 2.5rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   color: var(--color-white-primary);
 }
 
@@ -1990,6 +1996,7 @@ body .content .hero-banner h1 {
   body .content .hero-banner h1 {
     font-size: 4.5rem;
     line-height: 1;
+    letter-spacing: 0.025em;
   }
 }
 
@@ -2409,7 +2416,6 @@ body .content > section.why-us {
 
 @media (min-width: 640px) {
   body .content > section.why-us {
-    z-index: 0;
     margin-bottom: 9rem;
     padding-top: 8rem;
     padding-bottom: 3rem;
@@ -2481,9 +2487,15 @@ body .content > section.why-us h2 {
   border: unset;
 }
 
+@media (min-width: 640px) {
+  body .content > section.why-us h2 {
+    margin-left: 0
+  }
+}
+
 body .content > section.why-us img {
   position: absolute;
-  left: 2rem;
+  left: 0.5rem;
   top: 0px;
   margin-bottom: 1.25rem;
 }

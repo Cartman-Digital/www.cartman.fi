@@ -756,8 +756,12 @@ body .content .hero-banner {
     height: 100vh;
     min-height: 970px;
 
+    @media (max-width: 640px) {
+        min-height: 100%;
+     }  
+
     h1 {
-      @apply text-[var(--color-white-primary)] text-4xl sm:text-7xl md:text-8xl xl:text-9xl tracking-widest;
+      @apply text-[var(--color-white-primary)] text-4xl sm:text-7xl md:text-8xl xl:text-9xl tracking-wider sm:tracking-wide;
 
       &::first-line {
         @apply text-[var(--color-primary)];
@@ -978,7 +982,7 @@ body .content .hero-banner {
 }
 
 body .content > section.why-us {
-  @apply relative z-20 sm:z-0 -mt-48 pt-8 sm:pt-32 mb-16 sm:mb-36 pb-5 sm:pb-12 ;
+  @apply relative z-20 -mt-48 pt-8 sm:pt-32 mb-16 sm:mb-36 pb-5 sm:pb-12 ;
   background-color: var(--color-section-bg);
 
    .intro.row {
@@ -1001,8 +1005,6 @@ body .content > section.why-us {
 
   .doc {
     @apply px-2 sm:px-11 mb-0 sm:mb-12 pt-14 sm:pt-20 relative;
-
-   
   }
 
   h2 {
@@ -1010,10 +1012,14 @@ body .content > section.why-us {
     font-family: var(--font-h1);
     font-weight: 700;
     border: unset;
+
+    @media (min-width: 640px) {
+     margin-left: 0;
+    }
   }
 
   img {
-    @apply mb-5 absolute left-8 sm:left-11 top-0;
+    @apply mb-5 absolute left-2 sm:left-11 top-0;
     max-width: 60px;
     max-height: 60px;
 
