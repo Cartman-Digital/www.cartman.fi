@@ -823,25 +823,27 @@ body .content .hero-banner {
 
 /** Grid */
 .what-we-do {
-  @apply bg-[var(--color-accent-dark)] py-36 sm:py-52 px-5 sm:px-20 -mt-32 z-10 mb-36;
-  clip-path: polygon(100% 6.5%, 0% 0% ,0% 100%, 100% 93.5%);
+  @apply bg-[var(--color-accent-dark)] py-24 sm:py-52 px-5 sm:px-20 -mt-32 z-10 mb-40;
+  clip-path: polygon(100% 4.5%, 0% 0% ,0% 100%, 100% 93.5%);
   position: relative;
-
-  
-  
 
   h2 {
     font-family: var(--font-h1);
     font-weight: 700;
-    @apply text-3xl sm:text-6xl mb-1 sm:mb-28 -ml-8;
+    @apply text-3xl sm:text-6xl mb-16 sm:mb-28 -ml-8;
     border: unset;
     span {
       @apply text-[var(--color-accent)];
     }
 
-    @media (max-width: 640px) {
-        margin-bottom: 8rem;
+    @media (max-width: 422px) {
+        font-size: 28px;
       }
+
+    @media (min-width:400px) and (max-width: 640px) {
+        margin-bottom: 8rem;
+        font-size: 28px;
+    }
   }
   
 
@@ -856,6 +858,13 @@ body .content .hero-banner {
     @media (max-width: 640px) {
         grid-template-rows: repeat(3, 1fr);
         @apply gap-y-8;
+    }
+
+    @media (min-width: 430px) and (max-width: 640px) {
+        @apply gap-y-20;
+    }
+    @media (min-width: 520px) and (max-width: 640px) {
+        @apply gap-y-28;
     }
   }
 
@@ -878,24 +887,24 @@ body .content .hero-banner {
   .grid > :nth-child(3),
   .grid > :nth-child(6),
   .grid > :nth-child(7) {
-    @apply z-10 my-8 px-12 pt-16 pb-20;
+    @apply z-10 my-8 px-6 sm:px-12 pt-16 pb-20;
     background-color: var(--color-white-primary);
     align-self: center;
 
     p {
-      font-size: 1.75rem;
+      @apply text-sm sm:text-xl;
       line-height: 2.85rem;
       color: var(--color-grey-primary);
       white-space: unset;
+      font-weight: 400;
 
       strong {
-        @apply tracking-widest text-2xl sm:text-4xl mb-4 sm:mb-9 block;
+        @apply tracking-widest text-base sm:text-4xl mb-4 sm:mb-9 block;
         font-family: var(--font-h1);
         font-weight: 700;
       }
 
       @media (max-width: 640px) {
-       font-size: 1.25rem;
        line-height: normal;
        padding-top: 1rem;
        padding-bottom: 0;
@@ -907,12 +916,13 @@ body .content .hero-banner {
   .grid > :nth-child(2),
   .grid > :nth-child(6) {
     grid-column: 7 / end;
-    @apply mr-11;
+    @apply mr-0 sm:mr-11;
 
     @media (max-width: 640px) {
-        grid-column: 2 / end;
+        grid-column: 1 / 13;
         padding-bottom: 1rem;
-        padding-top: 1rem;
+        padding-top: 0;
+        margin-left: 0;
     }
   }
 
@@ -922,9 +932,9 @@ body .content .hero-banner {
     @apply ml-11;
 
     @media (max-width: 640px) {
-        grid-column: 2 / 12;
+        grid-column: 1 / 13;
         padding-bottom: 1rem;
-        padding-top: 1rem;
+        padding-top: 0;
         margin-left: 0;
     }
   }
@@ -938,8 +948,9 @@ body .content .hero-banner {
     @media (max-width: 640px) {
         margin-bottom: 0;
         margin-right: 0;
-        margin-top: -12rem;
+        margin-top: -8rem;
         margin-left: -3rem;
+        grid-column: 1 / 9;
     }
   }
 
@@ -951,7 +962,7 @@ body .content .hero-banner {
     @media (max-width: 640px) {
         margin-bottom: 0;
         margin-left: 0;
-        margin-top: -12rem;
+        margin-top: -8rem;
         margin-right: -3rem;
     }
   }
