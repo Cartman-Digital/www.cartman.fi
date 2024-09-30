@@ -1400,7 +1400,7 @@ body .content > .post {
   margin-left: auto;
   margin-right: auto;
   display: flex;
-  height: 100%;
+  height: auto;
   max-width: 1536px;
   flex-wrap: wrap;
   align-items: center;
@@ -1418,6 +1418,10 @@ body .content > .post {
   .blog-recent .navigation .nav-wrapper :nth-child(3) {
     display: none;
   }
+}
+
+.navigation .nav-wrapper {
+  margin-top: 1.5rem;
 }
 
 .navigation .nav-wrapper >button {
@@ -1518,6 +1522,10 @@ body .content > .post {
     display: block;
     width: auto;
   }
+}
+
+.navigation .nav-list-wrapper {
+  background-color: white;
 }
 
 .navigation .nav-list-wrapper ul {
