@@ -268,6 +268,8 @@ body {
             background-color: #000;
             margin-left: 20px;
             width: 90%;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
         }
         @media (min-width: 640px) {
         display: none;
@@ -571,6 +573,14 @@ body .content > .post {
        padding-left: 0 ;
     }
 
+    a:hover {
+        color: var(--color-primary); 
+    }
+
+    a:active {
+        color: var(--color-primary); 
+    }
+
     .menu {
       @apply text-left font-semibold sm:font-bold text-3xl sm:text-4xl tracking-widest;
 
@@ -595,50 +605,47 @@ body .content > .post {
 
       @media (max-width: 640px) {
         padding-left: 3rem;
+        font-size: 14px;
      }
     }
 
-    ul:nth-child(1) {
-     margin-bottom: 2rem;
-
-     @media (max-width: 640px) {
-        margin-bottom: 0;
-     }
-    }
 
     ul:nth-child(3) {
      
       li {
-        @apply mb-5;
+        @apply mb-2 ;
       }
 
       li:nth-child(1) {
-        @apply text-2xl sm:text-4xl uppercase tracking-widest;
+        @apply text-xl sm:text-4xl uppercase tracking-widest;
         font-family: var(--font-h1);
         font-weight: 700;
         line-height: 1.65;
         margin-top: 1rem;
+        
+        
         @media (min-width: 640px) {
             margin-top: 0;
          }
       }
 
       a {
-        @apply no-underline uppercase font-medium text-lg sm:text-xl;
+        @apply no-underline uppercase font-medium text-sm sm:text-xl;
       }
 
       svg {
         @apply inline mr-4;
+        width: 30px;
       }
     }
 
     ul:nth-child(5) {
-      @apply text-xl;
+      font-size: 14px;  
       font-weight: 500;
       margin-top: 2rem;
-
       @media (min-width: 640px) {
         margin-top: 0;
+        font-size: 20px;
      }
         
       li {
@@ -646,12 +653,27 @@ body .content > .post {
       }
      
       li:nth-child(1) {
-        @apply text-2xl sm:text-4xl uppercase tracking-widest;
+        @apply text-xl sm:text-4xl uppercase tracking-widest;
         font-family: var(--font-h1);
         font-weight: 700;
         line-height: 1.65;
       }
+
+      li:nth-child(6) {
+        @media (min-width: 640px) {
+            margin-top: 2rem;
+         }
+      }
+
     }
+
+    :nth-child(6) {   
+        @media (max-width: 640px) {
+            margin-top: 2rem;
+         margin-bottom: 1rem;
+       }
+    }
+
 }
 
 .social-media {
@@ -664,6 +686,14 @@ body .content > .post {
             display: inline-block;
         }
     }
+}
+
+.cta-button-footer {
+    @apply bg-[var(--color-accent)] text-[var(--color-primary)] tracking-wider uppercase text-xl sm:text-2xl;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: var(--font-h1);
+    padding: 0.5rem 0.7rem;
 }
 
 
@@ -767,8 +797,6 @@ body .content .hero-banner {
         @apply text-[var(--color-primary)];
       }
 
-      
-      
     }
 
     h1, .cta {
@@ -834,7 +862,8 @@ body .content .hero-banner {
   h2 {
     font-family: var(--font-h1);
     font-weight: 700;
-    @apply text-3xl pl-5 sm:pl-0 sm:text-6xl mb-16 sm:mb-28 -ml-8;
+    font-size: 28px;
+    @apply pl-5 sm:pl-0 mb-16 sm:mb-28 -ml-8;
     border: unset;
     span {
       @apply text-[var(--color-accent)];
@@ -896,8 +925,8 @@ body .content .hero-banner {
     align-self: center;
 
     p {
-      @apply text-sm sm:text-xl;
-      line-height: 2.85rem;
+      @apply text-sm sm:text-xl tracking-normal;
+      line-height: 1.7rem;
       color: var(--color-grey-primary);
       white-space: unset;
       font-weight: 400;
@@ -909,7 +938,6 @@ body .content .hero-banner {
       }
 
       @media (max-width: 640px) {
-       line-height: normal;
        padding-top: 1rem;
        padding-bottom: 0;
       }
@@ -952,7 +980,7 @@ body .content .hero-banner {
     @media (max-width: 640px) {
         margin-bottom: 0;
         margin-right: 0;
-        margin-top: -8rem;
+        margin-top: -10rem;
         margin-left: 0;
         grid-column: 1 / 9;
     }
@@ -966,7 +994,7 @@ body .content .hero-banner {
     @media (max-width: 640px) {
         margin-bottom: 0;
         margin-left: 0;
-        margin-top: -8rem;
+        margin-top: -10rem;
         margin-right: 0;
     }
   }
@@ -1008,11 +1036,11 @@ body .content > section.why-us {
   }
 
   h2 {
-    @apply tracking-tight sm:tracking-widest sm:-ml-8 mb-4 sm:mb-8 mt-4 text-3xl sm:text-6xl;
+    @apply tracking-normal sm:tracking-widest sm:-ml-8 mb-4 sm:mb-8 mt-4 text-3xl sm:text-6xl;
     font-family: var(--font-h1);
     font-weight: 700;
     border: unset;
-
+    font-size: 28px;
     @media (min-width: 640px) {
      margin-left: 0;
     }
@@ -1034,6 +1062,7 @@ body .content > section.why-us {
     @apply text-sm sm:text-xl;
     white-space: unset;
     font-weight: 400;
+    line-height: 1.7rem;
     @media (max-width: 640px) {
       margin-bottom: 2rem;
        }
@@ -1128,6 +1157,7 @@ body .content .quote-carousel {
         @apply mb-auto;
         clear: right;
         font-weight: 400;
+        line-height: 1.7rem;
       }
 
       img {
@@ -1532,7 +1562,8 @@ body.post-page {
     clip-path: polygon(0% 13%, 100% 0% ,100% 100%, 0% 87%);
     
     h2 {
-	    @apply pt-0 sm:pt-10 ml-5 sm:ml-10 font-extrabold tracking-wider text-3xl;
+	    @apply pt-0 sm:pt-10 ml-5 sm:ml-10 font-extrabold tracking-wider;
+        font-size: 28px;
 
       span {
         @apply text-[var(--color-accent)];
@@ -1583,8 +1614,9 @@ body.post-page {
     
 
     a {
-	    @apply text-lg sm:text-2xl font-bold tracking-wider uppercase no-underline;
+	    @apply font-bold tracking-wider uppercase no-underline;
         margin-bottom: auto;
+        font-size: 16px;
 
     }
 
@@ -1602,7 +1634,8 @@ body.post-page {
 
 .trusted-by {
   h2 {
-    @apply text-3xl sm:text-6xl pl-5 sm:pl-3 leading-tight sm:leading-normal;
+    @apply pl-5 sm:pl-3 leading-tight sm:leading-normal;
+    font-size: 28px;
     font-family: var(--font-h1);
     font-weight: 700;
     border: unset;
@@ -1616,8 +1649,7 @@ body.post-page {
   @media (max-width: 640px) {
     .grid {
         grid-template-columns: repeat(2 , 1fr);
-        padding-left: 1rem;
-        padding-right: 1rem;
+    
     }
   }
 

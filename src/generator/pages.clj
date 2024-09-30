@@ -78,36 +78,40 @@
 (defn render-page-footer
   "Must be called from hiccup. Outputs common page footer in a vector."
   []
-  [:div.place-items-center.grid.grid-cols-1
-   [:div.foot.grid.sm:justify-items-center.grid-cols-1.sm:grid-cols-3 {:class "footer"}
-    (menu-footer) 
-    [:hr]
-    [:ul 
-     [:li "Social media"]
-     [:li
-      [:a
-       {:href "https://twitter.com/CartmanDigital"}
-       twitter-icon
-       "LinkedIn"]]
-     [:li 
-      [:a 
-       {:href "https://www.linkedin.com/company/cartmandigital/"} 
-       linkedin-icon
-       "Twitter"]]
-     [:li
-      [:a 
-       {:href "https://www.itewiki.fi/cartman-digital"}
-       itewiki-icon
-       "Itewiki"]]]
-     [:hr]
-    [:ul
-     [:li "Company"]
-     [:li "Cartman Digital Oy"]
-     [:li "Tietotie 2, 90460 OULU"]
-     [:li "Phone: +358 40 088 0369"]
-     [:li "name.lastname@cartman.fi"]]]
-   [:hr]
-   [:div.text-xl.pb-5 "&copy 2023 Cartman Digital Oy"]])
+  (let [cta-button-text "CONTACT US"
+        cta-button-url "https://example.com/more-info"]
+    [:div.place-items-center.grid.grid-cols-1
+     [:div.foot.grid.sm:justify-items-center.grid-cols-1.sm:grid-cols-3 {:class "footer"}
+      (menu-footer)
+      [:hr]
+      [:ul
+       [:li "Social media"]
+       [:li
+        [:a
+         {:href "https://twitter.com/CartmanDigital"}
+         twitter-icon
+         "LinkedIn"]]
+       [:li
+        [:a
+         {:href "https://www.linkedin.com/company/cartmandigital/"}
+         linkedin-icon
+         "Twitter"]]
+       [:li
+        [:a
+         {:href "https://www.itewiki.fi/cartman-digital"}
+         itewiki-icon
+         "Itewiki"]]]
+      [:hr]
+      [:ul
+       [:li "Company"]
+       [:li "Cartman Digital Oy"]
+       [:li "Tietotie 2, 90460 OULU"]
+       [:li "Phone: +358 40 088 0369"]
+       [:li "name.lastname@cartman.fi"]
+       [:li
+        [:a {:href cta-button-url :class "cta-button-footer"} cta-button-text]]]  
+      [:hr]
+      [:div.text-md.pb-5 "&copy 2023 Cartman Digital Oy"]]]))
 
 (defn render-page
   [page body-class]

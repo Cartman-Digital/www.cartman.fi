@@ -1077,7 +1077,9 @@ body hr {
     height: 5px;
     background-color: #000;
     margin-left: 20px;
-    width: 90%
+    width: 90%;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem
   }
 }
 
@@ -1634,6 +1636,14 @@ body .content > .post {
   }
 }
 
+.footer a:hover {
+  color: var(--color-primary);
+}
+
+.footer a:active {
+  color: var(--color-primary);
+}
+
 .footer .menu {
   text-align: left;
   font-size: 1.875rem;
@@ -1669,27 +1679,18 @@ body .content > .post {
 
 @media (max-width: 640px) {
   .footer ul {
-    padding-left: 3rem
-  }
-}
-
-.footer ul:nth-child(1) {
-  margin-bottom: 2rem;
-}
-
-@media (max-width: 640px) {
-  .footer ul:nth-child(1) {
-    margin-bottom: 0
+    padding-left: 3rem;
+    font-size: 14px
   }
 }
 
 .footer ul:nth-child(3) li {
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .footer ul:nth-child(3) li:nth-child(1) {
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -1715,8 +1716,8 @@ body .content > .post {
 }
 
 .footer ul:nth-child(3) a {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   font-weight: 500;
   text-transform: uppercase;
   text-decoration-line: none;
@@ -1732,18 +1733,19 @@ body .content > .post {
 .footer ul:nth-child(3) svg {
   margin-right: 1rem;
   display: inline;
+  width: 30px;
 }
 
 .footer ul:nth-child(5) {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  font-size: 14px;
   font-weight: 500;
   margin-top: 2rem;
 }
 
 @media (min-width: 640px) {
   .footer ul:nth-child(5) {
-    margin-top: 0
+    margin-top: 0;
+    font-size: 20px
   }
 }
 
@@ -1752,8 +1754,8 @@ body .content > .post {
 }
 
 .footer ul:nth-child(5) li:nth-child(1) {
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -1771,6 +1773,19 @@ body .content > .post {
   line-height: 1.65;
 }
 
+@media (min-width: 640px) {
+  .footer ul:nth-child(5) li:nth-child(6) {
+    margin-top: 2rem
+  }
+}
+
+@media (max-width: 640px) {
+  .footer :nth-child(6) {
+    margin-top: 2rem;
+    margin-bottom: 1rem
+  }
+}
+
 .social-media {
   margin-top: 0.5rem;
 }
@@ -1783,6 +1798,29 @@ body .content > .post {
 
 .social-media .icon svg {
   display: inline-block;
+}
+
+.cta-button-footer {
+  background-color: var(--color-accent);
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+}
+
+@media (min-width: 640px) {
+  .cta-button-footer {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+.cta-button-footer {
+  text-decoration: none;
+  font-weight: 700;
+  font-family: var(--font-h1);
+  padding: 0.5rem 0.7rem;
 }
 
 /**
@@ -2150,19 +2188,16 @@ body .content .hero-banner +div {
 .what-we-do h2 {
   font-family: var(--font-h1);
   font-weight: 700;
+  font-size: 28px;
   margin-bottom: 4rem;
   margin-left: -2rem;
   padding-left: 1.25rem;
-  font-size: 1.875rem;
-  line-height: 2.25rem;
 }
 
 @media (min-width: 640px) {
   .what-we-do h2 {
     margin-bottom: 7rem;
     padding-left: 0px;
-    font-size: 3.75rem;
-    line-height: 1;
   }
 }
 
@@ -2266,6 +2301,7 @@ body .content .hero-banner +div {
 .what-we-do .grid > :nth-child(2) p, .what-we-do .grid > :nth-child(3) p, .what-we-do .grid > :nth-child(6) p, .what-we-do .grid > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
+  letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
@@ -2276,7 +2312,7 @@ body .content .hero-banner +div {
 }
 
 .what-we-do .grid > :nth-child(2) p, .what-we-do .grid > :nth-child(3) p, .what-we-do .grid > :nth-child(6) p, .what-we-do .grid > :nth-child(7) p {
-  line-height: 2.85rem;
+  line-height: 1.7rem;
   color: var(--color-grey-primary);
   white-space: unset;
   font-weight: 400;
@@ -2315,7 +2351,6 @@ body .content .hero-banner +div {
 
 @media (max-width: 640px) {
   .what-we-do .grid > :nth-child(2) p, .what-we-do .grid > :nth-child(3) p, .what-we-do .grid > :nth-child(6) p, .what-we-do .grid > :nth-child(7) p {
-    line-height: normal;
     padding-top: 1rem;
     padding-bottom: 0
   }
@@ -2389,7 +2424,7 @@ body .content .hero-banner +div {
   .what-we-do .grid > :nth-child(5) {
     margin-bottom: 0;
     margin-right: 0;
-    margin-top: -8rem;
+    margin-top: -10rem;
     margin-left: 0;
     grid-column: 1 / 9
   }
@@ -2409,7 +2444,7 @@ body .content .hero-banner +div {
   .what-we-do .grid > :nth-child(8) {
     margin-bottom: 0;
     margin-left: 0;
-    margin-top: -8rem;
+    margin-top: -10rem;
     margin-right: 0
   }
 }
@@ -2486,7 +2521,7 @@ body .content > section.why-us h2 {
   margin-top: 1rem;
   font-size: 1.875rem;
   line-height: 2.25rem;
-  letter-spacing: -0.025em;
+  letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
@@ -2503,6 +2538,7 @@ body .content > section.why-us h2 {
   font-family: var(--font-h1);
   font-weight: 700;
   border: unset;
+  font-size: 28px;
 }
 
 @media (min-width: 640px) {
@@ -2552,6 +2588,7 @@ body .content > section.why-us p {
 body .content > section.why-us p {
   white-space: unset;
   font-weight: 400;
+  line-height: 1.7rem;
 }
 
 @media (max-width: 640px) {
@@ -2737,6 +2774,7 @@ body .content .quote-carousel .card-list .doc p {
   margin-bottom: auto;
   clear: right;
   font-weight: 400;
+  line-height: 1.7rem;
 }
 
 body .content .quote-carousel .card-list .doc img {
@@ -2945,6 +2983,7 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 .what-we-do .post-list > :nth-child(2) p, .what-we-do .post-list > :nth-child(3) p, .what-we-do .post-list > :nth-child(6) p, .what-we-do .post-list > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
+  letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
@@ -2957,6 +2996,7 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 .what-we-do .post-list > :nth-child(2) p, .what-we-do .post-list > :nth-child(3) p, .what-we-do .post-list > :nth-child(6) p, .what-we-do .post-list > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
+  letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
@@ -2969,6 +3009,7 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 .what-we-do .post-list > :nth-child(2) p, .what-we-do .post-list > :nth-child(3) p, .what-we-do .post-list > :nth-child(6) p, .what-we-do .post-list > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
+  letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
@@ -2981,6 +3022,7 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 .what-we-do .post-list > :nth-child(2) p, .what-we-do .post-list > :nth-child(3) p, .what-we-do .post-list > :nth-child(6) p, .what-we-do .post-list > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
+  letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
@@ -2991,7 +3033,7 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 }
 
 .what-we-do .post-list > :nth-child(2) p, .what-we-do .post-list > :nth-child(3) p, .what-we-do .post-list > :nth-child(6) p, .what-we-do .post-list > :nth-child(7) p {
-  line-height: 2.85rem;
+  line-height: 1.7rem;
   color: var(--color-grey-primary);
   white-space: unset;
   font-weight: 400;
@@ -3108,7 +3150,6 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 
 @media (max-width: 640px) {
   .what-we-do .post-list > :nth-child(2) p, .what-we-do .post-list > :nth-child(3) p, .what-we-do .post-list > :nth-child(6) p, .what-we-do .post-list > :nth-child(7) p {
-    line-height: normal;
     padding-top: 1rem;
     padding-bottom: 0
   }
@@ -3208,7 +3249,7 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
   .what-we-do .post-list > :nth-child(5) {
     margin-bottom: 0;
     margin-right: 0;
-    margin-top: -8rem;
+    margin-top: -10rem;
     margin-left: 0;
     grid-column: 1 / 9
   }
@@ -3228,7 +3269,7 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
   .what-we-do .post-list > :nth-child(8) {
     margin-bottom: 0;
     margin-left: 0;
-    margin-top: -8rem;
+    margin-top: -10rem;
     margin-right: 0
   }
 }
@@ -3265,8 +3306,6 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 @media (max-width: 640px) {
   .trusted-by .post-list {
     grid-template-columns: repeat(2 , 1fr);
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
 }
 
@@ -3432,6 +3471,7 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 .what-we-do .post-list .post > :nth-child(2) p, .what-we-do .post-list .post > :nth-child(3) p, .what-we-do .post-list .post > :nth-child(6) p, .what-we-do .post-list .post > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
+  letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
@@ -3444,6 +3484,7 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 .what-we-do .post-list .post > :nth-child(2) p, .what-we-do .post-list .post > :nth-child(3) p, .what-we-do .post-list .post > :nth-child(6) p, .what-we-do .post-list .post > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
+  letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
@@ -3456,6 +3497,7 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 .what-we-do .post-list .post > :nth-child(2) p, .what-we-do .post-list .post > :nth-child(3) p, .what-we-do .post-list .post > :nth-child(6) p, .what-we-do .post-list .post > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
+  letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
@@ -3468,6 +3510,7 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 .what-we-do .post-list .post > :nth-child(2) p, .what-we-do .post-list .post > :nth-child(3) p, .what-we-do .post-list .post > :nth-child(6) p, .what-we-do .post-list .post > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
+  letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
@@ -3478,7 +3521,7 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 }
 
 .what-we-do .post-list .post > :nth-child(2) p, .what-we-do .post-list .post > :nth-child(3) p, .what-we-do .post-list .post > :nth-child(6) p, .what-we-do .post-list .post > :nth-child(7) p {
-  line-height: 2.85rem;
+  line-height: 1.7rem;
   color: var(--color-grey-primary);
   white-space: unset;
   font-weight: 400;
@@ -3595,7 +3638,6 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 
 @media (max-width: 640px) {
   .what-we-do .post-list .post > :nth-child(2) p, .what-we-do .post-list .post > :nth-child(3) p, .what-we-do .post-list .post > :nth-child(6) p, .what-we-do .post-list .post > :nth-child(7) p {
-    line-height: normal;
     padding-top: 1rem;
     padding-bottom: 0
   }
@@ -3695,7 +3737,7 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
   .what-we-do .post-list .post > :nth-child(5) {
     margin-bottom: 0;
     margin-right: 0;
-    margin-top: -8rem;
+    margin-top: -10rem;
     margin-left: 0;
     grid-column: 1 / 9
   }
@@ -3715,7 +3757,7 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
   .what-we-do .post-list .post > :nth-child(8) {
     margin-bottom: 0;
     margin-left: 0;
-    margin-top: -8rem;
+    margin-top: -10rem;
     margin-right: 0
   }
 }
@@ -3752,8 +3794,6 @@ body .content .quote-carousel .card-list > .doc:nth-child(3),
 @media (max-width: 640px) {
   .trusted-by .post-list .post {
     grid-template-columns: repeat(2 , 1fr);
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
 }
 
@@ -4258,6 +4298,7 @@ body.post-page code {
 .what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
+  letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
@@ -4270,6 +4311,7 @@ body.post-page code {
 .what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
+  letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
@@ -4282,6 +4324,7 @@ body.post-page code {
 .what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
+  letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
@@ -4294,6 +4337,7 @@ body.post-page code {
 .what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
+  letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
@@ -4304,7 +4348,7 @@ body.post-page code {
 }
 
 .what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
-  line-height: 2.85rem;
+  line-height: 1.7rem;
   color: var(--color-grey-primary);
   white-space: unset;
   font-weight: 400;
@@ -4421,7 +4465,6 @@ body.post-page code {
 
 @media (max-width: 640px) {
   .what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
-    line-height: normal;
     padding-top: 1rem;
     padding-bottom: 0
   }
@@ -4521,7 +4564,7 @@ body.post-page code {
   .what-we-do .people-list-wrap .people-list > :nth-child(5) {
     margin-bottom: 0;
     margin-right: 0;
-    margin-top: -8rem;
+    margin-top: -10rem;
     margin-left: 0;
     grid-column: 1 / 9
   }
@@ -4541,7 +4584,7 @@ body.post-page code {
   .what-we-do .people-list-wrap .people-list > :nth-child(8) {
     margin-bottom: 0;
     margin-left: 0;
-    margin-top: -8rem;
+    margin-top: -10rem;
     margin-right: 0
   }
 }
@@ -4578,8 +4621,6 @@ body.post-page code {
 @media (max-width: 640px) {
   .trusted-by .people-list-wrap .people-list {
     grid-template-columns: repeat(2 , 1fr);
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
 }
 
@@ -4921,8 +4962,6 @@ body.post-page code {
 .blog-recent h2 {
   margin-left: 1.25rem;
   padding-top: 0px;
-  font-size: 1.875rem;
-  line-height: 2.25rem;
   font-weight: 800;
   letter-spacing: 0.05em;
 }
@@ -4932,6 +4971,10 @@ body.post-page code {
     margin-left: 2.5rem;
     padding-top: 2.5rem;
   }
+}
+
+.blog-recent h2 {
+  font-size: 28px;
 }
 
 .blog-recent h2 span {
@@ -4988,23 +5031,12 @@ body.post-page code {
 }
 
 .blog-recent a {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   text-decoration-line: none;
-}
-
-@media (min-width: 640px) {
-  .blog-recent a {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-}
-
-.blog-recent a {
   margin-bottom: auto;
+  font-size: 16px;
 }
 
 .blog-recent a:hover {
@@ -5026,20 +5058,18 @@ body.post-page code {
 
 .trusted-by h2 {
   padding-left: 1.25rem;
-  font-size: 1.875rem;
-  line-height: 2.25rem;
   line-height: 1.25;
 }
 
 @media (min-width: 640px) {
   .trusted-by h2 {
     padding-left: 0.75rem;
-    font-size: 3.75rem;
     line-height: 1.5;
   }
 }
 
 .trusted-by h2 {
+  font-size: 28px;
   font-family: var(--font-h1);
   font-weight: 700;
   border: unset;
@@ -5053,8 +5083,6 @@ body.post-page code {
 @media (max-width: 640px) {
   .trusted-by .grid {
     grid-template-columns: repeat(2 , 1fr);
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
 }
 
