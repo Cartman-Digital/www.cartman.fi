@@ -484,7 +484,9 @@
          [:div.image-wrapper
           [:img {:class "w-full" :src (:url postImage)}]]
          [:div.text-wrapper
-         [:a {:href slug} title]]])]]))
+          [:a {:href slug} title]]])]
+     [:div.blog-cta
+      [:a {:href "/blog" :class "cta-button-blog"} "Read More"]]]))
 
 (comment (render {:__typename "ArticleList" :sys {:id "4N25RfloTD2aq3YtrDEzLk"} :numberOfPostsShown 3}))
 (comment (contentful/get-contentful :posts-by-list-query {:listId "4N25RfloTD2aq3YtrDEzLk" :limit 3}))

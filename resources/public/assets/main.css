@@ -1823,6 +1823,41 @@ body .content > .post {
   padding: 0.5rem 0.7rem;
 }
 
+.cta-button-blog {
+  background-color: var(--color-primary);
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  letter-spacing: 0.025em;
+  color: var(--color-accent);
+}
+
+@media (min-width: 640px) {
+  .cta-button-blog {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+.cta-button-blog {
+  text-decoration: none;
+  font-weight: 700;
+  font-family: var(--font-h2);
+  padding: 1rem 1.5rem;
+  text-transform: capitalize !important;
+}
+
+@media (max-width: 640px) {
+  .cta-button-blog {
+    padding: 0.5rem 1rem 
+  }
+}
+
+.blog-cta {
+  margin-top: 4rem;
+  align-items: center;
+  text-align: center;
+}
+
 /**
  * Body component styles
  * 
@@ -2691,18 +2726,7 @@ body .content .quote-carousel .intro {
 }
 
 body .content .quote-carousel .intro h2 {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-
-@media (min-width: 640px) {
-  body .content .quote-carousel .intro h2 {
-    font-size: 3.75rem;
-    line-height: 1;
-  }
-}
-
-body .content .quote-carousel .intro h2 {
+  font-size: 28px;
   text-transform: unset;
 }
 
@@ -5036,7 +5060,6 @@ body.post-page code {
   letter-spacing: 0.05em;
   text-decoration-line: none;
   margin-bottom: auto;
-  font-size: 16px;
 }
 
 .blog-recent a:hover {
