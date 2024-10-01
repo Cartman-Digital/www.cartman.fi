@@ -90,12 +90,7 @@
         [:a
          {:href "https://twitter.com/CartmanDigital"}
          twitter-icon
-         "LinkedIn"]]
-       [:li
-        [:a
-         {:href "https://www.linkedin.com/company/cartmandigital/"}
-         linkedin-icon
-         "Twitter"]]
+         "LinkedIn"]] 
        [:li
         [:a
          {:href "https://www.itewiki.fi/cartman-digital"}
@@ -112,7 +107,7 @@
         [:a {:href cta-button-url :class "cta-button-footer"} cta-button-text]]]  
       [:hr]
       [:div {:class "footer-centering-div"}]
-      [:div.text-md.pb-5 "&copy 2023 Cartman Digital Oy"]]]))
+      [:div.text-md.pb-5 "&copy 2024 Cartman Digital Oy"]]]))
 
 (defn render-page
   [page body-class]

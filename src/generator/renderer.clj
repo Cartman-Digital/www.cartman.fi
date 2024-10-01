@@ -23,7 +23,7 @@
 ;; sm:grid-cols-5 sm:grid-cols-6
 (defn get-grid-class
   [grid-count]
-  (str "sm:grid-cols-" grid-count))
+  (str "lg:grid-cols-" grid-count))
 
 (defn get-embed-block-html
   [args]
