@@ -1525,7 +1525,7 @@ body .content > .post {
 }
 
 .navigation .nav-list-wrapper {
-  background-color: white;
+  background-color: var(--color-nav-bg);
 }
 
 .navigation .nav-list-wrapper ul {
@@ -1683,6 +1683,7 @@ body .content > .post {
 
 .footer ul {
   text-align: left;
+  border-bottom: 1px solid var(--color-body-text);
 }
 
 @media (max-width: 640px) {
@@ -1791,6 +1792,10 @@ body .content > .post {
   .footer :nth-child(6) {
     margin-top: 2rem;
     margin-bottom: 1rem
+  }
+
+  .footer-centering-div {
+    display: none
   }
 }
 

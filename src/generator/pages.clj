@@ -111,6 +111,7 @@
        [:li
         [:a {:href cta-button-url :class "cta-button-footer"} cta-button-text]]]  
       [:hr]
+      [:div {:class "footer-centering-div"}]
       [:div.text-md.pb-5 "&copy 2023 Cartman Digital Oy"]]]))
 
 (defn render-page
