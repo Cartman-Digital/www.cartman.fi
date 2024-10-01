@@ -370,7 +370,7 @@
      (static/get-local-js "async-form.js")
      (for [field form-fields]
        (create-field field))
-     [:div.g-recaptcha {:data-sitekey (config/get-env "CAPTCHA_PUBLIC_KEY") :data-theme "dark"}]
+     [:div.g-recaptcha {:data-sitekey (config/get-env "CAPTCHA_PUBLIC_KEY") :data-theme "light"}]
      [:div.action.button.primary
       [:input {:type "submit" :class "submit" :value "Contact us"}]]]
     [:div {:class "success-wrap"}

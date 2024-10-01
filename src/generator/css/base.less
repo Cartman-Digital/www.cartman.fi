@@ -120,7 +120,7 @@ html body {
         @apply mb-6;
         font-family: var(--font-h2);
         font-weight: 700;
-        font-size: 60px;
+        font-size: 28px;
         line-height: 1.65;
         text-transform: uppercase;
         display: inline-block;
@@ -604,7 +604,6 @@ body .content > .post {
 
     ul {
       @apply text-left; 
-      border-bottom: 1px solid var(--color-body-text);
 
       @media (max-width: 640px) {
         padding-left: 3rem;
@@ -1353,9 +1352,19 @@ body table {
 /** Services page */
 .services .content>section:nth-child(odd) {
     background-color: #000;
+    color: var(--color-white-primary);
+
+    h2 {
+        color: var(--color-white-primary);
+    }
+
+    .side-by-side.right .doc a {
+        color: var(--color-white-primary);
+    }
 }
 
 .services .content .side-by-side {
+    
     &.left {
         @apply sm:w-3/12;
     }
