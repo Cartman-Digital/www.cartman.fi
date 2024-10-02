@@ -267,6 +267,8 @@
     [:div.image
      [:img {:alt (get-in args [:picture :title]) :src (:url (:picture args))}]]]
    [:div.body 
+     [:h2.block.mb-0 (:name args)]
+    [:span.block.font-bold.mb-2 (:jobTitle args)]
     [:div.person-body (richtext->html (:json (:shortText args)))]]])
 
 (defmulti render :__typename)

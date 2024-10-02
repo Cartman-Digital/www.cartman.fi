@@ -1129,15 +1129,36 @@ body .form-container {
 
 .form-wrap div.action.button.primary {
   /* width set because of box-border requirement getting ignored without it. */
+  margin-top: 1.5rem;
   box-sizing: border-box;
   width: 18rem;
+  background-color: var(--color-accent);
   padding: 0px;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+}
+
+@media (min-width: 640px) {
+  .form-wrap div.action.button.primary {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
 }
 
 @media (min-width: 1024px) {
   .form-wrap div.action.button.primary {
     width: 24rem;
   }
+}
+
+.form-wrap div.action.button.primary {
+  text-decoration: none;
+  font-weight: 700;
+  font-family: var(--font-h1);
+  padding: 0.5rem 0.7rem;
 }
 
 .form-wrap .submit {
@@ -1258,51 +1279,38 @@ body .form-container {
  */
 
 .button {
-  display: inline-block;
-  padding: 8px 8px;
-  border-top: 1px solid var(--color-body-text);
-  border-bottom: 1px solid var(--color-body-text);
-  margin-top: 2rem;
-  margin-right: 1.5rem;
-  text-decoration: none;
+  background-color: var(--color-accent);
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
 }
 
-.button.primary,
-.btn-primary {
-  border: 2px solid transparent;
-  display: inline-block;
-  padding: 8px;
-  border-left-color: var(--color-body-text);
-  border-right-color: var(--color-body-text);
-  background-color: transparent;
+@media (min-width: 640px) {
+  .button {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+.button {
   text-decoration: none;
-  color: var(--color-body-text);
-  position: relative;
+  font-weight: 700;
+  font-family: var(--font-h1);
+  padding: 0.5rem 0.7rem;
 }
 
 .button.primary::before,
     .button.primary::after,
     .btn-primary::before,
     .btn-primary::after {
-  position: absolute;
-  content: '';
-  background-size: 200%;
-  transition: background-position-x 500ms ease-in-out;
-  height: 2px;
-  left: -2px;
-  right: -2px;
 }
 
 .button.primary::before, .btn-primary::before {
-  top: -2px;
-  background-image: linear-gradient(90deg, var(--color-body-text) 20px, transparent 20px, transparent 45px, var(--color-body-text) 45px);
-  background-position-x: left, 0px;
 }
 
 .button.primary::after, .btn-primary::after {
-  bottom: -2px;
-  background-image: linear-gradient(-90deg, var(--color-body-text) 20px, transparent 20px, transparent 45px, var(--color-body-text) 45px);
-  background-position-x: right, 0px;
 }
 
 .button.primary:hover::before,
@@ -1921,37 +1929,15 @@ body .content > .post {
 
 .sub-nav ul .nav-item {
   width: 100%;
-  border: 2px solid transparent;
-  display: inline-block;
-  padding: 8px;
-  border-left-color: var(--color-body-text);
-  border-right-color: var(--color-body-text);
-  background-color: transparent;
-  text-decoration: none;
-  color: var(--color-body-text);
-  position: relative;
 }
 
 .sub-nav ul .nav-item::before,.sub-nav ul .nav-item::after {
-  position: absolute;
-  content: '';
-  background-size: 200%;
-  transition: background-position-x 500ms ease-in-out;
-  height: 2px;
-  left: -2px;
-  right: -2px;
 }
 
 .sub-nav ul .nav-item::before {
-  top: -2px;
-  background-image: linear-gradient(90deg, var(--color-body-text) 20px, transparent 20px, transparent 45px, var(--color-body-text) 45px);
-  background-position-x: left, 0px;
 }
 
 .sub-nav ul .nav-item::after {
-  bottom: -2px;
-  background-image: linear-gradient(-90deg, var(--color-body-text) 20px, transparent 20px, transparent 45px, var(--color-body-text) 45px);
-  background-position-x: right, 0px;
 }
 
 .sub-nav ul .nav-item:hover::before,.sub-nav ul .nav-item:focus::before {
@@ -4194,71 +4180,71 @@ body.post-page code {
   }
 }
 
-.people-list-wrap {
+.people .people-list-wrap {
   text-align: center;
 }
 
 @media (min-width: 1024px) {
-  .people-list-wrap {
+  .people .people-list-wrap {
     max-width: 80rem;
   }
 }
 
-.people-list-wrap .people-list {
+.people .people-list-wrap .people-list {
   display: grid;
   padding-top: 0px;
   padding-bottom: 0px;
 }
 
-.what-we-do .people-list-wrap .people-list {
+.what-we-do .people .people-list-wrap .people-list {
   grid-template-columns: repeat(12, 1fr);
   row-gap: 4rem;
 }
 
 @media (min-width: 820px) {
-  .what-we-do .people-list-wrap .people-list {
+  .what-we-do .people .people-list-wrap .people-list {
     grid-template-rows: repeat(3, 1fr)
   }
 }
 
 @media (max-width: 820px) {
-  .what-we-do .people-list-wrap .people-list {
+  .what-we-do .people .people-list-wrap .people-list {
     grid-template-rows: repeat(3, 1fr);
     row-gap: 2rem
   }
 }
 
 @media (min-width: 430px) and (max-width: 640px) {
-  .what-we-do .people-list-wrap .people-list {
+  .what-we-do .people .people-list-wrap .people-list {
     row-gap: 5rem;
   }
 }
 
 @media (min-width: 520px) and (max-width: 820px) {
-  .what-we-do .people-list-wrap .people-list {
+  .what-we-do .people .people-list-wrap .people-list {
     row-gap: 7rem;
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(1),
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(1),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) {
   grid-row: 1;
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(3),
-  .what-we-do .people-list-wrap .people-list > :nth-child(4) {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(3),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(4) {
   grid-row: 2;
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(5),
-  .what-we-do .people-list-wrap .people-list > :nth-child(6) {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(5),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(6) {
   grid-row: 3;
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2),
-  .what-we-do .people-list-wrap .people-list > :nth-child(3),
-  .what-we-do .people-list-wrap .people-list > :nth-child(6),
-  .what-we-do .people-list-wrap .people-list > :nth-child(7) {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(3),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(6),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(7) {
   z-index: 10;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -4269,19 +4255,19 @@ body.post-page code {
 }
 
 @media (min-width: 640px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2),
-  .what-we-do .people-list-wrap .people-list > :nth-child(3),
-  .what-we-do .people-list-wrap .people-list > :nth-child(6),
-  .what-we-do .people-list-wrap .people-list > :nth-child(7) {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(3),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(6),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(7) {
     padding-left: 3rem;
     padding-right: 3rem;
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2),
-  .what-we-do .people-list-wrap .people-list > :nth-child(3),
-  .what-we-do .people-list-wrap .people-list > :nth-child(6),
-  .what-we-do .people-list-wrap .people-list > :nth-child(7) {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(3),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(6),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(7) {
   z-index: 10;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -4292,19 +4278,19 @@ body.post-page code {
 }
 
 @media (min-width: 640px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2),
-  .what-we-do .people-list-wrap .people-list > :nth-child(3),
-  .what-we-do .people-list-wrap .people-list > :nth-child(6),
-  .what-we-do .people-list-wrap .people-list > :nth-child(7) {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(3),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(6),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(7) {
     padding-left: 3rem;
     padding-right: 3rem;
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2),
-  .what-we-do .people-list-wrap .people-list > :nth-child(3),
-  .what-we-do .people-list-wrap .people-list > :nth-child(6),
-  .what-we-do .people-list-wrap .people-list > :nth-child(7) {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(3),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(6),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(7) {
   z-index: 10;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -4315,19 +4301,19 @@ body.post-page code {
 }
 
 @media (min-width: 640px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2),
-  .what-we-do .people-list-wrap .people-list > :nth-child(3),
-  .what-we-do .people-list-wrap .people-list > :nth-child(6),
-  .what-we-do .people-list-wrap .people-list > :nth-child(7) {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(3),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(6),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(7) {
     padding-left: 3rem;
     padding-right: 3rem;
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2),
-  .what-we-do .people-list-wrap .people-list > :nth-child(3),
-  .what-we-do .people-list-wrap .people-list > :nth-child(6),
-  .what-we-do .people-list-wrap .people-list > :nth-child(7) {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(3),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(6),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(7) {
   z-index: 10;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -4338,83 +4324,83 @@ body.post-page code {
 }
 
 @media (min-width: 640px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2),
-  .what-we-do .people-list-wrap .people-list > :nth-child(3),
-  .what-we-do .people-list-wrap .people-list > :nth-child(6),
-  .what-we-do .people-list-wrap .people-list > :nth-child(7) {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(3),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(6),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(7) {
     padding-left: 3rem;
     padding-right: 3rem;
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2),
-  .what-we-do .people-list-wrap .people-list > :nth-child(3),
-  .what-we-do .people-list-wrap .people-list > :nth-child(6),
-  .what-we-do .people-list-wrap .people-list > :nth-child(7) {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(3),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(6),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(7) {
   background-color: var(--color-white-primary);
   align-self: center;
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
   letter-spacing: 0em;
 }
 
 @media (min-width: 768px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
   letter-spacing: 0em;
 }
 
 @media (min-width: 768px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
   letter-spacing: 0em;
 }
 
 @media (min-width: 768px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p {
   font-size: 0.875rem;
   line-height: 1.25rem;
   letter-spacing: 0em;
 }
 
 @media (min-width: 768px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p {
   line-height: 1.7rem;
   color: var(--color-grey-primary);
   white-space: unset;
   font-weight: 400;
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong {
   margin-bottom: 1rem;
   display: block;
   font-size: 1rem;
@@ -4422,30 +4408,30 @@ body.post-page code {
   letter-spacing: 0.1em;
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong h2 {
   margin-left: 0.25rem;
   font-weight: 800;
   letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong h2 {
     margin-left: 3rem;
   }
 
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong {
     margin-bottom: 2.25rem;
   }
 }
 
 @media (min-width: 768px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong {
   margin-bottom: 1rem;
   display: block;
   font-size: 1rem;
@@ -4453,30 +4439,30 @@ body.post-page code {
   letter-spacing: 0.1em;
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong h2 {
   margin-left: 0.25rem;
   font-weight: 800;
   letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong h2 {
     margin-left: 3rem;
   }
 
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong {
     margin-bottom: 2.25rem;
   }
 }
 
 @media (min-width: 768px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong {
   margin-bottom: 1rem;
   display: block;
   font-size: 1rem;
@@ -4484,30 +4470,30 @@ body.post-page code {
   letter-spacing: 0.1em;
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong h2 {
   margin-left: 0.25rem;
   font-weight: 800;
   letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong h2 {
     margin-left: 3rem;
   }
 
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong {
     margin-bottom: 2.25rem;
   }
 }
 
 @media (min-width: 768px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong {
   margin-bottom: 1rem;
   display: block;
   font-size: 1rem;
@@ -4515,73 +4501,73 @@ body.post-page code {
   letter-spacing: 0.1em;
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong h2 {
   margin-left: 0.25rem;
   font-weight: 800;
   letter-spacing: 0em;
 }
 
 @media (min-width: 640px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong h2 {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong h2, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong h2 {
     margin-left: 3rem;
   }
 
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong {
     margin-bottom: 2.25rem;
   }
 }
 
 @media (min-width: 768px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people-list-wrap .people-list > :nth-child(7) p strong {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p strong, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p strong {
   font-family: var(--font-h1);
   font-weight: 700;
 }
 
 @media (max-width: 700px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people-list-wrap .people-list > :nth-child(7) p {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(3) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(6) p, .what-we-do .people .people-list-wrap .people-list > :nth-child(7) p {
     padding-top: 1rem;
     padding-bottom: 0
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2),
-  .what-we-do .people-list-wrap .people-list > :nth-child(6) {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(6) {
   grid-column: 7 / end;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
 }
 
 @media (min-width: 640px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2),
-  .what-we-do .people-list-wrap .people-list > :nth-child(6) {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(6) {
     margin-right: 2.75rem;
     margin-left: 0px;
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(2),
-  .what-we-do .people-list-wrap .people-list > :nth-child(6) {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(2),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(6) {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
 }
 
 @media (min-width: 640px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2),
-  .what-we-do .people-list-wrap .people-list > :nth-child(6) {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(6) {
     margin-right: 2.75rem;
     margin-left: 0px;
   }
 }
 
 @media (max-width: 820px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(2),
-  .what-we-do .people-list-wrap .people-list > :nth-child(6) {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(2),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(6) {
     /* margin-left: 0; */
     grid-column: 1 / 13;
     padding-bottom: 1rem;
@@ -4590,38 +4576,38 @@ body.post-page code {
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(3),
-  .what-we-do .people-list-wrap .people-list > :nth-child(7) {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(3),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(7) {
   grid-column: 1 / 7;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
 }
 
 @media (min-width: 640px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(3),
-  .what-we-do .people-list-wrap .people-list > :nth-child(7) {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(3),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(7) {
     margin-left: 2.75rem;
     margin-right: 0px;
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(3),
-  .what-we-do .people-list-wrap .people-list > :nth-child(7) {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(3),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(7) {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
 }
 
 @media (min-width: 640px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(3),
-  .what-we-do .people-list-wrap .people-list > :nth-child(7) {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(3),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(7) {
     margin-left: 2.75rem;
     margin-right: 0px;
   }
 }
 
 @media (max-width: 820px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(3),
-  .what-we-do .people-list-wrap .people-list > :nth-child(7) {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(3),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(7) {
     /* margin-left: 0; */
     grid-column: 1 / 13;
     padding-bottom: 1rem;
@@ -4630,8 +4616,8 @@ body.post-page code {
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(1),
-  .what-we-do .people-list-wrap .people-list > :nth-child(5) {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(1),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(5) {
   margin-top: -1.5rem;
   margin-bottom: -1.5rem;
   margin-right: 2rem;
@@ -4640,8 +4626,8 @@ body.post-page code {
 }
 
 @media (max-width: 820px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(1),
-  .what-we-do .people-list-wrap .people-list > :nth-child(5) {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(1),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(5) {
     margin-bottom: 0;
     margin-right: 0;
     margin-top: -10rem;
@@ -4650,8 +4636,8 @@ body.post-page code {
   }
 }
 
-.what-we-do .people-list-wrap .people-list > :nth-child(4),
-  .what-we-do .people-list-wrap .people-list > :nth-child(8) {
+.what-we-do .people .people-list-wrap .people-list > :nth-child(4),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(8) {
   margin-top: -1.5rem;
   margin-bottom: -1.5rem;
   margin-left: 2rem;
@@ -4660,8 +4646,8 @@ body.post-page code {
 }
 
 @media (max-width: 820px) {
-  .what-we-do .people-list-wrap .people-list > :nth-child(4),
-  .what-we-do .people-list-wrap .people-list > :nth-child(8) {
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(4),
+  .what-we-do .people .people-list-wrap .people-list > :nth-child(8) {
     margin-bottom: 0;
     margin-left: 0;
     margin-top: -10rem;
@@ -4669,88 +4655,92 @@ body.post-page code {
   }
 }
 
-.services .content .side-by-side .embed .people-list-wrap .people-list {
+.services .content .side-by-side .embed .people .people-list-wrap .people-list {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.5rem;
 }
 
 @media (min-width: 768px) {
-  .services .content .side-by-side .embed .people-list-wrap .people-list {
+  .services .content .side-by-side .embed .people .people-list-wrap .people-list {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
-  .services .content .side-by-side .embed .people-list-wrap .people-list {
+  .services .content .side-by-side .embed .people .people-list-wrap .people-list {
     grid-template-columns: repeat(7, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1280px) {
-  .services .content .side-by-side .embed .people-list-wrap .people-list {
+  .services .content .side-by-side .embed .people .people-list-wrap .people-list {
     grid-template-columns: repeat(9, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1536px) {
-  .services .content .side-by-side .embed .people-list-wrap .people-list {
+  .services .content .side-by-side .embed .people .people-list-wrap .people-list {
     grid-template-columns: repeat(10, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
-  .trusted-by .people-list-wrap .people-list {
+  .trusted-by .people .people-list-wrap .people-list {
     grid-template-columns: repeat(2 , 1fr);
   }
 }
 
 @media (min-width: 640px) {
-  .trusted-by .people-list-wrap .people-list {
+  .trusted-by .people .people-list-wrap .people-list {
     grid-template-columns: repeat(5, 1fr);
   }
 
-  .people-list-wrap .people-list {
+  .people .people-list-wrap .people-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.people-list-wrap .people-list {
+.people .people-list-wrap .people-list {
   width: 100%;
   list-style-type: none;
   padding: initial;
 }
 
-.people-list-wrap .people-list .person-body {
+.people .people-list-wrap .people-list .person-body {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
   text-align: center;
   padding: 0 var(--layout-spacing-v-half);
 }
 
-.people-list-wrap .people-list .person-body a {
+.people .people-list-wrap .people-list .person-body a {
   text-decoration: none;
 }
 
-.people-list-wrap .people-list .person-body a:hover {
+.people .people-list-wrap .people-list .person-body a h2, .people .people-list-wrap .people-list .person-body a span {
+  display: none;
+}
+
+.people .people-list-wrap .people-list .person-body a:hover {
   cursor: pointer;
 }
 
-.people-list-wrap .people-list .person-body .no-link-style {
+.people .people-list-wrap .people-list .person-body .no-link-style {
   pointer-events: none;
 }
 
-.people-list-wrap .people-list .person-body .image {
+.people .people-list-wrap .people-list .person-body .image {
   margin-bottom: 1.25rem;
 }
 
 @media (min-width: 768px) {
-  .people-list-wrap .people-list .person-body .image {
+  .people .people-list-wrap .people-list .person-body .image {
     margin-bottom: 0px;
   }
 }
 
 @media (min-width: 1024px) {
-  .people-list-wrap .people-list .person-body .image {
+  .people .people-list-wrap .people-list .person-body .image {
     display: block;
   }
 }
@@ -5213,6 +5203,128 @@ body.post-page code {
 .hiring ul {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+/** Contact Us Page */
+
+.contact {
+  background-color: var(--color-accent-dark);
+}
+
+.contact .doc a {
+  margin-top: 1.5rem;
+  background-color: var(--color-accent);
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+}
+
+@media (min-width: 640px) {
+  .contact .doc a {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+.contact .doc a {
+  text-decoration: none;
+  font-weight: 700;
+  font-family: var(--font-h1);
+  padding: 0.5rem 0.7rem;
+}
+
+.contact .side-by-side.left, .contact .side-by-side.right {
+  margin-bottom: 5rem;
+  display: flex;
+  float: none;
+  width: 100%;
+  justify-content: center;
+}
+
+.contact .people-list-wrap .people-list .body {
+  padding-left: 3rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: #FFF;
+  margin-left: -4rem;
+}
+
+.contact .people-list-wrap .people-list {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  justify-content: center;
+}
+
+.contact .people-list-wrap .people-list li.person-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin-bottom: 6rem;
+  grid-column: 2 / 12;
+}
+
+.contact .people-list-wrap .people-list li.person-body a {
+  text-decoration: none;
+}
+
+.contact .people-list-wrap .people-list li.person-body a h2, .contact .people-list-wrap .people-list li.person-body a span {
+  display: none;
+}
+
+.contact .people-list-wrap .people-list li.person-body .image {
+  grid-column: 7 / end;
+}
+
+.contact .people-list-wrap .people-list li.person-body .text {
+  grid-column: 2;
+}
+
+.contact .people-list-wrap .people-list li.person-body:nth-child(odd) .image {
+  grid-column: 2;
+}
+
+.contact .people-list-wrap .people-list li.person-body:nth-child(odd) .text {
+  grid-column: 1;
+}
+
+@media (max-width: 640px) {
+  .contact .people-list-wrap .people-list li.person-body {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .contact .people-list-wrap .people-list .body {
+    padding-left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 1640px) {
+  .contact .people-list-wrap .people-list li.person-body {
+    grid-column: 4 / 10;
+  }
+}
+
+.contact .body {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.05em;
+}
+
+@media (min-width: 640px) {
+  .contact .body {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
+.contact .body {
+  line-height: 2rem;
+  font-weight: 400;
 }
 
 .embla {

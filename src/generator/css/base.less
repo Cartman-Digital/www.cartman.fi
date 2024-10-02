@@ -297,7 +297,11 @@ body {
      */
     div.action.button.primary {
         /* width set because of box-border requirement getting ignored without it. */
-        @apply lg:w-96 w-72 p-0 box-border;
+        @apply bg-[var(--color-accent)] text-[var(--color-primary)] tracking-wider uppercase text-xl sm:text-2xl mt-6 lg:w-96 w-72 p-0 box-border; 
+        text-decoration: none;
+        font-weight: 700;
+        font-family: var(--font-h1);
+        padding: 0.5rem 0.7rem;
     }
 
     .submit {
@@ -415,48 +419,29 @@ body {
  * Generic input styling.
  */
 .button {
-    display: inline-block;
-    padding: 8px 8px;
-    border-top: 1px solid var(--color-body-text);
-    border-bottom: 1px solid var(--color-body-text);
-    margin-top: 2rem;
-    margin-right: 1.5rem;
+    @apply bg-[var(--color-accent)] text-[var(--color-primary)] tracking-wider uppercase text-xl sm:text-2xl;
     text-decoration: none;
+    font-weight: 700;
+    font-family: var(--font-h1);
+    padding: 0.5rem 0.7rem;
 }
 
 .button.primary,
 .btn-primary {
-    border: 2px solid transparent;
-    display: inline-block;
-    padding: 8px;
-    border-left-color: var(--color-body-text);
-    border-right-color: var(--color-body-text);
-    background-color: transparent;
-    text-decoration: none;
-    color: var(--color-body-text);
-    position: relative;
+   
+
 
     &::before,
     &::after {
-        position: absolute;
-        content: '';
-        background-size: 200%;
-        transition: background-position-x 500ms ease-in-out;
-        height: 2px;
-        left: -2px;
-        right: -2px;
+  
     }
 
     &::before {
-        top: -2px;
-        background-image: linear-gradient(90deg, var(--color-body-text) 20px, transparent 20px, transparent 45px, var(--color-body-text) 45px);
-        background-position-x: left, 0px;
+   
     }
 
     &::after {
-        bottom: -2px;
-        background-image: linear-gradient(-90deg, var(--color-body-text) 20px, transparent 20px, transparent 45px, var(--color-body-text) 45px);
-        background-position-x: right, 0px;
+    
     }
 
     &:hover::before,
@@ -1430,7 +1415,7 @@ body.post-page {
 }
     
 
-.people-list-wrap {
+ .people .people-list-wrap {
     @apply text-center lg:max-w-7xl;
 
     .people-list {
@@ -1445,6 +1430,10 @@ body.post-page {
 
             a {
                 text-decoration: none;
+
+                h2, span {
+                    display: none;
+                }
             }
 
             a:hover {
@@ -1458,6 +1447,8 @@ body.post-page {
             .image {
                 @apply mb-5 lg:block md:mb-0;
             }
+
+          
         }
     }
 }
@@ -1737,6 +1728,101 @@ body.post-page {
 .hiring {
      ul {
         @apply px-4;
+    }
+}
+
+/** Contact Us Page */
+
+.contact {
+    background-color: var(--color-accent-dark);
+    .doc a {
+        @apply bg-[var(--color-accent)] text-[var(--color-primary)] tracking-wider uppercase text-xl sm:text-2xl mt-6; 
+        text-decoration: none;
+        font-weight: 700;
+        font-family: var(--font-h1);
+        padding: 0.5rem 0.7rem;
+    }
+
+    .side-by-side.left, .side-by-side.right {
+        margin-bottom: 5rem;
+        display: flex;
+        float: none;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .people-list-wrap .people-list .body {
+        padding-left: 3rem; 
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        background-color: #FFF;
+        margin-left: -4rem;
+    }
+
+    .people-list-wrap .people-list {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        justify-content: center;
+    }
+
+    .people-list-wrap .people-list li.person-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        margin-bottom: 6rem;
+        grid-column: 2 / 12;
+
+        a {
+            text-decoration: none;
+
+            h2, span {
+                display: none;
+            }
+        }
+
+        .image {
+           
+           grid-column: 7 / end;
+        }
+
+        .text {
+            grid-column: 2;
+        }
+
+        &:nth-child(odd) .image {
+            grid-column: 2;
+        }
+
+        &:nth-child(odd) .text {
+            grid-column: 1;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .people-list-wrap .people-list li.person-body {
+            grid-template-columns: 1fr;
+            text-align: center;
+            
+        }
+
+        .people-list-wrap .people-list .body {
+            padding-left: 0; 
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-left: auto;  
+        }
+    }
+
+    @media (min-width: 1640px) {
+        .people-list-wrap .people-list li.person-body {
+            grid-column: 4 / 10;
+        }
+      }
+
+    .body {
+        @apply text-sm sm:text-xl tracking-wider;
+        line-height: 2rem;
+        font-weight: 400;
     }
 }
 
