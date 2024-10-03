@@ -245,7 +245,6 @@ body {
 
     textarea {
         resize: both;
-        min-width: 16rem;
         min-height: 2.625rem;
         box-sizing: border-box;
     }
@@ -279,15 +278,32 @@ body {
     .form-container {
         @apply clear-left pt-10 border border-[var(--color-body-text)] pb-2 mb-4 md:w-2/4;
     }
+    @media (max-width: 350px) {
+        .g-recaptcha {
+            transform:scale(0.65);transform-origin:0 0
+        }
+    }
 }
 
 .form-wrap {
     position: relative;
     overflow: hidden;
 
-    input,
+    input {
+        @apply lg:w-96 w-72;
+
+        @media (max-width: 350px) {
+            width: 12rem;
+        }
+
+    }
+
     textarea {
         @apply lg:w-96 w-72;
+
+        @media (max-width: 350px) {
+            width: 12rem;
+        }
     }
 
     /**
@@ -319,6 +335,12 @@ body {
         position: relative;
         left: 0;
         margin-bottom: 10px;
+
+        div.action.button.primary {
+            @media (max-width: 350px) {
+                width: 12rem;
+            }
+        }
 
         &.loading {
             position: relative;
@@ -1412,6 +1434,11 @@ body.post-page {
 /** People List page */
 .people .doc {
     @apply lg:max-w-6xl;
+
+   
+}
+.people .doc p:first-of-type {
+    display: none;
 }
     
 
@@ -1734,7 +1761,13 @@ body.post-page {
 /** Contact Us Page */
 
 .contact {
-    background-color: var(--color-accent-dark);
+
+    .people-list-wrap {
+        background-color: var(--color-accent-dark);
+        clip-path: polygon(0% 0%, 100% 0% ,100% 100%, 0% 93.5%);
+        
+    }
+    
     .doc a {
         @apply bg-[var(--color-accent)] text-[var(--color-primary)] tracking-wider uppercase text-xl sm:text-2xl mt-6; 
         text-decoration: none;
@@ -1748,11 +1781,15 @@ body.post-page {
         display: flex;
         float: none;
         width: 100%;
-        justify-content: center;
+
+        @media (min-width: 360px) {
+            justify-content: center;
+        }
     }
 
     .people-list-wrap .people-list .body {
         padding-left: 3rem; 
+       
         padding-top: 2rem;
         padding-bottom: 2rem;
         background-color: #FFF;
@@ -1772,6 +1809,23 @@ body.post-page {
         margin-bottom: 6rem;
         grid-column: 2 / 12;
 
+        @media (max-width: 360px) {
+            grid-column: 1 / 13;
+        }
+
+        @media (max-width: 640px) {
+            .doc {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
+        @media (min-width: 640px) {
+            .doc {
+                padding-right: 2rem;
+            }
+        }
+
         a {
             text-decoration: none;
 
@@ -1781,7 +1835,6 @@ body.post-page {
         }
 
         .image {
-           
            grid-column: 7 / end;
         }
 
@@ -1817,7 +1870,7 @@ body.post-page {
         .people-list-wrap .people-list li.person-body {
             grid-column: 4 / 10;
         }
-      }
+    }
 
     .body {
         @apply text-sm sm:text-xl tracking-wider;

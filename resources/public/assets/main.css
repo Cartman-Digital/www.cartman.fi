@@ -1043,7 +1043,6 @@ body input[type="text"],
 
 body textarea {
   resize: both;
-  min-width: 16rem;
   min-height: 2.625rem;
   box-sizing: border-box;
 }
@@ -1104,20 +1103,47 @@ body .form-container {
   }
 }
 
+@media (max-width: 350px) {
+  body .g-recaptcha {
+    transform:scale(0.65);
+    transform-origin:0 0
+  }
+}
+
 .form-wrap {
   position: relative;
   overflow: hidden;
 }
 
-.form-wrap input,
-    .form-wrap textarea {
+.form-wrap input {
   width: 18rem;
 }
 
 @media (min-width: 1024px) {
-  .form-wrap input,
-    .form-wrap textarea {
+  .form-wrap input {
     width: 24rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .form-wrap input {
+    width: 12rem
+  }
+}
+
+.form-wrap textarea {
+  width: 18rem;
+}
+
+@media (min-width: 1024px) {
+  .form-wrap textarea {
+    width: 24rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .form-wrap textarea {
+    width: 12rem
   }
 }
 
@@ -1177,6 +1203,12 @@ body .form-container {
   position: relative;
   left: 0;
   margin-bottom: 10px;
+}
+
+@media (max-width: 350px) {
+  .form-wrap form div.action.button.primary {
+    width: 12rem
+  }
 }
 
 .form-wrap form.loading {
@@ -4180,6 +4212,10 @@ body.post-page code {
   }
 }
 
+.people .doc p:first-of-type {
+  display: none;
+}
+
 .people .people-list-wrap {
   text-align: center;
 }
@@ -5207,8 +5243,10 @@ body.post-page code {
 
 /** Contact Us Page */
 
-.contact {
+.contact .people-list-wrap {
   background-color: var(--color-accent-dark);
+  -webkit-clip-path: polygon(0% 0%, 100% 0% ,100% 100%, 0% 93.5%);
+          clip-path: polygon(0% 0%, 100% 0% ,100% 100%, 0% 93.5%);
 }
 
 .contact .doc a {
@@ -5240,7 +5278,12 @@ body.post-page code {
   display: flex;
   float: none;
   width: 100%;
-  justify-content: center;
+}
+
+@media (min-width: 360px) {
+  .contact .side-by-side.left, .contact .side-by-side.right {
+    justify-content: center
+  }
 }
 
 .contact .people-list-wrap .people-list .body {
@@ -5263,6 +5306,25 @@ body.post-page code {
   align-items: center;
   margin-bottom: 6rem;
   grid-column: 2 / 12;
+}
+
+@media (max-width: 360px) {
+  .contact .people-list-wrap .people-list li.person-body {
+    grid-column: 1 / 13
+  }
+}
+
+@media (max-width: 640px) {
+  .contact .people-list-wrap .people-list li.person-body .doc {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .contact .people-list-wrap .people-list li.person-body .doc {
+    padding-right: 2rem;
+  }
 }
 
 .contact .people-list-wrap .people-list li.person-body a {
