@@ -86,6 +86,11 @@ query pageCollectionQuery(
                 sys {
                   id
                 }
+                ... on ContentBlock {
+                  content {
+                    json
+                  }
+                }
               }
             }
           }

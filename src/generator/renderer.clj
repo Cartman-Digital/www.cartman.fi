@@ -230,7 +230,8 @@
   (let [description (get-in args [:shortText :json])
         highlights (mapv #(render %) (get-in args [:highlightCollection :items]))
         skills (mapv #(render %) (get-in args [:skillsCollection :items]))
-        tech (mapv #(render %) (get-in args [:webAppSkillsCollection :items]))]
+        tech (mapv #(render %) (get-in args [:webAppSkillsCollection :items]))
+        contact-description (get-in args [:contactDescription :json])] 
     [:div.person.grid.grid-cols-1.md:grid-cols-2.sm:gap-8.items-start
      [:div.name.md:col-span-2.text-center
       [:h1.mt-4.mb-0 (:name args)]
@@ -242,9 +243,9 @@
      [:div
       [:div.pr-2 (richtext->html description)]
       (when (not-empty highlights)
-      [:div.how
-       [:h2 "Work highlights"]
-       (into [:ul.projects] highlights)])]
+        [:div.how
+         [:h2 "Work highlights"]
+         (into [:ul.projects] highlights)])]
      (when (not-empty skills)
        [:div.what
         [:h2 "Skills"]
@@ -254,10 +255,14 @@
        [:div.where
         [:h2 "Technologies"]
         [:div.web
-         (into [:ul.web-talent.list-none] tech)]])]))
+         (into [:ul.web-talent.list-none] tech)]])
+     (when (not-empty contact-description)
+       [:div.contact-description-field
+        [:h2 "Contact Description"]
+        (richtext->html contact-description)])]))
 
 (defn people-list-view
-  [args] 
+  [args]
   [:li.person-body
    [:a (if (= true (get-in args [:createPersonPage]))
          {:href (create-url (:slug args))}
@@ -266,10 +271,11 @@
     [:span.block.font-bold.mb-2 (:jobTitle args)]
     [:div.image
      [:img {:alt (get-in args [:picture :title]) :src (:url (:picture args))}]]]
-   [:div.body 
-     [:h2.block.mb-0 (:name args)]
+   [:div.body
+    [:h2.block.mb-0 (:name args)]
     [:span.block.font-bold.mb-2 (:jobTitle args)]
-    [:div.person-body (richtext->html (:json (:shortText args)))]]])
+    [:div.person-body (richtext->html (:json (:shortText args)))]
+    [:div.contact-description (richtext->html (:json (:contactDescription args)))]]])
 
 (defmulti render :__typename)
 
@@ -449,17 +455,18 @@
   (let [title (:title args)
         slides (-> args :slidesCollection :items)
         class (-> title (clojure.string/replace " " "-") clojure.string/lower-case)]
-    [:div.relative.w-full.p-16
-     [:div.relative.h-56.overflow-hidden.rounded-lg {:class "md:h-96"}
-      (for [slide slides]
-        (let [img (get-in slide [:banner :url])]
-          [:div.slide
-           [:div.text
-            (richtext->html (get-in slide [:bannerText :json]))]
-           
-           [:div.image
-            [:img {:src img
-                   :class "absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"}]]]))]]))
+    [:div 
+     [:h2 {:class "embla-h2"} title]
+     [:section.embla
+      [:div.embla__viewport
+       [:div.embla__container
+        (for [slide slides]
+          [:div.embla__slide
+           (render slide)])]]]
+          [:script {:src "https://unpkg.com/embla-carousel/embla-carousel.umd.js"}]
+     [:script {:src "https://unpkg.com/embla-carousel-autoplay/embla-carousel-autoplay.umd.js"}]
+     (static/get-local-js  "embla-carousel.js")]))
+
 
 (defmethod render "MainBanner"
   [banner]

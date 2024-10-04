@@ -17,6 +17,9 @@ query peopleByListQuery($listId: String!){
             url(transform: {format: WEBP quality: 85})
             title
           }
+          contactDescription {
+            json
+          }
         }
       }
     }
