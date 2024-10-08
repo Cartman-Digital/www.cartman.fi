@@ -482,6 +482,12 @@ body .content > .post {
             @apply w-12 h-12;
             color: var(--color-primary);
         }
+
+        /*** This is meant for hiding post in navigation */
+
+        .nav-list-wrapper ul li:nth-child(2) {
+            display: none;
+        }
     }
 
     .logo {
@@ -1548,6 +1554,8 @@ body.post-page {
 
 .blog-recent {
     @apply bg-[var(--color-accent-dark)] pt-20 sm:pt-32 pb-64;
+    /* MODIFY DISPLAY TO SEE THE BLOG */
+    display: none;
     clip-path: polygon(0% 13%, 100% 0% ,100% 100%, 0% 87%);
     
     h2 {
@@ -1625,7 +1633,7 @@ body.post-page {
     font-family: var(--font-h1);
     font-weight: 700;
     border: unset;
-    text-transform: unset;
+    text-transform: uppercase;
 
     span {
       color: var(--color-primary);
@@ -1823,7 +1831,7 @@ body.post-page {
     font-family: var(--font-h1);
     font-weight: 700;
     border: unset;
-    text-transform: unset;
+    text-transform: uppercase;
     line-height: 1.25;
 
     @media (min-width: 640px) {

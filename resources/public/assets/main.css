@@ -1437,6 +1437,12 @@ body .content > .post {
   color: var(--color-primary);
 }
 
+/*** This is meant for hiding post in navigation */
+
+.navigation .nav-wrapper .nav-list-wrapper ul li:nth-child(2) {
+  display: none;
+}
+
 .navigation .logo {
   display: block;
 }
@@ -4999,6 +5005,8 @@ body.post-page code {
 }
 
 .blog-recent {
+  /* MODIFY DISPLAY TO SEE THE BLOG */
+  display: none;
   -webkit-clip-path: polygon(0% 13%, 100% 0% ,100% 100%, 0% 87%);
           clip-path: polygon(0% 13%, 100% 0% ,100% 100%, 0% 87%);
 }
@@ -5129,7 +5137,7 @@ body.post-page code {
   font-family: var(--font-h1);
   font-weight: 700;
   border: unset;
-  text-transform: unset;
+  text-transform: uppercase;
 }
 
 .trusted-by h2 span {
@@ -5353,7 +5361,7 @@ body.post-page code {
   font-family: var(--font-h1);
   font-weight: 700;
   border: unset;
-  text-transform: unset;
+  text-transform: uppercase;
   line-height: 1.25;
 }
 

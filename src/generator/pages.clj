@@ -73,7 +73,7 @@
   "Must be called from hiccup. Outputs common page footer in a vector."
   []
   (let [cta-button-text "CONTACT US"
-        cta-button-url "https://example.com/more-info"]
+        cta-button-url "https://www.cartman.fi/contact.html"]
     [:div.place-items-center.grid.grid-cols-1
      [:div.foot.grid.sm:justify-items-center.grid-cols-1.sm:grid-cols-3 {:class "footer"}
       (menu-footer)
