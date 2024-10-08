@@ -260,19 +260,8 @@ body {
     }
 
     hr {
-        @apply w-full sm:w-4/6 my-8 mx-auto;
-
-        @media (max-width: 640px) {
-            height: 5px;
-            background-color: #000;
-            margin-left: 20px;
-            width: 90%;
-            margin-bottom: 0.5rem;
-            margin-top: 0.5rem;
-        }
-        @media (min-width: 640px) {
-        display: none;
-        }
+        @apply block sm:hidden  w-11/12 sm:w-full my-4 sm:my-8 ml-5 sm:ml-0 h-1;
+        background-color: var(--color-grey-primary); 
     }
 
     .form-container {
@@ -280,7 +269,8 @@ body {
     }
     @media (max-width: 350px) {
         .g-recaptcha {
-            transform:scale(0.65);transform-origin:0 0
+            transform:scale(0.65);
+            transform-origin:0 0;
         }
     }
 }
@@ -290,20 +280,11 @@ body {
     overflow: hidden;
 
     input {
-        @apply lg:w-96 w-72;
-
-        @media (max-width: 350px) {
-            width: 12rem;
-        }
-
+        @apply lg:w-96 w-48 sm:w-72;
     }
 
     textarea {
-        @apply lg:w-96 w-72;
-
-        @media (max-width: 350px) {
-            width: 12rem;
-        }
+        @apply lg:w-96 w-48 sm:w-72;
     }
 
     /**
@@ -313,7 +294,7 @@ body {
      */
     div.action.button.primary {
         /* width set because of box-border requirement getting ignored without it. */
-        @apply bg-[var(--color-accent)] text-[var(--color-primary)] tracking-wider uppercase text-xl sm:text-2xl mt-6 lg:w-96 w-72 p-0 box-border; 
+        @apply bg-[var(--color-accent)] text-[var(--color-primary)] tracking-wider uppercase text-xl sm:text-2xl mt-6 w-48 sm:w-72 lg:w-96  p-0 box-border; 
         text-decoration: none;
         font-weight: 700;
         font-family: var(--font-h1);
@@ -324,6 +305,7 @@ body {
         /* Workaround continuation: apply padding to input directly. */
         @apply w-full p-2;
         cursor: pointer;
+        text-transform: uppercase;
     }
 
     textarea {
@@ -335,12 +317,6 @@ body {
         position: relative;
         left: 0;
         margin-bottom: 10px;
-
-        div.action.button.primary {
-            @media (max-width: 350px) {
-                width: 12rem;
-            }
-        }
 
         &.loading {
             position: relative;
@@ -489,14 +465,14 @@ body .content > .post {
 /**
  * Navigation
  */
+
 .navigation {
     @apply fixed w-full z-50 top-0 left-0 shadow-md;
     background-color: var(--color-nav-bg);
     height: var(--navigation-height);
     
     .nav-wrapper {
-        @apply max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto h-auto;
-        margin-top: 1.5rem;
+        @apply max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto h-auto mt-6;
 
         >button {
             @apply inline-flex items-center p-2 ml-3 text-sm lg:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 text-gray-400 focus:ring-gray-600;
@@ -504,7 +480,7 @@ body .content > .post {
 
         svg {
             @apply w-12 h-12;
-            color: #FF00EF;
+            color: var(--color-primary);
         }
     }
 
@@ -550,13 +526,9 @@ body .content > .post {
  */
 
 .footer {
-    @apply py-4 text-center w-full;
+    @apply py-4 text-center w-full pl-0;
     background-color: var(--color-section-greyscale-bg);
     color: var(--color-body-text);
-
-    @media (max-width: 640px) {
-       padding-left: 0 ;
-    }
 
     a:hover {
         color: var(--color-primary); 
@@ -568,8 +540,6 @@ body .content > .post {
 
     .menu {
       @apply text-left font-semibold sm:font-bold text-3xl sm:text-4xl tracking-widest;
-
-    
 
       li {
         @media (max-width: 640px) {
@@ -594,24 +564,18 @@ body .content > .post {
      }
     }
 
-
     ul:nth-child(3) {
+        @apply mt-2 sm:mt-0;    
      
       li {
-        @apply mb-2 ;
+        @apply mb-2;
       }
 
       li:nth-child(1) {
-        @apply text-xl sm:text-4xl uppercase tracking-widest;
+        @apply text-xl sm:text-4xl uppercase tracking-widest mt-0;
         font-family: var(--font-h1);
         font-weight: 700;
         line-height: 1.65;
-        margin-top: 1rem;
-        
-        
-        @media (min-width: 640px) {
-            margin-top: 0;
-         }
       }
 
       a {
@@ -645,26 +609,18 @@ body .content > .post {
       }
 
       li:nth-child(6) {
-        @media (min-width: 640px) {
-            margin-top: 2rem;
-         }
+       @apply sm:mt-8;
       }
-
     }
 
     :nth-child(6) {   
-        @media (max-width: 640px) {
-            margin-top: 2rem;
-         margin-bottom: 1rem;
-       }
+        @apply mt-8 mb-4;
     }
 
 }
 
 .footer-centering-div {
-    @media (max-width: 640px) {
-        display: none;
-   }
+    @apply hidden sm:block;
 }
 
 .social-media {
@@ -688,23 +644,15 @@ body .content > .post {
 }
 
 .cta-button-blog {
-    @apply bg-[var(--color-primary)] text-[var(--color-accent)] tracking-wide text-xl sm:text-4xl;
+    @apply bg-[var(--color-primary)] text-[var(--color-accent)] tracking-wide text-xl sm:text-4xl py-2 px-4 sm:py-4 sm:px-6;
     text-decoration: none;
     font-weight: 700;
     font-family: var(--font-h2);
-    padding: 1rem 1.5rem;
-    text-transform: capitalize !important;
-    
-    @media (max-width: 640px) {
-      padding: 0.5rem 1rem ;
-   }
+    text-transform: capitalize;
 }
 
-
 .blog-cta {
-    margin-top: 4rem;
-    align-items: center; 
-    text-align: center;
+   @apply mt-16 items-center text-center;
 }
 
 /**
@@ -790,7 +738,7 @@ body .content > .post {
 
 /** Hero banner */
 body .content .hero-banner {
-    @apply py-10 bg-cover mb-4;
+    @apply py-10 bg-cover mb-4 sm:mb-16;
     background-position: center 25%;
     position: relative;
     height: 100vh;
@@ -817,6 +765,14 @@ body .content .hero-banner {
         @apply m-auto overflow-hidden max-w-screen-2xl px-4 py-4;
         position: relative;
         z-index: 2;
+
+        @media (max-width: 640px) {
+            height: 70%;
+        }  
+
+        .doc {
+            @apply mb-16;
+        }
     }
 
     .cta.primary {
@@ -836,11 +792,13 @@ body .content .hero-banner {
     }
 
     .banner-text {
-        @apply w-full lg:w-4/5 xl:w-5/6 sm:mr-14 mt-14;
+        @apply w-full lg:w-4/5 xl:w-5/6 sm:mr-14;
 
         @media (max-width: 640px) {
             @apply text-center;
+            align-content: center;
             font-size: 36px;
+            height: 100%;
         }   
     }
 
@@ -1634,18 +1592,16 @@ body.post-page {
         
     }
     .text-wrapper { 
-       height: 20px;
+        @apply text-base sm:text-2xl h-10 sm:h-32;
     }
-
 
     img {  
       width: 100%;
       display: block;
     }
     
-
     a {
-	    @apply font-bold tracking-wider uppercase no-underline;
+	    @apply font-bold tracking-wider no-underline;
         margin-bottom: auto;
     }
 

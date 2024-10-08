@@ -358,8 +358,6 @@
    [:div.right
     [:span.font-bold.title (:jobTitle args)]
     [:span.font-bold.employer (:employer args)]
-    ;(when (and (not (:onGoing args)) (:duration args))
-    ;  [:span (str " ( " (:duration args) " months )")])
     [:div.job-description (richtext->html (get-in args [:jobDescription :json]))]]])
 
 (defmethod render "Form" 

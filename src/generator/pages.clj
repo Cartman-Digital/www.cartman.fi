@@ -49,7 +49,7 @@
        [:li
         [:a {:href (:slug item)} (get item :title)]])]))
 
-(def twitter-icon
+(def linkedin-icon
   [:span
    [:svg {:xmlns "http://www.w3.org/2000/svg" :fill "none" :width "46" :height "46" :viewBox "0 0 46 46"}
     [:g :clip-path= "url(#clip0_2_635)"
@@ -69,12 +69,6 @@
     [:path {:d "M0 11.1097L0 32.7871L9.75484 42L19.7806 31.7032L0 11.1097Z"
             :fill "#2A2A2A"}]]])
 
-(def linkedin-icon
-  [:span
-   [:svg {:xmlns "http://www.w3.org/2000/svg" :fill "none" :width "46" :height "46" :viewBox "0 0 46 46"}
-    [:path {:fill "#2A2A2A" :d "M26.0351 19.7393L39.3693 3.771H36.2092L24.6285 17.635L15.382 3.771H4.71387L18.7005 24.7377L4.71387 41.4809H7.87396L20.1033 26.84L29.8702 41.4809H40.5383L26.0351 19.7393ZM21.706 24.9206L20.2881 22.8334L9.0128 6.22214H13.868L22.9674 19.628L24.3834 21.7153L36.2111 39.141H31.3578L21.706 24.9206Z"}]]])
-
-
 (defn render-page-footer
   "Must be called from hiccup. Outputs common page footer in a vector."
   []
@@ -88,8 +82,8 @@
        [:li "Social media"]
        [:li
         [:a
-         {:href "https://twitter.com/CartmanDigital"}
-         twitter-icon
+         {:href "https://fi.linkedin.com/company/cartmandigital"}
+         linkedin-icon
          "LinkedIn"]] 
        [:li
         [:a

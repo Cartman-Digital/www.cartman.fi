@@ -72,3 +72,5 @@ This creates sitemap.xml file under public directory in the project.
 ```
 gcloud compute url-maps import --project www-cartman-fi --global --source=url-map.yaml site
 ```
+## Max page limit
+The current limit for pages is 20.

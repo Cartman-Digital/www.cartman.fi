@@ -17,7 +17,9 @@
                          contentful-environment))
 
 (def api-url
-  (str "https://cdn.contentful.com/spaces/038s6vr0kmv0/environments/"
+  (str "https://cdn.contentful.com/spaces/"
+       contentful-space
+       "/environments/"
        contentful-environment
        "/entries"))
 

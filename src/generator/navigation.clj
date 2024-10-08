@@ -36,8 +36,9 @@
      [:div {:class "nav-wrapper"}
       [:a {:href (create-url "/") :class "logo"}
        [:picture
-        [:source {:srcset "/assets/images/cartman_logo_purple_white.png" :media "(prefers-color-scheme: dark)"}]
-        [:img {:src "/assets/images/cartman_digital_logo_dark.png"}]]
+        [:source {:srcset (static/get-asset-url "images/cartman_logo_purple_white.png")
+                  :media "(prefers-color-scheme: dark)"}]
+        [:img {:src (static/get-asset-url "images/cartman_digital_logo_dark.png")}]]
        [:span {:class "sr-only"} "Cartman Digital"]]
       [:button {:data-collapse-toggle "navbar-default" :type "button" :aria-controls "navbar-default" :aria-expanded "false"}
        [:span {:class "sr-only"} "Open main menu"]
