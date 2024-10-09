@@ -1365,31 +1365,65 @@ body.post-page {
 
 
 /** People List page */
+.people .content .hero-banner {
+  @apply mb-[-3rem] z-0;
+
+    .banner-content-wrap .banner-text .doc p {
+        display: none;
+    }
+}
+
 .people .doc {
-    @apply lg:max-w-6xl;
-
-   
+    @apply lg:max-w-6xl;   
 }
-.people .doc p:first-of-type {
-    display: none;
-}
-    
 
- .people .people-list-wrap {
-    @apply text-center lg:max-w-7xl;
+.people .people-list-wrap {
+    @apply text-center py-40;
+    background-color: var(--color-accent-dark);
+    clip-path: polygon(100% 54px, 0px 0px, 0px 100%, 100% calc(100% - 54px));
+
+    @media (min-width: 800px) {
+        clip-path: polygon(100% 84px, 0px 0px, 0px 100%, 100% calc(100% - 54px));
+    }
 
     .people-list {
-        @apply grid sm:grid-cols-3 py-0;
-        width: 100%;
-        list-style-type: none;
-        padding: initial;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        justify-content: center;
 
         .person-body {
-            @apply my-5 text-center;
-            padding: 0 var(--layout-spacing-v-half);
+            @apply my-5 text-center mb-24 text-[var(--color-grey-primary)];
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            grid-column: 2 / 12;
+
+            @media (max-width: 900px) {  
+                grid-template-columns: 1fr;
+                grid-column: 1 / 13;
+            }
+
+            h2 {
+                color: var(--color-grey-primary);
+            }
+
+            .doc {
+                grid-column: 1 / -1;
+            }
+
+            .body {
+                @apply bg-[var(--color-grey-offset)] px-6 pt-8 lg:-ml-16 text-sm sm:text-xl tracking-wider;
+                line-height: 2rem;
+                font-weight: 400;
+            }
+
+            .contact-description {
+                display: none;
+            }
 
             a {
                 text-decoration: none;
+                pointer-events: none;
 
                 h2, span {
                     display: none;
@@ -1405,19 +1439,23 @@ body.post-page {
             }
             
             .image {
-                @apply mb-5 lg:block md:mb-0;
+                grid-column: 7 / end;
+            }
+    
+            .text {
+                grid-column: 2;
             }
 
+            &:nth-child(odd) .image {
+                grid-column: 2;
+            }
+
+            &:nth-child(odd) .text {
+                grid-column: 1;
+            }
         }
     }
 }
-
-.people .people-list-wrap .person-body { 
-    
-        background-color: #000;
-    
-}
-
 
 /**Individual Person page*/
 .person-page {
@@ -1704,7 +1742,10 @@ body.post-page {
     .people-list-wrap {
         background-color: var(--color-accent-dark);
         clip-path: polygon(0% 0%, 100% 0% ,100% 100%, 0% 93.5%);
-        
+
+        .people-list .person-body, h2 {
+            @apply text-[var(--color-grey-primary)];
+        }
     }
     
     .doc a {
@@ -1728,7 +1769,6 @@ body.post-page {
 
     .people-list-wrap .people-list .body {
         padding-left: 3rem; 
-       
         padding-top: 2rem;
         padding-bottom: 2rem;
         background-color: #FFF;
