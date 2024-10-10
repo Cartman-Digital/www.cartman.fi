@@ -14,16 +14,16 @@
    :changefreq (:seoUpdateFrequency sitemap-page)
    :priority (:sitemapPriority sitemap-page)})
 
-(defn get-custom-items
-  "Returns custom sitemap items that are not present in Contentful data"
-  []
-  (let [post-collection (get-in (get-contentful :last-post-publish-date) [:postCollection :items])]
-       [{:slug "articles"
-         :seoIndexing true
-         :title "Blog"
-         :sitemapPriority 0.7
-         :sys {:publishedAt (:publishDate (first post-collection))}
-         :seoUpdateFrequency "weekly"}]))
+  (defn get-custom-items
+    "Returns custom sitemap items that are not present in Contentful data"
+    []
+    (let [post-collection (get-in (get-contentful :last-post-publish-date) [:postCollection :items])]
+      [{:slug "articles"
+        :seoIndexing true
+        :title "Blog"
+        :sitemapPriority 0.7
+        :sys {:publishedAt (:publishDate (first post-collection))}
+        :seoUpdateFrequency "weekly"}]))
 
 (defn get-sitemap-items
   []
@@ -33,7 +33,7 @@
      cat 
      [(get-in contentful-data [:pageCollection :items])
       (get-in contentful-data [:postCollection :items])
-      (get-custom-items)])))
+      #_(get-custom-items)])))
 
 (defn -main
   [target-dir]

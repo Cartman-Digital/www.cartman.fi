@@ -23,7 +23,7 @@
 ;; sm:grid-cols-5 sm:grid-cols-6
 (defn get-grid-class
   [grid-count]
-  (str "sm:grid-cols-" grid-count))
+  (str "lg:grid-cols-" grid-count))
 
 (defn get-embed-block-html
   [args]
@@ -230,7 +230,8 @@
   (let [description (get-in args [:shortText :json])
         highlights (mapv #(render %) (get-in args [:highlightCollection :items]))
         skills (mapv #(render %) (get-in args [:skillsCollection :items]))
-        tech (mapv #(render %) (get-in args [:webAppSkillsCollection :items]))]
+        tech (mapv #(render %) (get-in args [:webAppSkillsCollection :items]))
+        contact-description (get-in args [:contactDescription :json])] 
     [:div.person.grid.grid-cols-1.md:grid-cols-2.sm:gap-8.items-start
      [:div.name.md:col-span-2.text-center
       [:h1.mt-4.mb-0 (:name args)]
@@ -242,9 +243,9 @@
      [:div
       [:div.pr-2 (richtext->html description)]
       (when (not-empty highlights)
-      [:div.how
-       [:h2 "Work highlights"]
-       (into [:ul.projects] highlights)])]
+        [:div.how
+         [:h2 "Work highlights"]
+         (into [:ul.projects] highlights)])]
      (when (not-empty skills)
        [:div.what
         [:h2 "Skills"]
@@ -254,10 +255,14 @@
        [:div.where
         [:h2 "Technologies"]
         [:div.web
-         (into [:ul.web-talent.list-none] tech)]])]))
+         (into [:ul.web-talent.list-none] tech)]])
+     (when (not-empty contact-description)
+       [:div.contact-description-field
+        [:h2 "Contact Description"]
+        (richtext->html contact-description)])]))
 
 (defn people-list-view
-  [args] 
+  [args]
   [:li.person-body
    [:a (if (= true (get-in args [:createPersonPage]))
          {:href (create-url (:slug args))}
@@ -266,8 +271,11 @@
     [:span.block.font-bold.mb-2 (:jobTitle args)]
     [:div.image
      [:img {:alt (get-in args [:picture :title]) :src (:url (:picture args))}]]]
-   [:div.body 
-    [:div.person-body (richtext->html (:json (:shortText args)))]]])
+   [:div.body
+    [:h2.block.mb-0 (:name args)]
+    [:span.block.font-bold.mb-2 (:jobTitle args)]
+    [:div.person-body (richtext->html (:json (:shortText args)))]
+    [:div.contact-description (richtext->html (:json (:contactDescription args)))]]])
 
 (defmulti render :__typename)
 
@@ -301,10 +309,14 @@
  [args]
  (let [cardlist (:cardList (contentful/get-contentful :card-list-query {:listId (get-in args [:sys :id])})) 
        cardCollection (get-in cardlist [:cardsCollection :items])]
-   [:section (into [:div {:class (str "card-list row grid " (get-grid-class (:numberOfCardColumns cardlist)))} 
-          [:div {:class "intro"} 
-           (richtext->html (get-in cardlist [:introduction :json]))]]
-         (mapv #(render %) cardCollection))]))
+    [:section
+     {:class (:cssClass args)}
+     [:div {:class "intro row"}
+      [:h2 (:internalName cardlist)]
+      #_(richtext->html (get-in cardlist [:introduction :json]))]
+     (into [:div {:class ["card-list row grid"
+                          (get-grid-class (:numberOfCardColumns cardlist))]}]
+           (mapv #(render %) cardCollection))]))
 
 (defmethod render "Nav"
  [args]
@@ -346,8 +358,6 @@
    [:div.right
     [:span.font-bold.title (:jobTitle args)]
     [:span.font-bold.employer (:employer args)]
-    ;(when (and (not (:onGoing args)) (:duration args))
-    ;  [:span (str " ( " (:duration args) " months )")])
     [:div.job-description (richtext->html (get-in args [:jobDescription :json]))]]])
 
 (defmethod render "Form" 
@@ -366,7 +376,7 @@
      (static/get-local-js "async-form.js")
      (for [field form-fields]
        (create-field field))
-     [:div.g-recaptcha {:data-sitekey (config/get-env "CAPTCHA_PUBLIC_KEY") :data-theme "dark"}]
+     [:div.g-recaptcha {:data-sitekey (config/get-env "CAPTCHA_PUBLIC_KEY") :data-theme "light"}]
      [:div.action.button.primary
       [:input {:type "submit" :class "submit" :value "Contact us"}]]]
     [:div {:class "success-wrap"}
@@ -424,6 +434,66 @@
   [args]
   (let [fullbody (not-empty (:highlightCollection args))]
     (if fullbody (person-single-view args) (people-list-view args))))
+
+(defmethod render "Grid"
+  [args]
+  (let [title (:title args)
+        cols (or (:cols args) 2)
+        items (->> args :content :json :content)
+        class (:cssClass args)]
+    [:div.grid-wrap.block {:class class}
+     [:h2 title]
+     [:div.grid {:class [(str "grid-cols-" cols)]}
+      (for [item items]
+        [:div.item.justify-center.content-center.items-center.text-center.flex.p-8
+         (richtext->html item)])]]))
+
+(defmethod render "Carousel"
+  [args]
+  (let [title (:title args)
+        slides (-> args :slidesCollection :items)
+        class (-> title (clojure.string/replace " " "-") clojure.string/lower-case)]
+    [:div {:class "embla-carousel-div"}
+     [:h2 {:class "embla-h2"} title]
+     [:section.embla
+      [:div.embla__viewport
+       [:div.embla__container
+        (for [slide slides]
+          [:div.embla__slide
+           (render slide)])]]]
+          [:script {:src "https://unpkg.com/embla-carousel/embla-carousel.umd.js"}]
+     [:script {:src "https://unpkg.com/embla-carousel-autoplay/embla-carousel-autoplay.umd.js"}]
+     (static/get-local-js  "embla-carousel.js")]))
+
+
+(defmethod render "MainBanner"
+  [banner]
+  (let [img (-> banner :image :url)]
+    [:div.main-banner-block
+     [:div.main-banner-text
+      [:p.text-6xl.z-20.font-extrabold.tracking-widest {:class "text-[#FFEF5A]"}
+       "ECOMMERCE IS" [:br]
+       "WHAT WE DO" [:br]
+       [:strong.text-white.text-xl.tracking-widest.relative.left-16
+        "FUTURE-PROOF YOUR eCOMMERCE TODAY"]]]
+     [:img.z-10.absolute.left-80.bottom-5.size-48 {:src img}]]))
+
+(defmethod render "BlogLatest"
+  [args]
+  (let [title (:title args)
+        data (contentful/get-contentful :post-collection-query {:single false})
+        posts (->> data :postCollection :items (take 3))]
+    [:div.blog-recent
+     [:h2 title]
+     [:div.flex
+      (for [{:keys [postImage title slug]} posts]
+        [:div.flex-1.p-8 {:class "w-full sm:w-1/4"}
+         [:div.image-wrapper
+          [:img {:class "w-full" :src (:url postImage)}]]
+         [:div.text-wrapper
+          [:a {:href slug} title]]])]
+     [:div.blog-cta
+      [:a {:href "/blog" :class "cta-button-blog"} "Read More"]]]))
 
 (comment (render {:__typename "ArticleList" :sys {:id "4N25RfloTD2aq3YtrDEzLk"} :numberOfPostsShown 3}))
 (comment (contentful/get-contentful :posts-by-list-query {:listId "4N25RfloTD2aq3YtrDEzLk" :limit 3}))

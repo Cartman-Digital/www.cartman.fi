@@ -10,11 +10,18 @@
    [taoensso.truss :as truss :refer (have)]))
 
 (def contentful-space (get-env "CONTENTFUL_SPACE"))
-(def contentful-environment "master")
+(def contentful-environment (get-env "CONTENTFUL_ENVIRONMENT"))
 (def contentful-url (str "https://graphql.contentful.com/content/v1/spaces/" 
                          contentful-space 
                          "/environments/" 
                          contentful-environment))
+
+(def api-url
+  (str "https://cdn.contentful.com/spaces/"
+       contentful-space
+       "/environments/"
+       contentful-environment
+       "/entries"))
 
 (def headers {:Authorization (str "Bearer " (get-env "CONTENTFUL_TOKEN"))})
 (def preview-headers {:Authorization (str "Bearer " (get-env "CONTENTFUL_PREVIEW_TOKEN"))})
@@ -79,6 +86,26 @@
          graphql    (graphql-fn)]
      (dispatch graphql))))
 
+(defn get-item-by-slug [content-type slug]
+  (let [params {:fields.slug slug
+                :content_type content-type
+                :include 10}
+        url (reduce (fn [url [k v]]
+                      (str url "&" (name k) "=" (str v)))
+                    (str api-url "?") params)
+        data (->> (client/get url {:headers headers}) :body json/read-json)]
+    {:items (-> data :items first)
+     :assets (-> data :includes :Asset)
+     :entries (-> data :includes :Entry)}))
+
+(defn get-image-by-slug [slug]
+  (if-let [data (get-item-by-slug "image" slug)]
+    (let [id (-> data :items :fields :image :sys :id)]
+      (->> data
+        :assets
+        (filter #(= (-> % :sys :id) id))
+        first :fields :file :url))))
+
 (comment (get-contentful :nav-collection-query {:name "Main menu"}))
 (comment (get-contentful :asset-query {:assetId "34YRcoaS4WJ5ORhpMlMHRM"}))
 (comment (get-contentful :entry-query {:entryId "782ka3lNsGXBrnE88Qf3jt"}))
@@ -90,3 +117,4 @@
 (comment (get-contentful :post-list-query))
 (comment (get-contentful :people-by-list-query {:listId "3KpjOQlZHffoJCACpIGnvh"}))
 (comment (memo/memo-clear! api-call)) ; evaluate this in REPL to clear memoize cache from api-call this allows you to update page content from contentful without restart 
+

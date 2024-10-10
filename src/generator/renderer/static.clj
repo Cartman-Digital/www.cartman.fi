@@ -16,12 +16,14 @@
 (defn get-local-css
   "Adds css when called from hiccup html output. Path contains version number."
   [filename]
-  (page/include-css (prepend-base-url (get-version-path filename))))
+  (page/include-css (get-version-path filename)))
 
 (defn get-local-js
   "Adds js when called from hiccup html output. Path contains version number."
   [filename]
   (page/include-js (prepend-base-url (get-version-path filename "js"))))
+
+
 
 (defn get-asset-url
   [asset-path]

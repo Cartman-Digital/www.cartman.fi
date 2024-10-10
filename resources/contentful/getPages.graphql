@@ -15,7 +15,7 @@ query pageCollectionQuery(
       slug
       seoIndexing
       useNarrowLayout
-      contentCollection(preview: $preview) {
+      contentCollection(preview: $preview, limit:20) {
         items {
           __typename
           ... on CtaBanner {
@@ -30,6 +30,7 @@ query pageCollectionQuery(
             ctaButtonText
           }
           ... on CardList {
+            cssClass
             sys {
               id
             }
@@ -40,7 +41,7 @@ query pageCollectionQuery(
             }
             numberOfPostsShown
           }
-           ... on PeopleList {
+          ... on PeopleList {
             sys {
               id
             }
@@ -59,6 +60,38 @@ query pageCollectionQuery(
           ... on ContentBlock {
             content {
               json
+            }
+          }
+          ... on Grid {
+            title
+            cols
+            cssClass
+            content {
+              json
+            }
+          }
+          ... on MainBanner {
+            image {
+              url
+            }
+          }
+          ... on BlogLatest {
+            title
+          }
+            ... on Carousel {
+            title
+            slidesCollection(limit:10) {
+              items {
+                __typename
+                sys {
+                  id
+                }
+                ... on ContentBlock {
+                  content {
+                    json
+                  }
+                }
+              }
             }
           }
         }
