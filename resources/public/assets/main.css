@@ -4960,6 +4960,7 @@ body.post-page code {
 .embla-carousel-div {
   background-color: var(--color-grey-offset);
   color: var(--color-grey-primary);
+  display: none;
 }
 
 .embla-h2 {
