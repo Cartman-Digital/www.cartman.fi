@@ -1687,6 +1687,10 @@ body .content > .post {
   }
 }
 
+.footer ul:first-of-type li:nth-child(2) {
+  display: none;
+}
+
 .footer ul:nth-child(3) {
   margin-top: 0.5rem;
 }
@@ -4789,6 +4793,10 @@ body.post-page code {
 .hiring ul {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.hiring .content .doc:nth-child(3) {
+  display: none;
 }
 
 /** Contact Us Page */

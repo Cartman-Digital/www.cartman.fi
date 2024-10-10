@@ -47,7 +47,7 @@
     [:ul.menu
      (for [item (:items nav-item-collection)]
        [:li
-        [:a {:href (:slug item)} (get item :title)]])]))
+        [:a {:href (nav/create-url (:slug item))} (get item :title)]])]))
 
 (def linkedin-icon
   [:span
