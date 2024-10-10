@@ -691,7 +691,8 @@ video {
   padding: 2rem;
 }
 
-.pb-5 {
+.py-5 {
+  padding-top: 1.25rem;
   padding-bottom: 1.25rem;
 }
 
@@ -1628,6 +1629,12 @@ body .content > .post {
   text-align: center;
   background-color: var(--color-section-greyscale-bg);
   color: var(--color-body-text);
+}
+
+@media (min-width: 640px) {
+  .footer {
+    border-bottom: 1px solid black
+  }
 }
 
 .footer a:hover {

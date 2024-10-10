@@ -81,13 +81,11 @@
       [:ul
        [:li "Social media"]
        [:li
-        [:a
-         {:href "https://fi.linkedin.com/company/cartmandigital"}
+        [:a {:href "https://fi.linkedin.com/company/cartmandigital"}
          linkedin-icon
-         "LinkedIn"]] 
+         "LinkedIn"]]
        [:li
-        [:a
-         {:href "https://www.itewiki.fi/cartman-digital"}
+        [:a {:href "https://www.itewiki.fi/cartman-digital"}
          itewiki-icon
          "Itewiki"]]]
       [:hr]
@@ -98,10 +96,10 @@
        [:li "Phone: +358 40 088 0369"]
        [:li "name.lastname@cartman.fi"]
        [:li
-        [:a {:href cta-button-url :class "cta-button-footer"} cta-button-text]]]  
+        [:a {:href cta-button-url :class "cta-button-footer"} cta-button-text]]]
       [:hr]
-      [:div {:class "footer-centering-div"}]
-      [:div.text-md.pb-5 "&copy 2024 Cartman Digital Oy"]]]))
+      [:div {:class "footer-centering-div"}]]
+     [:div.text-md.py-5 "&copy 2024 Cartman Digital Oy"]]))
 
 (defn render-page
   [page body-class]
