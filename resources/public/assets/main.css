@@ -1056,6 +1056,12 @@ body hr {
   background-color: var(--color-grey-primary);
 }
 
+@media (prefers-color-scheme:dark) {
+  body hr {
+    background-color: var(--color-white-primary)
+  }
+}
+
 body .form-container {
   clear: left;
   margin-bottom: 1rem;
@@ -1800,6 +1806,16 @@ body .content > .post {
   display: inline-block;
 }
 
+.linkedin-icon, .itewiki-icon {
+  color: #2A2A2A;
+}
+
+@media (prefers-color-scheme: dark) {
+  .linkedin-icon, .itewiki-icon  {
+    color: var(--color-white-primary);
+  }
+}
+
 .cta-button-footer {
   background-color: var(--color-accent);
   font-size: 1.25rem;
@@ -2486,14 +2502,12 @@ body .content > section.why-us {
   position: relative;
   z-index: 20;
   margin-top: -12rem;
-  margin-bottom: 4rem;
   padding-top: 2rem;
   padding-bottom: 1.25rem;
 }
 
 @media (min-width: 640px) {
   body .content > section.why-us {
-    margin-bottom: 9rem;
     padding-top: 8rem;
     padding-bottom: 3rem;
   }
@@ -4666,12 +4680,25 @@ body.post-page code {
 }
 
 .trusted-by {
-  margin-bottom: 5rem;
+  margin-bottom: -0.25rem;
+  padding-top: 4rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 640px) {
+  .trusted-by {
+    padding-top: 9rem;
+  }
+}
+
+.trusted-by {
+  background-color: var(--color-grey-offset);
 }
 
 .trusted-by h2 {
   padding-left: 1.25rem;
   line-height: 1.25;
+  color: var(--color-grey-primary);
 }
 
 @media (min-width: 640px) {
@@ -4907,15 +4934,30 @@ body.post-page code {
 
 /** Embla Carousel */
 
+.embla-carousel-div {
+  background-color: var(--color-grey-offset);
+  color: var(--color-grey-primary);
+}
+
 .embla-h2 {
-  text-transform: capitalize;
   padding-left: 1.25rem;
+  line-height: 1.25;
+  color: var(--color-grey-primary);
+}
+
+@media (min-width: 640px) {
+  .embla-h2 {
+    padding-left: 0.75rem;
+    line-height: 1.5;
+  }
+}
+
+.embla-h2 {
   font-size: 28px;
   font-family: var(--font-h1);
   font-weight: 700;
   border: unset;
   text-transform: uppercase;
-  line-height: 1.25;
 }
 
 @media (min-width: 640px) {

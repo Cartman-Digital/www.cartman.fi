@@ -453,7 +453,7 @@
   (let [title (:title args)
         slides (-> args :slidesCollection :items)
         class (-> title (clojure.string/replace " " "-") clojure.string/lower-case)]
-    [:div 
+    [:div {:class "embla-carousel-div"}
      [:h2 {:class "embla-h2"} title]
      [:section.embla
       [:div.embla__viewport
