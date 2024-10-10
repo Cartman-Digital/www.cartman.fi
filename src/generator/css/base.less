@@ -542,7 +542,9 @@ body .content > .post {
     color: var(--color-body-text);
 
     @media (min-width: 640px) {
-        border-bottom: 1px solid black;
+        @media (prefers-color-scheme: light) {
+            border-bottom: 1px solid black;
+        }
     }
     
 
