@@ -273,7 +273,7 @@ body {
     }
     @media (max-width: 350px) {
         .g-recaptcha {
-            transform:scale(0.65);
+            transform:scale(0.75);
             transform-origin:0 0;
         }
     }
@@ -284,11 +284,11 @@ body {
     overflow: hidden;
 
     input {
-        @apply lg:w-96 w-48 sm:w-72;
+        @apply  w-56 sm:w-72 lg:w-96;
     }
 
     textarea {
-        @apply lg:w-96 w-48 sm:w-72;
+        @apply  w-56 sm:w-72 lg:w-96;
     }
 
     /**
@@ -296,6 +296,7 @@ body {
      * this breaks button animation styles. Apply the styles to wrapping div for animations
      * and remove the wrappers padding to avoid deadzone inside button borders
      */
+
     div.action.button.primary {
         /* width set because of box-border requirement getting ignored without it. */
         @apply bg-[var(--color-accent)] text-[var(--color-primary)] tracking-wider uppercase text-xl sm:text-2xl mt-6 w-48 sm:w-72 lg:w-96  p-0 box-border; 
@@ -847,6 +848,10 @@ body .content .hero-banner {
   @apply bg-[var(--color-accent-dark)] py-24 sm:py-52 px-0 sm:px-20 -mt-32 z-10 mb-40;
   clip-path: polygon(100% 4.5%, 0% 0% ,0% 100%, 100% 93.5%);
   position: relative;
+
+  @media (prefers-color-scheme:dark) {
+    @apply mb-48;
+  }
 
   h2 {
     font-family: var(--font-h1);

@@ -1079,7 +1079,7 @@ body .form-container {
 
 @media (max-width: 350px) {
   body .g-recaptcha {
-    transform:scale(0.65);
+    transform:scale(0.75);
     transform-origin:0 0;
   }
 }
@@ -1090,7 +1090,7 @@ body .form-container {
 }
 
 .form-wrap input {
-  width: 12rem;
+  width: 14rem;
 }
 
 @media (min-width: 640px) {
@@ -1106,7 +1106,7 @@ body .form-container {
 }
 
 .form-wrap textarea {
-  width: 12rem;
+  width: 14rem;
 }
 
 @media (min-width: 640px) {
@@ -2218,6 +2218,12 @@ body .content .hero-banner +div {
   -webkit-clip-path: polygon(100% 4.5%, 0% 0% ,0% 100%, 100% 93.5%);
           clip-path: polygon(100% 4.5%, 0% 0% ,0% 100%, 100% 93.5%);
   position: relative;
+}
+
+@media (prefers-color-scheme:dark) {
+  .what-we-do {
+    margin-bottom: 12rem;
+  }
 }
 
 .what-we-do h2 {
