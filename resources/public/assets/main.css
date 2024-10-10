@@ -2539,7 +2539,7 @@ body .content > section.why-us .intro.row {
 
 @media (min-width: 1400px) {
   body .content > section.why-us .intro.row {
-    margin-left: 10px
+    margin-left: auto
   }
 }
 
