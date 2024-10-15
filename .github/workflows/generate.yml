@@ -86,8 +86,7 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v2'
         with:
-          version: '>= 416.0.0'
-          skip_install: true
+          version: '>= 495.0.0'
 
       - name: Upload
         run: gsutil -m rsync -d -r build gs://www-cartman-fi-prod

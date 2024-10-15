@@ -41,8 +41,7 @@ jobs:
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v2'
       with:
-        version: '>= 416.0.0'
-        skip_install: true
+        version: '>= 495.0.0'
 
     - id: 'auth'
       uses: 'google-github-actions/auth@v2'
